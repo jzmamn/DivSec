@@ -1,7 +1,23 @@
-$("#button-page").click(function() {
+$("#mnuDashboard").click(function() {
 	$.ajax({
 		type : "GET",
-		url : "button",
+		url : "main-menu/dashboard",
+
+		success : function(response) {
+			$('#page-content').html(response);
+		},
+		error : function(e) {
+			alert('Error: ' + e);
+		}
+	});
+
+});
+
+
+$("#mnuNewRequest").click(function() {
+	$.ajax({
+		type : "GET",
+		url : "main-menu/button",
 
 		success : function(response) {
 			$('#page-content').html(response);

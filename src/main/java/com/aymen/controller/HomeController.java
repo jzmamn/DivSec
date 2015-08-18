@@ -36,31 +36,12 @@ public class HomeController {
 
 		return "home";
 	}
-
+	
+	//Directs to the main page (dashboard) when successfully logged in.
 	@RequestMapping(value = "/main", method = RequestMethod.GET)
 	public String goToMain(Locale locale, Model model) {
 		logger.info("Welcome home! The client locale is {}.", locale);
-
 		return "main";
 	}
-
-	/*
-	@RequestMapping("/dashboard")
-	public  String hello() {
-		//String str = "This is aymen and rafatha";
-		return "dashboard";
-
-	} */
 	
-	@RequestMapping(value = "/dashboard", method = RequestMethod.GET)
-	public ModelAndView dashboard()  {
-	    ModelAndView modelAndView = new ModelAndView("pages/dashboard");
-	    return modelAndView;
-	}
-
-	@RequestMapping(value = "/button", method = RequestMethod.GET)
-	public ModelAndView button()  {
-	    ModelAndView modelAndView = new ModelAndView("pages/button");
-	    return modelAndView;
-	}
 }

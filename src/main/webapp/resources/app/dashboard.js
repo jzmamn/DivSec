@@ -1,6 +1,6 @@
 $.ajax({
 	type : "GET",
-	url : "dashboard",
+	url : "main-menu/dashboard",
 
 	success : function(response) {
 		$('#page-content').html(response);
