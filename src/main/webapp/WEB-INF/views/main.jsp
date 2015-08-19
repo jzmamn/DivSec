@@ -36,6 +36,11 @@
 	href="<c:url value="/resources/plugins/flot/examples/examples.css" />" />
 
 
+<link rel="stylesheet"
+	href="<c:url value="/resources/plugins/validationengine/css/validationEngine.jquery.css" />" />
+
+
+
 <!-- END PAGE LEVEL  STYLES -->
 <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!--[if lt IE 9]>
@@ -303,8 +308,11 @@
 					</span> &nbsp; <span class="label label-default">10</span>&nbsp;
 				</a>
 					<ul class="collapse" id="component-nav">
-						<li class=""><a id="mnuNewRequest" href=""><i
-								class="icon-angle-right"></i> New Request </a></li>
+
+						<li class=""><div>
+								<a id="mnuNewRequest" href=""><i class="icon-angle-right"></i>
+									New Request </a>
+							</div></li>
 						<li class=""><a href="#"><i class="icon-angle-right"></i>
 								Opened Request </a></li>
 						<li class=""><a href="#"><i class="icon-angle-right"></i>
@@ -362,10 +370,10 @@
 								Preferences </a></li>
 						<li><a href="#"><i class="icon-angle-right"></i> Division
 						</a></li>
-						<li><a href="#"><i class="icon-angle-right"></i> Subject
-						</a></li>
-						<li><a href="#"><i class="icon-angle-right"></i> Subject
-								Stages </a></li>
+						<li><a id="mnuSubject" href="#"><i
+								class="icon-angle-right"></i> Subject </a></li>
+						<li><a id="mnuSubjectStages" href="#"><i
+								class="icon-angle-right"></i> Subject Stages </a></li>
 						<li><a href="#"><i class="icon-angle-right"></i> Request
 								Status </a></li>
 						<li><a href="#"><i class="icon-angle-right"></i> Stage
@@ -382,58 +390,8 @@
 		<!--PAGE CONTENT -->
 		<div id="page-content"></div>
 		<!--END PAGE CONTENT -->
-
-
-		<!-- RIGHT STRIP  SECTION -->
-		<div id="right">
-
-			<div class="well well-small">
-				<ul class="list-unstyled">
-					<li>Visitor &nbsp; : <span>23,000</span></li>
-					<li>Users &nbsp; : <span>53,000</span></li>
-					<li>Registrations &nbsp; : <span>3,000</span></li>
-				</ul>
-			</div>
-			<div class="well well-small">
-				<button class="btn btn-block">Help</button>
-				<button class="btn btn-primary btn-block">Tickets</button>
-				<button class="btn btn-info btn-block">New</button>
-				<button class="btn btn-success btn-block">Users</button>
-				<button class="btn btn-danger btn-block">Profit</button>
-				<button class="btn btn-warning btn-block">Sales</button>
-				<button class="btn btn-inverse btn-block">Stock</button>
-			</div>
-			<div class="well well-small">
-				<span>Profit</span><span class="pull-right"><small>20%</small></span>
-
-				<div class="progress mini">
-					<div class="progress-bar progress-bar-info" style="width: 20%"></div>
-				</div>
-				<span>Sales</span><span class="pull-right"><small>40%</small></span>
-
-				<div class="progress mini">
-					<div class="progress-bar progress-bar-success" style="width: 40%"></div>
-				</div>
-				<span>Pending</span><span class="pull-right"><small>60%</small></span>
-
-				<div class="progress mini">
-					<div class="progress-bar progress-bar-warning" style="width: 60%"></div>
-				</div>
-				<span>Summary</span><span class="pull-right"><small>80%</small></span>
-
-				<div class="progress mini">
-					<div class="progress-bar progress-bar-danger" style="width: 80%"></div>
-				</div>
-			</div>
-		</div>
-		<!-- END RIGHT STRIP  SECTION -->
-
-
-
 	</div>
 	<!--END MAIN WRAPPER -->
-
-
 
 	<!-- FOOTER -->
 	<div id="footer">
@@ -467,6 +425,21 @@
 
 	<script src="<c:url value="/resources/app/main-menu.js" />"></script>
 	<script src="<c:url value="/resources/app/dashboard.js" />"></script>
+
+	<script
+		src="<c:url value="/resources/plugins/dataTables/jquery.dataTables.js" />"></script>
+	<script
+		src="<c:url value="/resources/plugins/dataTables/dataTables.bootstrap.js" />"></script>
+	<script
+		src="<c:url value="/resources/plugins/validationengine/js/jquery.validationEngine.js" />"></script>
+	<script
+		src="<c:url value="/resources/plugins/validationengine/js/languages/jquery.validationEngine-en.js" />"></script>
+	<script
+		src="<c:url value="/resources/plugins/jquery-validation-1.11.1/dist/jquery.validate.min.js" />"></script>
+	<script src="<c:url value="/resources/js/validationInit.js" />"></script>
+
+
+
 
 	<!-- END PAGE LEVEL SCRIPTS -->
 

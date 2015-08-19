@@ -1,11 +1,11 @@
 package com.aymen.controller;
 
-import java.util.Locale;
-
+import org.junit.runner.Request;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -34,6 +34,18 @@ public class MainMenuController {
 	@RequestMapping(value = "/button", method = RequestMethod.GET)
 	public ModelAndView button()  {
 	    ModelAndView modelAndView = new ModelAndView("pages/button");
+	    return modelAndView;
+	}
+	
+	@RequestMapping(value = "/subject", method = RequestMethod.GET)
+	public ModelAndView subject()  {
+	    ModelAndView modelAndView = new ModelAndView("pages/subject");
+	    return modelAndView;
+	}
+	
+	@RequestMapping(value = "/sub-stages", method = RequestMethod.GET)
+	public ModelAndView sbjStages()  {
+	    ModelAndView modelAndView = new ModelAndView("pages/subject-stage");
 	    return modelAndView;
 	}
 	
