@@ -16,11 +16,16 @@ $("#mnuDashboard").click(function() {
 });
 
 $("#mnuNewRequest").click(function() {
+
+	$("#page-content").load("main-menu/button");
+
+});
+$("#mnuNewRequest").click(function() {
 	event.preventDefault();
 	$.ajax({
 		type : "GET",
 		url : "main-menu/button",
-		async:false,
+		async : false,
 
 		success : function(response) {
 			$('#page-content').html(response);

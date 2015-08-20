@@ -21,7 +21,7 @@
 <link rel="stylesheet"
 	href="<c:url value="/resources/plugins/bootstrap/css/bootstrap.css" />" />
 <link rel="stylesheet"
-	href="<c:url value="/resources//css/login.css" />" />
+	href="<c:url value="/resources/css/login.css" />" />
 <link rel="stylesheet"
 	href="<c:url value="/resources/plugins/magic/magic.css" />" />
 
@@ -42,7 +42,7 @@
 		</div>
 		<div class="tab-content">
 			<div id="login" class="tab-pane active">
-				<form action="main" class="form-signin">
+				<form action="mainmenu/main/1" class="form-signin">
 					<p
 						class="text-muted text-center btn-block btn btn-primary btn-rect">
 						Enter your username and password</p>

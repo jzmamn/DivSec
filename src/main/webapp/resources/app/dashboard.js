@@ -1,3 +1,4 @@
+/*
 $.ajax({
 	type : "GET",
 	url : "main-menu/dashboard",
@@ -9,3 +10,4 @@ $.ajax({
 		alert('Error: ' + e);
 	}
 });
+*/
