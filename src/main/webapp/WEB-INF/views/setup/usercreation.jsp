@@ -65,7 +65,7 @@
 			<div class="inner">
 				<div class="row">
 					<div class="col-lg-12">
-						<h2>Manage Division</h2>
+						<h2>Manage User</h2>
 					</div>
 				</div>
 				<hr />

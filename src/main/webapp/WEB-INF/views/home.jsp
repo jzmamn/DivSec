@@ -20,8 +20,7 @@
 
 <link rel="stylesheet"
 	href="<c:url value="/resources/plugins/bootstrap/css/bootstrap.css" />" />
-<link rel="stylesheet"
-	href="<c:url value="/resources/css/login.css" />" />
+<link rel="stylesheet" href="<c:url value="/resources/css/login.css" />" />
 <link rel="stylesheet"
 	href="<c:url value="/resources/plugins/magic/magic.css" />" />
 
@@ -37,8 +36,8 @@
 	<!-- PAGE CONTENT -->
 	<div class="container">
 		<div class="text-center">
-			<img src="<c:url value="/resources/img/logo.png " />" alt=" Logo"  />
-			
+			<img src="<c:url value="/resources/img/logo.png " />" alt=" Logo" />
+
 		</div>
 		<div class="tab-content">
 			<div id="login" class="tab-pane active">

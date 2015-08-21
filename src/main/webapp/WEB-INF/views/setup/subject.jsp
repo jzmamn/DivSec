@@ -19,8 +19,10 @@
 
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/plugins/bootstrap/css/bootstrap.css" />
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/main.css"  />
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/theme.css" />
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/main.css" />
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/theme.css" />
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/MoneAdmin.css" />
 <link rel="stylesheet"
@@ -32,6 +34,8 @@
 	href="${pageContext.request.contextPath}/resources/plugins/validationengine/css/validationEngine.jquery.css" />
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/plugins/dataTables/dataTables.bootstrap.css" />
+
+
 <!-- END PAGE LEVEL  STYLES -->
 
 <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -61,7 +65,7 @@
 			<div class="inner">
 				<div class="row">
 					<div class="col-lg-12">
-						<h2>MASTER FILE TEMPLATE</h2>
+						<h2>Manage Subject</h2>
 					</div>
 				</div>
 				<hr />
@@ -101,65 +105,23 @@
 												<td class="center">X</td>
 												<td class="center">5</td>
 												<td class="center">
-													<button class="btn" data-toggle="modal"
-														data-target="#subjectModal">
+													<button class="btn btn-success" data-toggle="modal"
+														data-target="#viewModel">
 														<i class="icon-eye-open"></i> View
 													</button>
 												</td>
-												<td class="center"><button class="btn btn-primary"
+												<td class="center"><button class="btn btn-warning"
 														data-toggle="modal" data-target="#subjectModal">
 														<i class="icon-pencil icon-white"></i> Edit
 													</button></td>
 												<td class="center">
-													<button class="btn btn-danger">
+													<button class="btn btn-danger" data-toggle="modal"
+														data-target="#deleteModal">
 														<i class="icon-remove icon-white"></i> Delete
 													</button>
 												</td>
 											</tr>
-											<tr class="even gradeC">
-												<td>Trident</td>
-												<td>Internet Explorer 5.0</td>
-												<td>Win 95+</td>
-												<td class="center">5</td>
-												<td class="center">C</td>
-												<td class="center">5</td>
-												<td class="center">
-													<button class="btn">
-														<i class="icon-eye-open"></i> View
-													</button>
-												</td>
-												<td class="center"><button class="btn btn-primary">
-														<i class="icon-pencil icon-white"></i> Edit
-													</button></td>
-												<td class="center">
-													<button class="btn btn-danger">
-														<i class="icon-remove icon-white"></i> Delete
-													</button>
-												</td>
-
-											</tr>
-											<tr class="odd gradeA">
-												<td>Trident</td>
-												<td>Internet Explorer 5.5</td>
-												<td>Win 95+</td>
-												<td class="center">5.5</td>
-												<td class="center">A</td>
-												<td class="center">5</td>
-												<td class="center">
-													<button class="btn">
-														<i class="icon-eye-open"></i> View
-													</button>
-												</td>
-												<td class="center"><button class="btn btn-primary">
-														<i class="icon-pencil icon-white"></i> Edit
-													</button></td>
-												<td class="center">
-													<button class="btn btn-danger">
-														<i class="icon-remove icon-white"></i> Delete
-													</button>
-												</td>
-
-											</tr>
+											
 											<tr class="odd gradeX">
 												<td>Trident</td>
 												<td>Internet Explorer 4.0</td>
@@ -168,63 +130,199 @@
 												<td class="center">X</td>
 												<td class="center">5</td>
 												<td class="center">
-													<button class="btn">
+													<button class="btn btn-success" data-toggle="modal"
+														data-target="#viewModel">
 														<i class="icon-eye-open"></i> View
 													</button>
 												</td>
-												<td class="center"><button class="btn btn-primary">
+												<td class="center"><button class="btn btn-warning"
+														data-toggle="modal" data-target="#subjectModal">
 														<i class="icon-pencil icon-white"></i> Edit
 													</button></td>
 												<td class="center">
-													<button class="btn btn-danger">
+													<button class="btn btn-danger" data-toggle="modal"
+														data-target="#deleteModal">
 														<i class="icon-remove icon-white"></i> Delete
 													</button>
 												</td>
-
 											</tr>
-											<tr class="even gradeC">
+											
+											<tr class="odd gradeX">
 												<td>Trident</td>
-												<td>Internet Explorer 5.0</td>
+												<td>Internet Explorer 4.0</td>
 												<td>Win 95+</td>
-												<td class="center">5</td>
-												<td class="center">C</td>
+												<td class="center">4</td>
+												<td class="center">X</td>
 												<td class="center">5</td>
 												<td class="center">
-													<button class="btn">
+													<button class="btn btn-success" data-toggle="modal"
+														data-target="#viewModel">
 														<i class="icon-eye-open"></i> View
 													</button>
 												</td>
-												<td class="center"><button class="btn btn-primary">
+												<td class="center"><button class="btn btn-warning"
+														data-toggle="modal" data-target="#subjectModal">
 														<i class="icon-pencil icon-white"></i> Edit
 													</button></td>
 												<td class="center">
-													<button class="btn btn-danger">
+													<button class="btn btn-danger" data-toggle="modal"
+														data-target="#deleteModal">
 														<i class="icon-remove icon-white"></i> Delete
 													</button>
 												</td>
-
 											</tr>
-											<tr class="odd gradeA">
+											
+											<tr class="odd gradeX">
 												<td>Trident</td>
-												<td>Internet Explorer 5.5</td>
+												<td>Internet Explorer 4.0</td>
 												<td>Win 95+</td>
-												<td class="center">5.5</td>
-												<td class="center">A</td>
+												<td class="center">4</td>
+												<td class="center">X</td>
 												<td class="center">5</td>
 												<td class="center">
-													<button class="btn">
+													<button class="btn btn-success" data-toggle="modal"
+														data-target="#viewModel">
 														<i class="icon-eye-open"></i> View
 													</button>
 												</td>
-												<td class="center"><button class="btn btn-primary">
+												<td class="center"><button class="btn btn-warning"
+														data-toggle="modal" data-target="#subjectModal">
 														<i class="icon-pencil icon-white"></i> Edit
 													</button></td>
 												<td class="center">
-													<button class="btn btn-danger">
+													<button class="btn btn-danger" data-toggle="modal"
+														data-target="#deleteModal">
 														<i class="icon-remove icon-white"></i> Delete
 													</button>
 												</td>
 											</tr>
+											
+											<tr class="odd gradeX">
+												<td>Trident</td>
+												<td>Internet Explorer 4.0</td>
+												<td>Win 95+</td>
+												<td class="center">4</td>
+												<td class="center">X</td>
+												<td class="center">5</td>
+												<td class="center">
+													<button class="btn btn-success" data-toggle="modal"
+														data-target="#viewModel">
+														<i class="icon-eye-open"></i> View
+													</button>
+												</td>
+												<td class="center"><button class="btn btn-warning"
+														data-toggle="modal" data-target="#subjectModal">
+														<i class="icon-pencil icon-white"></i> Edit
+													</button></td>
+												<td class="center">
+													<button class="btn btn-danger" data-toggle="modal"
+														data-target="#deleteModal">
+														<i class="icon-remove icon-white"></i> Delete
+													</button>
+												</td>
+											</tr>
+											
+											<tr class="odd gradeX">
+												<td>Trident</td>
+												<td>Internet Explorer 4.0</td>
+												<td>Win 95+</td>
+												<td class="center">4</td>
+												<td class="center">X</td>
+												<td class="center">5</td>
+												<td class="center">
+													<button class="btn btn-success" data-toggle="modal"
+														data-target="#viewModel">
+														<i class="icon-eye-open"></i> View
+													</button>
+												</td>
+												<td class="center"><button class="btn btn-warning"
+														data-toggle="modal" data-target="#subjectModal">
+														<i class="icon-pencil icon-white"></i> Edit
+													</button></td>
+												<td class="center">
+													<button class="btn btn-danger" data-toggle="modal"
+														data-target="#deleteModal">
+														<i class="icon-remove icon-white"></i> Delete
+													</button>
+												</td>
+											</tr>
+											
+											<tr class="odd gradeX">
+												<td>Trident</td>
+												<td>Internet Explorer 4.0</td>
+												<td>Win 95+</td>
+												<td class="center">4</td>
+												<td class="center">X</td>
+												<td class="center">5</td>
+												<td class="center">
+													<button class="btn btn-success" data-toggle="modal"
+														data-target="#viewModel">
+														<i class="icon-eye-open"></i> View
+													</button>
+												</td>
+												<td class="center"><button class="btn btn-warning"
+														data-toggle="modal" data-target="#subjectModal">
+														<i class="icon-pencil icon-white"></i> Edit
+													</button></td>
+												<td class="center">
+													<button class="btn btn-danger" data-toggle="modal"
+														data-target="#deleteModal">
+														<i class="icon-remove icon-white"></i> Delete
+													</button>
+												</td>
+											</tr>
+											
+											<tr class="odd gradeX">
+												<td>Trident</td>
+												<td>Internet Explorer 4.0</td>
+												<td>Win 95+</td>
+												<td class="center">4</td>
+												<td class="center">X</td>
+												<td class="center">5</td>
+												<td class="center">
+													<button class="btn btn-success" data-toggle="modal"
+														data-target="#viewModel">
+														<i class="icon-eye-open"></i> View
+													</button>
+												</td>
+												<td class="center"><button class="btn btn-warning"
+														data-toggle="modal" data-target="#subjectModal">
+														<i class="icon-pencil icon-white"></i> Edit
+													</button></td>
+												<td class="center">
+													<button class="btn btn-danger" data-toggle="modal"
+														data-target="#deleteModal">
+														<i class="icon-remove icon-white"></i> Delete
+													</button>
+												</td>
+											</tr>
+											
+											<tr class="odd gradeX">
+												<td>Trident</td>
+												<td>Internet Explorer 4.0</td>
+												<td>Win 95+</td>
+												<td class="center">4</td>
+												<td class="center">X</td>
+												<td class="center">5</td>
+												<td class="center">
+													<button class="btn btn-success" data-toggle="modal"
+														data-target="#viewModel">
+														<i class="icon-eye-open"></i> View
+													</button>
+												</td>
+												<td class="center"><button class="btn btn-warning"
+														data-toggle="modal" data-target="#subjectModal">
+														<i class="icon-pencil icon-white"></i> Edit
+													</button></td>
+												<td class="center">
+													<button class="btn btn-danger" data-toggle="modal"
+														data-target="#deleteModal">
+														<i class="icon-remove icon-white"></i> Delete
+													</button>
+												</td>
+											</tr>
+											
+
 										</tbody>
 									</table>
 								</div>
@@ -233,47 +331,70 @@
 					</div>
 				</div>
 			</div>
+
 			<!--Save and Update Modal -->
 			<div class="col-lg-12">
 				<div class="modal fade" id="subjectModal" tabindex="-1"
 					role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 					<div class="modal-dialog">
 						<div class="modal-content">
-							<div class="modal-header">
-								<button type="button" class="close" data-dismiss="modal"
+							<div class="modal-header primary">
+								<button type="button" class="close " data-dismiss="modal"
 									aria-hidden="true">&times;</button>
-								<h4 class="modal-title" id="H4">New Registration</h4>
+								<h4 class="modal-title" id="H4">User Registration</h4>
 							</div>
 							<div class="modal-body">
-								<form role="form" id="block-validate">
+								<form action="index.html" class="form-signin">
 
 									<div class="form-group">
-										<label>Username</label> <input class="form-control" />
-										<p class="help-block">Example block-level help text here.</p>
-									</div>
-
-									<div class="form-group">
-										<label class="control-label">E-mail</label>
 										<div>
 											<input type="email" id="email2" name="email2"
-												class="form-control" />
+												placeholder="First Name" class="form-control" />
 										</div>
 									</div>
 
 									<div class="form-group">
-										<label>Email</label> <input class="form-control" />
-										<p class="help-block">Example block-level help text here.</p>
-									</div>
-									<div class="form-group">
-										<label>Password</label> <input class="form-control" />
-										<p class="help-block">Example block-level help text here.</p>
-									</div>
-									<div class="form-group">
-										<label>Retype Password</label> <input class="form-control" />
-										<p class="help-block">Example block-level help text here.</p>
+										<div>
+											<input type="email" id="email2" name="email2"
+												placeholder="Last Name" class="form-control" />
+										</div>
 									</div>
 
+									<div class="form-group">
+										<div>
+											<input type="email" id="email2" name="email2"
+												placeholder="User Name" class="form-control" />
+										</div>
+									</div>
+
+									<div class="form-group">
+										<div>
+											<input type="email" id="email2" name="email2"
+												placeholder="E-mail" class="form-control" />
+										</div>
+									</div>
+
+									<div class="form-group">
+										<div>
+											<input type="password" id="email2" name="email2"
+												placeholder="Type password" class="form-control" />
+										</div>
+									</div>
+									<div class="form-group">
+										<div>
+											<input type="password" id="email2" name="email2"
+												placeholder="Re type password" class="form-control" />
+										</div>
+									</div>
+
+									<div class="form-group">
+										<div class="checkbox">
+											<label> <input type="checkbox" value="" />Active
+											</label>
+										</div>
+									</div>
 								</form>
+
 							</div>
 							<div class="modal-footer">
 								<button type="button" class="btn btn-default"
@@ -286,6 +407,52 @@
 				</div>
 			</div>
 			<!--End Save and Update Modal -->
+
+			<!--View Details -->
+			<div class="col-lg-12">
+				<div class="modal fade" id="viewModel" tabindex="-1" role="dialog"
+					aria-labelledby="myModalLabel" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header primary">
+								<button type="button" class="close " data-dismiss="modal"
+									aria-hidden="true">&times;</button>
+								<h4 class="modal-title" id="H4">View User's Detail</h4>
+							</div>
+							<div class="modal-body">
+								<div>
+									<p>First Name:</p>
+								</div>
+
+								<div>
+									<p>Last Name:</p>
+								</div>
+
+								<div>
+									<p>User Name:</p>
+								</div>
+
+								<div>
+									<p>E-mail:</p>
+								</div>
+								<div>
+									<p>Active:</p>
+								</div>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default"
+									data-dismiss="modal">Close</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!--End View Details -->
+
+			<!--Delete Modal -->
+			<jsp:include page="../include/include_delete_modal.jsp" />
+			<!--End Delete Modal -->
+
 
 		</div>
 		<!--END PAGE CONTENT -->
@@ -300,21 +467,27 @@
 
 
 	<!-- GLOBAL SCRIPTS -->
-	<script src="${pageContext.request.contextPath}/resources/plugins/jquery-2.0.3.min.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/plugins/bootstrap/js/bootstrap.min.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/plugins/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/resources/plugins/jquery-2.0.3.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/resources/plugins/bootstrap/js/bootstrap.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/resources/plugins/modernizr-2.6.2-respond-1.1.0.min.js"></script>
 	<!-- END GLOBAL SCRIPTS -->
 
 	<!-- PAGE LEVEL SCRIPTS -->
-	<script src="${pageContext.request.contextPath}/resources/plugins/dataTables/jquery.dataTables.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/plugins/dataTables/dataTables.bootstrap.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/resources/plugins/dataTables/jquery.dataTables.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/resources/plugins/dataTables/dataTables.bootstrap.js"></script>
 	<script
 		src="${pageContext.request.contextPath}/resources/plugins/validationengine/js/jquery.validationEngine.js"></script>
 	<script
 		src="${pageContext.request.contextPath}/resources/plugins/validationengine/js/languages/jquery.validationEngine-en.js"></script>
 	<script
 		src="${pageContext.request.contextPath}/resources/plugins/jquery-validation-1.11.1/dist/jquery.validate.min.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/js/validationInit.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/resources/js/validationInit.js"></script>
 
 	<script>
 		$(document).ready(function() {

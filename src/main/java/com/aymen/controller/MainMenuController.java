@@ -16,10 +16,10 @@ public class MainMenuController {
 	private static final Logger logger = LoggerFactory
 			.getLogger(MainMenuController.class);
 
-	ModelAndView mavMenu;
+	String strMenu;
 
 	@RequestMapping(value = "/main/{menuId}", method = RequestMethod.GET)
-	public ModelAndView getProduct(@PathVariable("menuId") String menuId) {
+	public String getProduct(@PathVariable("menuId") String menuId) {
 
 		System.out.println("Product Id : " + menuId);
 
@@ -28,18 +28,55 @@ public class MainMenuController {
 		switch (intMenuId) {
 
 		case 1:
-			mavMenu = new ModelAndView("main");
+			strMenu = "main";
+			break;
+			
+		//FROM 50 TO 58 ADMIN PAGES
+		case 50:
+			strMenu = "setup/preference";
+			break;
+
+		case 51:
+			strMenu = "setup/usercreation";
 			break;
 
 		case 52:
-			mavMenu = new ModelAndView("/setup/subject");
+			strMenu = "setup/division";
+			break;
+
+		case 53:
+			strMenu = "setup/subject";
+			break;
+
+		case 54:
+			strMenu = "setup/subjectstages";
+			break;
+			
+		case 55:
+			strMenu = "setup/subjectstatus";
+			break;
+
+	
+
+		case 56:
+			strMenu = "setup/stagestatus";
+			break;
+			
+		case 57:
+			strMenu = "setup/email";
+			break;
+			
+		case 58:
+			strMenu = "setup/sms";
 			break;
 
 		default:
+			strMenu = "main";
 			break;
 		}
-
-		return mavMenu;
+		
+		logger.info(strMenu);
+		return strMenu;
 	}
 
 }
