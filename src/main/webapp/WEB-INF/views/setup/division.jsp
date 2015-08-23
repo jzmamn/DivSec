@@ -1,20 +1,12 @@
 <!DOCTYPE html>
-<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
-<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
-<!--[if !IE]><!-->
 <html lang="en">
-<!--<![endif]-->
-
-<!-- BEGIN HEAD -->
 <head>
-<meta charset="UTF-8" />
-<title>BCORE Admin Dashboard Template | Data Tables</title>
-<meta content="width=device-width, initial-scale=1.0" name="viewport" />
-<meta content="" name="description" />
-<meta content="" name="author" />
-<!--[if IE]>
-           <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-           <![endif]-->
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DivSec | Division</title>
+
+
 <!-- GLOBAL STYLES -->
 
 <link rel="stylesheet"
@@ -69,6 +61,16 @@
 					</div>
 				</div>
 				<hr />
+
+				<div class="row">
+					<div class="col-lg-12">
+						<ol class="breadcrumb">
+							<li><a href="#">Home</a></li>
+							<li><a href="#">Library</a></li>
+							<li class="active">Data</li>
+						</ol>
+					</div>
+				</div>
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="panel panel-default">
@@ -121,7 +123,7 @@
 													</button>
 												</td>
 											</tr>
-											
+
 											<tr class="odd gradeX">
 												<td>Trident</td>
 												<td>Internet Explorer 4.0</td>
@@ -146,7 +148,7 @@
 													</button>
 												</td>
 											</tr>
-											
+
 											<tr class="odd gradeX">
 												<td>Trident</td>
 												<td>Internet Explorer 4.0</td>
@@ -171,7 +173,7 @@
 													</button>
 												</td>
 											</tr>
-											
+
 											<tr class="odd gradeX">
 												<td>Trident</td>
 												<td>Internet Explorer 4.0</td>
@@ -196,7 +198,7 @@
 													</button>
 												</td>
 											</tr>
-											
+
 											<tr class="odd gradeX">
 												<td>Trident</td>
 												<td>Internet Explorer 4.0</td>
@@ -221,7 +223,7 @@
 													</button>
 												</td>
 											</tr>
-											
+
 											<tr class="odd gradeX">
 												<td>Trident</td>
 												<td>Internet Explorer 4.0</td>
@@ -246,7 +248,7 @@
 													</button>
 												</td>
 											</tr>
-											
+
 											<tr class="odd gradeX">
 												<td>Trident</td>
 												<td>Internet Explorer 4.0</td>
@@ -271,7 +273,7 @@
 													</button>
 												</td>
 											</tr>
-											
+
 											<tr class="odd gradeX">
 												<td>Trident</td>
 												<td>Internet Explorer 4.0</td>
@@ -296,7 +298,7 @@
 													</button>
 												</td>
 											</tr>
-											
+
 											<tr class="odd gradeX">
 												<td>Trident</td>
 												<td>Internet Explorer 4.0</td>
@@ -321,7 +323,7 @@
 													</button>
 												</td>
 											</tr>
-											
+
 
 										</tbody>
 									</table>
@@ -341,7 +343,7 @@
 							<div class="modal-header primary">
 								<button type="button" class="close " data-dismiss="modal"
 									aria-hidden="true">&times;</button>
-								<h4 class="modal-title" id="H4">User Registration</h4>
+								<h4 class="modal-title" id="H4">Dvision</h4>
 							</div>
 							<div class="modal-body">
 								<form action="index.html" class="form-signin">
@@ -349,43 +351,17 @@
 									<div class="form-group">
 										<div>
 											<input type="email" id="email2" name="email2"
-												placeholder="First Name" class="form-control" />
+												placeholder="Division Id" class="form-control" disabled />
 										</div>
 									</div>
 
 									<div class="form-group">
 										<div>
 											<input type="email" id="email2" name="email2"
-												placeholder="Last Name" class="form-control" />
+												placeholder="Division Name" class="form-control" />
 										</div>
 									</div>
 
-									<div class="form-group">
-										<div>
-											<input type="email" id="email2" name="email2"
-												placeholder="User Name" class="form-control" />
-										</div>
-									</div>
-
-									<div class="form-group">
-										<div>
-											<input type="email" id="email2" name="email2"
-												placeholder="E-mail" class="form-control" />
-										</div>
-									</div>
-
-									<div class="form-group">
-										<div>
-											<input type="password" id="email2" name="email2"
-												placeholder="Type password" class="form-control" />
-										</div>
-									</div>
-									<div class="form-group">
-										<div>
-											<input type="password" id="email2" name="email2"
-												placeholder="Re type password" class="form-control" />
-										</div>
-									</div>
 
 									<div class="form-group">
 										<div class="checkbox">
@@ -450,7 +426,27 @@
 			<!--End View Details -->
 
 			<!--Delete Modal -->
-			<jsp:include page="../include/include_delete_modal.jsp" />
+			<div class="col-lg-12">
+				<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog"
+					aria-labelledby="myModalLabel" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal"
+									aria-hidden="true">&times;</button>
+								<h4 class="modal-title" id="H1">Delete User</h4>
+							</div>
+							<div class="modal-body">Are you sure do you want to delete
+								?</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-danger">Yes</button>
+								<button type="button" class="btn btn-primary"
+									data-dismiss="modal">No</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 			<!--End Delete Modal -->
 
 

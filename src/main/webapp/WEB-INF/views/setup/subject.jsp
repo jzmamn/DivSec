@@ -71,6 +71,15 @@
 				<hr />
 				<div class="row">
 					<div class="col-lg-12">
+						<ol class="breadcrumb">
+							<li><a href="#">Home</a></li>
+							<li><a href="#">Library</a></li>
+							<li class="active">Data</li>
+						</ol>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-12">
 						<div class="panel panel-default">
 							<div class="panel-heading">
 								<button class="btn btn-primary" data-toggle="modal"
@@ -121,7 +130,7 @@
 													</button>
 												</td>
 											</tr>
-											
+
 											<tr class="odd gradeX">
 												<td>Trident</td>
 												<td>Internet Explorer 4.0</td>
@@ -146,7 +155,7 @@
 													</button>
 												</td>
 											</tr>
-											
+
 											<tr class="odd gradeX">
 												<td>Trident</td>
 												<td>Internet Explorer 4.0</td>
@@ -171,7 +180,7 @@
 													</button>
 												</td>
 											</tr>
-											
+
 											<tr class="odd gradeX">
 												<td>Trident</td>
 												<td>Internet Explorer 4.0</td>
@@ -196,7 +205,7 @@
 													</button>
 												</td>
 											</tr>
-											
+
 											<tr class="odd gradeX">
 												<td>Trident</td>
 												<td>Internet Explorer 4.0</td>
@@ -221,7 +230,7 @@
 													</button>
 												</td>
 											</tr>
-											
+
 											<tr class="odd gradeX">
 												<td>Trident</td>
 												<td>Internet Explorer 4.0</td>
@@ -246,7 +255,7 @@
 													</button>
 												</td>
 											</tr>
-											
+
 											<tr class="odd gradeX">
 												<td>Trident</td>
 												<td>Internet Explorer 4.0</td>
@@ -271,7 +280,7 @@
 													</button>
 												</td>
 											</tr>
-											
+
 											<tr class="odd gradeX">
 												<td>Trident</td>
 												<td>Internet Explorer 4.0</td>
@@ -296,7 +305,7 @@
 													</button>
 												</td>
 											</tr>
-											
+
 											<tr class="odd gradeX">
 												<td>Trident</td>
 												<td>Internet Explorer 4.0</td>
@@ -321,7 +330,7 @@
 													</button>
 												</td>
 											</tr>
-											
+
 
 										</tbody>
 									</table>
@@ -450,7 +459,27 @@
 			<!--End View Details -->
 
 			<!--Delete Modal -->
-			<jsp:include page="../include/include_delete_modal.jsp" />
+			<div class="col-lg-12">
+				<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog"
+					aria-labelledby="myModalLabel" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal"
+									aria-hidden="true">&times;</button>
+								<h4 class="modal-title" id="H1">Delete User</h4>
+							</div>
+							<div class="modal-body">Are you sure do you want to delete
+								?</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-danger">Yes</button>
+								<button type="button" class="btn btn-primary"
+									data-dismiss="modal">No</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 			<!--End Delete Modal -->
 
 

@@ -67,6 +67,10 @@ public class MainMenuController {
 		case 58:
 			strMenu = "setup/sms";
 			break;
+			
+		case 59:
+			strMenu = "setup/usercategory";
+			break;
 
 		default:
 			strMenu = "main";

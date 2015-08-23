@@ -1,20 +1,11 @@
 <!DOCTYPE html>
-<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
-<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
-<!--[if !IE]><!-->
 <html lang="en">
-<!--<![endif]-->
-
-<!-- BEGIN HEAD -->
 <head>
-<meta charset="UTF-8" />
-<title>BCORE Admin Dashboard Template | Data Tables</title>
-<meta content="width=device-width, initial-scale=1.0" name="viewport" />
-<meta content="" name="description" />
-<meta content="" name="author" />
-<!--[if IE]>
-           <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-           <![endif]-->
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>DivSec|User Creation</title>
+
 <!-- GLOBAL STYLES -->
 
 <link rel="stylesheet"
@@ -69,6 +60,17 @@
 					</div>
 				</div>
 				<hr />
+
+				<div class="row">
+					<div class="col-lg-12">
+						<ol class="breadcrumb">
+							<li><a href="#">Home</a></li>
+							<li><a href="#">Library</a></li>
+							<li class="active">Data</li>
+						</ol>
+					</div>
+				</div>
+
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="panel panel-default">
@@ -121,7 +123,7 @@
 													</button>
 												</td>
 											</tr>
-											
+
 											<tr class="odd gradeX">
 												<td>Trident</td>
 												<td>Internet Explorer 4.0</td>
@@ -146,7 +148,7 @@
 													</button>
 												</td>
 											</tr>
-											
+
 											<tr class="odd gradeX">
 												<td>Trident</td>
 												<td>Internet Explorer 4.0</td>
@@ -171,7 +173,7 @@
 													</button>
 												</td>
 											</tr>
-											
+
 											<tr class="odd gradeX">
 												<td>Trident</td>
 												<td>Internet Explorer 4.0</td>
@@ -196,7 +198,7 @@
 													</button>
 												</td>
 											</tr>
-											
+
 											<tr class="odd gradeX">
 												<td>Trident</td>
 												<td>Internet Explorer 4.0</td>
@@ -221,7 +223,7 @@
 													</button>
 												</td>
 											</tr>
-											
+
 											<tr class="odd gradeX">
 												<td>Trident</td>
 												<td>Internet Explorer 4.0</td>
@@ -246,7 +248,7 @@
 													</button>
 												</td>
 											</tr>
-											
+
 											<tr class="odd gradeX">
 												<td>Trident</td>
 												<td>Internet Explorer 4.0</td>
@@ -271,7 +273,7 @@
 													</button>
 												</td>
 											</tr>
-											
+
 											<tr class="odd gradeX">
 												<td>Trident</td>
 												<td>Internet Explorer 4.0</td>
@@ -296,7 +298,7 @@
 													</button>
 												</td>
 											</tr>
-											
+
 											<tr class="odd gradeX">
 												<td>Trident</td>
 												<td>Internet Explorer 4.0</td>
@@ -321,7 +323,7 @@
 													</button>
 												</td>
 											</tr>
-											
+
 
 										</tbody>
 									</table>
@@ -348,15 +350,15 @@
 
 									<div class="form-group">
 										<div>
-											<input type="email" id="email2" name="email2"
-												placeholder="First Name" class="form-control" />
+											<input type="text" id="txtIdStaffId" name="txtStaffId"
+												placeholder="Staff Id" class="form-control" />
 										</div>
 									</div>
 
 									<div class="form-group">
 										<div>
-											<input type="email" id="email2" name="email2"
-												placeholder="Last Name" class="form-control" />
+											<input type="text" id="txtIdName" name="txtName"
+												placeholder="Staff Name" class="form-control" />
 										</div>
 									</div>
 
@@ -366,24 +368,67 @@
 												placeholder="User Name" class="form-control" />
 										</div>
 									</div>
+									<!-- Category Id -->
 
-									<div class="form-group">
-										<div>
-											<input type="email" id="email2" name="email2"
-												placeholder="E-mail" class="form-control" />
-										</div>
+									<div class="form-group input-group ">
+										<input type="text" class="form-control"
+											placeholder="Select staff category" id="txtIdSubject"
+											name="txtSubject" /> <span class="input-group-btn">
+											<button class="btn btn-default" data-toggle="modal"
+												data-target="#findUserCagtegory" type="button">
+												<i class="icon-search"></i>
+											</button>
+										</span> <input type="text" class="form-control"
+											placeholder="DivsionId" id="txtIdDivsionId"
+											name="txtDivsionId" />
 									</div>
 
 									<div class="form-group">
 										<div>
-											<input type="password" id="email2" name="email2"
+											<input type="password" id="txtIdPassword" name="txtPassword"
 												placeholder="Type password" class="form-control" />
 										</div>
 									</div>
+
 									<div class="form-group">
 										<div>
-											<input type="password" id="email2" name="email2"
+											<input type="password" id="txtIdPassword" name="txtPassword"
 												placeholder="Re type password" class="form-control" />
+										</div>
+									</div>
+
+									<!-- Division -->
+									<div class="form-group input-group ">
+										<input type="text" class="form-control"
+											placeholder="Select a division" id="txtIdSubject"
+											name="txtSubject" /> <span class="input-group-btn">
+											<button class="btn btn-default" data-toggle="modal"
+												data-target="#findDivision" type="button">
+												<i class="icon-search"></i>
+											</button>
+										</span> <input type="text" class="form-control"
+											placeholder="DivsionId" id="txtIdDivsionId"
+											name="txtDivsionId" />
+									</div>
+
+									<div class="form-group">
+										<div>
+											<input type="email" id="txtIdEamil" name="txtEmail"
+												placeholder="E-mail - abcd@yahoo.com" class="form-control" />
+										</div>
+									</div>
+
+									<div class="form-group">
+										<div>
+											<input type="text" id="txtIdMobile" name="txtMobile"
+												placeholder="Mobile 0777 123 123" class="form-control" />
+										</div>
+									</div>
+
+									<div class="form-group">
+										<div>
+											<input type="text" id="txtIdNote" name="txtNote"
+												placeholder="Note" class="form-control" />
 										</div>
 									</div>
 
@@ -450,9 +495,36 @@
 			<!--End View Details -->
 
 			<!--Delete Modal -->
-			<jsp:include page="../include/include_delete_modal.jsp" />
+			<div class="col-lg-12">
+				<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog"
+					aria-labelledby="myModalLabel" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal"
+									aria-hidden="true">&times;</button>
+								<h4 class="modal-title" id="H1">Delete User</h4>
+							</div>
+							<div class="modal-body">Are you sure do you want to delete
+								?</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-danger">Yes</button>
+								<button type="button" class="btn btn-primary"
+									data-dismiss="modal">No</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 			<!--End Delete Modal -->
 
+			<!--Division Modal -->
+			<jsp:include page="../include/include_modal_division.jsp" />
+			<!--End Division Modal -->
+
+			<!--Division Modal -->
+			<jsp:include page="../include/include_modal_staff_category.jsp" />
+			<!--End Division Modal -->
 
 		</div>
 		<!--END PAGE CONTENT -->
@@ -491,9 +563,46 @@
 
 	<script>
 		$(document).ready(function() {
-			$('#dataTables-example').dataTable({
+			$('#dtSubjectStages').dataTable({
 				"lengthMenu" : [ 5, 10, 20 ]
 			});
+
+			$('#dtFindDivision').dataTable({
+				"lengthMenu" : [ 10 ],
+				"scrollY" : "200",
+				"scrollCollapse" : true,
+				"bSort" : false,
+				"bLengthChange" : false
+
+			});
+
+			oTableDivision = $('#dtFindDivision').dataTable();
+			oTableDivision.$('tr').dblclick(function() {
+				var data = oTableDivision.fnGetData(this);
+				$('#txtIdSubject').val(data[0]);
+				$('#txtIdSubjectStage').val(data[1]);
+				$('#chkIdActive').prop('checked', true);
+				$('#findSubject').modal('hide')
+			});
+
+			$('#dtFindUserCategory').dataTable({
+				"lengthMenu" : [ 10 ],
+				"scrollY" : "200",
+				"scrollCollapse" : true,
+				"bSort" : false,
+				"bLengthChange" : false
+
+			});
+
+			oTableUserCategory = $('#dtFindUserCategory').dataTable();
+			oTableUserCategory.$('tr').dblclick(function() {
+				var data = oTableUserCategory.fnGetData(this);
+				$('#txtIdSubject').val(data[0]);
+				$('#txtIdSubjectStage').val(data[1]);
+				$('#chkIdActive').prop('checked', true);
+				$('#findSubject').modal('hide')
+			});
+
 		});
 	</script>
 	<script>

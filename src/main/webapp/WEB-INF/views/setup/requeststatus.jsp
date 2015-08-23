@@ -1,17 +1,11 @@
 <!DOCTYPE html>
-<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
-<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
-<!--[if !IE]><!-->
 <html lang="en">
-<!--<![endif]-->
-
-<!-- BEGIN HEAD -->
 <head>
-<meta charset="UTF-8" />
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>BCORE Admin Dashboard Template | Data Tables</title>
-<meta content="width=device-width, initial-scale=1.0" name="viewport" />
-<meta content="" name="description" />
-<meta content="" name="author" />
+
 <!--[if IE]>
            <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
            <![endif]-->
@@ -449,9 +443,30 @@
 			</div>
 			<!--End View Details -->
 
-			<!--Delete Modal -->
-			<jsp:include page="../include/include_delete_modal.jsp" />
+					<!--Delete Modal -->
+			<div class="col-lg-12">
+				<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog"
+					aria-labelledby="myModalLabel" aria-hidden="true">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal"
+									aria-hidden="true">&times;</button>
+								<h4 class="modal-title" id="H1">Delete User</h4>
+							</div>
+							<div class="modal-body">Are you sure do you want to delete
+								?</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-danger">Yes</button>
+								<button type="button" class="btn btn-primary"
+									data-dismiss="modal">No</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
 			<!--End Delete Modal -->
+
 
 
 		</div>

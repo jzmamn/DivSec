@@ -1,17 +1,11 @@
 <!DOCTYPE html>
-<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
-<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
-<!--[if !IE]><!-->
 <html lang="en">
-<!--<![endif]-->
-
-<!-- BEGIN HEAD -->
 <head>
-<meta charset="UTF-8" />
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
 <title>BCORE Admin Dashboard Template | Data Tables</title>
-<meta content="width=device-width, initial-scale=1.0" name="viewport" />
-<meta content="" name="description" />
-<meta content="" name="author" />
 <!--[if IE]>
            <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
            <![endif]-->
@@ -69,11 +63,18 @@
 					</div>
 				</div>
 				<hr />
-
 				<div class="row">
-					<div class="col-lg-6">
-						<form class="form-signin">
-
+					<div class="col-lg-12">
+						<ol class="breadcrumb">
+							<li><a href="#">Home</a></li>
+							<li><a href="#">Library</a></li>
+							<li class="active">Data</li>
+						</ol>
+					</div>
+				</div>
+				<div class="row">
+					<form>
+						<div class="col-lg-6">
 							<div class="form-group input-group ">
 								<input type="text" class="form-control" placeholder="Subject"
 									id="txtIdSubject" name="txtSubject" /> <span
@@ -82,11 +83,8 @@
 										data-target="#findSubject" type="button">
 										<i class="icon-search"></i>
 									</button>
-								</span> <input type="hidden" id="email2" name="email2"
-									placeholder="Last Name" class="form-control"
-									disabled="disabled" />
+								</span>
 							</div>
-
 
 							<div class="form-group">
 								<input type="text" id="txtIdSubjectStage" name="txtSubjectStage"
@@ -107,8 +105,20 @@
 									<i class="icon-plus"></i> Add Subject Stage
 								</button>
 							</div>
-						</form>
-					</div>
+						</div>
+
+						<div class="col-lg-4">
+							<div class="form-group">
+								<input type="text" class="form-control" placeholder="Subject Id"
+									id="txtIdSubject" name="txtSubject" />
+							</div>
+
+							<div class="form-group">
+								<input type="text" id="txtIdSubjectStage" name="txtSubjectStage"
+									placeholder="Subject Stage Id" class="form-control " />
+							</div>
+						</div>
+					</form>
 				</div>
 
 				<div class="row">
@@ -485,117 +495,34 @@
 			<!--End View Details -->
 
 			<!--Delete Modal -->
-			<jsp:include page="../include/include_delete_modal.jsp" />
-			<!--End Delete Modal -->
-
-			<!--Find Subject Modal -->
 			<div class="col-lg-12">
-				<div class="modal fade" id="findSubject" tabindex="-1" role="dialog"
+				<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog"
 					aria-labelledby="myModalLabel" aria-hidden="true">
 					<div class="modal-dialog">
 						<div class="modal-content">
-							<div class="modal-header primary">
-								<button type="button" class="close " data-dismiss="modal"
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal"
 									aria-hidden="true">&times;</button>
-								<h4 class="modal-title" id="H4">User Registration</h4>
+								<h4 class="modal-title" id="H1">Delete User</h4>
 							</div>
-							<div class="modal-body">
-
-								<div class="table-responsive">
-									<table class="table table-striped table-bordered table-hover"
-										id="dtFindSubject">
-										<thead>
-											<tr>
-												<th>Subject Id</th>
-												<th>Subject Nmae</th>
-												<th>Extra</th>
-
-
-											</tr>
-										</thead>
-										<tbody>
-											<tr class="odd gradeX">
-												<td>Trident</td>
-												<td>Internet Explorer 4.0</td>
-												<td>Win 95+</td>
-
-
-											</tr>
-
-											<tr class="odd gradeX">
-												<td>Trident</td>
-												<td>Internet Explorer 4.0</td>
-												<td>Win 95+</td>
-
-
-											</tr>
-
-											<tr class="odd gradeX">
-												<td>Trident</td>
-												<td>Internet Explorer 4.0</td>
-												<td>Win 95+</td>
-
-
-											</tr>
-
-											<tr class="odd gradeX">
-												<td>Trident</td>
-												<td>Internet Explorer 4.0</td>
-												<td>Win 95+</td>
-
-
-											</tr>
-
-											<tr class="odd gradeX">
-												<td>Trident</td>
-												<td>Internet Explorer 4.0</td>
-												<td>Win 95+</td>
-
-
-											</tr>
-
-											<tr class="odd gradeX">
-												<td>Trident</td>
-												<td>Internet Explorer 4.0</td>
-												<td>Win 95+</td>
-
-
-											</tr>
-
-											<tr class="odd gradeX">
-												<td>Trident</td>
-												<td>Internet Explorer 4.0</td>
-												<td>Win 95+</td>
-
-
-											</tr>
-
-											<tr class="odd gradeX">
-												<td>Trident</td>
-												<td>Internet Explorer 4.0</td>
-												<td>Win 95+</td>
-
-
-											</tr>
-
-											<tr class="odd gradeX">
-												<td>Trident</td>
-												<td>Internet Explorer 4.0</td>
-												<td>Win 95+</td>
-											</tr>
-
-
-										</tbody>
-									</table>
-								</div>
-
+							<div class="modal-body">Are you sure do you want to delete
+								?</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-danger">Yes</button>
+								<button type="button" class="btn btn-primary"
+									data-dismiss="modal">No</button>
 							</div>
-
 						</div>
 					</div>
 				</div>
 			</div>
+			<!--End Delete Modal -->
+
+
+			<!--Find Subject Modal -->
+			<jsp:include page="../include/include_modal_subject.jsp" />
 			<!--End findSubject Modal -->
+			
 
 
 		</div>

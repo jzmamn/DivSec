@@ -131,6 +131,9 @@
 				<li><a
 					href="${pageContext.request.contextPath}/mainmenu/main/58"><i
 						class="icon-angle-right"></i> SMS </a></li>
+						<li><a
+					href="${pageContext.request.contextPath}/mainmenu/main/59"><i
+						class="icon-angle-right"></i> User Category </a></li>
 			</ul></li>
 
 	</ul>
