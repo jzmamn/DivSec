@@ -31,7 +31,7 @@ public class MainMenuController {
 			strMenu = "main";
 			break;
 			
-		//FROM 50 TO 58 ADMIN PAGES
+		//FROM 50 TO 58 ADMIN PAGES which comes under the setup
 		case 50:
 			strMenu = "setup/preference";
 			break;
@@ -55,8 +55,6 @@ public class MainMenuController {
 		case 55:
 			strMenu = "setup/subjectstatus";
 			break;
-
-	
 
 		case 56:
 			strMenu = "setup/stagestatus";
