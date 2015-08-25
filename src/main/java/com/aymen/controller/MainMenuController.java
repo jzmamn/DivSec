@@ -31,6 +31,30 @@ public class MainMenuController {
 			strMenu = "main";
 			break;
 			
+		//From 40 to 44 Process
+		case 40:
+			strMenu = "process/public";
+			break;
+
+		case 41:
+			strMenu = "process/usercreation";
+			break;
+
+		case 42:
+			strMenu = "process/division";
+			break;
+
+		case 43:
+			strMenu = "process/subject";
+			break;
+
+		case 44:
+			strMenu = "process/subjectstages";
+			
+			
+			
+			
+			
 		//FROM 50 TO 58 ADMIN PAGES which comes under the setup
 		case 50:
 			strMenu = "setup/preference";

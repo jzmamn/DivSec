@@ -4,11 +4,9 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>DivSec | Subject</title>
+<title>DivSec | Division</title>
 
-<!--[if IE]>
-           <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-           <![endif]-->
+
 <!-- GLOBAL STYLES -->
 
 <link rel="stylesheet"
@@ -59,19 +57,10 @@
 			<div class="inner">
 				<div class="row">
 					<div class="col-lg-12">
-						<h2>Manage Subject</h2>
+						<h2>Manage Division</h2>
 					</div>
 				</div>
 				<hr />
-				<div class="row">
-					<div class="col-lg-12">
-						<ol class="breadcrumb">
-							<li><a href="#">Home</a></li>
-							<li><a href="#">Library</a></li>
-							<li class="active">Data</li>
-						</ol>
-					</div>
-				</div>
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="panel panel-default">
@@ -344,51 +333,25 @@
 							<div class="modal-header primary">
 								<button type="button" class="close " data-dismiss="modal"
 									aria-hidden="true">&times;</button>
-								<h4 class="modal-title" id="H4">User Registration</h4>
+								<h4 class="modal-title" id="H4">Dvision</h4>
 							</div>
 							<div class="modal-body">
 								<form action="index.html" class="form-signin">
 
 									<div class="form-group">
 										<div>
-											<input type="email" id="email2" name="email2"
-												placeholder="First Name" class="form-control" />
+											<input type="text" id="email2" name="email2"
+												placeholder="Division Id" class="form-control" disabled />
 										</div>
 									</div>
 
 									<div class="form-group">
 										<div>
-											<input type="email" id="email2" name="email2"
-												placeholder="Last Name" class="form-control" />
+											<input type="text" id="email2" name="email2"
+												placeholder="Division Name" class="form-control" />
 										</div>
 									</div>
 
-									<div class="form-group">
-										<div>
-											<input type="email" id="email2" name="email2"
-												placeholder="User Name" class="form-control" />
-										</div>
-									</div>
-
-									<div class="form-group">
-										<div>
-											<input type="email" id="email2" name="email2"
-												placeholder="E-mail" class="form-control" />
-										</div>
-									</div>
-
-									<div class="form-group">
-										<div>
-											<input type="password" id="email2" name="email2"
-												placeholder="Type password" class="form-control" />
-										</div>
-									</div>
-									<div class="form-group">
-										<div>
-											<input type="password" id="email2" name="email2"
-												placeholder="Re type password" class="form-control" />
-										</div>
-									</div>
 
 									<div class="form-group">
 										<div class="checkbox">
