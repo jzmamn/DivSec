@@ -71,6 +71,13 @@
 			<version>4.0.5.Final</version>
 		</dependency>
 
+		<dependency>
+			<groupId>org.hibernate.javax.persistence</groupId>
+			<artifactId>hibernate-jpa-2.0-api</artifactId>
+			<version>1.0.1.Final</version>
+		</dependency>
+
+
 		<!-- MySql -->
 		<dependency>
 			<groupId>mysql</groupId>
@@ -85,6 +92,13 @@
 			<artifactId>commons-dbcp2</artifactId>
 			<version>2.0</version>
 		</dependency>
+
+		<dependency>
+			<groupId>javax</groupId>
+			<artifactId>javaee-api</artifactId>
+			<version>7.0</version>
+		</dependency>
+
 
 
 		<!-- Logging -->
@@ -164,7 +178,7 @@
 			<scope>test</scope>
 		</dependency>
 
-	<!--Twitter Bootstrap -->
+		<!--Twitter Bootstrap -->
 		<dependency>
 			<groupId>org.webjars</groupId>
 			<artifactId>bootstrap</artifactId>

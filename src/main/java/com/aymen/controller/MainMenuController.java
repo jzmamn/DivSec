@@ -2,13 +2,10 @@ package com.aymen.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 @RequestMapping(value = "/mainmenu")
@@ -51,10 +48,7 @@ public class MainMenuController {
 		case 44:
 			strMenu = "process/subjectstages";
 			
-			
-			
-			
-			
+		
 		//FROM 50 TO 58 ADMIN PAGES which comes under the setup
 		case 50:
 			strMenu = "setup/preference";
