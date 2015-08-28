@@ -1,3 +1,7 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -345,12 +349,13 @@
 									aria-hidden="true">&times;</button>
 								<h4 class="modal-title" id="H4">Dvision</h4>
 							</div>
-							<div class="modal-body">
-								<form action="index.html" class="form-signin">
+
+							<form action="index.html" class="form-signin">
+								<div class="modal-body">
 
 									<div class="form-group">
 										<div>
-											<input type="email" id="email2" name="email2"
+											<input type="email" id="txtIdDivId" name="email2"
 												placeholder="Division Id" class="form-control" disabled />
 										</div>
 									</div>
@@ -369,15 +374,16 @@
 											</label>
 										</div>
 									</div>
-								</form>
 
-							</div>
-							<div class="modal-footer">
-								<button type="button" class="btn btn-default"
-									data-dismiss="modal">Close</button>
-								<button type="button" class="btn btn-primary">Save
-									changes</button>
-							</div>
+
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-default"
+										data-dismiss="modal">Close</button>
+									<button type="button" class="btn btn-primary">Save
+										changes</button>
+								</div>
+							</form>
 						</div>
 					</div>
 				</div>
