@@ -111,7 +111,7 @@
 					href="${pageContext.request.contextPath}/mainmenu/main/51"><i
 						class="icon-angle-right"></i> User Creation </a></li>
 				<li><a
-					href="${pageContext.request.contextPath}/mainmenu/main/52"><i
+					href="${pageContext.request.contextPath}/division"><i
 						class="icon-angle-right"></i> Division </a></li>
 				<li><a
 					href="${pageContext.request.contextPath}/mainmenu/main/53"><i

@@ -327,8 +327,6 @@
 													</button>
 												</td>
 											</tr>
-
-
 										</tbody>
 									</table>
 								</div>
@@ -350,40 +348,63 @@
 								<h4 class="modal-title" id="H4">Dvision</h4>
 							</div>
 
-							<form action="index.html" class="form-signin">
+							<!-- ------------------------------------------------------ -->
+
+							<form:form action="add" id="frmIdDivision" class="form-signin"
+								modelAttribute="init" commandName="master" method="POST">
+
 								<div class="modal-body">
-
 									<div class="form-group">
-										<div>
-											<input type="email" id="txtIdDivId" name="email2"
-												placeholder="Division Id" class="form-control" disabled />
-										</div>
-									</div>
-
-									<div class="form-group">
-										<div>
-											<input type="email" id="email2" name="email2"
-												placeholder="Division Name" class="form-control" />
-										</div>
+										<form:input path="divId" id="txtIdDivId" name="txtDivId"
+											placeholder="Division Id" class="form-control" />
 									</div>
 
 
 									<div class="form-group">
-										<div class="checkbox">
-											<label> <input type="checkbox" value="" />Active
-											</label>
-										</div>
+										<form:input path="divName" id="txtIdDivName" name="txtDivName"
+											placeholder="Division Name" class="form-control" />
 									</div>
 
+									<div class="form-group">
+										Active
+										<form:checkbox path="divActive" value="1" id="txtIdDivActive"
+											name="chkDivActive" class="form-control" />
+									</div>
+
+
+									<!--  		
+									<tr>
+										<td><form:label path="staffs">
+												<spring:message text="Sataff" />
+											</form:label></td>
+										<td><form:input path="staffs" /></td>
+									</tr>
+									<tr>
+										<td><form:label path="requests">
+												<spring:message text="requests" />
+											</form:label></td>
+										<td><form:input path="requests" /></td>
+									</tr>
+									<tr>
+										<td colspan="2"><input type="submit"
+											value="<spring:message text="Add Person"/>" /></td>
+									</tr>
 
 								</div>
-								<div class="modal-footer">
-									<button type="button" class="btn btn-default"
-										data-dismiss="modal">Close</button>
-									<button type="button" class="btn btn-primary">Save
-										changes</button>
+								-->
+
+									<div class="modal-footer">
+										<button type="button" class="btn btn-default"
+											data-dismiss="modal">Close</button>
+										<input type="submit" class="btn btn-primary"
+											value="Save Changes">
+									</div>
+
 								</div>
-							</form>
+							</form:form>
+
+
+							<!--  ------------------------------------------------------ -->
 						</div>
 					</div>
 				</div>
@@ -464,6 +485,10 @@
 	<!--END MAIN WRAPPER -->
 
 	<!-- FOOTER -->
+	<div class="row">
+		<div class="alert center-text" role="alert" id="alert"></div>
+	</div>
+
 	<jsp:include page="../include/include_footer.jsp" />
 	<!--END FOOTER -->
 
@@ -496,6 +521,24 @@
 			$('#dataTables-example').dataTable({
 				"lengthMenu" : [ 5, 10, 20 ]
 			});
+
+			$("#frmDivision").submit(function(event) {
+				$.ajax({
+					type : "get",
+					url : "${pageContext.request.contextPath}/division/create",
+					cache : false,
+					data : $('#employeeForm').serialize(),
+					success : function(response) {
+						var obj = JSON.parse(response);
+						$("#alert").text(JSON.stringify(obj));
+						$("#alert").addClass("alert-success");
+					},
+					error : function(e) {
+						alert('alert' + e);
+					}
+				});
+			});
+
 		});
 	</script>
 	<script>
@@ -503,6 +546,16 @@
 			formValidation();
 		});
 	</script>
+
+
+
+
+
+
+
+
+
+
 	<!-- END PAGE LEVEL SCRIPTS -->
 </body>
 <!-- END BODY -->

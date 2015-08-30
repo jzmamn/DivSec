@@ -1,6 +1,6 @@
-package com.aymen.entity;// default package
-// Generated Aug 27, 2015 6:12:34 AM by Hibernate Tools 4.3.1
-
+// default package
+// Generated Aug 28, 2015 10:08:05 PM by Hibernate Tools 4.3.1
+package com.aymen.entity;
 import java.util.HashSet;
 import java.util.Set;
 import javax.persistence.Column;

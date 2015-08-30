@@ -1,3 +1,5 @@
+// default package
+// Generated Aug 28, 2015 10:08:05 PM by Hibernate Tools 4.3.1
 package com.aymen.entity;
 import java.util.Date;
 import javax.persistence.Column;
@@ -19,10 +21,6 @@ import javax.persistence.TemporalType;
 @Table(name = "stage_log", catalog = "divsec")
 public class StageLog implements java.io.Serializable {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
 	private Integer psId;
 	private ProcessStage processStage;
 	private Integer psStageId;

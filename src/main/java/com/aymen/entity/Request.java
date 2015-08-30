@@ -1,3 +1,5 @@
+// default package
+// Generated Aug 28, 2015 10:08:05 PM by Hibernate Tools 4.3.1
 package com.aymen.entity;
 import java.math.BigDecimal;
 import java.util.Date;
