@@ -19,6 +19,10 @@ import javax.persistence.Table;
 @Table(name = "subject", catalog = "divsec")
 public class Subject implements java.io.Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Integer sbjId;
 	private String sbjName;
 	private byte[] sbjActive;

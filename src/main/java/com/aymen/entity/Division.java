@@ -23,14 +23,14 @@ public class Division implements java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 	private Integer divId;
 	private String divName;
-	private byte[] divActive;
+	private boolean divActive;
 	private Set<Staff> staffs = new HashSet<Staff>(0);
 	private Set<Request> requests = new HashSet<Request>(0);
 
 	public Division() {
 	}
 
-	public Division(String divName, byte[] divActive, Set<Staff> staffs,
+	public Division(String divName, boolean divActive, Set<Staff> staffs,
 			Set<Request> requests) {
 		this.divName = divName;
 		this.divActive = divActive;
@@ -59,11 +59,11 @@ public class Division implements java.io.Serializable {
 	}
 
 	@Column(name = "div_active")
-	public byte[] getDivActive() {
+	public boolean getDivActive() {
 		return this.divActive;
 	}
 
-	public void setDivActive(byte[] divActive) {
+	public void setDivActive(boolean divActive) {
 		this.divActive = divActive;
 	}
 

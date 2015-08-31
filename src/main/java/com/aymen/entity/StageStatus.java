@@ -19,6 +19,8 @@ import javax.persistence.Table;
 @Table(name = "stage_status", catalog = "divsec")
 public class StageStatus implements java.io.Serializable {
 
+
+	private static final long serialVersionUID = 1L;
 	private Integer ssId;
 	private String ssName;
 	private byte[] ssActive;

@@ -350,8 +350,9 @@
 
 							<!-- ------------------------------------------------------ -->
 
-							<form:form action="add" id="frmIdDivision" class="form-signin"
-								modelAttribute="init" commandName="master" method="POST">
+							<form:form action="division/create" id="frmIdDivision"
+								class="form-signin" modelAttribute="maDivision"
+								commandName="cmdDivision" method="Post">
 
 								<div class="modal-body">
 									<div class="form-group">
@@ -367,8 +368,8 @@
 
 									<div class="form-group">
 										Active
-										<form:checkbox path="divActive" value="1" id="txtIdDivActive"
-											name="chkDivActive" class="form-control" />
+										<form:checkbox path="divActive" id="chkIdDivActive"
+											name="chkDivActive" />
 									</div>
 
 
@@ -402,8 +403,6 @@
 
 								</div>
 							</form:form>
-
-
 							<!--  ------------------------------------------------------ -->
 						</div>
 					</div>
@@ -516,29 +515,16 @@
 	<script
 		src="${pageContext.request.contextPath}/resources/js/validationInit.js"></script>
 
+
+
+
 	<script>
 		$(document).ready(function() {
+			$('#chkIdDivActive').prop('checked', true);
+
 			$('#dataTables-example').dataTable({
 				"lengthMenu" : [ 5, 10, 20 ]
 			});
-
-			$("#frmDivision").submit(function(event) {
-				$.ajax({
-					type : "get",
-					url : "${pageContext.request.contextPath}/division/create",
-					cache : false,
-					data : $('#employeeForm').serialize(),
-					success : function(response) {
-						var obj = JSON.parse(response);
-						$("#alert").text(JSON.stringify(obj));
-						$("#alert").addClass("alert-success");
-					},
-					error : function(e) {
-						alert('alert' + e);
-					}
-				});
-			});
-
 		});
 	</script>
 	<script>
@@ -546,15 +532,6 @@
 			formValidation();
 		});
 	</script>
-
-
-
-
-
-
-
-
-
 
 	<!-- END PAGE LEVEL SCRIPTS -->
 </body>
