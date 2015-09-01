@@ -1,5 +1,5 @@
 // default package
-// Generated Aug 28, 2015 10:08:05 PM by Hibernate Tools 4.3.1
+// Generated Sep 1, 2015 10:25:55 AM by Hibernate Tools 4.3.1
 package com.aymen.entity;
 import java.util.Date;
 import java.util.HashSet;
@@ -35,16 +35,14 @@ public class ProcessStage implements java.io.Serializable {
 	public ProcessStage() {
 	}
 
-	public ProcessStage(int rstId, ProcessRequest processRequest,
-			StageStatus stageStatus) {
+	public ProcessStage(int rstId, ProcessRequest processRequest, StageStatus stageStatus) {
 		this.rstId = rstId;
 		this.processRequest = processRequest;
 		this.stageStatus = stageStatus;
 	}
 
-	public ProcessStage(int rstId, ProcessRequest processRequest, Staff staff,
-			StageStatus stageStatus, Integer rstStgId, Integer rsSequenceNo,
-			Date rstTxnDate, String rstNote, Set<StageLog> stageLogs) {
+	public ProcessStage(int rstId, ProcessRequest processRequest, Staff staff, StageStatus stageStatus,
+			Integer rstStgId, Integer rsSequenceNo, Date rstTxnDate, String rstNote, Set<StageLog> stageLogs) {
 		this.rstId = rstId;
 		this.processRequest = processRequest;
 		this.staff = staff;
@@ -57,6 +55,7 @@ public class ProcessStage implements java.io.Serializable {
 	}
 
 	@Id
+
 	@Column(name = "rst_id", unique = true, nullable = false)
 	public int getRstId() {
 		return this.rstId;

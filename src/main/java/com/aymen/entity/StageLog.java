@@ -1,5 +1,5 @@
 // default package
-// Generated Aug 28, 2015 10:08:05 PM by Hibernate Tools 4.3.1
+// Generated Sep 1, 2015 10:25:55 AM by Hibernate Tools 4.3.1
 package com.aymen.entity;
 import java.util.Date;
 import javax.persistence.Column;
@@ -32,8 +32,8 @@ public class StageLog implements java.io.Serializable {
 	public StageLog() {
 	}
 
-	public StageLog(ProcessStage processStage, Integer psStageId,
-			Integer psStatusId, Date psTxnDate, Integer psUserId, String psNote) {
+	public StageLog(ProcessStage processStage, Integer psStageId, Integer psStatusId, Date psTxnDate, Integer psUserId,
+			String psNote) {
 		this.processStage = processStage;
 		this.psStageId = psStageId;
 		this.psStatusId = psStatusId;
@@ -44,6 +44,7 @@ public class StageLog implements java.io.Serializable {
 
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
+
 	@Column(name = "ps_id", unique = true, nullable = false)
 	public Integer getPsId() {
 		return this.psId;

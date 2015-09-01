@@ -1,5 +1,5 @@
 // default package
-// Generated Aug 28, 2015 10:08:05 PM by Hibernate Tools 4.3.1
+// Generated Sep 1, 2015 10:25:55 AM by Hibernate Tools 4.3.1
 package com.aymen.entity;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -29,6 +29,7 @@ public class SmsSetup implements java.io.Serializable {
 	}
 
 	@Id
+
 	@Column(name = "sms_id", unique = true, nullable = false)
 	public int getSmsId() {
 		return this.smsId;

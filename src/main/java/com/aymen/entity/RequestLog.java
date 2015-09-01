@@ -1,5 +1,5 @@
 // default package
-// Generated Aug 28, 2015 10:08:05 PM by Hibernate Tools 4.3.1
+// Generated Sep 1, 2015 10:25:55 AM by Hibernate Tools 4.3.1
 package com.aymen.entity;
 import java.util.Date;
 import javax.persistence.Column;
@@ -34,9 +34,8 @@ public class RequestLog implements java.io.Serializable {
 		this.rlId = rlId;
 	}
 
-	public RequestLog(int rlId, ProcessRequest processRequest, Date rlTxnDate,
-			Integer rlDivisionId, Integer rlStatusId, Integer rlUserId,
-			String rlNote) {
+	public RequestLog(int rlId, ProcessRequest processRequest, Date rlTxnDate, Integer rlDivisionId, Integer rlStatusId,
+			Integer rlUserId, String rlNote) {
 		this.rlId = rlId;
 		this.processRequest = processRequest;
 		this.rlTxnDate = rlTxnDate;
@@ -47,6 +46,7 @@ public class RequestLog implements java.io.Serializable {
 	}
 
 	@Id
+
 	@Column(name = "rl_id", unique = true, nullable = false)
 	public int getRlId() {
 		return this.rlId;

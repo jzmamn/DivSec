@@ -1,5 +1,5 @@
 // default package
-// Generated Aug 28, 2015 10:08:05 PM by Hibernate Tools 4.3.1
+// Generated Sep 1, 2015 10:25:55 AM by Hibernate Tools 4.3.1
 package com.aymen.entity;
 import java.util.HashSet;
 import java.util.Set;
@@ -20,8 +20,7 @@ public class Notification implements java.io.Serializable {
 	private int ntnId;
 	private String ntnType;
 	private byte[] ntnActive;
-	private Set<PublicIndividual> publicIndividuals = new HashSet<PublicIndividual>(
-			0);
+	private Set<PublicIndividual> publicIndividuals = new HashSet<PublicIndividual>(0);
 
 	public Notification() {
 	}
@@ -30,8 +29,7 @@ public class Notification implements java.io.Serializable {
 		this.ntnId = ntnId;
 	}
 
-	public Notification(int ntnId, String ntnType, byte[] ntnActive,
-			Set<PublicIndividual> publicIndividuals) {
+	public Notification(int ntnId, String ntnType, byte[] ntnActive, Set<PublicIndividual> publicIndividuals) {
 		this.ntnId = ntnId;
 		this.ntnType = ntnType;
 		this.ntnActive = ntnActive;
@@ -39,6 +37,7 @@ public class Notification implements java.io.Serializable {
 	}
 
 	@Id
+
 	@Column(name = "ntn_id", unique = true, nullable = false)
 	public int getNtnId() {
 		return this.ntnId;

@@ -1,5 +1,5 @@
 // default package
-// Generated Aug 28, 2015 10:08:05 PM by Hibernate Tools 4.3.1
+// Generated Sep 1, 2015 10:25:55 AM by Hibernate Tools 4.3.1
 package com.aymen.entity;
 import java.util.HashSet;
 import java.util.Set;
@@ -29,8 +29,7 @@ public class RequestStatus implements java.io.Serializable {
 		this.rsId = rsId;
 	}
 
-	public RequestStatus(int rsId, String rsName, byte[] rsActive,
-			Set<ProcessRequest> processRequests) {
+	public RequestStatus(int rsId, String rsName, byte[] rsActive, Set<ProcessRequest> processRequests) {
 		this.rsId = rsId;
 		this.rsName = rsName;
 		this.rsActive = rsActive;
@@ -38,6 +37,7 @@ public class RequestStatus implements java.io.Serializable {
 	}
 
 	@Id
+
 	@Column(name = "rs_id", unique = true, nullable = false)
 	public int getRsId() {
 		return this.rsId;

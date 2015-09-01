@@ -1,5 +1,5 @@
 // default package
-// Generated Aug 28, 2015 10:08:05 PM by Hibernate Tools 4.3.1
+// Generated Sep 1, 2015 10:25:55 AM by Hibernate Tools 4.3.1
 package com.aymen.entity;
 import java.math.BigDecimal;
 import java.util.Date;
@@ -40,9 +40,8 @@ public class Request implements java.io.Serializable {
 	public Request() {
 	}
 
-	public Request(Division division, PublicIndividual publicIndividual,
-			Staff staff, Subject subject, Date reqEntDate, String reqNote,
-			BigDecimal reqFees, byte[] reqToBeApproved, Set<Aproval> aprovals,
+	public Request(Division division, PublicIndividual publicIndividual, Staff staff, Subject subject, Date reqEntDate,
+			String reqNote, BigDecimal reqFees, byte[] reqToBeApproved, Set<Aproval> aprovals,
 			Set<ProcessRequest> processRequests) {
 		this.division = division;
 		this.publicIndividual = publicIndividual;
@@ -58,6 +57,7 @@ public class Request implements java.io.Serializable {
 
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
+
 	@Column(name = "req_id", unique = true, nullable = false)
 	public Integer getReqId() {
 		return this.reqId;

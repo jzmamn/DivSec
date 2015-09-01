@@ -1,5 +1,5 @@
 // default package
-// Generated Aug 28, 2015 10:08:05 PM by Hibernate Tools 4.3.1
+// Generated Sep 1, 2015 10:25:55 AM by Hibernate Tools 4.3.1
 package com.aymen.entity;
 import java.util.Date;
 import java.util.HashSet;
@@ -38,10 +38,9 @@ public class ProcessRequest implements java.io.Serializable {
 	public ProcessRequest() {
 	}
 
-	public ProcessRequest(Request request, RequestStatus requestStatus,
-			Integer prDivisionId, Integer prUserId, Date prTxnDate,
-			String prNote, Set<RequestLog> requestLogs,
-			Set<Instructions> instructionses, Set<ProcessStage> processStages) {
+	public ProcessRequest(Request request, RequestStatus requestStatus, Integer prDivisionId, Integer prUserId,
+			Date prTxnDate, String prNote, Set<RequestLog> requestLogs, Set<Instructions> instructionses,
+			Set<ProcessStage> processStages) {
 		this.request = request;
 		this.requestStatus = requestStatus;
 		this.prDivisionId = prDivisionId;
@@ -55,6 +54,7 @@ public class ProcessRequest implements java.io.Serializable {
 
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
+
 	@Column(name = "pr_id", unique = true, nullable = false)
 	public Integer getPrId() {
 		return this.prId;

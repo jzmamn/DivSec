@@ -1,5 +1,5 @@
 // default package
-// Generated Aug 28, 2015 10:08:05 PM by Hibernate Tools 4.3.1
+// Generated Sep 1, 2015 10:25:55 AM by Hibernate Tools 4.3.1
 package com.aymen.entity;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -27,9 +27,8 @@ public class EmailSetup implements java.io.Serializable {
 	public EmailSetup() {
 	}
 
-	public EmailSetup(byte[] emailIsOutLook, String emailSenderName,
-			String emailSenderEmail, String emailServerName, String emailPort,
-			String emailUserName, String emailPassword) {
+	public EmailSetup(byte[] emailIsOutLook, String emailSenderName, String emailSenderEmail, String emailServerName,
+			String emailPort, String emailUserName, String emailPassword) {
 		this.emailIsOutLook = emailIsOutLook;
 		this.emailSenderName = emailSenderName;
 		this.emailSenderEmail = emailSenderEmail;
@@ -41,6 +40,7 @@ public class EmailSetup implements java.io.Serializable {
 
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
+
 	@Column(name = "email_id", unique = true, nullable = false)
 	public Integer getEmailId() {
 		return this.emailId;

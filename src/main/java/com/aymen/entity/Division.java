@@ -1,5 +1,5 @@
 // default package
-// Generated Aug 28, 2015 10:08:05 PM by Hibernate Tools 4.3.1
+// Generated Sep 1, 2015 10:25:55 AM by Hibernate Tools 4.3.1
 package com.aymen.entity;
 import java.util.HashSet;
 import java.util.Set;
@@ -19,8 +19,6 @@ import javax.persistence.Table;
 @Table(name = "division", catalog = "divsec")
 public class Division implements java.io.Serializable {
 
-
-	private static final long serialVersionUID = 1L;
 	private Integer divId;
 	private String divName;
 	private boolean divActive;
@@ -30,8 +28,7 @@ public class Division implements java.io.Serializable {
 	public Division() {
 	}
 
-	public Division(String divName, boolean divActive, Set<Staff> staffs,
-			Set<Request> requests) {
+	public Division(String divName, boolean divActive, Set<Staff> staffs, Set<Request> requests) {
 		this.divName = divName;
 		this.divActive = divActive;
 		this.staffs = staffs;
@@ -40,6 +37,7 @@ public class Division implements java.io.Serializable {
 
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
+
 	@Column(name = "div_id", unique = true, nullable = false)
 	public Integer getDivId() {
 		return this.divId;

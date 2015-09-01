@@ -1,5 +1,5 @@
 // default package
-// Generated Aug 28, 2015 10:08:05 PM by Hibernate Tools 4.3.1
+// Generated Sep 1, 2015 10:25:55 AM by Hibernate Tools 4.3.1
 package com.aymen.entity;
 import java.math.BigDecimal;
 import javax.persistence.Column;
@@ -19,10 +19,6 @@ import javax.persistence.Table;
 @Table(name = "subjec_stage", catalog = "divsec")
 public class SubjecStage implements java.io.Serializable {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
 	private Integer stgId;
 	private Subject subject;
 	private String stgName;
@@ -32,8 +28,7 @@ public class SubjecStage implements java.io.Serializable {
 	public SubjecStage() {
 	}
 
-	public SubjecStage(Subject subject, String stgName, byte[] stgActive,
-			BigDecimal stgCost) {
+	public SubjecStage(Subject subject, String stgName, byte[] stgActive, BigDecimal stgCost) {
 		this.subject = subject;
 		this.stgName = stgName;
 		this.stgActive = stgActive;
@@ -42,6 +37,7 @@ public class SubjecStage implements java.io.Serializable {
 
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
+
 	@Column(name = "stg_id", unique = true, nullable = false)
 	public Integer getStgId() {
 		return this.stgId;

@@ -21,7 +21,11 @@
 	<resources mapping="/webjars/**" location="classpath:/META-INF/resources/webjars/"/>
 	 -->
 	
-	<context:component-scan base-package="com.aymen" />
+	<context:component-scan base-package="com.aymen.controller" />
+	<context:component-scan base-package="com.aymen.service" />
+	<context:component-scan base-package="com.aymen.dao" />
+	<context:component-scan base-package="com.aymen.entity" />
+	<tx:annotation-driven transaction-manager="transactionManager" />
 	
 	
 

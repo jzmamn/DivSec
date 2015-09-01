@@ -1,5 +1,5 @@
 // default package
-// Generated Aug 28, 2015 10:08:05 PM by Hibernate Tools 4.3.1
+// Generated Sep 1, 2015 10:25:55 AM by Hibernate Tools 4.3.1
 package com.aymen.entity;
 import java.util.HashSet;
 import java.util.Set;
@@ -19,10 +19,6 @@ import javax.persistence.Table;
 @Table(name = "subject", catalog = "divsec")
 public class Subject implements java.io.Serializable {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
 	private Integer sbjId;
 	private String sbjName;
 	private byte[] sbjActive;
@@ -32,8 +28,7 @@ public class Subject implements java.io.Serializable {
 	public Subject() {
 	}
 
-	public Subject(String sbjName, byte[] sbjActive,
-			Set<SubjecStage> subjecStages, Set<Request> requests) {
+	public Subject(String sbjName, byte[] sbjActive, Set<SubjecStage> subjecStages, Set<Request> requests) {
 		this.sbjName = sbjName;
 		this.sbjActive = sbjActive;
 		this.subjecStages = subjecStages;
@@ -42,6 +37,7 @@ public class Subject implements java.io.Serializable {
 
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
+
 	@Column(name = "sbj_id", unique = true, nullable = false)
 	public Integer getSbjId() {
 		return this.sbjId;

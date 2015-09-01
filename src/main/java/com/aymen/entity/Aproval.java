@@ -1,5 +1,5 @@
 // default package
-// Generated Aug 28, 2015 10:08:05 PM by Hibernate Tools 4.3.1
+// Generated Sep 1, 2015 10:25:55 AM by Hibernate Tools 4.3.1
 package com.aymen.entity;
 import java.util.Date;
 import javax.persistence.Column;
@@ -19,10 +19,6 @@ import javax.persistence.TemporalType;
 @Table(name = "aproval", catalog = "divsec")
 public class Aproval implements java.io.Serializable {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
 	private int appId;
 	private Request request;
 	private byte[] appIsApproved;
@@ -38,8 +34,7 @@ public class Aproval implements java.io.Serializable {
 		this.request = request;
 	}
 
-	public Aproval(int appId, Request request, byte[] appIsApproved,
-			Date appDate, Date appEntDate, String appUserId) {
+	public Aproval(int appId, Request request, byte[] appIsApproved, Date appDate, Date appEntDate, String appUserId) {
 		this.appId = appId;
 		this.request = request;
 		this.appIsApproved = appIsApproved;
@@ -49,6 +44,7 @@ public class Aproval implements java.io.Serializable {
 	}
 
 	@Id
+
 	@Column(name = "app_id", unique = true, nullable = false)
 	public int getAppId() {
 		return this.appId;
