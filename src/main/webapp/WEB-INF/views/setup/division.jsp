@@ -86,249 +86,47 @@
 							</div>
 							<div class="panel-body">
 								<div class="table-responsive">
-									<table class="table table-striped table-bordered table-hover"
-										id="dataTables-example">
-										<thead>
-											<tr>
-												<th>Rendering engine</th>
-												<th>Browser</th>
-												<th>Platform(s)</th>
-												<th>Engine version</th>
-												<th>CSS grade</th>
-												<th>Engine version</th>
-												<th>View</th>
-												<th>Edit</th>
-												<th>Delete</th>
+									<c:if test="${!empty listDivision}">
+										<table class="table table-striped table-bordered table-hover"
+											id="dataTables-example">
+											<thead>
+												<tr>
+													<th>Division Id</th>
+													<th>Division</th>
+													<th>Division Active</th>
+													<th>View</th>
+													<th>Edit</th>
+													<th>Delete</th>
 
-											</tr>
-										</thead>
-										<tbody>
-											<tr class="odd gradeX">
-												<td>Trident</td>
-												<td>Internet Explorer 4.0</td>
-												<td>Win 95+</td>
-												<td class="center">4</td>
-												<td class="center">X</td>
-												<td class="center">5</td>
-												<td class="center">
-													<button class="btn btn-success" data-toggle="modal"
-														data-target="#viewModel">
-														<i class="icon-eye-open"></i> View
-													</button>
-												</td>
-												<td class="center"><button class="btn btn-warning"
-														data-toggle="modal" data-target="#subjectModal">
-														<i class="icon-pencil icon-white"></i> Edit
-													</button></td>
-												<td class="center">
-													<button class="btn btn-danger" data-toggle="modal"
-														data-target="#deleteModal">
-														<i class="icon-remove icon-white"></i> Delete
-													</button>
-												</td>
-											</tr>
-
-											<tr class="odd gradeX">
-												<td>Trident</td>
-												<td>Internet Explorer 4.0</td>
-												<td>Win 95+</td>
-												<td class="center">4</td>
-												<td class="center">X</td>
-												<td class="center">5</td>
-												<td class="center">
-													<button class="btn btn-success" data-toggle="modal"
-														data-target="#viewModel">
-														<i class="icon-eye-open"></i> View
-													</button>
-												</td>
-												<td class="center"><button class="btn btn-warning"
-														data-toggle="modal" data-target="#subjectModal">
-														<i class="icon-pencil icon-white"></i> Edit
-													</button></td>
-												<td class="center">
-													<button class="btn btn-danger" data-toggle="modal"
-														data-target="#deleteModal">
-														<i class="icon-remove icon-white"></i> Delete
-													</button>
-												</td>
-											</tr>
-
-											<tr class="odd gradeX">
-												<td>Trident</td>
-												<td>Internet Explorer 4.0</td>
-												<td>Win 95+</td>
-												<td class="center">4</td>
-												<td class="center">X</td>
-												<td class="center">5</td>
-												<td class="center">
-													<button class="btn btn-success" data-toggle="modal"
-														data-target="#viewModel">
-														<i class="icon-eye-open"></i> View
-													</button>
-												</td>
-												<td class="center"><button class="btn btn-warning"
-														data-toggle="modal" data-target="#subjectModal">
-														<i class="icon-pencil icon-white"></i> Edit
-													</button></td>
-												<td class="center">
-													<button class="btn btn-danger" data-toggle="modal"
-														data-target="#deleteModal">
-														<i class="icon-remove icon-white"></i> Delete
-													</button>
-												</td>
-											</tr>
-
-											<tr class="odd gradeX">
-												<td>Trident</td>
-												<td>Internet Explorer 4.0</td>
-												<td>Win 95+</td>
-												<td class="center">4</td>
-												<td class="center">X</td>
-												<td class="center">5</td>
-												<td class="center">
-													<button class="btn btn-success" data-toggle="modal"
-														data-target="#viewModel">
-														<i class="icon-eye-open"></i> View
-													</button>
-												</td>
-												<td class="center"><button class="btn btn-warning"
-														data-toggle="modal" data-target="#subjectModal">
-														<i class="icon-pencil icon-white"></i> Edit
-													</button></td>
-												<td class="center">
-													<button class="btn btn-danger" data-toggle="modal"
-														data-target="#deleteModal">
-														<i class="icon-remove icon-white"></i> Delete
-													</button>
-												</td>
-											</tr>
-
-											<tr class="odd gradeX">
-												<td>Trident</td>
-												<td>Internet Explorer 4.0</td>
-												<td>Win 95+</td>
-												<td class="center">4</td>
-												<td class="center">X</td>
-												<td class="center">5</td>
-												<td class="center">
-													<button class="btn btn-success" data-toggle="modal"
-														data-target="#viewModel">
-														<i class="icon-eye-open"></i> View
-													</button>
-												</td>
-												<td class="center"><button class="btn btn-warning"
-														data-toggle="modal" data-target="#subjectModal">
-														<i class="icon-pencil icon-white"></i> Edit
-													</button></td>
-												<td class="center">
-													<button class="btn btn-danger" data-toggle="modal"
-														data-target="#deleteModal">
-														<i class="icon-remove icon-white"></i> Delete
-													</button>
-												</td>
-											</tr>
-
-											<tr class="odd gradeX">
-												<td>Trident</td>
-												<td>Internet Explorer 4.0</td>
-												<td>Win 95+</td>
-												<td class="center">4</td>
-												<td class="center">X</td>
-												<td class="center">5</td>
-												<td class="center">
-													<button class="btn btn-success" data-toggle="modal"
-														data-target="#viewModel">
-														<i class="icon-eye-open"></i> View
-													</button>
-												</td>
-												<td class="center"><button class="btn btn-warning"
-														data-toggle="modal" data-target="#subjectModal">
-														<i class="icon-pencil icon-white"></i> Edit
-													</button></td>
-												<td class="center">
-													<button class="btn btn-danger" data-toggle="modal"
-														data-target="#deleteModal">
-														<i class="icon-remove icon-white"></i> Delete
-													</button>
-												</td>
-											</tr>
-
-											<tr class="odd gradeX">
-												<td>Trident</td>
-												<td>Internet Explorer 4.0</td>
-												<td>Win 95+</td>
-												<td class="center">4</td>
-												<td class="center">X</td>
-												<td class="center">5</td>
-												<td class="center">
-													<button class="btn btn-success" data-toggle="modal"
-														data-target="#viewModel">
-														<i class="icon-eye-open"></i> View
-													</button>
-												</td>
-												<td class="center"><button class="btn btn-warning"
-														data-toggle="modal" data-target="#subjectModal">
-														<i class="icon-pencil icon-white"></i> Edit
-													</button></td>
-												<td class="center">
-													<button class="btn btn-danger" data-toggle="modal"
-														data-target="#deleteModal">
-														<i class="icon-remove icon-white"></i> Delete
-													</button>
-												</td>
-											</tr>
-
-											<tr class="odd gradeX">
-												<td>Trident</td>
-												<td>Internet Explorer 4.0</td>
-												<td>Win 95+</td>
-												<td class="center">4</td>
-												<td class="center">X</td>
-												<td class="center">5</td>
-												<td class="center">
-													<button class="btn btn-success" data-toggle="modal"
-														data-target="#viewModel">
-														<i class="icon-eye-open"></i> View
-													</button>
-												</td>
-												<td class="center"><button class="btn btn-warning"
-														data-toggle="modal" data-target="#subjectModal">
-														<i class="icon-pencil icon-white"></i> Edit
-													</button></td>
-												<td class="center">
-													<button class="btn btn-danger" data-toggle="modal"
-														data-target="#deleteModal">
-														<i class="icon-remove icon-white"></i> Delete
-													</button>
-												</td>
-											</tr>
-
-											<tr class="odd gradeX">
-												<td>Trident</td>
-												<td>Internet Explorer 4.0</td>
-												<td>Win 95+</td>
-												<td class="center">4</td>
-												<td class="center">X</td>
-												<td class="center">5</td>
-												<td class="center">
-													<button class="btn btn-success" data-toggle="modal"
-														data-target="#viewModel">
-														<i class="icon-eye-open"></i> View
-													</button>
-												</td>
-												<td class="center"><button class="btn btn-warning"
-														data-toggle="modal" data-target="#subjectModal">
-														<i class="icon-pencil icon-white"></i> Edit
-													</button></td>
-												<td class="center">
-													<button class="btn btn-danger" data-toggle="modal"
-														data-target="#deleteModal">
-														<i class="icon-remove icon-white"></i> Delete
-													</button>
-												</td>
-											</tr>
-										</tbody>
-									</table>
+												</tr>
+											</thead>
+											<tbody>
+												<c:forEach items="${listDivision}" var="division">
+													<tr class="odd gradeX">
+														<td>${division.divId}</td>
+														<td>${division.divName}</td>
+														<td>${division.divActive}</td>
+														<td class="center">
+															<button class="btn btn-success" data-toggle="modal"
+																data-target="#viewModel">
+																<i class="icon-eye-open"></i> View
+															</button>
+														</td>
+														<td class="center"><button class="btn btn-warning"
+																data-toggle="modal" data-target="#subjectModal">
+																<i class="icon-pencil icon-white"></i> Edit
+															</button></td>
+														<td class="center">
+															<button class="btn btn-danger" data-toggle="modal"
+																data-target="#deleteModal">
+																<i class="icon-remove icon-white"></i> Delete
+															</button>
+														</td>
+													</tr>
+												</c:forEach>
+											</tbody>
+										</table>
+									</c:if>
 								</div>
 							</div>
 						</div>

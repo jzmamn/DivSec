@@ -19,6 +19,10 @@ import javax.persistence.TemporalType;
 @Table(name = "aproval", catalog = "divsec")
 public class Aproval implements java.io.Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int appId;
 	private Request request;
 	private byte[] appIsApproved;

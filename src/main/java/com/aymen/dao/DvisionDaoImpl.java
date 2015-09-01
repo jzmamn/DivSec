@@ -45,8 +45,14 @@ public class DvisionDaoImpl implements DivisionDAO {
 
 	@Override
 	public List<Division> listDivision() {
-		// TODO Auto-generated method stub
-		return null;
+		Session session = this.sessionFactory.getCurrentSession();
+		@SuppressWarnings("unchecked")
+		List<Division> divisionList = session.createQuery("from Division").list();
+		for (Division p : divisionList) {
+			logger.info("Person List::" + p);
+		}
+		return divisionList;
+		
 	}
 
 	@Override

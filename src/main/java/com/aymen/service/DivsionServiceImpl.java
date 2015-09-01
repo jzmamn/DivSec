@@ -15,49 +15,35 @@ import com.aymen.entity.Division;
 @Transactional
 public class DivsionServiceImpl implements DivisionService {
 
-	private static final Logger logger = LoggerFactory
-			.getLogger(DivisionService.class);
+	private static final Logger logger = LoggerFactory.getLogger(DivisionService.class);
 
 	@Autowired
 	private DivisionDAO divisionDAO;
 
 	@Override
-		public boolean createSvcDivision(Division division) {
-		logger.info("createSvcDivision");
-		try {
-			this.divisionDAO.createDivision(division);
-			logger.debug("service:");
-			return true;
-		} catch (Exception e) {
-			System.out.println(e.toString());
-			return false;
-		}
-
+	public boolean createSvcDivision(Division division) {
+		this.divisionDAO.createDivision(division);
+		return true;
 	}
 
 	@Override
-	@Transactional
 	public boolean updateSvcDivision(Division master) {
 		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
-	@Transactional
 	public List<Division> listSvcDivision() {
-		// TODO Auto-generated method stub
-		return null;
+		return divisionDAO.listDivision();
 	}
 
 	@Override
-	@Transactional
 	public Division getSvcMasterById(int id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	@Transactional
 	public boolean removeSvcDivision(int id) {
 		// TODO Auto-generated method stub
 		return false;
