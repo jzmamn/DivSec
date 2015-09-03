@@ -11,7 +11,6 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.aymen.entity.Division;
 import com.aymen.service.DivisionService;
@@ -26,21 +25,21 @@ public class DivisionController {
 	DivisionService divisionSvc;
 
 	@RequestMapping(method = RequestMethod.GET)
-	public ModelAndView home(@ModelAttribute("maDivision") Division division, ModelMap model) {
+	public String home(@ModelAttribute("maDivision") Division division, ModelMap model) {
 		logger.info("Welcome home! The client locale is {}.", division);
 
 		model.addAttribute("cmdDivision", new Division());
 		model.addAttribute("listDivision", this.divisionSvc.listSvcDivision());
-		return new ModelAndView("setup/division");
+		return "setup/division";
 	}
 
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
-	public ModelAndView addDivision(@ModelAttribute("maDivision") Division division, BindingResult result,
-			ModelMap model, HttpServletResponse response) {
-		
+	public String addDivision(@ModelAttribute("maDivision") Division division, BindingResult result, ModelMap model,
+			HttpServletResponse response) {
+
 		if (result.hasErrors()) {
 			logger.error("addPerson", result.getAllErrors());
-			return new ModelAndView("error/error", "", result);
+			return "error/error";
 		}
 
 		model.addAttribute("divName", division.getDivName());
@@ -61,7 +60,7 @@ public class DivisionController {
 		model.addAttribute("cmdDivision", new Division());
 		model.addAttribute("listDivision", this.divisionSvc.listSvcDivision());
 
-		return new ModelAndView("/");
+		return "setup/division";
 	}
 
 }

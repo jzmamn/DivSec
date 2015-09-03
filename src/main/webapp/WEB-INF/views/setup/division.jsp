@@ -66,6 +66,7 @@
 				</div>
 				<hr />
 
+				<!-- Bread Crumb -->
 				<div class="row">
 					<div class="col-lg-12">
 						<ol class="breadcrumb">
@@ -75,15 +76,30 @@
 						</ol>
 					</div>
 				</div>
+				<!--End Bread Crumb -->
+
+				<!-- Alert -->
+				<div class="row">
+					<div class="col-lg-12" id="alert">
+						
+					</div>
+				</div>
+				<!--End Alert -->
+
 				<div class="row">
 					<div class="col-lg-12">
+
 						<div class="panel panel-default">
 							<div class="panel-heading">
-								<button class="btn btn-primary" data-toggle="modal"
-									data-target="#subjectModal">
-									<i class="icon-plus icon-white"></i> Add
-								</button>
+								<div>
+									<button class="btn btn-primary" data-toggle="modal"
+										data-target="#subjectModal">
+										<i class="icon-plus icon-white"></i> Add Division
+									</button>
+								</div>
 							</div>
+
+
 							<div class="panel-body">
 								<div class="table-responsive">
 									<c:if test="${!empty listDivision}">
@@ -169,28 +185,6 @@
 										<form:checkbox path="divActive" id="chkIdDivActive"
 											name="chkDivActive" />
 									</div>
-
-
-									<!--  		
-									<tr>
-										<td><form:label path="staffs">
-												<spring:message text="Sataff" />
-											</form:label></td>
-										<td><form:input path="staffs" /></td>
-									</tr>
-									<tr>
-										<td><form:label path="requests">
-												<spring:message text="requests" />
-											</form:label></td>
-										<td><form:input path="requests" /></td>
-									</tr>
-									<tr>
-										<td colspan="2"><input type="submit"
-											value="<spring:message text="Add Person"/>" /></td>
-									</tr>
-
-								</div>
-								-->
 
 									<div class="modal-footer">
 										<button type="button" class="btn btn-default"
@@ -312,24 +306,11 @@
 		src="${pageContext.request.contextPath}/resources/plugins/jquery-validation-1.11.1/dist/jquery.validate.min.js"></script>
 	<script
 		src="${pageContext.request.contextPath}/resources/js/validationInit.js"></script>
+		
+	<script
+		src="${pageContext.request.contextPath}/resources/js/divsec_division.js"  type="text/javascript"></script>
 
 
-
-
-	<script>
-		$(document).ready(function() {
-			$('#chkIdDivActive').prop('checked', true);
-
-			$('#dataTables-example').dataTable({
-				"lengthMenu" : [ 5, 10, 20 ]
-			});
-		});
-	</script>
-	<script>
-		$(function() {
-			formValidation();
-		});
-	</script>
 
 	<!-- END PAGE LEVEL SCRIPTS -->
 </body>
