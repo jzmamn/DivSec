@@ -30,6 +30,9 @@
 	href="${pageContext.request.contextPath}/resources/plugins/validationengine/css/validationEngine.jquery.css" />
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/plugins/dataTables/dataTables.bootstrap.css" />
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/plugins/Sweetalert-master/lib/sweet-alert.css" />
+
 
 
 <!-- END PAGE LEVEL  STYLES -->
@@ -80,9 +83,7 @@
 
 				<!-- Alert -->
 				<div class="row">
-					<div class="col-lg-12" id="alert">
-						
-					</div>
+					<div class="col-lg-12" id="alert"></div>
 				</div>
 				<!--End Alert -->
 
@@ -104,16 +105,15 @@
 								<div class="table-responsive">
 									<c:if test="${!empty listDivision}">
 										<table class="table table-striped table-bordered table-hover"
-											id="dataTables-example">
+											id="dtDivision">
 											<thead>
 												<tr>
-													<th>Division Id</th>
+													<th>Id</th>
 													<th>Division</th>
-													<th>Division Active</th>
+													<th>Active</th>
 													<th>View</th>
 													<th>Edit</th>
 													<th>Delete</th>
-
 												</tr>
 											</thead>
 											<tbody>
@@ -124,14 +124,16 @@
 														<td>${division.divActive}</td>
 														<td class="center">
 															<button class="btn btn-success" data-toggle="modal"
-																data-target="#viewModel">
+																data-target="#viewModel" id="btnView">
 																<i class="icon-eye-open"></i> View
 															</button>
 														</td>
 														<td class="center"><button class="btn btn-warning"
-																data-toggle="modal" data-target="#subjectModal">
+																id="btnEdit" data-toggle="modal"
+																data-target="#subjectModal">
 																<i class="icon-pencil icon-white"></i> Edit
 															</button></td>
+															
 														<td class="center">
 															<button class="btn btn-danger" data-toggle="modal"
 																data-target="#deleteModal">
@@ -171,7 +173,7 @@
 								<div class="modal-body">
 									<div class="form-group">
 										<form:input path="divId" id="txtIdDivId" name="txtDivId"
-											placeholder="Division Id" class="form-control" />
+											placeholder="Division Id" class="form-control" disabled="true" />
 									</div>
 
 
@@ -215,23 +217,17 @@
 							</div>
 							<div class="modal-body">
 								<div>
-									<p>First Name:</p>
+									<label>Id: </label><label  class="text-primary" id="lblDivId"></label> 
 								</div>
 
 								<div>
-									<p>Last Name:</p>
+									<label>Name: </label> <label class="text-primary" id="lblDivName"></label>
 								</div>
 
 								<div>
-									<p>User Name:</p>
+									<label>Active: </label> <label class="text-primary" id="lblDivActive"></label>
 								</div>
-
-								<div>
-									<p>E-mail:</p>
-								</div>
-								<div>
-									<p>Active:</p>
-								</div>
+								
 							</div>
 							<div class="modal-footer">
 								<button type="button" class="btn btn-default"
@@ -291,6 +287,8 @@
 		src="${pageContext.request.contextPath}/resources/plugins/bootstrap/js/bootstrap.min.js"></script>
 	<script
 		src="${pageContext.request.contextPath}/resources/plugins/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+
+
 	<!-- END GLOBAL SCRIPTS -->
 
 	<!-- PAGE LEVEL SCRIPTS -->
@@ -306,10 +304,13 @@
 		src="${pageContext.request.contextPath}/resources/plugins/jquery-validation-1.11.1/dist/jquery.validate.min.js"></script>
 	<script
 		src="${pageContext.request.contextPath}/resources/js/validationInit.js"></script>
-		
-	<script
-		src="${pageContext.request.contextPath}/resources/js/divsec_division.js"  type="text/javascript"></script>
 
+	<script
+		src="${pageContext.request.contextPath}/resources/js/divsec_division.js"
+		type="text/javascript"></script>
+	<script
+		src="${pageContext.request.contextPath}/resources/plugins/Sweetalert-master/lib/sweet-alert.js"
+		type="text/javascript"></script>
 
 
 	<!-- END PAGE LEVEL SCRIPTS -->
