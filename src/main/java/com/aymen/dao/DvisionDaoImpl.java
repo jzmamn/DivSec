@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,57 +13,64 @@ import com.aymen.entity.Division;
 
 @Repository
 public class DvisionDaoImpl implements DivisionDAO {
-	private static final Logger logger = LoggerFactory
-			.getLogger(DivisionDAO.class);
+	private static final Logger logger = LoggerFactory.getLogger(DivisionDAO.class);
 
 	@Autowired
 	private SessionFactory sessionFactory;
 
 	@Override
-	public boolean createDivision(Division division) {
+	public void createDivision(Division division) {
 
 		try {
 			Session session = sessionFactory.getCurrentSession();
 			session.persist(division);
 
-			logger.debug("Person saved successfully, Person Details="
-					+ division);
-			return true;
+			logger.debug("Person saved successfully, Person Details=" + division);
+
 		} catch (Exception e) {
 			System.out.println(e.toString());
-			return false;
 		}
 
 	}
 
 	@Override
-	public boolean updateDivision(Division division) {
-		// TODO Auto-generated method stub
-		return false;
+	public void updateDivision(Division division) {
+		try {
+			Session session = sessionFactory.getCurrentSession();
+			session.update(division);
+
+			logger.debug("Person saved successfully, Person Details=" + division);
+
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+
 	}
 
 	@Override
 	public List<Division> listDivision() {
+
 		Session session = this.sessionFactory.getCurrentSession();
 		@SuppressWarnings("unchecked")
-		List<Division> divisionList = session.createQuery("from Division").list();
-		for (Division p : divisionList) {
-			logger.info("Person List::" + p);
+		List<Division> divisionList = session.createQuery(" from Division").list();
+		for (Division d : divisionList) {
+			logger.info("Person List::" + d);
+			System.out.println(d);
 		}
 		return divisionList;
-		
+
 	}
 
 	@Override
-	public Division getMasterById(int id) {
+	public Division getDivisionById(int id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public boolean removeDivision(int id) {
+	public void removeDivision(int id) {
 		// TODO Auto-generated method stub
-		return false;
+
 	}
 
 }

@@ -1,16 +1,18 @@
 package com.aymen.controller;
 
-import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.aymen.entity.Division;
 import com.aymen.service.DivisionService;
@@ -34,14 +36,15 @@ public class DivisionController {
 	}
 
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
-	public String addDivision(@ModelAttribute("maDivision") Division division, BindingResult result, ModelMap model,
-			HttpServletResponse response) {
+	public String addDivision(@ModelAttribute("maDivision") Division division, BindingResult result, ModelMap model) {
 
 		if (result.hasErrors()) {
 			logger.error("addPerson", result.getAllErrors());
 			return "error/error";
 		}
+		System.out.println(division.getDivId());
 
+		model.addAttribute("id", division.getDivId());
 		model.addAttribute("divName", division.getDivName());
 		model.addAttribute("divActive", division.getDivActive());
 
@@ -61,6 +64,11 @@ public class DivisionController {
 		model.addAttribute("listDivision", this.divisionSvc.listSvcDivision());
 
 		return "setup/division";
+	}
+
+	@RequestMapping(value = "/create1", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody List<Division> getData() {
+		return this.divisionSvc.listSvcDivision();
 	}
 
 }

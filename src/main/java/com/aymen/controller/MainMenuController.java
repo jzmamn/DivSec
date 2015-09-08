@@ -12,8 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 @RequestMapping(value = "/mainmenu")
 public class MainMenuController {
-	private static final Logger logger = LoggerFactory
-			.getLogger(MainMenuController.class);
+	private static final Logger logger = LoggerFactory.getLogger(MainMenuController.class);
 
 	String strMenu;
 
@@ -26,88 +25,95 @@ public class MainMenuController {
 	// }
 
 	@RequestMapping(value = "/main/{menuId}", method = RequestMethod.GET)
-	public String getProduct(@PathVariable("menuId") String menuId,
-			HttpServletResponse response) throws Exception {
+	public String getProduct(@PathVariable("menuId") String menuId, HttpServletResponse response) {
 
-		System.out.println("Product Id : " + menuId);
+		try {
 
-		Integer intMenuId = Integer.parseInt(menuId);
+			System.out.println("Page Id : " + menuId);
+			logger.info(menuId);
 
-		switch (intMenuId) {
+			Integer intMenuId = Integer.parseInt(menuId);
 
-		case 1:
-			strMenu = "main";
-			break;
+			switch (intMenuId) {
 
-		// From 40 to 44 Process
-		case 40:
-			strMenu = "process/public";
-			break;
+			case 1:
+				strMenu = "main";
+				break;
 
-		case 41:
-			strMenu = "process/usercreation";
-			break;
+			// From 40 to 44 Process
+			case 40:
+				strMenu = "process/public";
+				break;
 
-		case 42:
-			strMenu = "process/division";
-			break;
+			case 41:
+				strMenu = "process/usercreation";
+				break;
 
-		case 43:
-			strMenu = "process/subject";
-			break;
+			case 42:
+				strMenu = "process/division";
+				break;
 
-		case 44:
-			strMenu = "process/subjectstages";
+			case 43:
+				strMenu = "process/subject";
+				break;
 
-			// FROM 50 TO 58 ADMIN PAGES which comes under the setup
-		case 50:
-			strMenu = "setup/preference";
-			break;
+			case 44:
+				strMenu = "process/subjectstages";
 
-		case 51:
-			strMenu = "setup/usercreation";
-			break;
+				// FROM 50 TO 58 ADMIN PAGES which comes under the setup
+			case 50:
+				strMenu = "setup/preference";
+				break;
 
-		case 52:
-			//strMenu = "setup/division";
-			response.sendRedirect("division");
-			break;
+			case 51:
+				strMenu = "setup/usercreation";
+				break;
 
-		case 53:
-			strMenu = "setup/subject";
-			break;
+			case 52:
+				// strMenu = "setup/division";
+				response.sendRedirect("division");
+				break;
 
-		case 54:
-			strMenu = "setup/subjectstages";
-			break;
+			case 53:
+				strMenu = "setup/subject";
+				break;
 
-		case 55:
-			strMenu = "setup/subjectstatus";
-			break;
+			case 54:
+				strMenu = "setup/subjectstages";
+				break;
 
-		case 56:
-			strMenu = "setup/stagestatus";
-			break;
+			case 55:
+				strMenu = "setup/subjectstatus";
+				break;
 
-		case 57:
-			strMenu = "setup/email";
-			break;
+			case 56:
+				strMenu = "setup/stagestatus";
+				break;
 
-		case 58:
-			strMenu = "setup/sms";
-			break;
+			case 57:
+				strMenu = "setup/email";
+				break;
 
-		case 59:
-			strMenu = "setup/usercategory";
-			break;
+			case 58:
+				strMenu = "setup/sms";
+				break;
 
-		default:
-			strMenu = "main";
-			break;
+			case 59:
+				strMenu = "setup/usercategory";
+				break;
+
+			default:
+				strMenu = "main";
+				break;
+			}
+
+			logger.info(strMenu);
+			return strMenu;
+
+		} catch (Exception e) {
+			logger.info(e.toString());
+			return e.toString();
 		}
-
-		logger.info(strMenu);
-		return strMenu;
 	}
 
 }

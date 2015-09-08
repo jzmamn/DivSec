@@ -21,15 +21,15 @@ public class DivsionServiceImpl implements DivisionService {
 	private DivisionDAO divisionDAO;
 
 	@Override
-	public boolean createSvcDivision(Division division) {
+	public void createSvcDivision(Division division) {
 		this.divisionDAO.createDivision(division);
-		return true;
+
 	}
 
 	@Override
-	public boolean updateSvcDivision(Division master) {
-		// TODO Auto-generated method stub
-		return false;
+	public void updateSvcDivision(Division division) {
+		this.divisionDAO.updateDivision(division);
+
 	}
 
 	@Override
@@ -44,9 +44,9 @@ public class DivsionServiceImpl implements DivisionService {
 	}
 
 	@Override
-	public boolean removeSvcDivision(int id) {
+	public void removeSvcDivision(int id) {
 		// TODO Auto-generated method stub
-		return false;
+
 	}
 
 }

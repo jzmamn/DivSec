@@ -2,8 +2,38 @@ $(document).ready(function() {
 
 	$('#chkIdDivActive').prop('checked', true);
 
+	$("#btn").click(function() {
+		alert('division/create1');
+		$.ajax({
+			url : 'division/create1',
+			cache : false
+		}).done(function(html) {
+			alert(html);
+		});
+
+	});
+
 	$('#dtDivision').dataTable({
-		"lengthMenu" : [ 5, 10, 20 ]
+		"ajax" : {
+			"url" : "division/create1",
+			"dataSrc" : ""
+		},
+		"columns" : [ {
+			"data" : "divId"
+		}, {
+			"data" : "divName"
+		}, {
+			"data" : "divActive"
+		}
+
+		]
+	});
+
+	// 'open' an information row when a row is clicked on
+	oTable = $('#dtDivision').dataTable();
+	oTable.$('tr').click(function() {
+		alert(data[0])
+
 	});
 
 	// =====Load row values in to the feilds====
@@ -52,22 +82,22 @@ $(document).ready(function() {
 			type : "POST",
 			url : url,
 			data : $("#frmIdDivision").serialize(),
-			success : function(data) {
+			success : function() {
 				$('#subjectModal').modal('hide');
-				alert('Saved Successfully');
-				swal("Saved Sucessfully !", "....", "success")
-
+				alert('hi');
+				swal("Saved Sucessfully !", "....", "success");
 			},
 
-			fail : function(data) {
+			fail : function() {
 				$('#subjectModal').modal('hide');
-				swal("Saved Sucessfully !", "....", "error")
+				swal("Saved Sucessfully !", "....", "error");
 			}
 		});
 
 		// avoid to execute the actual submit of the form.
 
 		return false;
+
 	});
 
 	$(function() {

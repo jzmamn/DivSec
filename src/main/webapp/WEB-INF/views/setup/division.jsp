@@ -97,54 +97,27 @@
 										data-target="#subjectModal">
 										<i class="icon-plus icon-white"></i> Add Division
 									</button>
+									
+									<button id="btn" class="btn btn-primary" >
+										<i class="icon-plus icon-white"></i> Add Division
+									</button>
 								</div>
 							</div>
 
 
 							<div class="panel-body">
 								<div class="table-responsive">
-									<c:if test="${!empty listDivision}">
-										<table class="table table-striped table-bordered table-hover"
-											id="dtDivision">
-											<thead>
-												<tr>
-													<th>Id</th>
-													<th>Division</th>
-													<th>Active</th>
-													<th>View</th>
-													<th>Edit</th>
-													<th>Delete</th>
-												</tr>
-											</thead>
-											<tbody>
-												<c:forEach items="${listDivision}" var="division">
-													<tr class="odd gradeX">
-														<td>${division.divId}</td>
-														<td>${division.divName}</td>
-														<td>${division.divActive}</td>
-														<td class="center">
-															<button class="btn btn-success" data-toggle="modal"
-																data-target="#viewModel" id="btnView">
-																<i class="icon-eye-open"></i> View
-															</button>
-														</td>
-														<td class="center"><button class="btn btn-warning"
-																id="btnEdit" data-toggle="modal"
-																data-target="#subjectModal">
-																<i class="icon-pencil icon-white"></i> Edit
-															</button></td>
-															
-														<td class="center">
-															<button class="btn btn-danger" data-toggle="modal"
-																data-target="#deleteModal">
-																<i class="icon-remove icon-white"></i> Delete
-															</button>
-														</td>
-													</tr>
-												</c:forEach>
-											</tbody>
-										</table>
-									</c:if>
+									<table id="dtDivision" class="table" cellspacing="0"
+										width="100%">
+										<thead>
+											<tr>
+												<th>Id</th>
+												<th>Name</th>
+												<th>Active</th>
+											</tr>
+										</thead>
+									</table>
+
 								</div>
 							</div>
 						</div>
@@ -173,7 +146,8 @@
 								<div class="modal-body">
 									<div class="form-group">
 										<form:input path="divId" id="txtIdDivId" name="txtDivId"
-											placeholder="Division Id" class="form-control" disabled="true" />
+											placeholder="Division Id" class="form-control"
+											readonly="true" />
 									</div>
 
 
@@ -217,17 +191,19 @@
 							</div>
 							<div class="modal-body">
 								<div>
-									<label>Id: </label><label  class="text-primary" id="lblDivId"></label> 
+									<label>Id: </label><label class="text-primary" id="lblDivId"></label>
 								</div>
 
 								<div>
-									<label>Name: </label> <label class="text-primary" id="lblDivName"></label>
+									<label>Name: </label> <label class="text-primary"
+										id="lblDivName"></label>
 								</div>
 
 								<div>
-									<label>Active: </label> <label class="text-primary" id="lblDivActive"></label>
+									<label>Active: </label> <label class="text-primary"
+										id="lblDivActive"></label>
 								</div>
-								
+
 							</div>
 							<div class="modal-footer">
 								<button type="button" class="btn btn-default"
