@@ -61,7 +61,7 @@
 
 		<!--PAGE CONTENT -->
 		<div id="content">
-		<!-- Inner  -->
+			<!-- Inner  -->
 			<div class="inner">
 				<div class="row">
 					<div class="col-lg-12">
@@ -93,7 +93,7 @@
 						<div class="panel panel-default">
 							<div class="panel-heading">
 								<button id="btnAddDivision" data-toggle="modal"
-									data-target="#modlDivisionSave" class="btn btn-primary">
+									data-target="#modalDivisionSave" class="btn btn-primary">
 									<i class="icon-plus icon-white"></i> Add
 								</button>
 
@@ -123,10 +123,11 @@
 
 				<!--Save and Update Modal -->
 				<div class="col-lg-12">
-					<div class="modal fade" id="modlDivisionSave" tabindex="-1"
+					<div class="modal fade" id="modalDivisionSave" tabindex="-1"
 						role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">
 						<div class="modal-dialog">
-							<form role="form" id="block-validate">
+							<form:form role="form" id="frmIdDivision" method="post"
+								modelAttribute="maDivision">
 								<div class="modal-content">
 
 									<div class="modal-header">
@@ -137,43 +138,48 @@
 									<div class="modal-body">
 
 										<div class="form-group input-group">
-											<span class="input-group-addon">Division Id</span> <input
-												type="text" id="txtIdDivId" name="txtDivId"
-												class="form-control" placeholder="Division Name" readonly="" />
+											<span class="input-group-addon">Id</span>
+											<form:input path="divId" type="text" id="txtIdDivId"
+												name="txtDivId" class="form-control"
+												placeholder="Division Name" readonly="true" />
 										</div>
 
 										<div class="form-group input-group">
-											<span class="input-group-addon ">Division Name</span> <input
-												type="text" id="txtIdDivName" name="txtDivName"
-												class="form-control" placeholder="Division Name" />
+											<span class="input-group-addon ">Division Name</span>
+											<form:input path="divName" type="text" id="txtIdDivName"
+												name="txtDivName" class="form-control"
+												placeholder="Division Name" />
 										</div>
 
 										<div class="form-group">
-											Is Active <input id="chkIdDivActive" type="checkbox" value="" />
+											Is Active
+											<form:checkbox path="divActive" id="chkIdDivActive" />
 										</div>
 
 									</div>
 
 									<div class="modal-footer">
-										<div class="col-lg-4">
+										<div class="col-lg-4 col-sm-4 col-xs-4">
 											<button id="btnDelete" class="btn btn-danger btn-block">
-												<i class="icon-remove icon-white"></i> Delete
+												<i class="glyphicon glyphicon-trash"></i> Delete
 											</button>
 										</div>
-										<div class="col-lg-4">
-											<button id="btnSave" class="btn btn-primary btn-block">
+
+										<div class="col-lg-4 col-sm-4 col-xs-4">
+											<button id="btnEdit" class="btn btn-success btn-block">
 												<i class="icon-save icon-white"></i> Save
 											</button>
 										</div>
-										<div class="col-lg-4">
+
+										<div class="col-lg-4 col-sm-4 col-xs-4">
 											<button id="btnClose" class="btn btn-block"
 												data-dismiss="modal">
-												<i class="icon- icon-white"></i> Close
+												<i class="icon-remove icon-white"></i> Close
 											</button>
 										</div>
 									</div>
 								</div>
-							</form>
+							</form:form>
 						</div>
 					</div>
 				</div>
@@ -181,7 +187,7 @@
 			</div>
 			<!--End of Inner  -->
 		</div>
-			<!--END PAGE CONTENT -->
+		<!--END PAGE CONTENT -->
 	</div>
 
 
@@ -221,6 +227,9 @@
 
 	<script
 		src="${pageContext.request.contextPath}/resources/plugins/Sweetalert-master/lib/sweet-alert.js"></script>
+
+
+
 
 	<!-- END PAGE LEVEL SCRIPTS -->
 </body>

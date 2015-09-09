@@ -1,6 +1,57 @@
 jQuery(function() {
 	$('#chkIdDivActive').prop('checked', true); // check true when loading
 
+	initDatatable();
+	frmDivsSubmit();
+	rowClick();
+
+	// Test function for JSON response
+	$("#btn").click(function() {
+		// alert('division/create1');
+		// $.ajax({
+		// url : 'division/create1',
+		// cache : false
+		// }).done(function(html) {
+		// alert(html);
+		// });
+
+	});
+
+	// =====Save Division Ajax function=====
+
+	$(function() {
+		formValidation();
+	});
+
+});
+
+function frmDivsSubmit() {
+	$("#frmIdDivision").submit(function() {
+		// the Controller request mapping value as url.
+		var url = "division/create";
+		$.ajax({
+			type : "POST",
+			url : url,
+			data : $("#frmIdDivision").serialize(),
+			success : function() {
+				$("#modalDivisionSave").modal("hide");
+				window.location.reload();
+				swal("Saved Sucessfully !", "....", "success");
+			},
+
+			fail : function() {
+				$("#modalDivisionSave").modal("hide");
+				swal("Save Failed !", "....", "error");
+			}
+		});
+
+		// avoid to execute the actual submit of the form.
+		return false;
+	});
+
+}
+
+function initDatatable() {
 	// Intialise Data Table
 	$('#dtDivision').dataTable({
 		// No of records should be displayed
@@ -22,7 +73,9 @@ jQuery(function() {
 
 		]
 	});
+}
 
+function rowClick() {
 	// GET VALUE ON TABLE ROW CLICK
 	$('#dtDivision tbody').on('click', 'tr', function(e) {
 		var data = $(this).children("td").map(function() {
@@ -41,65 +94,8 @@ jQuery(function() {
 
 		$('#chkIdDivActive').prop('checked', blnIsDivActive);
 
-		$("#modlDivisionSave").modal("show");
+		$("#modalDivisionSave").modal("show");
 
 	});
 
-	// Test function for JSON response
-	$("#btn").click(function() {
-		alert('division/create1');
-		$.ajax({
-			url : 'division/create1',
-			cache : false
-		}).done(function(html) {
-			alert(html);
-		});
-
-	});
-
-	// =====Display View=====
-	$("#btnView").click(function() {
-		oTable = $('#dtDivision').dataTable();
-		oTable.$('tr').click(function() {
-			var data = oTable.fnGetData(this);
-
-			$('#lblDivId').html(data[0]);
-			$('#lblDivName').html(data[1]);
-			$('#lblDivActive').html(data[2]);
-
-		});
-	});
-
-	// =====Save Division Ajax function=====
-
-	$("#btnSave").click(function() {
-
-		// the Controller request mapping value as url.
-		var url = "division/create";
-
-		$.ajax({
-			type : "POST",
-			url : url,
-			data : $("#frmIdDivision").serialize(),
-			success : function() {
-				$('#modlDivisionSave').modal('hide');
-				swal("Saved Sucessfully !", "....", "success");
-			},
-
-			fail : function() {
-				$('#subjectModal').modal('hide');
-				swal("Saved Sucessfully !", "....", "error");
-			}
-		});
-
-		// avoid to execute the actual submit of the form.
-
-		return false;
-
-	});
-
-	$(function() {
-		formValidation();
-	});
-
-});
+}
