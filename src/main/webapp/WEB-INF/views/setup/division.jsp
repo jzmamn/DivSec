@@ -27,9 +27,9 @@
 
 <!-- PAGE LEVEL STYLES -->
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/plugins/validationengine/css/validationEngine.jquery.css" />
+	href="${pageContext.request.contextPath}/resources/plugins/dataTables/css/dataTables.bootstrap.css" />
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/plugins/dataTables/dataTables.bootstrap.css" />
+	href="${pageContext.request.contextPath}/resources/plugins/validationengine/css/validationEngine.jquery.css" />
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/plugins/Sweetalert-master/lib/sweet-alert.css" />
 
@@ -61,6 +61,7 @@
 
 		<!--PAGE CONTENT -->
 		<div id="content">
+		<!-- Inner  -->
 			<div class="inner">
 				<div class="row">
 					<div class="col-lg-12">
@@ -89,169 +90,104 @@
 
 				<div class="row">
 					<div class="col-lg-12">
-
 						<div class="panel panel-default">
 							<div class="panel-heading">
-								<div>
-									<button class="btn btn-primary" data-toggle="modal"
-										data-target="#subjectModal">
-										<i class="icon-plus icon-white"></i> Add Division
-									</button>
-									
-									<button id="btn" class="btn btn-primary" >
-										<i class="icon-plus icon-white"></i> Add Division
-									</button>
-								</div>
+								<button id="btnAddDivision" data-toggle="modal"
+									data-target="#modlDivisionSave" class="btn btn-primary">
+									<i class="icon-plus icon-white"></i> Add
+								</button>
+
+								<button id="btn" class="btn btn-primary">
+									<i class="icon-plus icon-white"></i> test
+								</button>
 							</div>
-
-
 							<div class="panel-body">
 								<div class="table-responsive">
-									<table id="dtDivision" class="table" cellspacing="0"
-										width="100%">
+									<table class="table table-striped table-bordered table-hover"
+										id="dtDivision">
 										<thead>
 											<tr>
-												<th>Id</th>
+												<th>DivId</th>
 												<th>Name</th>
 												<th>Active</th>
 											</tr>
 										</thead>
-									</table>
 
+									</table>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-			</div>
 
-			<!--Save and Update Modal -->
-			<div class="col-lg-12">
-				<div class="modal fade" id="subjectModal" tabindex="-1"
-					role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-					<div class="modal-dialog">
-						<div class="modal-content">
-							<div class="modal-header primary">
-								<button type="button" class="close " data-dismiss="modal"
-									aria-hidden="true">&times;</button>
-								<h4 class="modal-title" id="H4">Dvision</h4>
-							</div>
 
-							<!-- ------------------------------------------------------ -->
+				<!--Save and Update Modal -->
+				<div class="col-lg-12">
+					<div class="modal fade" id="modlDivisionSave" tabindex="-1"
+						role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">
+						<div class="modal-dialog">
+							<form role="form" id="block-validate">
+								<div class="modal-content">
 
-							<form:form action="division/create" id="frmIdDivision"
-								class="form-signin" modelAttribute="maDivision"
-								commandName="cmdDivision" method="Post">
-
-								<div class="modal-body">
-									<div class="form-group">
-										<form:input path="divId" id="txtIdDivId" name="txtDivId"
-											placeholder="Division Id" class="form-control"
-											readonly="true" />
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal"
+											aria-hidden="true">&times;</button>
+										<h4 class="modal-title" id="H4">Division</h4>
 									</div>
+									<div class="modal-body">
 
+										<div class="form-group input-group">
+											<span class="input-group-addon">Division Id</span> <input
+												type="text" id="txtIdDivId" name="txtDivId"
+												class="form-control" placeholder="Division Name" readonly="" />
+										</div>
 
-									<div class="form-group">
-										<form:input path="divName" id="txtIdDivName" name="txtDivName"
-											placeholder="Division Name" class="form-control" />
-									</div>
+										<div class="form-group input-group">
+											<span class="input-group-addon ">Division Name</span> <input
+												type="text" id="txtIdDivName" name="txtDivName"
+												class="form-control" placeholder="Division Name" />
+										</div>
 
-									<div class="form-group">
-										Active
-										<form:checkbox path="divActive" id="chkIdDivActive"
-											name="chkDivActive" />
+										<div class="form-group">
+											Is Active <input id="chkIdDivActive" type="checkbox" value="" />
+										</div>
+
 									</div>
 
 									<div class="modal-footer">
-										<button type="button" class="btn btn-default"
-											data-dismiss="modal">Close</button>
-										<input type="submit" class="btn btn-primary"
-											value="Save Changes">
+										<div class="col-lg-4">
+											<button id="btnDelete" class="btn btn-danger btn-block">
+												<i class="icon-remove icon-white"></i> Delete
+											</button>
+										</div>
+										<div class="col-lg-4">
+											<button id="btnSave" class="btn btn-primary btn-block">
+												<i class="icon-save icon-white"></i> Save
+											</button>
+										</div>
+										<div class="col-lg-4">
+											<button id="btnClose" class="btn btn-block"
+												data-dismiss="modal">
+												<i class="icon- icon-white"></i> Close
+											</button>
+										</div>
 									</div>
-
 								</div>
-							</form:form>
-							<!--  ------------------------------------------------------ -->
+							</form>
 						</div>
 					</div>
 				</div>
+				<!--End of Save and Update Modal -->
 			</div>
-			<!--End Save and Update Modal -->
-
-			<!--View Details -->
-			<div class="col-lg-12">
-				<div class="modal fade" id="viewModel" tabindex="-1" role="dialog"
-					aria-labelledby="myModalLabel" aria-hidden="true">
-					<div class="modal-dialog">
-						<div class="modal-content">
-							<div class="modal-header primary">
-								<button type="button" class="close " data-dismiss="modal"
-									aria-hidden="true">&times;</button>
-								<h4 class="modal-title" id="H4">View User's Detail</h4>
-							</div>
-							<div class="modal-body">
-								<div>
-									<label>Id: </label><label class="text-primary" id="lblDivId"></label>
-								</div>
-
-								<div>
-									<label>Name: </label> <label class="text-primary"
-										id="lblDivName"></label>
-								</div>
-
-								<div>
-									<label>Active: </label> <label class="text-primary"
-										id="lblDivActive"></label>
-								</div>
-
-							</div>
-							<div class="modal-footer">
-								<button type="button" class="btn btn-default"
-									data-dismiss="modal">Close</button>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!--End View Details -->
-
-			<!--Delete Modal -->
-			<div class="col-lg-12">
-				<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog"
-					aria-labelledby="myModalLabel" aria-hidden="true">
-					<div class="modal-dialog">
-						<div class="modal-content">
-							<div class="modal-header">
-								<button type="button" class="close" data-dismiss="modal"
-									aria-hidden="true">&times;</button>
-								<h4 class="modal-title" id="H1">Delete User</h4>
-							</div>
-							<div class="modal-body">Are you sure do you want to delete
-								?</div>
-							<div class="modal-footer">
-								<button type="button" class="btn btn-danger">Yes</button>
-								<button type="button" class="btn btn-primary"
-									data-dismiss="modal">No</button>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!--End Delete Modal -->
-
-
+			<!--End of Inner  -->
 		</div>
-		<!--END PAGE CONTENT -->
-
+			<!--END PAGE CONTENT -->
 	</div>
+
 
 	<!--END MAIN WRAPPER -->
 
 	<!-- FOOTER -->
-	<div class="row">
-		<div class="alert center-text" role="alert" id="alert"></div>
-	</div>
-
 	<jsp:include page="../include/include_footer.jsp" />
 	<!--END FOOTER -->
 
@@ -269,9 +205,11 @@
 
 	<!-- PAGE LEVEL SCRIPTS -->
 	<script
-		src="${pageContext.request.contextPath}/resources/plugins/dataTables/jquery.dataTables.js"></script>
+		src="${pageContext.request.contextPath}/resources/plugins/dataTables/js/jquery.dataTables.js"></script>
 	<script
-		src="${pageContext.request.contextPath}/resources/plugins/dataTables/dataTables.bootstrap.js"></script>
+		src="${pageContext.request.contextPath}/resources/plugins/dataTables/js/dataTables.bootstrap.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/resources/js/divsec_division.js"></script>
 	<script
 		src="${pageContext.request.contextPath}/resources/plugins/validationengine/js/jquery.validationEngine.js"></script>
 	<script
@@ -282,12 +220,7 @@
 		src="${pageContext.request.contextPath}/resources/js/validationInit.js"></script>
 
 	<script
-		src="${pageContext.request.contextPath}/resources/js/divsec_division.js"
-		type="text/javascript"></script>
-	<script
-		src="${pageContext.request.contextPath}/resources/plugins/Sweetalert-master/lib/sweet-alert.js"
-		type="text/javascript"></script>
-
+		src="${pageContext.request.contextPath}/resources/plugins/Sweetalert-master/lib/sweet-alert.js"></script>
 
 	<!-- END PAGE LEVEL SCRIPTS -->
 </body>

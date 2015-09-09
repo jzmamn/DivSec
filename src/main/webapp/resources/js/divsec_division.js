@@ -1,23 +1,17 @@
-$(document).ready(function() {
+jQuery(function() {
+	$('#chkIdDivActive').prop('checked', true); // check true when loading
 
-	$('#chkIdDivActive').prop('checked', true);
-
-	$("#btn").click(function() {
-		alert('division/create1');
-		$.ajax({
-			url : 'division/create1',
-			cache : false
-		}).done(function(html) {
-			alert(html);
-		});
-
-	});
-
+	// Intialise Data Table
 	$('#dtDivision').dataTable({
+		// No of records should be displayed
+		"lengthMenu" : [ 5, 10, 20 ],
+
+		// Load table using JSON data by ajax
 		"ajax" : {
 			"url" : "division/create1",
 			"dataSrc" : ""
 		},
+
 		"columns" : [ {
 			"data" : "divId"
 		}, {
@@ -29,31 +23,36 @@ $(document).ready(function() {
 		]
 	});
 
-	// 'open' an information row when a row is clicked on
-	oTable = $('#dtDivision').dataTable();
-	oTable.$('tr').click(function() {
-		alert(data[0])
+	// GET VALUE ON TABLE ROW CLICK
+	$('#dtDivision tbody').on('click', 'tr', function(e) {
+		var data = $(this).children("td").map(function() {
+			return $(this).text();
+		}).get();
+
+		$('#txtIdDivId').val(data[0]);
+		$('#txtIdDivName').val(data[1]);
+		// $('#chkDivIsActive').val(data[2]);
+
+		if (data[2] == "true") {
+			blnIsDivActive = true;
+		} else {
+			blnIsDivActive = false;
+		}
+
+		$('#chkIdDivActive').prop('checked', blnIsDivActive);
+
+		$("#modlDivisionSave").modal("show");
 
 	});
 
-	// =====Load row values in to the feilds====
-
-	$("#btnEdit").click(function() {
-		var blnIsDivActive = false;
-		oTable = $('#dtDivision').dataTable();
-		oTable.$('tr').click(function() {
-			var data = oTable.fnGetData(this);
-			$('#txtIdDivId').val(data[0]);
-			$('#txtIdDivName').val(data[1]);
-
-			if (data[2] == "true") {
-				blnIsDivActive = true;
-			} else {
-				blnIsDivActive = false;
-			}
-
-			$('#chkIdDivActive').prop('checked', blnIsDivActive);
-
+	// Test function for JSON response
+	$("#btn").click(function() {
+		alert('division/create1');
+		$.ajax({
+			url : 'division/create1',
+			cache : false
+		}).done(function(html) {
+			alert(html);
 		});
 
 	});
@@ -69,11 +68,11 @@ $(document).ready(function() {
 			$('#lblDivActive').html(data[2]);
 
 		});
-
 	});
 
 	// =====Save Division Ajax function=====
-	$("#frmIdDivision").submit(function() {
+
+	$("#btnSave").click(function() {
 
 		// the Controller request mapping value as url.
 		var url = "division/create";
@@ -83,8 +82,7 @@ $(document).ready(function() {
 			url : url,
 			data : $("#frmIdDivision").serialize(),
 			success : function() {
-				$('#subjectModal').modal('hide');
-				alert('hi');
+				$('#modlDivisionSave').modal('hide');
 				swal("Saved Sucessfully !", "....", "success");
 			},
 

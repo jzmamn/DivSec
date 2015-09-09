@@ -55,7 +55,7 @@ public class DvisionDaoImpl implements DivisionDAO {
 		List<Division> divisionList = session.createQuery(" from Division").list();
 		for (Division d : divisionList) {
 			logger.info("Person List::" + d);
-			System.out.println(d);
+			// System.out.println(d);
 		}
 		return divisionList;
 

@@ -1,12 +1,15 @@
 // default package
 // Generated Sep 1, 2015 10:25:55 AM by Hibernate Tools 4.3.1
 package com.aymen.entity;
+
+import static javax.persistence.GenerationType.IDENTITY;
+
 import java.math.BigDecimal;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -19,6 +22,7 @@ import javax.persistence.Table;
 @Table(name = "subjec_stage", catalog = "divsec")
 public class SubjecStage implements java.io.Serializable {
 
+	private static final long serialVersionUID = 1L;
 	private Integer stgId;
 	private Subject subject;
 	private String stgName;

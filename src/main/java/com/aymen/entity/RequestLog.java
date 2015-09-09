@@ -1,7 +1,9 @@
 // default package
 // Generated Sep 1, 2015 10:25:55 AM by Hibernate Tools 4.3.1
 package com.aymen.entity;
+
 import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -19,6 +21,7 @@ import javax.persistence.TemporalType;
 @Table(name = "request_log", catalog = "divsec")
 public class RequestLog implements java.io.Serializable {
 
+	private static final long serialVersionUID = 1L;
 	private int rlId;
 	private ProcessRequest processRequest;
 	private Date rlTxnDate;

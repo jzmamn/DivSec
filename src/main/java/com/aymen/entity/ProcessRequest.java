@@ -1,14 +1,17 @@
 // default package
 // Generated Sep 1, 2015 10:25:55 AM by Hibernate Tools 4.3.1
 package com.aymen.entity;
+
+import static javax.persistence.GenerationType.IDENTITY;
+
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -24,6 +27,7 @@ import javax.persistence.TemporalType;
 @Table(name = "process_request", catalog = "divsec")
 public class ProcessRequest implements java.io.Serializable {
 
+	private static final long serialVersionUID = 1L;
 	private Integer prId;
 	private Request request;
 	private RequestStatus requestStatus;

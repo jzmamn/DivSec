@@ -1,10 +1,12 @@
 // default package
 // Generated Sep 1, 2015 10:25:55 AM by Hibernate Tools 4.3.1
 package com.aymen.entity;
+
+import static javax.persistence.GenerationType.IDENTITY;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -15,6 +17,7 @@ import javax.persistence.Table;
 @Table(name = "email_setup", catalog = "divsec")
 public class EmailSetup implements java.io.Serializable {
 
+	private static final long serialVersionUID = 1L;
 	private Integer emailId;
 	private byte[] emailIsOutLook;
 	private String emailSenderName;

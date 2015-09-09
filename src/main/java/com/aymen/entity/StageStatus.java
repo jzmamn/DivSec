@@ -1,13 +1,16 @@
 // default package
 // Generated Sep 1, 2015 10:25:55 AM by Hibernate Tools 4.3.1
 package com.aymen.entity;
+
+import static javax.persistence.GenerationType.IDENTITY;
+
 import java.util.HashSet;
 import java.util.Set;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -19,6 +22,7 @@ import javax.persistence.Table;
 @Table(name = "stage_status", catalog = "divsec")
 public class StageStatus implements java.io.Serializable {
 
+	private static final long serialVersionUID = 1L;
 	private Integer ssId;
 	private String ssName;
 	private byte[] ssActive;
