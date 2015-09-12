@@ -11,7 +11,7 @@ public interface DivisionService {
 
 	public List<Division> listSvcDivision();
 
-	public Division getSvcMasterById(int id);
+	public Division getSvcDivisionById(int id);
 
-	public void removeSvcDivision(int id);
+	public void deleteSvcDivision(int id);
 }

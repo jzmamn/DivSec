@@ -2,6 +2,7 @@ package com.aymen.dao;
 
 import java.util.List;
 
+import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
@@ -68,8 +69,19 @@ public class DvisionDaoImpl implements DivisionDAO {
 	}
 
 	@Override
-	public void removeDivision(int id) {
-		// TODO Auto-generated method stub
+	public void deleteDivision(int id) {
+		try {
+			Session session = this.sessionFactory.getCurrentSession();
+			Division division = (Division) session.load(Division.class, new Integer(id));
+			if (null != division) {
+				session.delete(division);
+			}
+			logger.info("Person deleted successfully, person details=" + division);
+		} catch (HibernateException e) {
+			logger.info("deleteDivision", e.toString());
+			System.out.println(e.toString());
+			e.printStackTrace();
+		}
 
 	}
 

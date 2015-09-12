@@ -166,7 +166,8 @@
 										</div>
 
 										<div class="col-lg-4 col-sm-4 col-xs-4">
-											<button id="btnEdit" class="btn btn-success btn-block">
+											<button id="btnSave" type="submit"
+												class="btn btn-success btn-block">
 												<i class="icon-save icon-white"></i> Save
 											</button>
 										</div>
@@ -214,6 +215,10 @@
 		src="${pageContext.request.contextPath}/resources/plugins/dataTables/js/jquery.dataTables.js"></script>
 	<script
 		src="${pageContext.request.contextPath}/resources/plugins/dataTables/js/dataTables.bootstrap.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/resources/plugins/dataTables/js/fnReloadAjax.js"></script>
+			
+
 	<script
 		src="${pageContext.request.contextPath}/resources/js/divsec_division.js"></script>
 	<script

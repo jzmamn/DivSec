@@ -26,11 +26,13 @@
       isAndroid = navigator.userAgent.toLowerCase().indexOf("android") > -1
 
 
- /* INPUTMASK PUBLIC CLASS DEFINITION
-  * ================================= */
+ /*
+	 * INPUTMASK PUBLIC CLASS DEFINITION =================================
+	 */
 
   var Inputmask = function (element, options) {
-    if (isAndroid) return // No support because caret positioning doesn't work on Android
+    if (isAndroid) return // No support because caret positioning doesn't work
+							// on Android
     
     this.$element = $(element)
     this.options = $.extend({}, $.fn.inputmask.defaults, options)
@@ -39,7 +41,7 @@
     this.init()
     this.listen()
         
-    this.checkVal() //Perform initial check for existing values
+    this.checkVal() // Perform initial check for existing values
   }
 
   Inputmask.prototype = {
@@ -95,7 +97,7 @@
         .on(pasteEventName, $.proxy(this.pasteEvent, this))
     },
 
-    //Helper Function for Caret positioning
+    // Helper Function for Caret positioning
     caret: function(begin, end) {
       if (this.$element.length === 0) return
       if (typeof begin == 'number') {
@@ -195,7 +197,7 @@
           that.caret(pos)
       }
 
-      if (navigator.userAgent.match(/msie/i))
+      if ($.browser.msie)
         moveCaret()
       else
         setTimeout(moveCaret, 0)
@@ -210,7 +212,7 @@
     keydownEvent: function(e) {
       var k=e.which
 
-      //backspace, delete, and escape get special treatment
+      // backspace, delete, and escape get special treatment
       if (k == 8 || k == 46 || (isIphone && k == 127)) {
         var pos = this.caret(),
         begin = pos.begin,
@@ -224,7 +226,7 @@
         this.shiftL(begin,end-1)
 
         return false
-      } else if (k == 27) {//escape
+      } else if (k == 27) {// escape
         this.$element.val(this.focusText)
         this.caret(0, this.checkVal())
         return false
@@ -237,7 +239,7 @@
       var k = e.which,
       pos = this.caret()
 
-      if (e.ctrlKey || e.altKey || e.metaKey || k<32)  {//Ignore
+      if (e.ctrlKey || e.altKey || e.metaKey || k<32)  {// Ignore
         return true
       } else if (k) {
         if (pos.end - pos.begin !== 0) {
@@ -283,7 +285,7 @@
 
     checkVal: function(allow) {
       var len = this.mask.length
-      //try to place characters where they belong
+      // try to place characters where they belong
       var test = this.$element.val()
       var lastMatch = -1
       
@@ -317,8 +319,9 @@
   }
 
   
- /* INPUTMASK PLUGIN DEFINITION
-  * =========================== */
+ /*
+	 * INPUTMASK PLUGIN DEFINITION ===========================
+	 */
 
   $.fn.inputmask = function (options) {
     return this.each(function () {
@@ -342,8 +345,9 @@
   $.fn.inputmask.Constructor = Inputmask
 
 
- /* INPUTMASK DATA-API
-  * ================== */
+ /*
+	 * INPUTMASK DATA-API ==================
+	 */
 
   $(document).on('focus.inputmask.data-api', '[data-mask]', function (e) {
     var $this = $(this)

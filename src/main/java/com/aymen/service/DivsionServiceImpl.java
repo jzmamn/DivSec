@@ -22,6 +22,7 @@ public class DivsionServiceImpl implements DivisionService {
 
 	@Override
 	public void createSvcDivision(Division division) {
+		logger.info("createSvcDivision");
 		this.divisionDAO.createDivision(division);
 
 	}
@@ -38,14 +39,14 @@ public class DivsionServiceImpl implements DivisionService {
 	}
 
 	@Override
-	public Division getSvcMasterById(int id) {
+	public Division getSvcDivisionById(int id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public void removeSvcDivision(int id) {
-		// TODO Auto-generated method stub
+	public void deleteSvcDivision(int id) {
+		this.divisionDAO.deleteDivision(id);
 
 	}
 

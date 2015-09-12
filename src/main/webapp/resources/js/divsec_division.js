@@ -1,59 +1,10 @@
 jQuery(function() {
 	$('#chkIdDivActive').prop('checked', true); // check true when loading
 
-	initDatatable();
-	frmDivsSubmit();
-	rowClick();
+	// Intialize Data Table
 
-	// Test function for JSON response
-	$("#btn").click(function() {
-		// alert('division/create1');
-		// $.ajax({
-		// url : 'division/create1',
-		// cache : false
-		// }).done(function(html) {
-		// alert(html);
-		// });
+	var dt = $('#dtDivision').dataTable({
 
-	});
-
-	// =====Save Division Ajax function=====
-
-	$(function() {
-		formValidation();
-	});
-
-});
-
-function frmDivsSubmit() {
-	$("#frmIdDivision").submit(function() {
-		// the Controller request mapping value as url.
-		var url = "division/create";
-		$.ajax({
-			type : "POST",
-			url : url,
-			data : $("#frmIdDivision").serialize(),
-			success : function() {
-				$("#modalDivisionSave").modal("hide");
-				window.location.reload();
-				swal("Saved Sucessfully !", "....", "success");
-			},
-
-			fail : function() {
-				$("#modalDivisionSave").modal("hide");
-				swal("Save Failed !", "....", "error");
-			}
-		});
-
-		// avoid to execute the actual submit of the form.
-		return false;
-	});
-
-}
-
-function initDatatable() {
-	// Intialise Data Table
-	$('#dtDivision').dataTable({
 		// No of records should be displayed
 		"lengthMenu" : [ 5, 10, 20 ],
 
@@ -71,11 +22,35 @@ function initDatatable() {
 			"data" : "divActive"
 		}
 
-		]
-	});
-}
+		],
 
-function rowClick() {
+	});
+
+	// Form submission save and edit
+	$("#frmIdDivision").submit(function() {
+		// the Controller request mapping value as url.
+		var url = "division/create";
+		$.ajax({
+			type : "POST",
+			url : url,
+			data : $("#frmIdDivision").serialize(),
+			success : function() {
+				$("#modalDivisionSave").modal("hide");
+				// window.location.reload();
+				dt.fnReloadAjax('division/create1');
+				swal("Saved Sucessfully !", "....", "success");
+			},
+
+			fail : function() {
+				$("#modalDivisionSave").modal("hide");
+				swal("Save Failed !", "....", "error");
+			}
+		});
+
+		// avoid to execute the actual submit of the form.
+		return false;
+	});
+
 	// GET VALUE ON TABLE ROW CLICK
 	$('#dtDivision tbody').on('click', 'tr', function(e) {
 		var data = $(this).children("td").map(function() {
@@ -98,4 +73,63 @@ function rowClick() {
 
 	});
 
-}
+	// Test function for JSON response
+	$("#btn").click(function() {
+		// alert('division/create1');
+		// $.ajax({
+		// url : 'division/create1',
+		// dataType : "json"
+		// }).done(function(json) {
+		// alert("Success: " + json);
+		// });
+		// dt.fnReloadAjax();
+		// table.fnReloadAjax();
+		dt.fnReloadAjax('division/create1');
+
+	});
+
+	// Delete function
+	$("#btnDelete").click(
+			function(e) {
+				e.preventDefault();
+
+				var divId = $('#txtIdDivId').val();
+				var divName = $('#txtIdDivName').val();
+				var url = "division/delete/" + divId;
+				alert(url);
+
+				swal({
+					title : "Are you sure?",
+					text : "Are you sure that you want to delete this photo?",
+					type : "warning",
+					showCancelButton : true,
+					closeOnConfirm : false,
+					confirmButtonText : "Yes, delete it!",
+					confirmButtonColor : "#ec6c62"
+				}, function() {
+					$.ajax({
+						url : url
+					}).done(
+							function(data) {
+								dt.fnReloadAjax('division/create1');
+								swal("Deleted!",
+										"Division Was Successfully Deleted!",
+										"success");
+								// window.location.reload();
+
+								$("#modalDivisionSave").modal("hide");
+
+							}).error(
+							function(data) {
+								swal("Oops",
+										"We couldn't connect to the server!",
+										"error");
+							});
+				});
+			});
+
+	$(function() {
+		formValidation();
+	});
+
+});

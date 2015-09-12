@@ -13,5 +13,5 @@ public interface DivisionDAO {
 
 	public Division getDivisionById(int id);
 
-	public void removeDivision(int id);
+	public void deleteDivision(int id);
 }

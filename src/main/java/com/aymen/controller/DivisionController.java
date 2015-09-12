@@ -7,9 +7,11 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -66,9 +68,23 @@ public class DivisionController {
 		return "setup/division";
 	}
 
+	// This method sends JSON response to the client (REST)
 	@RequestMapping(value = "/create1", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody List<Division> getData() {
 		return this.divisionSvc.listSvcDivision();
+	}
+
+	@RequestMapping("/delete/{id}")
+	public String deleteDivision(@ModelAttribute("maDivision") Division division, BindingResult result,
+			@PathVariable("id") int id, Model model) {
+		try {
+			model.addAttribute("cmdDivision", new Division());
+			this.divisionSvc.deleteSvcDivision(id);
+		} catch (Exception e) {
+			System.out.println(e.toString());
+			e.printStackTrace();
+		}
+		return "setup/division";
 	}
 
 }
