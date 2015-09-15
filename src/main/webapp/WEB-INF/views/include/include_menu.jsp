@@ -108,7 +108,7 @@
 					href="${pageContext.request.contextPath}/mainmenu/main/50"><i
 						class="icon-angle-right"></i> Preference </a></li>
 				<li><a
-					href="${pageContext.request.contextPath}/mainmenu/main/51"><i
+					href="${pageContext.request.contextPath}/usercreation"><i
 						class="icon-angle-right"></i> User Creation </a></li>
 				<li><a
 					href="${pageContext.request.contextPath}/division"><i

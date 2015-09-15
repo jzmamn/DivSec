@@ -35,13 +35,12 @@ public class DivsionServiceImpl implements DivisionService {
 
 	@Override
 	public List<Division> listSvcDivision() {
-		return divisionDAO.listDivision();
+		return this.divisionDAO.listDivision();
 	}
 
 	@Override
 	public Division getSvcDivisionById(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		return this.divisionDAO.getDivisionById(id);
 	}
 
 	@Override

@@ -14,7 +14,7 @@ import com.aymen.entity.Division;
 
 @Repository
 public class DvisionDaoImpl implements DivisionDAO {
-	private static final Logger logger = LoggerFactory.getLogger(DivisionDAO.class);
+	private static final Logger logger = LoggerFactory.getLogger(DvisionDaoImpl.class);
 
 	@Autowired
 	private SessionFactory sessionFactory;
@@ -40,7 +40,7 @@ public class DvisionDaoImpl implements DivisionDAO {
 			Session session = sessionFactory.getCurrentSession();
 			session.update(division);
 
-			logger.debug("Person saved successfully, Person Details=" + division);
+			logger.debug("Division saved successfully, Division Details=" + division);
 
 		} catch (Exception e) {
 			System.out.println(e.toString());
@@ -64,8 +64,10 @@ public class DvisionDaoImpl implements DivisionDAO {
 
 	@Override
 	public Division getDivisionById(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		Session session = this.sessionFactory.getCurrentSession();
+		Division division = (Division) session.load(Division.class, new Integer(id));
+		logger.info("Person loaded successfully, Person details=" + division);
+		return division;
 	}
 
 	@Override
@@ -76,7 +78,7 @@ public class DvisionDaoImpl implements DivisionDAO {
 			if (null != division) {
 				session.delete(division);
 			}
-			logger.info("Person deleted successfully, person details=" + division);
+			logger.info("Division deleted successfully, person details=" + division);
 		} catch (HibernateException e) {
 			logger.info("deleteDivision", e.toString());
 			System.out.println(e.toString());

@@ -1,10 +1,15 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>DivSec|User Creation</title>
+<title>DivSec | User Creation</title>
+
 
 <!-- GLOBAL STYLES -->
 
@@ -22,9 +27,12 @@
 
 <!-- PAGE LEVEL STYLES -->
 <link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/plugins/dataTables/css/dataTables.bootstrap.css" />
+<link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/plugins/validationengine/css/validationEngine.jquery.css" />
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/plugins/dataTables/dataTables.bootstrap.css" />
+	href="${pageContext.request.contextPath}/resources/plugins/Sweetalert-master/lib/sweet-alert.css" />
+
 
 
 <!-- END PAGE LEVEL  STYLES -->
@@ -53,14 +61,16 @@
 
 		<!--PAGE CONTENT -->
 		<div id="content">
+			<!-- Inner  -->
 			<div class="inner">
 				<div class="row">
 					<div class="col-lg-12">
-						<h2>Manage User</h2>
+						<h2>Manage Division</h2>
 					</div>
 				</div>
 				<hr />
 
+				<!-- Bread Crumb -->
 				<div class="row">
 					<div class="col-lg-12">
 						<ol class="breadcrumb">
@@ -70,466 +80,265 @@
 						</ol>
 					</div>
 				</div>
+				<!--End Bread Crumb -->
+
+				<!-- Alert -->
+				<div class="row">
+					<div class="col-lg-12" id="alert"></div>
+				</div>
+				<!--End Alert -->
 
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="panel panel-default">
 							<div class="panel-heading">
-								<button class="btn btn-primary" data-toggle="modal"
-									data-target="#subjectModal">
+								<button id="btnAddDivision" data-toggle="modal"
+									data-target="#modalDivisionSave" class="btn btn-primary">
 									<i class="icon-plus icon-white"></i> Add
+								</button>
+
+								<button id="btn" class="btn btn-primary">
+									<i class="icon-plus icon-white"></i> test
 								</button>
 							</div>
 							<div class="panel-body">
 								<div class="table-responsive">
 									<table class="table table-striped table-bordered table-hover"
-										id="dataTables-example">
+										id="dtDivision">
 										<thead>
 											<tr>
-												<th>Rendering engine</th>
-												<th>Browser</th>
-												<th>Platform(s)</th>
-												<th>Engine version</th>
-												<th>CSS grade</th>
-												<th>Engine version</th>
-												<th>View</th>
-												<th>Edit</th>
-												<th>Delete</th>
-
+												<th>Id</th>
+												<th>Name</th>
+												<th>Active</th>
 											</tr>
 										</thead>
-										<tbody>
-											<tr class="odd gradeX">
-												<td>Trident</td>
-												<td>Internet Explorer 4.0</td>
-												<td>Win 95+</td>
-												<td class="center">4</td>
-												<td class="center">X</td>
-												<td class="center">5</td>
-												<td class="center">
-													<button class="btn btn-success" data-toggle="modal"
-														data-target="#viewModel">
-														<i class="icon-eye-open"></i> View
-													</button>
-												</td>
-												<td class="center"><button class="btn btn-warning"
-														data-toggle="modal" data-target="#subjectModal">
-														<i class="icon-pencil icon-white"></i> Edit
-													</button></td>
-												<td class="center">
-													<button class="btn btn-danger" data-toggle="modal"
-														data-target="#deleteModal">
-														<i class="icon-remove icon-white"></i> Delete
-													</button>
-												</td>
-											</tr>
-
-											<tr class="odd gradeX">
-												<td>Trident</td>
-												<td>Internet Explorer 4.0</td>
-												<td>Win 95+</td>
-												<td class="center">4</td>
-												<td class="center">X</td>
-												<td class="center">5</td>
-												<td class="center">
-													<button class="btn btn-success" data-toggle="modal"
-														data-target="#viewModel">
-														<i class="icon-eye-open"></i> View
-													</button>
-												</td>
-												<td class="center"><button class="btn btn-warning"
-														data-toggle="modal" data-target="#subjectModal">
-														<i class="icon-pencil icon-white"></i> Edit
-													</button></td>
-												<td class="center">
-													<button class="btn btn-danger" data-toggle="modal"
-														data-target="#deleteModal">
-														<i class="icon-remove icon-white"></i> Delete
-													</button>
-												</td>
-											</tr>
-
-											<tr class="odd gradeX">
-												<td>Trident</td>
-												<td>Internet Explorer 4.0</td>
-												<td>Win 95+</td>
-												<td class="center">4</td>
-												<td class="center">X</td>
-												<td class="center">5</td>
-												<td class="center">
-													<button class="btn btn-success" data-toggle="modal"
-														data-target="#viewModel">
-														<i class="icon-eye-open"></i> View
-													</button>
-												</td>
-												<td class="center"><button class="btn btn-warning"
-														data-toggle="modal" data-target="#subjectModal">
-														<i class="icon-pencil icon-white"></i> Edit
-													</button></td>
-												<td class="center">
-													<button class="btn btn-danger" data-toggle="modal"
-														data-target="#deleteModal">
-														<i class="icon-remove icon-white"></i> Delete
-													</button>
-												</td>
-											</tr>
-
-											<tr class="odd gradeX">
-												<td>Trident</td>
-												<td>Internet Explorer 4.0</td>
-												<td>Win 95+</td>
-												<td class="center">4</td>
-												<td class="center">X</td>
-												<td class="center">5</td>
-												<td class="center">
-													<button class="btn btn-success" data-toggle="modal"
-														data-target="#viewModel">
-														<i class="icon-eye-open"></i> View
-													</button>
-												</td>
-												<td class="center"><button class="btn btn-warning"
-														data-toggle="modal" data-target="#subjectModal">
-														<i class="icon-pencil icon-white"></i> Edit
-													</button></td>
-												<td class="center">
-													<button class="btn btn-danger" data-toggle="modal"
-														data-target="#deleteModal">
-														<i class="icon-remove icon-white"></i> Delete
-													</button>
-												</td>
-											</tr>
-
-											<tr class="odd gradeX">
-												<td>Trident</td>
-												<td>Internet Explorer 4.0</td>
-												<td>Win 95+</td>
-												<td class="center">4</td>
-												<td class="center">X</td>
-												<td class="center">5</td>
-												<td class="center">
-													<button class="btn btn-success" data-toggle="modal"
-														data-target="#viewModel">
-														<i class="icon-eye-open"></i> View
-													</button>
-												</td>
-												<td class="center"><button class="btn btn-warning"
-														data-toggle="modal" data-target="#subjectModal">
-														<i class="icon-pencil icon-white"></i> Edit
-													</button></td>
-												<td class="center">
-													<button class="btn btn-danger" data-toggle="modal"
-														data-target="#deleteModal">
-														<i class="icon-remove icon-white"></i> Delete
-													</button>
-												</td>
-											</tr>
-
-											<tr class="odd gradeX">
-												<td>Trident</td>
-												<td>Internet Explorer 4.0</td>
-												<td>Win 95+</td>
-												<td class="center">4</td>
-												<td class="center">X</td>
-												<td class="center">5</td>
-												<td class="center">
-													<button class="btn btn-success" data-toggle="modal"
-														data-target="#viewModel">
-														<i class="icon-eye-open"></i> View
-													</button>
-												</td>
-												<td class="center"><button class="btn btn-warning"
-														data-toggle="modal" data-target="#subjectModal">
-														<i class="icon-pencil icon-white"></i> Edit
-													</button></td>
-												<td class="center">
-													<button class="btn btn-danger" data-toggle="modal"
-														data-target="#deleteModal">
-														<i class="icon-remove icon-white"></i> Delete
-													</button>
-												</td>
-											</tr>
-
-											<tr class="odd gradeX">
-												<td>Trident</td>
-												<td>Internet Explorer 4.0</td>
-												<td>Win 95+</td>
-												<td class="center">4</td>
-												<td class="center">X</td>
-												<td class="center">5</td>
-												<td class="center">
-													<button class="btn btn-success" data-toggle="modal"
-														data-target="#viewModel">
-														<i class="icon-eye-open"></i> View
-													</button>
-												</td>
-												<td class="center"><button class="btn btn-warning"
-														data-toggle="modal" data-target="#subjectModal">
-														<i class="icon-pencil icon-white"></i> Edit
-													</button></td>
-												<td class="center">
-													<button class="btn btn-danger" data-toggle="modal"
-														data-target="#deleteModal">
-														<i class="icon-remove icon-white"></i> Delete
-													</button>
-												</td>
-											</tr>
-
-											<tr class="odd gradeX">
-												<td>Trident</td>
-												<td>Internet Explorer 4.0</td>
-												<td>Win 95+</td>
-												<td class="center">4</td>
-												<td class="center">X</td>
-												<td class="center">5</td>
-												<td class="center">
-													<button class="btn btn-success" data-toggle="modal"
-														data-target="#viewModel">
-														<i class="icon-eye-open"></i> View
-													</button>
-												</td>
-												<td class="center"><button class="btn btn-warning"
-														data-toggle="modal" data-target="#subjectModal">
-														<i class="icon-pencil icon-white"></i> Edit
-													</button></td>
-												<td class="center">
-													<button class="btn btn-danger" data-toggle="modal"
-														data-target="#deleteModal">
-														<i class="icon-remove icon-white"></i> Delete
-													</button>
-												</td>
-											</tr>
-
-											<tr class="odd gradeX">
-												<td>Trident</td>
-												<td>Internet Explorer 4.0</td>
-												<td>Win 95+</td>
-												<td class="center">4</td>
-												<td class="center">X</td>
-												<td class="center">5</td>
-												<td class="center">
-													<button class="btn btn-success" data-toggle="modal"
-														data-target="#viewModel">
-														<i class="icon-eye-open"></i> View
-													</button>
-												</td>
-												<td class="center"><button class="btn btn-warning"
-														data-toggle="modal" data-target="#subjectModal">
-														<i class="icon-pencil icon-white"></i> Edit
-													</button></td>
-												<td class="center">
-													<button class="btn btn-danger" data-toggle="modal"
-														data-target="#deleteModal">
-														<i class="icon-remove icon-white"></i> Delete
-													</button>
-												</td>
-											</tr>
-
-
-										</tbody>
 									</table>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-			</div>
 
-			<!--Save and Update Modal -->
-			<div class="col-lg-12">
-				<div class="modal fade" id="subjectModal" tabindex="-1"
-					role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-					<div class="modal-dialog">
-						<div class="modal-content">
-							<div class="modal-header primary">
-								<button type="button" class="close " data-dismiss="modal"
-									aria-hidden="true">&times;</button>
-								<h4 class="modal-title" id="H4">User Registration</h4>
-							</div>
-							<div class="modal-body">
-								<form action="index.html" class="form-signin">
+				<!--Save and Update Modal -->
+				<div class="col-lg-12">
+					<div class="modal fade" id="modalDivisionSave" tabindex="-1"
+						role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">
+						<div class="modal-dialog">
+							<form:form role="form" id="frmIdDivision" method="post"
+								modelAttribute="maStaff">
+								<div class="modal-content">
 
-									<div class="form-group">
-										<div>
-											<input type="text" id="txtIdStaffId" name="txtStaffId"
-												placeholder="Staff Id" class="form-control" />
+									<div class="modal-header">
+										<button type="button" class="close" data-dismiss="modal"
+											aria-hidden="true">&times;</button>
+										<h4 class="modal-title" id="H4">User Creation</h4>
+									</div>
+									<div class="modal-body">
+
+										<div class="form-group input-group">
+											<span class="input-group-addon">Id</span> <input type="text"
+												id="txtIdDivId" name="txtDivId" class="form-control"
+												placeholder="User Id" readonly="true" />
+										</div>
+
+										<div class="form-group input-group">
+											<span class="input-group-addon ">Name</span> <input
+												type="text" id="txtDivName" name="txtDivName"
+												class="clsString form-control"
+												placeholder="Enter Division Name" />
+										</div>
+
+										<div class="form-group input-group">
+											<input type="text" class="form-control" id="txtIdSubject"
+												name="txtSubject" disabled placeholder="select the division" />
+											<span class="input-group-btn">
+												<button class="btn btn-warning" type="button"
+													data-toggle="modal" data-target="#modalDivision">
+													<i class="icon-search"></i>
+												</button>
+											</span> <input type="text" class="form-control" id="txtIdSubjectId"
+												name="txtSearch" disabled="disabled" />
+										</div>
+
+										<div class="form-group input-group">
+											<input type="text" class="form-control" id="txtIdSubject"
+												name="txtSubject" disabled
+												placeholder="select user category" /> <span
+												class="input-group-btn">
+												<button class="btn btn-warning" type="button"
+													data-toggle="modal" data-target="#modalCategory">
+													<i class="icon-search"></i>
+												</button>
+											</span> <input type="text" class="form-control" id="txtIdSubjectId"
+												name="txtSearch" disabled="disabled" />
+										</div>
+
+										<div class="form-group input-group">
+											<span class="input-group-addon ">User Id</span> <input
+												type="text" id="txtDivName" name="txtDivName"
+												class="clsString form-control"
+												placeholder="Enter Division Name" />
+										</div>
+
+										<div class="form-group input-group">
+											<span class="input-group-addon ">Password</span> <input
+												type="password" id="txtDivName" name="txtDivName"
+												class="clsString form-control"
+												placeholder="Enter Division Name" />
+										</div>
+
+										<div class="form-group input-group">
+											<span class="input-group-addon "><i
+												class="glyphicon glyphicon-phone"></i></span> <input type="text"
+												id="txtIdMobile" name="txtMobile" class="form-control"
+												placeholder="Mobile phone number" />
+										</div>
+
+
+										<div class="form-group input-group">
+											<span class="input-group-addon ">@</span> <input type="email"
+												id="txtIdEmail" name="txtEmail" class="form-control"
+												placeholder="Enter Email address. e.g. divsec@gmail.com" />
+										</div>
+
+										<div class="form-group input-group">
+											<span class="input-group-addon ">Remarks</span> <input
+												type="text" id="txtDivName" name="txtDivName"
+												class="clsString form-control" placeholder="Note" />
+										</div>
+
+										<div class="form-group">
+											Is Active <input id="chkDivIsActive" type="checkbox" value="" />
 										</div>
 									</div>
 
-									<div class="form-group">
-										<div>
-											<input type="text" id="txtIdName" name="txtName"
-												placeholder="Staff Name" class="form-control" />
-										</div>
-									</div>
-
-									<div class="form-group">
-										<div>
-											<input type="email" id="email2" name="email2"
-												placeholder="User Name" class="form-control" />
-										</div>
-									</div>
-									<!-- Category Id -->
-
-									<div class="form-group input-group ">
-										<input type="text" class="form-control"
-											placeholder="Select staff category" id="txtIdSubject"
-											name="txtSubject" /> <span class="input-group-btn">
-											<button class="btn btn-default" data-toggle="modal"
-												data-target="#findUserCagtegory" type="button">
-												<i class="icon-search"></i>
+									<div class="modal-footer">
+										<div class="col-lg-4 col-sm-4 col-xs-4">
+											<button id="btnDelete" class="btn btn-danger btn-block">
+												<i class="glyphicon glyphicon-trash"></i> Delete
 											</button>
-										</span> <input type="text" class="form-control"
-											placeholder="DivsionId" id="txtIdDivsionId"
-											name="txtDivsionId" />
-									</div>
-
-									<div class="form-group">
-										<div>
-											<input type="password" id="txtIdPassword" name="txtPassword"
-												placeholder="Type password" class="form-control" />
 										</div>
-									</div>
 
-									<div class="form-group">
-										<div>
-											<input type="password" id="txtIdPassword" name="txtPassword"
-												placeholder="Re type password" class="form-control" />
-										</div>
-									</div>
-
-									<!-- Division -->
-									<div class="form-group input-group ">
-										<input type="text" class="form-control"
-											placeholder="Select a division" id="txtIdSubject"
-											name="txtSubject" /> <span class="input-group-btn">
-											<button class="btn btn-default" data-toggle="modal"
-												data-target="#findDivision" type="button">
-												<i class="icon-search"></i>
+										<div class="col-lg-4 col-sm-4 col-xs-4">
+											<button id="btnSave" type="submit"
+												class="btn btn-success btn-block">
+												<i class="icon-save icon-white"></i> Save
 											</button>
-										</span> <input type="text" class="form-control"
-											placeholder="DivsionId" id="txtIdDivsionId"
-											name="txtDivsionId" />
-									</div>
+										</div>
 
-									<div class="form-group">
-										<div>
-											<input type="email" id="txtIdEamil" name="txtEmail"
-												placeholder="E-mail - abcd@yahoo.com" class="form-control" />
+										<div class="col-lg-4 col-sm-4 col-xs-4">
+											<button id="btnClose" class="btn btn-block"
+												data-dismiss="modal">
+												<i class="icon-remove icon-white"></i> Close
+											</button>
 										</div>
 									</div>
+								</div>
+							</form:form>
+						</div>
+					</div>
+				</div>
+				<!--End of Save and Update Modal -->
 
-									<div class="form-group">
-										<div>
-											<input type="text" id="txtIdMobile" name="txtMobile"
-												placeholder="Mobile 0777 123 123" class="form-control" />
+				<!-- Division Modal -->
+				<div class="col-lg-12">
+					<div class="modal fade" id="modalDivision" tabindex="-1"
+						role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">
+						<div class="modal-dialog">
+
+							<div class="modal-content">
+
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal"
+										aria-hidden="true">&times;</button>
+									<h4 class="modal-title" id="H4">Division</h4>
+								</div>
+								<div class="modal-body">
+									<div class="panel-body">
+										<div class="table-responsive">
+											<table class="table table-striped table-bordered table-hover"
+												id="dtDivision">
+												<thead>
+													<tr>
+														<th>DivId</th>
+														<th>Name</th>
+														<th>Active</th>
+													</tr>
+												</thead>
+
+											</table>
 										</div>
 									</div>
+								</div>
 
-									<div class="form-group">
-										<div>
-											<input type="text" id="txtIdNote" name="txtNote"
-												placeholder="Note" class="form-control" />
-										</div>
+								<div class="modal-footer">
+									<div class="col-lg-4 col-sm-4 col-xs-4">
+										<button id="btnClose" class="btn btn-block"
+											data-dismiss="modal">
+											<i class="icon-remove icon-white"></i> Close
+										</button>
 									</div>
-
-									<div class="form-group">
-										<div class="checkbox">
-											<label> <input type="checkbox" value="" />Active
-											</label>
-										</div>
-									</div>
-								</form>
-
-							</div>
-							<div class="modal-footer">
-								<button type="button" class="btn btn-default"
-									data-dismiss="modal">Close</button>
-								<button type="button" class="btn btn-primary">Save
-									changes</button>
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-			<!--End Save and Update Modal -->
+				<!-- End Division Modal -->
 
-			<!--View Details -->
-			<div class="col-lg-12">
-				<div class="modal fade" id="viewModel" tabindex="-1" role="dialog"
-					aria-labelledby="myModalLabel" aria-hidden="true">
-					<div class="modal-dialog">
-						<div class="modal-content">
-							<div class="modal-header primary">
-								<button type="button" class="close " data-dismiss="modal"
-									aria-hidden="true">&times;</button>
-								<h4 class="modal-title" id="H4">View User's Detail</h4>
-							</div>
-							<div class="modal-body">
-								<div>
-									<p>First Name:</p>
+				<!-- Category Modal -->
+				<div class="col-lg-12">
+					<div class="modal fade" id="modalCategory" tabindex="-1"
+						role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">
+						<div class="modal-dialog">
+
+							<div class="modal-content">
+
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal"
+										aria-hidden="true">&times;</button>
+									<h4 class="modal-title" id="H4">Division</h4>
+								</div>
+								<div class="modal-body">
+									<div class="panel-body">
+										<div class="table-responsive">
+											<table class="table table-striped table-bordered table-hover"
+												id="dtDivision">
+												<thead>
+													<tr>
+														<th>DivId</th>
+														<th>Name</th>
+														<th>Active</th>
+													</tr>
+												</thead>
+
+											</table>
+										</div>
+									</div>
 								</div>
 
-								<div>
-									<p>Last Name:</p>
+								<div class="modal-footer">
+									<div class="col-lg-4 col-sm-4 col-xs-4">
+										<button id="btnClose" class="btn btn-block"
+											data-dismiss="modal">
+											<i class="icon-remove icon-white"></i> Close
+										</button>
+									</div>
 								</div>
-
-								<div>
-									<p>User Name:</p>
-								</div>
-
-								<div>
-									<p>E-mail:</p>
-								</div>
-								<div>
-									<p>Active:</p>
-								</div>
-							</div>
-							<div class="modal-footer">
-								<button type="button" class="btn btn-default"
-									data-dismiss="modal">Close</button>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!--End View Details -->
-
-			<!--Delete Modal -->
-			<div class="col-lg-12">
-				<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog"
-					aria-labelledby="myModalLabel" aria-hidden="true">
-					<div class="modal-dialog">
-						<div class="modal-content">
-							<div class="modal-header">
-								<button type="button" class="close" data-dismiss="modal"
-									aria-hidden="true">&times;</button>
-								<h4 class="modal-title" id="H1">Delete User</h4>
-							</div>
-							<div class="modal-body">Are you sure do you want to delete
-								?</div>
-							<div class="modal-footer">
-								<button type="button" class="btn btn-danger">Yes</button>
-								<button type="button" class="btn btn-primary"
-									data-dismiss="modal">No</button>
 							</div>
 						</div>
 					</div>
 				</div>
+
+				<!-- End Category Modal -->
+
+
+
 			</div>
-			<!--End Delete Modal -->
-
-			<!--Division Modal -->
-			<jsp:include page="../include/include_modal_division.jsp" />
-			<!--End Division Modal -->
-
-			<!--Division Modal -->
-			<jsp:include page="../include/include_modal_staff_category.jsp" />
-			<!--End Division Modal -->
-
+			<!--End of Inner  -->
 		</div>
 		<!--END PAGE CONTENT -->
-
 	</div>
+
 
 	<!--END MAIN WRAPPER -->
 
@@ -545,13 +354,21 @@
 		src="${pageContext.request.contextPath}/resources/plugins/bootstrap/js/bootstrap.min.js"></script>
 	<script
 		src="${pageContext.request.contextPath}/resources/plugins/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+
+
 	<!-- END GLOBAL SCRIPTS -->
 
 	<!-- PAGE LEVEL SCRIPTS -->
 	<script
-		src="${pageContext.request.contextPath}/resources/plugins/dataTables/jquery.dataTables.js"></script>
+		src="${pageContext.request.contextPath}/resources/plugins/dataTables/js/jquery.dataTables.js"></script>
 	<script
-		src="${pageContext.request.contextPath}/resources/plugins/dataTables/dataTables.bootstrap.js"></script>
+		src="${pageContext.request.contextPath}/resources/plugins/dataTables/js/dataTables.bootstrap.js"></script>
+	<script
+		src="${pageContext.request.contextPath}/resources/plugins/dataTables/js/fnReloadAjax.js"></script>
+
+
+	<script
+		src="${pageContext.request.contextPath}/resources/js/divsec_division.js"></script>
 	<script
 		src="${pageContext.request.contextPath}/resources/plugins/validationengine/js/jquery.validationEngine.js"></script>
 	<script
@@ -561,55 +378,12 @@
 	<script
 		src="${pageContext.request.contextPath}/resources/js/validationInit.js"></script>
 
-	<script>
-		$(document).ready(function() {
-			$('#dtSubjectStages').dataTable({
-				"lengthMenu" : [ 5, 10, 20 ]
-			});
+	<script
+		src="${pageContext.request.contextPath}/resources/plugins/Sweetalert-master/lib/sweet-alert.js"></script>
 
-			$('#dtFindDivision').dataTable({
-				"lengthMenu" : [ 10 ],
-				"scrollY" : "200",
-				"scrollCollapse" : true,
-				"bSort" : false,
-				"bLengthChange" : false
 
-			});
 
-			oTableDivision = $('#dtFindDivision').dataTable();
-			oTableDivision.$('tr').dblclick(function() {
-				var data = oTableDivision.fnGetData(this);
-				$('#txtIdSubject').val(data[0]);
-				$('#txtIdSubjectStage').val(data[1]);
-				$('#chkIdActive').prop('checked', true);
-				$('#findSubject').modal('hide')
-			});
 
-			$('#dtFindUserCategory').dataTable({
-				"lengthMenu" : [ 10 ],
-				"scrollY" : "200",
-				"scrollCollapse" : true,
-				"bSort" : false,
-				"bLengthChange" : false
-
-			});
-
-			oTableUserCategory = $('#dtFindUserCategory').dataTable();
-			oTableUserCategory.$('tr').dblclick(function() {
-				var data = oTableUserCategory.fnGetData(this);
-				$('#txtIdSubject').val(data[0]);
-				$('#txtIdSubjectStage').val(data[1]);
-				$('#chkIdActive').prop('checked', true);
-				$('#findSubject').modal('hide')
-			});
-
-		});
-	</script>
-	<script>
-		$(function() {
-			formValidation();
-		});
-	</script>
 	<!-- END PAGE LEVEL SCRIPTS -->
 </body>
 <!-- END BODY -->
