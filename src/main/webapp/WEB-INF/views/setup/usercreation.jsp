@@ -109,6 +109,10 @@
 											<tr>
 												<th>Id</th>
 												<th>Name</th>
+												<th>CatId</th>
+												<th>Cat.</th>
+												<th>DivId</th>
+												<th>DivName</th>
 												<th>UserId</th>
 												<th>Password</th>
 												<th>Email</th>

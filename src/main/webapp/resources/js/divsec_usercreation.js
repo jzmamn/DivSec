@@ -19,6 +19,14 @@ jQuery(function() {
 		}, {
 			"data" : "stfName"
 		}, {
+			"data" : "userCategory.catId"
+		}, {
+			"data" : "userCategory.catName"
+		}, {
+			"data" : "division.divId"
+		}, {
+			"data" : "division.divName"
+		}, {
 			"data" : "stfUserId"
 		}, {
 			"data" : "stfPassword"
@@ -34,10 +42,10 @@ jQuery(function() {
 
 		],
 
-		"columnDefs" : [ {
-			"targets" : [ 3 ],
-			"visible" : false
-		} ]
+	// "columnDefs" : [ {
+	// "targets" : [ 3 ],
+	// "visible" : false
+	// } ]
 
 	});
 

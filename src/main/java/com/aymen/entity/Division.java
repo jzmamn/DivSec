@@ -15,11 +15,12 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
 @Table(name = "division", catalog = "divsec")
-
+@JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class, property = "@id")
 public class Division implements java.io.Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -69,8 +70,8 @@ public class Division implements java.io.Serializable {
 		this.divActive = divActive;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "division")
-	@JsonIgnore
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "division")
+	// @JsonIgnore
 	public Set<Staff> getStaffs() {
 		return this.staffs;
 	}
@@ -79,8 +80,8 @@ public class Division implements java.io.Serializable {
 		this.staffs = staffs;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "division")
-	@JsonIgnore
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "division")
+	// @JsonIgnore
 	public Set<Request> getRequests() {
 		return this.requests;
 	}
