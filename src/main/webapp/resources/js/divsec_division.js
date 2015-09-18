@@ -1,7 +1,7 @@
 jQuery(function() {
 	$('#chkIdDivActive').prop('checked', true); // check true when loading
 
-	// Intialize Data Table
+	// Intialize Division Data Table
 
 	var dt = $('#dtDivision').dataTable({
 

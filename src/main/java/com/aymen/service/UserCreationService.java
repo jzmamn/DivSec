@@ -5,9 +5,9 @@ import java.util.List;
 import com.aymen.entity.Staff;
 
 public interface UserCreationService {
-	public void createSvcUser(Staff staff);
+	public void createSvcStaff(Staff staff);
 
-	public void updateSvcUser(Staff staff);
+	public void updateSvcStaff(Staff staff);
 
 	public List<Staff> listSvcStaff();
 

@@ -17,14 +17,14 @@ public class UserCreationServiceImpl implements UserCreationService {
 	private UserCreationDAO userCreationDAO;
 
 	@Override
-	public void createSvcUser(Staff staff) {
-		this.userCreationDAO.createUser(staff);
+	public void createSvcStaff(Staff staff) {
+		this.userCreationDAO.createStaff(staff);
 
 	}
 
 	@Override
-	public void updateSvcUser(Staff staff) {
-		this.userCreationDAO.updateUser(staff);
+	public void updateSvcStaff(Staff staff) {
+		this.userCreationDAO.updateStaff(staff);
 
 	}
 

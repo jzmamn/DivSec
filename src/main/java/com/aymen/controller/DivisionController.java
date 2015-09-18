@@ -44,6 +44,7 @@ public class DivisionController {
 			logger.error("addPerson", result.getAllErrors());
 			return "error/error";
 		}
+
 		System.out.println(division.getDivId());
 
 		model.addAttribute("id", division.getDivId());

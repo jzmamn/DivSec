@@ -5,9 +5,9 @@ import java.util.List;
 import com.aymen.entity.Division;
 
 public interface DivisionDAO {
-	public void createDivision(Division master);
+	public void createDivision(Division division);
 
-	public void updateDivision(Division master);
+	public void updateDivision(Division division);
 
 	public List<Division> listDivision();
 

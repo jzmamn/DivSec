@@ -5,9 +5,9 @@ import java.util.List;
 import com.aymen.entity.Staff;
 
 public interface UserCreationDAO {
-	public void createUser(Staff staff);
+	public void createStaff(Staff staff);
 
-	public void updateUser(Staff staff);
+	public void updateStaff(Staff staff);
 
 	public List<Staff> listStaff();
 

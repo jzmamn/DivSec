@@ -20,7 +20,7 @@ public class UserCreationDAOImpl implements UserCreationDAO {
 	private SessionFactory sessionFactory;
 
 	@Override
-	public void createUser(Staff staff) {
+	public void createStaff(Staff staff) {
 		try {
 			Session session = sessionFactory.getCurrentSession();
 			session.persist(staff);
@@ -34,11 +34,11 @@ public class UserCreationDAOImpl implements UserCreationDAO {
 	}
 
 	@Override
-	public void updateUser(Staff staff) {
+	public void updateStaff(Staff staff) {
 		try {
 			Session session = sessionFactory.getCurrentSession();
 			session.update(staff);
-			logger.debug("Person saved successfully, Person Details=" + staff);
+			logger.debug("Staff saved successfully, Person Details=" + staff);
 
 		} catch (Exception e) {
 			System.out.println(e.toString());
@@ -50,7 +50,7 @@ public class UserCreationDAOImpl implements UserCreationDAO {
 	public List<Staff> listStaff() {
 		Session session = this.sessionFactory.getCurrentSession();
 		@SuppressWarnings("unchecked")
-		List<Staff> staffList = session.createQuery(" from staff").list();
+		List<Staff> staffList = session.createQuery(" from Staff").list();
 		for (Staff staff : staffList) {
 			logger.info("Staff List:" + staff);
 			// System.out.println(d);

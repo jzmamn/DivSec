@@ -19,6 +19,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "division", catalog = "divsec")
+
 public class Division implements java.io.Serializable {
 
 	private static final long serialVersionUID = 1L;

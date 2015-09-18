@@ -65,7 +65,7 @@
 			<div class="inner">
 				<div class="row">
 					<div class="col-lg-12">
-						<h2>Manage Division</h2>
+						<h2>Manage Users</h2>
 					</div>
 				</div>
 				<hr />
@@ -92,8 +92,8 @@
 					<div class="col-lg-12">
 						<div class="panel panel-default">
 							<div class="panel-heading">
-								<button id="btnAddDivision" data-toggle="modal"
-									data-target="#modalDivisionSave" class="btn btn-primary">
+								<button id="btnAddUser" data-toggle="modal"
+									data-target="#modalUser" class="btn btn-primary">
 									<i class="icon-plus icon-white"></i> Add
 								</button>
 
@@ -104,11 +104,16 @@
 							<div class="panel-body">
 								<div class="table-responsive">
 									<table class="table table-striped table-bordered table-hover"
-										id="dtDivision">
+										id="dtUser">
 										<thead>
 											<tr>
 												<th>Id</th>
 												<th>Name</th>
+												<th>UserId</th>
+												<th>Password</th>
+												<th>Email</th>
+												<th>Mobile</th>
+												<th>Note</th>
 												<th>Active</th>
 											</tr>
 										</thead>
@@ -121,10 +126,10 @@
 
 				<!--Save and Update Modal -->
 				<div class="col-lg-12">
-					<div class="modal fade" id="modalDivisionSave" tabindex="-1"
+					<div class="modal fade" id="modalUser" tabindex="-1"
 						role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">
 						<div class="modal-dialog">
-							<form:form role="form" id="frmIdDivision" method="post"
+							<form:form role="form" id="frmIdUser" method="post"
 								modelAttribute="maStaff">
 								<div class="modal-content">
 
@@ -137,61 +142,61 @@
 
 										<div class="form-group input-group">
 											<span class="input-group-addon">Id</span> <input type="text"
-												id="txtIdDivId" name="txtDivId" class="form-control"
-												placeholder="User Id" readonly="true" />
+												id="txtIdUCId" name="txtUCId" class="form-control"
+												placeholder="Id" readonly="true" />
 										</div>
 
 										<div class="form-group input-group">
 											<span class="input-group-addon ">Name</span> <input
-												type="text" id="txtDivName" name="txtDivName"
+												type="text" id="txtIdName" name="txtName"
 												class="clsString form-control"
-												placeholder="Enter Division Name" />
+												placeholder="Enter User or Staff Name" />
 										</div>
 
 										<div class="form-group input-group">
-											<input type="text" class="form-control" id="txtIdSubject"
-												name="txtSubject" disabled placeholder="select the division" />
+											<input type="text" class="form-control" id="txtIdDivision"
+												name="txtDivision" disabled placeholder="select a division" />
 											<span class="input-group-btn">
-												<button class="btn btn-warning" type="button"
+												<button id="btnIdShowDiv" name="btnShoeDiv" class="btn btn-warning" type="button"
 													data-toggle="modal" data-target="#modalDivision">
 													<i class="icon-search"></i>
 												</button>
-											</span> <input type="text" class="form-control" id="txtIdSubjectId"
-												name="txtSearch" disabled="disabled" />
+											</span> <input type="text" class="form-control" id="txtIdDivisionId"
+												name="txtDivisionId" readonly="true" />
 										</div>
 
 										<div class="form-group input-group">
-											<input type="text" class="form-control" id="txtIdSubject"
-												name="txtSubject" disabled
+											<input type="text" class="form-control" id="txtIdCatName"
+												name="txtCatName" disabled
 												placeholder="select user category" /> <span
 												class="input-group-btn">
-												<button class="btn btn-warning" type="button"
+												<button id="btnIdUserCat" name="btnUserCat" class="btn btn-warning" type="button"
 													data-toggle="modal" data-target="#modalCategory">
 													<i class="icon-search"></i>
 												</button>
-											</span> <input type="text" class="form-control" id="txtIdSubjectId"
-												name="txtSearch" disabled="disabled" />
+											</span> <input type="text" class="form-control" id="txtIdCatId"
+												name="txtCatId" disabled="disabled" />
 										</div>
 
 										<div class="form-group input-group">
 											<span class="input-group-addon ">User Id</span> <input
-												type="text" id="txtDivName" name="txtDivName"
+												type="text" id="txtIdUserId" name="txtDivName"
 												class="clsString form-control"
 												placeholder="Enter Division Name" />
 										</div>
 
 										<div class="form-group input-group">
 											<span class="input-group-addon ">Password</span> <input
-												type="password" id="txtDivName" name="txtDivName"
+												type="password" id="txtIdPwd" name="txtPwd"
 												class="clsString form-control"
-												placeholder="Enter Division Name" />
+												placeholder="Enter User Password" />
 										</div>
 
 										<div class="form-group input-group">
 											<span class="input-group-addon "><i
 												class="glyphicon glyphicon-phone"></i></span> <input type="text"
 												id="txtIdMobile" name="txtMobile" class="form-control"
-												placeholder="Mobile phone number" />
+												placeholder="Mobile phone number. e.g. 07xx xxxxxxx" />
 										</div>
 
 
@@ -202,13 +207,13 @@
 										</div>
 
 										<div class="form-group input-group">
-											<span class="input-group-addon ">Remarks</span> <input
-												type="text" id="txtDivName" name="txtDivName"
+											<span class="input-group-addon ">Note</span> <input
+												type="text" id="txtIdNote" name="txtNote"
 												class="clsString form-control" placeholder="Note" />
 										</div>
 
 										<div class="form-group">
-											Is Active <input id="chkDivIsActive" type="checkbox" value="" />
+											Is Active <input id="chkUserIsActive" type="checkbox" value="" />
 										</div>
 									</div>
 
@@ -302,12 +307,12 @@
 									<div class="panel-body">
 										<div class="table-responsive">
 											<table class="table table-striped table-bordered table-hover"
-												id="dtDivision">
+												id="dtCategory">
 												<thead>
 													<tr>
-														<th>DivId</th>
-														<th>Name</th>
-														<th>Active</th>
+														<th>Id</th>
+														<th>Category</th>
+													
 													</tr>
 												</thead>
 
@@ -366,9 +371,8 @@
 	<script
 		src="${pageContext.request.contextPath}/resources/plugins/dataTables/js/fnReloadAjax.js"></script>
 
-
 	<script
-		src="${pageContext.request.contextPath}/resources/js/divsec_division.js"></script>
+		src="${pageContext.request.contextPath}/resources/js/divsec_usercreation.js"></script>
 	<script
 		src="${pageContext.request.contextPath}/resources/plugins/validationengine/js/jquery.validationEngine.js"></script>
 	<script
