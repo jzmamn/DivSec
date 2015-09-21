@@ -40,65 +40,22 @@ jQuery(function() {
 			"data" : "stfActive"
 		}
 
-		],
-
-	// "columnDefs" : [ {
-	// "targets" : [ 3 ],
-	// "visible" : false
-	// } ]
-
-	});
-
-	// Intialize Division Data Table
-
-	var dtDivision = $('#dtDivision').dataTable({
-
-		// No of records should be displayed
-		"lengthMenu" : [ 5, 10, 20 ],
-
-		// Load table using JSON data by ajax
-		"ajax" : {
-			"url" : "division/create1",
-			"dataSrc" : ""
-		},
-
-		"columns" : [ {
-			"data" : "divId"
-		}, {
-			"data" : "divName"
-		}, {
-			"data" : "divActive"
-		}
-
 		]
 
-	});
-
-	// Intialize User Category Table
-
-	var dtUserCat = $('#dtCategory').dataTable({
-
-		// No of records should be displayed
-		"lengthMenu" : [ 5, 10, 20 ],
-
-		// Load table using JSON data by ajax
-		"ajax" : {
-			"url" : "usercategory/loadCategory",
-			"dataSrc" : ""
-		},
-
-		"columns" : [ {
-			"data" : "catId"
-		}, {
-			"data" : "catName"
-		}
-
-		],
-
-		"columnDefs" : [ {
-			"targets" : [ 0 ],
-			"visible" : false
-		} ]
+	// ,
+	//
+	// "columnDefs" : [ {
+	// "targets" : [ 2 ],
+	// "visible" : false
+	// }, {
+	// "targets" : [ 4 ],
+	// "visible" : false
+	// }, {
+	// "targets" : [ 7 ],
+	// "visible" : false
+	// }
+	//
+	// ]
 
 	});
 
@@ -127,14 +84,6 @@ jQuery(function() {
 		return false;
 	});
 
-	$("#btnIdShowDiv").click(function() {
-		dtDivision.fnReloadAjax('division/create1');
-	});
-
-	$("#btnIdUserCat").click(function() {
-		dtUserCat.fnReloadAjax('usercategory/loadCategory');
-	});
-
 	$("#btn").click(function() {
 		// alert('usercreation/loaduser');
 		// $.ajax({
@@ -146,28 +95,136 @@ jQuery(function() {
 
 	});
 
-	// GET VALUE ON TABLE ROW CLICK
+	// GET VALUE ON TABLE ROW CLICK From Staff table
+
 	$('#dtUser tbody').on('click', 'tr', function(e) {
-		var data = $(this).children("td").map(function() {
-			return $(this).text();
-		}).get();
 
-		$('#txtIdUCId').val(data[0]);
-		$('#txtIdName').val(data[1]);
-		$('#txtIdUCId').val(data[0]);
-		$('#txtIdName').val(data[1]);
-		// $('#chkDivIsActive').val(data[2]);
+		var aPos = dtUser.fnGetPosition(this);
+		alert(aPos);
+		$('#txtIdUCId').val(dtUser.fnGetData(aPos, 0));
+		$('#txtIdName').val(dtUser.fnGetData(aPos, 1));
+		$('#txtIdCatId').val(dtUser.fnGetData(aPos, 2));
+		$('#txtIdCatName').val(dtUser.fnGetData(aPos, 3));
+		$('#txtIdDivisionId').val(dtUser.fnGetData(aPos, 4));
+		$('#txtIdDivision').val(dtUser.fnGetData(aPos, 5));
+		$('#txtIdUserId').val(dtUser.fnGetData(aPos, 6));
+		$('#txtIdPwd').val(dtUser.fnGetData(aPos, 7));
+		$('#txtIdEmail').val(dtUser.fnGetData(aPos, 8));
+		$('#txtIdMobile').val(dtUser.fnGetData(aPos, 9));
+		$('#txtIdNote').val(dtUser.fnGetData(aPos, 10));
 
-		if (data[2] == "true") {
+		var varChkActive = dtUser.fnGetData(aPos, 11);
+
+		if (varChkActive == true) {
 			blnIsDivActive = true;
 		} else {
 			blnIsDivActive = false;
 		}
 
-		$('#chkIdDivActive').prop('checked', blnIsDivActive);
+		$('#chkUserIsActive').prop('checked', blnIsDivActive);
 
-		$("#modalDivisionSave").modal("show");
+		$("#modalUser").modal("show");
 
 	});
+
+	// =======================START DIVISION MODAL=========================
+
+	// Intialize Division Data Table
+	var dtDivision = $('#dtDivision').dataTable({
+
+		// No of records should be displayed
+		"lengthMenu" : [ 5, 10, 20 ],
+
+		// Load table using JSON data by ajax
+		"ajax" : {
+			"url" : "division/create1",
+			"dataSrc" : ""
+		},
+
+		"columns" : [ {
+			"data" : "divId"
+		}, {
+			"data" : "divName"
+		}, {
+			"data" : "divActive"
+		}
+
+		]
+
+	});
+
+	// GET VALUE ON TABLE ROW CLICK FROM DIVISION TABLE
+	$('#dtDivision tbody').on('click', 'tr', function(e) {
+		var data = $(this).children("td").map(function() {
+			return $(this).text();
+		}).get();
+
+		$('#txtIdDivisionId').val(data[0]);
+		$('#txtIdDivision').val(data[1]);
+
+		$("#modalDivision").modal("hide");
+
+	});
+
+	$("#btnIdShowDiv").click(function() {
+		dtDivision.fnReloadAjax('division/create1');
+	});
+
+	// =======================END DIVISION MODAL=========================
+
+	// =======================START USER CATEGORY MODAL=========================
+
+	// Intialize User Category Table
+	var dtUserCat = $('#dtCategory').dataTable({
+
+		// No of records should be displayed
+		"lengthMenu" : [ 5, 10, 20 ],
+
+		// Load table using JSON data by ajax
+		"ajax" : {
+			"url" : "usercategory/loadCategory",
+			"dataSrc" : ""
+		},
+
+		"columns" : [ {
+			"data" : "catId"
+		}, {
+			"data" : "catName"
+		}
+
+		],
+
+		"columnDefs" : [ {
+			"targets" : [ 0 ],
+			"visible" : false
+		} ]
+
+	});
+
+	// GET VALUE ON TABLE ROW CLICK FROM USER CATEGORY TABLE
+	$('#dtCategory tbody').on('click', 'tr', function(e) {
+
+		var data = dtUserCat.fnGetTd($('#dtCategory tbody tr:eq(1)')[0], 1);
+		alert(data);
+
+		// var data = $(this).children("tr").map(function() {
+		// return $(this).text();
+		// }).get();
+		//
+		// alert(data);
+		// //
+		//
+		// $('#txtIdCatId').val(data[0]);
+		// $('#txtIdCatName').val(data[1]);
+		//
+		// $("#modalCategory").modal("hide");
+
+	});
+
+	$("#btnIdUserCat").click(function() {
+		dtUserCat.fnReloadAjax('usercategory/loadCategory');
+	});
+
+	// =======================END USER CATEGORY MODAL=========================
 
 });

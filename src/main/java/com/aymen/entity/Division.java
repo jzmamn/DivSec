@@ -71,7 +71,6 @@ public class Division implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "division")
-	// @JsonIgnore
 	public Set<Staff> getStaffs() {
 		return this.staffs;
 	}
@@ -81,7 +80,6 @@ public class Division implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "division")
-	// @JsonIgnore
 	public Set<Request> getRequests() {
 		return this.requests;
 	}

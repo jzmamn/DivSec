@@ -94,7 +94,7 @@
 	<!--END PAGE CONTENT -->
 
 	<!-- PAGE LEVEL SCRIPTS -->
-	<script src="<c:url value="/resources/plugins/jquery-2.0.3.min.js" />"></script>
+	<script src="<c:url value="/resources/plugins/jquery-2.1.4.min.js" />"></script>
 	<script
 		src="<c:url value="/resources/plugins/bootstrap/js/bootstrap.js" />"></script>
 	<script src="<c:url value="/resources/js/login.js" />"></script>
