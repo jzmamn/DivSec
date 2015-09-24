@@ -42,15 +42,95 @@ jQuery(function() {
 
 		],
 
-	// "columnDefs" : [ {
-	// "targets" : [ 3 ],
-	// "visible" : false
-	// } ]
+		"columnDefs" : [ {
+			"targets" : [ 2 ],
+			"visible" : false
+		}, {
+			"targets" : [ 4 ],
+			"visible" : false
+		}, {
+			"targets" : [ 7 ],
+			"visible" : false
+		}, {
+			"targets" : [ 10 ],
+			"visible" : false
+		}
+
+		]
 
 	});
 
-	// Intialize Division Data Table
+	// Form submission save and edit
+	$("#frmIdUser").submit(function() {
+		// the Controller request mapping value as url.
+		var url = "usercreation/create";
+		$.ajax({
+			type : "POST",
+			url : url,
+			data : $("#frmIdUser").serialize(),
+			success : function() {
+				$("#modalUser").modal("hide");
+				// window.location.reload();
+				dtUser.fnReloadAjax('usercreation/loaduser');
+				swal("Saved Sucessfully !", "....", "success");
+			},
 
+			fail : function() {
+				$("#modalUser").modal("hide");
+				swal("Save Failed !", "....", "error");
+			}
+		});
+
+		// avoid to execute the actual submit of the form.
+		return false;
+	});
+
+	$("#btn").click(function() {
+		// alert('usercreation/loaduser');
+		// $.ajax({
+		// url : 'usercreation/loaduser',
+		// dataType : "json"
+		// }).done(function(json) {
+		// alert("Success: " + json);
+		// });
+
+	});
+
+	// GET VALUE ON TABLE ROW CLICK From Staff table
+
+	$('#dtUser tbody').on('click', 'tr', function(e) {
+
+		var aPos = dtUser.fnGetPosition(this);
+		alert(aPos);
+		$('#txtIdUCId').val(dtUser.fnGetData(aPos, 0));
+		$('#txtIdName').val(dtUser.fnGetData(aPos, 1));
+		$('#txtIdCatId').val(dtUser.fnGetData(aPos, 2));
+		$('#txtIdCatName').val(dtUser.fnGetData(aPos, 3));
+		$('#txtIdDivisionId').val(dtUser.fnGetData(aPos, 4));
+		$('#txtIdDivision').val(dtUser.fnGetData(aPos, 5));
+		$('#txtIdUserId').val(dtUser.fnGetData(aPos, 6));
+		$('#txtIdPwd').val(dtUser.fnGetData(aPos, 7));
+		$('#txtIdEmail').val(dtUser.fnGetData(aPos, 8));
+		$('#txtIdMobile').val(dtUser.fnGetData(aPos, 9));
+		$('#txtIdNote').val(dtUser.fnGetData(aPos, 10));
+
+		var varChkActive = dtUser.fnGetData(aPos, 11);
+
+		if (varChkActive == true) {
+			blnIsDivActive = true;
+		} else {
+			blnIsDivActive = false;
+		}
+
+		$('#chkUserIsActive').prop('checked', blnIsDivActive);
+
+		$("#modalUser").modal("show");
+
+	});
+
+	// =======================START DIVISION MODAL=========================
+
+	// Intialize Division Data Table
 	var dtDivision = $('#dtDivision').dataTable({
 
 		// No of records should be displayed
@@ -74,8 +154,28 @@ jQuery(function() {
 
 	});
 
-	// Intialize User Category Table
+	// GET VALUE ON TABLE ROW CLICK FROM DIVISION TABLE
+	$('#dtDivision tbody').on('click', 'tr', function(e) {
+		var data = $(this).children("td").map(function() {
+			return $(this).text();
+		}).get();
 
+		$('#txtIdDivisionId').val(data[0]);
+		$('#txtIdDivision').val(data[1]);
+
+		$("#modalDivision").modal("hide");
+
+	});
+
+	$("#btnIdShowDiv").click(function() {
+		dtDivision.fnReloadAjax('division/create1');
+	});
+
+	// =======================END DIVISION MODAL=========================
+
+	// =======================START USER CATEGORY MODAL=========================
+
+	// Intialize User Category Table
 	var dtUserCat = $('#dtCategory').dataTable({
 
 		// No of records should be displayed
@@ -102,72 +202,18 @@ jQuery(function() {
 
 	});
 
-	// Form submission save and edit
-	$("#frmIdUser").submit(function() {
-		// the Controller request mapping value as url.
-		var url = "division/create";
-		$.ajax({
-			type : "POST",
-			url : url,
-			data : $("#frmIdUser").serialize(),
-			success : function() {
-				$("#modalUser").modal("hide");
-				// window.location.reload();
-				dtUser.fnReloadAjax('usercreation/loaduser');
-				swal("Saved Sucessfully !", "....", "success");
-			},
-
-			fail : function() {
-				$("#modalUser").modal("hide");
-				swal("Save Failed !", "....", "error");
-			}
-		});
-
-		// avoid to execute the actual submit of the form.
-		return false;
-	});
-
-	$("#btnIdShowDiv").click(function() {
-		dtDivision.fnReloadAjax('division/create1');
+	// GET VALUE ON TABLE ROW CLICK FROM USER CATEGORY TABLE
+	$('#dtCategory tbody').on('click', 'tr', function(e) {
+		var aPos = dtUserCat.fnGetPosition(this);
+		$('#txtIdCatId').val(dtUserCat.fnGetData(aPos, 0));
+		$('#txtIdCatName').val(dtUserCat.fnGetData(aPos, 1));
+		$("#modalCategory").modal("hide");
 	});
 
 	$("#btnIdUserCat").click(function() {
 		dtUserCat.fnReloadAjax('usercategory/loadCategory');
 	});
 
-	$("#btn").click(function() {
-		// alert('usercreation/loaduser');
-		// $.ajax({
-		// url : 'usercreation/loaduser',
-		// dataType : "json"
-		// }).done(function(json) {
-		// alert("Success: " + json);
-		// });
-
-	});
-
-	// GET VALUE ON TABLE ROW CLICK
-	$('#dtUser tbody').on('click', 'tr', function(e) {
-		var data = $(this).children("td").map(function() {
-			return $(this).text();
-		}).get();
-
-		$('#txtIdUCId').val(data[0]);
-		$('#txtIdName').val(data[1]);
-		$('#txtIdUCId').val(data[0]);
-		$('#txtIdName').val(data[1]);
-		// $('#chkDivIsActive').val(data[2]);
-
-		if (data[2] == "true") {
-			blnIsDivActive = true;
-		} else {
-			blnIsDivActive = false;
-		}
-
-		$('#chkIdDivActive').prop('checked', blnIsDivActive);
-
-		$("#modalDivisionSave").modal("show");
-
-	});
+	// =======================END USER CATEGORY MODAL=========================
 
 });

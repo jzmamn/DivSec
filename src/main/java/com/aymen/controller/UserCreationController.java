@@ -48,6 +48,7 @@ public class UserCreationController {
 
 		if (result.hasErrors()) {
 			logger.error("addPerson", result.getAllErrors());
+			System.out.println("addPerson  " + result.getAllErrors());
 			return "error/error";
 		}
 		System.out.println(staff.getStfId());
@@ -61,20 +62,17 @@ public class UserCreationController {
 		model.addAttribute("stfNote", staff.getStfNote());
 		model.addAttribute("stfActive", staff.getStfActive());
 
+		System.out.println("Category Id" + staff.getUserCategory().getCatId());
+		System.out.println("Dv Id" + staff.getDivision().getDivId());
+
 		model.addAttribute("userCategory", staff.getUserCategory().getCatId());
 		model.addAttribute("division", staff.getDivision().getDivId());
 
-		System.out.println(staff.getUserCategory().getCatId());
-		System.out.println(staff.getDivision().getDivId());
-
-		// logger.info("Division Name", staff.getDivName());
-		// logger.info("Division Active", staff.getDivActive());
-		//
-		// if (staff.getDivId() == null) {
-		// this.divisionSvc.createSvcDivision(staff);
-		// } else {
-		// this.divisionSvc.updateSvcDivision(staff);
-		// }
+		if (staff.getStfId() == null) {
+			this.userCreationsSVC.createSvcStaff(staff);
+		} else {
+			this.userCreationsSVC.updateSvcStaff(staff);
+		}
 
 		model.addAttribute("cmdDivision", new Division());
 		// model.addAttribute("listDivision",

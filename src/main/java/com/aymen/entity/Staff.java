@@ -25,7 +25,7 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 public class Staff implements java.io.Serializable {
 
 	private static final long serialVersionUID = 1L;
-	private int stfId;
+	private Integer stfId;
 	private Division division;
 	private UserCategory userCategory;
 	private String stfName;
@@ -46,7 +46,7 @@ public class Staff implements java.io.Serializable {
 		this.division = division;
 	}
 
-	public Staff(int stfId, Division division, UserCategory userCategory, String stfName, String stfUserId,
+	public Staff(Integer stfId, Division division, UserCategory userCategory, String stfName, String stfUserId,
 			String stfPassword, String stfEmail, String stfMobile, String stfNote, boolean stfActive,
 			Set<ProcessStage> processStages, Set<Request> requests) {
 		this.stfId = stfId;
@@ -65,11 +65,11 @@ public class Staff implements java.io.Serializable {
 
 	@Id
 	@Column(name = "stf_id", unique = true, nullable = false)
-	public int getStfId() {
+	public Integer getStfId() {
 		return this.stfId;
 	}
 
-	public void setStfId(int stfId) {
+	public void setStfId(Integer stfId) {
 		this.stfId = stfId;
 	}
 

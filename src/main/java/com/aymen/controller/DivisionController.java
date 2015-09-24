@@ -76,16 +76,18 @@ public class DivisionController {
 	}
 
 	@RequestMapping("/delete/{id}")
-	public String deleteDivision(@ModelAttribute("maDivision") Division division, BindingResult result,
+	public @ResponseBody String deleteDivision(@ModelAttribute("maDivision") Division division, BindingResult result,
 			@PathVariable("id") int id, Model model) {
 		try {
 			model.addAttribute("cmdDivision", new Division());
 			this.divisionSvc.deleteSvcDivision(id);
+			return "1";
 		} catch (Exception e) {
 			System.out.println(e.toString());
 			e.printStackTrace();
+			return "Delete Failed ! " + "\n" + e.toString();
 		}
-		return "setup/division";
+
 	}
 
 }

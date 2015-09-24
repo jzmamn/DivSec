@@ -93,11 +93,18 @@ jQuery(function() {
 			function(e) {
 				e.preventDefault();
 
+				if ($('#txtIdDivId').val() == "") {
+					swal("Oops",
+							"Please Select an Appropreate record to delete !",
+							"error");
+					$("#modalDivisionSave").modal("hide");
+					return;
+				}
+
 				var divId = $('#txtIdDivId').val();
 				var divName = $('#txtIdDivName').val();
 				var url = "division/delete/" + divId;
-				alert(url);
-
+				// alert(url);
 				swal({
 					title : "Are you sure?",
 					text : "Are you sure that you want to delete this photo?",
@@ -108,28 +115,26 @@ jQuery(function() {
 					confirmButtonColor : "#ec6c62"
 				}, function() {
 					$.ajax({
-						url : url
-					}).done(
-							function(data) {
-								dt.fnReloadAjax('division/create1');
+						url : url,
+						success : function(data) {
+							if (data == "1") {
 								swal("Deleted!",
 										"Division Was Successfully Deleted!",
 										"success");
-								// window.location.reload();
-
 								$("#modalDivisionSave").modal("hide");
+								dt.fnReloadAjax('division/create1');
+							} else {
+								swal("Oops", data, "error");
+							}
+						},
 
-							}).error(
-							function(data) {
-								swal("Oops",
-										"We couldn't connect to the server!",
-										"error");
-							});
+						fail : function(data) {
+							alert(data);
+							swal("Oops", "Could Not Connect to the server!",
+									"error");
+						}
+
+					});
 				});
 			});
-
-	$(function() {
-		formValidation();
-	});
-
 });
