@@ -86,13 +86,13 @@ jQuery(function() {
 	});
 
 	$("#btn").click(function() {
-		// alert('usercreation/loaduser');
-		// $.ajax({
-		// url : 'usercreation/loaduser',
-		// dataType : "json"
-		// }).done(function(json) {
-		// alert("Success: " + json);
-		// });
+		alert('usercreation/loaduser');
+		$.ajax({
+			url : 'usercreation/loaduser',
+			dataType : "json"
+		}).done(function(json) {
+			alert("Success: " + json);
+		});
 
 	});
 
@@ -127,6 +127,56 @@ jQuery(function() {
 		$("#modalUser").modal("show");
 
 	});
+
+	// Delete function
+	$("#btnDelete").click(
+			function(e) {
+				e.preventDefault();
+
+				if ($('#txtIdDivId').val() == "") {
+					swal("Oops",
+							"Please Select an Appropreate record to delete !",
+							"error");
+					$("#modalUser").modal("hide");
+					return;
+				}
+
+				var staffId = $('#txtIdUCId').val();
+
+				var url = "usercreation/delete/" + staffId;
+				// alert(url);
+				swal({
+					title : "Are you sure?",
+					text : "Are you sure that you want to delete this Staff?",
+					type : "warning",
+					showCancelButton : true,
+					closeOnConfirm : false,
+					confirmButtonText : "Yes, delete it!",
+					confirmButtonColor : "#ec6c62"
+				}, function() {
+					$.ajax({
+						url : url,
+						success : function(data) {
+							if (data == "1") {
+								swal("Deleted!",
+										"Staff Was Successfully Deleted!",
+										"success");
+								$("#modalUser").modal("hide");
+								dt.fnReloadAjax('division/create1');
+							} else {
+								swal("Oops", data, "error");
+							}
+						},
+
+						fail : function(data) {
+							alert(data);
+							swal("Oops", "Could Not Connect to the server!",
+									"error");
+						}
+
+					});
+				});
+			});
 
 	// =======================START DIVISION MODAL=========================
 

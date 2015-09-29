@@ -1,10 +1,16 @@
-// default package
-// Generated Sep 1, 2015 10:25:55 AM by Hibernate Tools 4.3.1
 package com.aymen.entity;
+// default package
+
+// Generated Sep 29, 2015 7:42:07 PM by Hibernate Tools 4.3.1
+
+import static javax.persistence.GenerationType.IDENTITY;
+
 import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -23,23 +29,21 @@ public class Aproval implements java.io.Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private int appId;
+	private Integer appId;
 	private Request request;
-	private byte[] appIsApproved;
+	private Boolean appIsApproved;
 	private Date appDate;
 	private Date appEntDate;
-	private String appUserId;
+	private Integer appUserId;
 
 	public Aproval() {
 	}
 
-	public Aproval(int appId, Request request) {
-		this.appId = appId;
+	public Aproval(Request request) {
 		this.request = request;
 	}
 
-	public Aproval(int appId, Request request, byte[] appIsApproved, Date appDate, Date appEntDate, String appUserId) {
-		this.appId = appId;
+	public Aproval(Request request, Boolean appIsApproved, Date appDate, Date appEntDate, Integer appUserId) {
 		this.request = request;
 		this.appIsApproved = appIsApproved;
 		this.appDate = appDate;
@@ -48,13 +52,14 @@ public class Aproval implements java.io.Serializable {
 	}
 
 	@Id
+	@GeneratedValue(strategy = IDENTITY)
 
 	@Column(name = "app_id", unique = true, nullable = false)
-	public int getAppId() {
+	public Integer getAppId() {
 		return this.appId;
 	}
 
-	public void setAppId(int appId) {
+	public void setAppId(Integer appId) {
 		this.appId = appId;
 	}
 
@@ -69,11 +74,11 @@ public class Aproval implements java.io.Serializable {
 	}
 
 	@Column(name = "app_is_approved")
-	public byte[] getAppIsApproved() {
+	public Boolean getAppIsApproved() {
 		return this.appIsApproved;
 	}
 
-	public void setAppIsApproved(byte[] appIsApproved) {
+	public void setAppIsApproved(Boolean appIsApproved) {
 		this.appIsApproved = appIsApproved;
 	}
 
@@ -97,12 +102,12 @@ public class Aproval implements java.io.Serializable {
 		this.appEntDate = appEntDate;
 	}
 
-	@Column(name = "app_user_id", length = 45)
-	public String getAppUserId() {
+	@Column(name = "app_user_id")
+	public Integer getAppUserId() {
 		return this.appUserId;
 	}
 
-	public void setAppUserId(String appUserId) {
+	public void setAppUserId(Integer appUserId) {
 		this.appUserId = appUserId;
 	}
 

@@ -1,5 +1,5 @@
 // default package
-// Generated Sep 1, 2015 10:25:55 AM by Hibernate Tools 4.3.1
+// Generated Sep 29, 2015 7:42:07 PM by Hibernate Tools 4.3.1
 package com.aymen.entity;
 
 import static javax.persistence.GenerationType.IDENTITY;
@@ -24,17 +24,20 @@ import javax.persistence.TemporalType;
 @Table(name = "instructions", catalog = "divsec")
 public class Instructions implements java.io.Serializable {
 
+	/**
+	 * 
+	 */
 	private static final long serialVersionUID = 1L;
 	private Integer insId;
 	private ProcessRequest processRequest;
 	private String insInstruction;
 	private Date insDate;
-	private byte[] insIsRead;
+	private Boolean insIsRead;
 
 	public Instructions() {
 	}
 
-	public Instructions(ProcessRequest processRequest, String insInstruction, Date insDate, byte[] insIsRead) {
+	public Instructions(ProcessRequest processRequest, String insInstruction, Date insDate, Boolean insIsRead) {
 		this.processRequest = processRequest;
 		this.insInstruction = insInstruction;
 		this.insDate = insDate;
@@ -72,8 +75,8 @@ public class Instructions implements java.io.Serializable {
 		this.insInstruction = insInstruction;
 	}
 
-	@Temporal(TemporalType.DATE)
-	@Column(name = "ins_date", length = 10)
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "ins_date", length = 19)
 	public Date getInsDate() {
 		return this.insDate;
 	}
@@ -83,11 +86,11 @@ public class Instructions implements java.io.Serializable {
 	}
 
 	@Column(name = "ins_is_read")
-	public byte[] getInsIsRead() {
+	public Boolean getInsIsRead() {
 		return this.insIsRead;
 	}
 
-	public void setInsIsRead(byte[] insIsRead) {
+	public void setInsIsRead(Boolean insIsRead) {
 		this.insIsRead = insIsRead;
 	}
 

@@ -1,5 +1,5 @@
 // default package
-// Generated Sep 1, 2015 10:25:55 AM by Hibernate Tools 4.3.1
+// Generated Sep 29, 2015 7:42:07 PM by Hibernate Tools 4.3.1
 package com.aymen.entity;
 
 import static javax.persistence.GenerationType.IDENTITY;
@@ -28,6 +28,9 @@ import javax.persistence.UniqueConstraint;
 @Table(name = "public_individual", catalog = "divsec", uniqueConstraints = @UniqueConstraint(columnNames = "pi_ind_user_id") )
 public class PublicIndividual implements java.io.Serializable {
 
+	/**
+	 * 
+	 */
 	private static final long serialVersionUID = 1L;
 	private Integer piId;
 	private Notification notification;
@@ -45,6 +48,7 @@ public class PublicIndividual implements java.io.Serializable {
 	private String piGender;
 	private String piNote;
 	private Integer piUserId;
+	private Boolean piActive;
 	private Set<Request> requests = new HashSet<Request>(0);
 
 	public PublicIndividual() {
@@ -53,7 +57,7 @@ public class PublicIndividual implements java.io.Serializable {
 	public PublicIndividual(Notification notification, String piName, String piAddress1, String piAddress2,
 			String piAddress3, String piLandPhone, String piMobilePhone, String piEmail, Integer piIndUserId,
 			String piUserPwd, String piNic, Date piDob, String piGender, String piNote, Integer piUserId,
-			Set<Request> requests) {
+			Boolean piActive, Set<Request> requests) {
 		this.notification = notification;
 		this.piName = piName;
 		this.piAddress1 = piAddress1;
@@ -69,6 +73,7 @@ public class PublicIndividual implements java.io.Serializable {
 		this.piGender = piGender;
 		this.piNote = piNote;
 		this.piUserId = piUserId;
+		this.piActive = piActive;
 		this.requests = requests;
 	}
 
@@ -219,6 +224,15 @@ public class PublicIndividual implements java.io.Serializable {
 
 	public void setPiUserId(Integer piUserId) {
 		this.piUserId = piUserId;
+	}
+
+	@Column(name = "pi_active")
+	public Boolean getPiActive() {
+		return this.piActive;
+	}
+
+	public void setPiActive(Boolean piActive) {
+		this.piActive = piActive;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "publicIndividual")

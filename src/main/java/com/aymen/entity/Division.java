@@ -1,5 +1,3 @@
-// default package
-// Generated Sep 1, 2015 10:25:55 AM by Hibernate Tools 4.3.1
 package com.aymen.entity;
 
 import static javax.persistence.GenerationType.IDENTITY;
@@ -20,20 +18,20 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
 @Table(name = "division", catalog = "divsec")
-@JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class, property = "@id")
+@JsonIdentityInfo(generator = ObjectIdGenerators.None.class, property = "@divId")
 public class Division implements java.io.Serializable {
 
 	private static final long serialVersionUID = 1L;
 	private Integer divId;
 	private String divName;
-	private boolean divActive;
+	private Boolean divActive;
 	private Set<Staff> staffs = new HashSet<Staff>(0);
 	private Set<Request> requests = new HashSet<Request>(0);
 
 	public Division() {
 	}
 
-	public Division(String divName, boolean divActive, Set<Staff> staffs, Set<Request> requests) {
+	public Division(String divName, Boolean divActive, Set<Staff> staffs, Set<Request> requests) {
 		this.divName = divName;
 		this.divActive = divActive;
 		this.staffs = staffs;
@@ -62,15 +60,16 @@ public class Division implements java.io.Serializable {
 	}
 
 	@Column(name = "div_active")
-	public boolean getDivActive() {
+	public Boolean getDivActive() {
 		return this.divActive;
 	}
 
-	public void setDivActive(boolean divActive) {
+	public void setDivActive(Boolean divActive) {
 		this.divActive = divActive;
 	}
 
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "division")
+	// @JsonIgnore
 	public Set<Staff> getStaffs() {
 		return this.staffs;
 	}
@@ -80,6 +79,7 @@ public class Division implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "division")
+	// @JsonIgnore
 	public Set<Request> getRequests() {
 		return this.requests;
 	}

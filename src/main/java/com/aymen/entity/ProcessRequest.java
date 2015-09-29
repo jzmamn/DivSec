@@ -1,5 +1,5 @@
 // default package
-// Generated Sep 1, 2015 10:25:55 AM by Hibernate Tools 4.3.1
+// Generated Sep 29, 2015 7:42:07 PM by Hibernate Tools 4.3.1
 package com.aymen.entity;
 
 import static javax.persistence.GenerationType.IDENTITY;
@@ -27,6 +27,9 @@ import javax.persistence.TemporalType;
 @Table(name = "process_request", catalog = "divsec")
 public class ProcessRequest implements java.io.Serializable {
 
+	/**
+	 * 
+	 */
 	private static final long serialVersionUID = 1L;
 	private Integer prId;
 	private Request request;

@@ -1,12 +1,15 @@
 // default package
-// Generated Sep 1, 2015 10:25:55 AM by Hibernate Tools 4.3.1
+// Generated Sep 29, 2015 7:42:07 PM by Hibernate Tools 4.3.1
 package com.aymen.entity;
+
+import static javax.persistence.GenerationType.IDENTITY;
 
 import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -21,8 +24,11 @@ import javax.persistence.TemporalType;
 @Table(name = "request_log", catalog = "divsec")
 public class RequestLog implements java.io.Serializable {
 
+	/**
+	 * 
+	 */
 	private static final long serialVersionUID = 1L;
-	private int rlId;
+	private Integer rlId;
 	private ProcessRequest processRequest;
 	private Date rlTxnDate;
 	private Integer rlDivisionId;
@@ -33,13 +39,8 @@ public class RequestLog implements java.io.Serializable {
 	public RequestLog() {
 	}
 
-	public RequestLog(int rlId) {
-		this.rlId = rlId;
-	}
-
-	public RequestLog(int rlId, ProcessRequest processRequest, Date rlTxnDate, Integer rlDivisionId, Integer rlStatusId,
+	public RequestLog(ProcessRequest processRequest, Date rlTxnDate, Integer rlDivisionId, Integer rlStatusId,
 			Integer rlUserId, String rlNote) {
-		this.rlId = rlId;
 		this.processRequest = processRequest;
 		this.rlTxnDate = rlTxnDate;
 		this.rlDivisionId = rlDivisionId;
@@ -49,13 +50,14 @@ public class RequestLog implements java.io.Serializable {
 	}
 
 	@Id
+	@GeneratedValue(strategy = IDENTITY)
 
 	@Column(name = "rl_id", unique = true, nullable = false)
-	public int getRlId() {
+	public Integer getRlId() {
 		return this.rlId;
 	}
 
-	public void setRlId(int rlId) {
+	public void setRlId(Integer rlId) {
 		this.rlId = rlId;
 	}
 

@@ -1,5 +1,5 @@
 // default package
-// Generated Sep 1, 2015 10:25:55 AM by Hibernate Tools 4.3.1
+// Generated Sep 29, 2015 7:42:07 PM by Hibernate Tools 4.3.1
 package com.aymen.entity;
 
 import java.util.HashSet;
@@ -19,10 +19,13 @@ import javax.persistence.Table;
 @Table(name = "request_status", catalog = "divsec")
 public class RequestStatus implements java.io.Serializable {
 
+	/**
+	 * 
+	 */
 	private static final long serialVersionUID = 1L;
 	private int rsId;
 	private String rsName;
-	private byte[] rsActive;
+	private Boolean rsActive;
 	private Set<ProcessRequest> processRequests = new HashSet<ProcessRequest>(0);
 
 	public RequestStatus() {
@@ -32,7 +35,7 @@ public class RequestStatus implements java.io.Serializable {
 		this.rsId = rsId;
 	}
 
-	public RequestStatus(int rsId, String rsName, byte[] rsActive, Set<ProcessRequest> processRequests) {
+	public RequestStatus(int rsId, String rsName, Boolean rsActive, Set<ProcessRequest> processRequests) {
 		this.rsId = rsId;
 		this.rsName = rsName;
 		this.rsActive = rsActive;
@@ -60,11 +63,11 @@ public class RequestStatus implements java.io.Serializable {
 	}
 
 	@Column(name = "rs_active")
-	public byte[] getRsActive() {
+	public Boolean getRsActive() {
 		return this.rsActive;
 	}
 
-	public void setRsActive(byte[] rsActive) {
+	public void setRsActive(Boolean rsActive) {
 		this.rsActive = rsActive;
 	}
 

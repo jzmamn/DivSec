@@ -131,12 +131,13 @@
 
 									<div class="modal-body">
 										<div class="form-group input-group">
-											<span class="input-group-addon">Id</span> <input type="text" id="txtIdUCId" name="txtUCId" class="form-control" placeholder="Id"
+											<span class="input-group-addon">Id</span> 
+											<form:input path="stfId"  type="text" id="txtIdUCId" name="txtUCId" class="form-control" placeholder="Id"
 												readonly="true" />
 										</div>
 
 										<div class="form-group input-group">
-											<span class="input-group-addon ">Name</span> <input type="text" id="txtIdName" name="txtName" class="clsString form-control"
+											<span class="input-group-addon ">Name</span> <form:input path="stfName" type="text" id="txtIdName" name="txtName" class="clsString form-control"
 												placeholder="Enter User or Staff Name" required="true" maxlength="30" />
 										</div>
 
@@ -147,7 +148,7 @@
 													data-target="#modalDivision">
 													<i class="icon-search"></i>
 												</button>
-											</span> <input type="text" class="form-control" id="txtIdDivisionId" name="txtDivisionId" readonly="true" required="true" />
+											</span> <form:input path="division.divId" type="text" class="form-control" id="txtIdDivisionId" name="txtDivisionId" readonly="true" required="true" />
 										</div>
 
 										<div class="form-group input-group">
@@ -157,37 +158,37 @@
 													data-target="#modalCategory">
 													<i class="icon-search"></i>
 												</button>
-											</span> <input type="text" class="form-control" id="txtIdCatId" name="txtCatId" readonly="true" required="true" />
+											</span> <form:input path="userCategory.catId" type="text" class="form-control" id="txtIdCatId" name="txtCatId" readonly="true" required="true" />
 										</div>
 
 										<div class="form-group input-group">
-											<span class="input-group-addon ">User Id</span> <input type="text" id="txtIdUserId" name="txtUserId"
+											<span class="input-group-addon ">User Id</span> <form:input path="stfUserId" type="text" id="txtIdUserId" name="txtUserId"
 												class="clsString form-control" required="true" maxlength="8" placeholder="Enter Division Name" />
 										</div>
 
 										<div class="form-group input-group">
-											<span class="input-group-addon ">Password</span> <input type="password" id="txtIdPwd" name="txtPwd"
+											<span class="input-group-addon ">Password</span> <form:input path="stfPassword" type="password" id="txtIdPwd" name="txtPwd"
 												class="clsString form-control" required="true" maxlength="8" placeholder="Enter User Password" />
 										</div>
 
 										<div class="form-group input-group">
-											<span class="input-group-addon "><i class="glyphicon glyphicon-phone"></i></span> <input type="text" id="txtIdMobile"
+											<span class="input-group-addon "><i class="glyphicon glyphicon-phone"></i></span> <form:input path="stfMobile" type="text" id="txtIdMobile"
 												name="txtMobile" class="form-control"  maxlength="10" placeholder="Mobile phone number. e.g. 07xx xxxxxxx" />
 										</div>
 
 
 										<div class="form-group input-group">
-											<span class="input-group-addon ">@</span> <input type="email" id="txtIdEmail" name="txtEmail" class="form-control"
+											<span class="input-group-addon ">@</span> <form:input path="stfEmail" type="email" id="txtIdEmail" name="txtEmail" class="form-control"
 												placeholder="Enter Email address. e.g. divsec@gmail.com"  maxlength="100" />
 										</div>
 
 										<div class="form-group input-group">
-											<span class="input-group-addon ">Note</span> <input type="text" id="txtIdNote" name="txtNote" class="clsString form-control"
+											<span class="input-group-addon ">Note</span> <form:input path="stfNote" type="text" id="txtIdNote" name="txtNote" class="clsString form-control"
 												maxlength="80" placeholder="Note" />
 										</div>
 
 										<div class="form-group">
-											Is Active <input id="chkUserIsActive" type="checkbox" />
+											Is Active <form:checkbox path="stfActive" id="chkUserIsActive"  />
 										</div>
 									</div>
 

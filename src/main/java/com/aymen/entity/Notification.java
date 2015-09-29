@@ -1,6 +1,8 @@
 // default package
-// Generated Sep 1, 2015 10:25:55 AM by Hibernate Tools 4.3.1
+// Generated Sep 29, 2015 7:42:07 PM by Hibernate Tools 4.3.1
 package com.aymen.entity;
+
+import static javax.persistence.GenerationType.IDENTITY;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -8,6 +10,7 @@ import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -19,8 +22,11 @@ import javax.persistence.Table;
 @Table(name = "notification", catalog = "divsec")
 public class Notification implements java.io.Serializable {
 
+	/**
+	 * 
+	 */
 	private static final long serialVersionUID = 1L;
-	private int ntnId;
+	private Integer ntnId;
 	private String ntnType;
 	private byte[] ntnActive;
 	private Set<PublicIndividual> publicIndividuals = new HashSet<PublicIndividual>(0);
@@ -28,25 +34,21 @@ public class Notification implements java.io.Serializable {
 	public Notification() {
 	}
 
-	public Notification(int ntnId) {
-		this.ntnId = ntnId;
-	}
-
-	public Notification(int ntnId, String ntnType, byte[] ntnActive, Set<PublicIndividual> publicIndividuals) {
-		this.ntnId = ntnId;
+	public Notification(String ntnType, byte[] ntnActive, Set<PublicIndividual> publicIndividuals) {
 		this.ntnType = ntnType;
 		this.ntnActive = ntnActive;
 		this.publicIndividuals = publicIndividuals;
 	}
 
 	@Id
+	@GeneratedValue(strategy = IDENTITY)
 
 	@Column(name = "ntn_id", unique = true, nullable = false)
-	public int getNtnId() {
+	public Integer getNtnId() {
 		return this.ntnId;
 	}
 
-	public void setNtnId(int ntnId) {
+	public void setNtnId(Integer ntnId) {
 		this.ntnId = ntnId;
 	}
 

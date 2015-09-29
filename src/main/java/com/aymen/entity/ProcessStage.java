@@ -1,6 +1,8 @@
 // default package
-// Generated Sep 1, 2015 10:25:55 AM by Hibernate Tools 4.3.1
+// Generated Sep 29, 2015 7:42:07 PM by Hibernate Tools 4.3.1
 package com.aymen.entity;
+
+import static javax.persistence.GenerationType.IDENTITY;
 
 import java.util.Date;
 import java.util.HashSet;
@@ -9,6 +11,7 @@ import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -24,8 +27,11 @@ import javax.persistence.TemporalType;
 @Table(name = "process_stage", catalog = "divsec")
 public class ProcessStage implements java.io.Serializable {
 
+	/**
+	 * 
+	 */
 	private static final long serialVersionUID = 1L;
-	private int rstId;
+	private Integer rstId;
 	private ProcessRequest processRequest;
 	private Staff staff;
 	private StageStatus stageStatus;
@@ -38,15 +44,13 @@ public class ProcessStage implements java.io.Serializable {
 	public ProcessStage() {
 	}
 
-	public ProcessStage(int rstId, ProcessRequest processRequest, StageStatus stageStatus) {
-		this.rstId = rstId;
+	public ProcessStage(ProcessRequest processRequest, StageStatus stageStatus) {
 		this.processRequest = processRequest;
 		this.stageStatus = stageStatus;
 	}
 
-	public ProcessStage(int rstId, ProcessRequest processRequest, Staff staff, StageStatus stageStatus,
-			Integer rstStgId, Integer rsSequenceNo, Date rstTxnDate, String rstNote, Set<StageLog> stageLogs) {
-		this.rstId = rstId;
+	public ProcessStage(ProcessRequest processRequest, Staff staff, StageStatus stageStatus, Integer rstStgId,
+			Integer rsSequenceNo, Date rstTxnDate, String rstNote, Set<StageLog> stageLogs) {
 		this.processRequest = processRequest;
 		this.staff = staff;
 		this.stageStatus = stageStatus;
@@ -58,13 +62,14 @@ public class ProcessStage implements java.io.Serializable {
 	}
 
 	@Id
+	@GeneratedValue(strategy = IDENTITY)
 
 	@Column(name = "rst_id", unique = true, nullable = false)
-	public int getRstId() {
+	public Integer getRstId() {
 		return this.rstId;
 	}
 
-	public void setRstId(int rstId) {
+	public void setRstId(Integer rstId) {
 		this.rstId = rstId;
 	}
 

@@ -1,5 +1,5 @@
 // default package
-// Generated Sep 1, 2015 10:25:55 AM by Hibernate Tools 4.3.1
+// Generated Sep 29, 2015 7:42:07 PM by Hibernate Tools 4.3.1
 package com.aymen.entity;
 
 import static javax.persistence.GenerationType.IDENTITY;
@@ -22,16 +22,19 @@ import javax.persistence.Table;
 @Table(name = "stage_status", catalog = "divsec")
 public class StageStatus implements java.io.Serializable {
 
+	/**
+	 * 
+	 */
 	private static final long serialVersionUID = 1L;
 	private Integer ssId;
 	private String ssName;
-	private byte[] ssActive;
+	private Boolean ssActive;
 	private Set<ProcessStage> processStages = new HashSet<ProcessStage>(0);
 
 	public StageStatus() {
 	}
 
-	public StageStatus(String ssName, byte[] ssActive, Set<ProcessStage> processStages) {
+	public StageStatus(String ssName, Boolean ssActive, Set<ProcessStage> processStages) {
 		this.ssName = ssName;
 		this.ssActive = ssActive;
 		this.processStages = processStages;
@@ -59,11 +62,11 @@ public class StageStatus implements java.io.Serializable {
 	}
 
 	@Column(name = "ss_active")
-	public byte[] getSsActive() {
+	public Boolean getSsActive() {
 		return this.ssActive;
 	}
 
-	public void setSsActive(byte[] ssActive) {
+	public void setSsActive(Boolean ssActive) {
 		this.ssActive = ssActive;
 	}
 
