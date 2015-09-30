@@ -19,6 +19,7 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 /**
@@ -26,7 +27,7 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
  */
 @Entity
 @Table(name = "staff", catalog = "divsec", uniqueConstraints = @UniqueConstraint(columnNames = "stf_user_id") )
-@JsonIdentityInfo(generator = ObjectIdGenerators.None.class, property = "@stfId")
+@JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class, property = "@id")
 public class Staff implements java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 	private Integer stfId;
@@ -160,7 +161,8 @@ public class Staff implements java.io.Serializable {
 		this.stfActive = stfActive;
 	}
 
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "staff")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "staff")
+	@JsonIgnore
 	public Set<ProcessStage> getProcessStages() {
 		return this.processStages;
 	}
@@ -169,8 +171,8 @@ public class Staff implements java.io.Serializable {
 		this.processStages = processStages;
 	}
 
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "staff")
-
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "staff")
+	@JsonIgnore
 	public Set<Request> getRequests() {
 		return this.requests;
 	}

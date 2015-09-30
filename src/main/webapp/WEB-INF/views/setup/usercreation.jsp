@@ -172,7 +172,7 @@
 										</div>
 
 										<div class="form-group input-group">
-											<span class="input-group-addon "><i class="glyphicon glyphicon-phone"></i></span> <form:input path="stfMobile" type="text" id="txtIdMobile"
+											<span class="input-group-addon "><i class="glyphicon glyphicon-phone"></i></span> <form:input path="stfMobile" type="number" id="txtIdMobile"
 												name="txtMobile" class="form-control"  maxlength="10" placeholder="Mobile phone number. e.g. 07xx xxxxxxx" />
 										</div>
 

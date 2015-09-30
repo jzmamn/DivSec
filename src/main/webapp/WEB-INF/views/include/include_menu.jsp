@@ -114,7 +114,7 @@
 					href="${pageContext.request.contextPath}/division"><i
 						class="icon-angle-right"></i> Division </a></li>
 				<li><a
-					href="${pageContext.request.contextPath}/mainmenu/main/53"><i
+					href="${pageContext.request.contextPath}/subject"><i
 						class="icon-angle-right"></i> Subject </a></li>
 				<li><a
 					href="${pageContext.request.contextPath}/mainmenu/main/54"><i

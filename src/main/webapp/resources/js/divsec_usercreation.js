@@ -1,5 +1,5 @@
 jQuery(function() {
-	// $('#chkIdDivActive').prop('checked', true); // check true when loading
+	$('#chkUserIsActive').prop('checked', true); // check true when loading
 
 	// Intialize Data Table
 
@@ -62,22 +62,41 @@ jQuery(function() {
 
 	// Form submission save and edit
 	$("#frmIdUser").submit(function() {
+
+		if ($('#txtIdCatId').val() == "") {
+			alert('Please select a user category');
+			return;
+		}
+
+		if ($('#txtIdDivisionId').val() == "") {
+			alert('Please select a user Division');
+			return;
+		}
+
 		// the Controller request mapping value as url.
 		var url = "usercreation/create";
 		$.ajax({
 			type : "POST",
 			url : url,
 			data : $("#frmIdUser").serialize(),
-			success : function() {
-				$("#modalUser").modal("hide");
-				// window.location.reload();
+			success : function(res) {
+
+				if (res == "1") {
+					dtUser.fnReloadAjax('usercreation/loaduser');
+					swal("Saved Sucessfully !", "....", "success");
+					$("#modalUser").modal("hide");
+
+				} else {
+					swal("Oops", res, "error");
+				}
+
 				dtUser.fnReloadAjax('usercreation/loaduser');
-				swal("Saved Sucessfully !", "....", "success");
+
 			},
 
-			fail : function() {
+			fail : function(res) {
 				$("#modalUser").modal("hide");
-				swal("Save Failed !", "....", "error");
+				swal("Save Failed !", res, "error");
 			}
 		});
 
@@ -86,13 +105,14 @@ jQuery(function() {
 	});
 
 	$("#btn").click(function() {
-		alert('usercreation/loaduser');
-		$.ajax({
-			url : 'usercreation/loaduser',
-			dataType : "json"
-		}).done(function(json) {
-			alert("Success: " + json);
-		});
+		dtUser.fnReloadAjax('usercreation/loaduser');
+		// alert('usercreation/loaduser');
+		// $.ajax({
+		// url : 'usercreation/loaduser',
+		// dataType : "json"
+		// }).done(function(json) {
+		// alert("Success: " + json);
+		// });
 
 	});
 
@@ -101,7 +121,7 @@ jQuery(function() {
 	$('#dtUser tbody').on('click', 'tr', function(e) {
 
 		var aPos = dtUser.fnGetPosition(this);
-		alert(aPos);
+		// alert(aPos);
 		$('#txtIdUCId').val(dtUser.fnGetData(aPos, 0));
 		$('#txtIdName').val(dtUser.fnGetData(aPos, 1));
 		$('#txtIdCatId').val(dtUser.fnGetData(aPos, 2));
@@ -158,11 +178,12 @@ jQuery(function() {
 						url : url,
 						success : function(data) {
 							if (data == "1") {
+								dtUser.fnReloadAjax('usercreation/loaduser');
 								swal("Deleted!",
-										"Staff Was Successfully Deleted!",
+										"Staff has been Successfully Deleted!",
 										"success");
 								$("#modalUser").modal("hide");
-								dt.fnReloadAjax('division/create1');
+
 							} else {
 								swal("Oops", data, "error");
 							}
@@ -214,7 +235,6 @@ jQuery(function() {
 		$('#txtIdDivision').val(data[1]);
 
 		$("#modalDivision").modal("hide");
-
 	});
 
 	$("#btnIdShowDiv").click(function() {

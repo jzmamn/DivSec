@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.aymen.entity.Division;
 import com.aymen.entity.Staff;
 import com.aymen.service.UserCreationService;
 
@@ -46,7 +45,8 @@ public class UserCreationController {
 
 	// Create User or staff accounts - save and update
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
-	public String addPerson(@ModelAttribute("maStaff") Staff staff, BindingResult result, ModelMap model) {
+	public @ResponseBody String addPerson(@ModelAttribute("maStaff") Staff staff, BindingResult result,
+			ModelMap model) {
 
 		if (result.hasErrors()) {
 			logger.error("addPerson", result.getAllErrors());
@@ -65,30 +65,37 @@ public class UserCreationController {
 		model.addAttribute("userCategory", staff.getUserCategory().getCatId());
 		model.addAttribute("division", staff.getDivision().getDivId());
 
-		if (staff.getStfId() == null) {
-			this.userCreationsSVC.createSvcStaff(staff);
-		} else {
-			this.userCreationsSVC.updateSvcStaff(staff);
+		try {
+			if (staff.getStfId() == null) {
+				this.userCreationsSVC.createSvcStaff(staff);
+				return "1";
+			} else {
+				this.userCreationsSVC.updateSvcStaff(staff);
+				return "1";
+			}
+
+		} catch (Exception e) {
+			System.out.println(e.toString());
+			e.printStackTrace();
+			// return "Save Failed ! " + "\n" + e.toString();
+			logger.error(e.toString());
+			return "Save Failed ! " + "\n" + "User id already exists";
 		}
 
-		model.addAttribute("maStaff", new Staff());
-		// model.addAttribute("listDivision",
-		// this.divisionSvc.listSvcDivision());
-
-		return "setup/usercreation";
 	}
 
 	@RequestMapping("/delete/{id}")
 	public @ResponseBody String deleteStaff(@ModelAttribute("maStaff") Staff staff, BindingResult result,
 			@PathVariable("id") int id, Model model) {
 		try {
-			model.addAttribute("cmdDivision", new Division());
+			model.addAttribute("cmdDivision", new Staff());
 			this.userCreationsSVC.deleteSvcStaff(id);
 			return "1";
 		} catch (Exception e) {
 			System.out.println(e.toString());
 			e.printStackTrace();
-			return "Delete Failed ! " + "\n" + e.toString();
+			logger.error(e.toString());
+			return "Delete Failed ! " + "\n" + "Staff could not be deleted";
 		}
 
 	}

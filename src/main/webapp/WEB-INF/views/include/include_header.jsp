@@ -31,7 +31,7 @@
 				<ul class="dropdown-menu dropdown-messages">
 					<li><a href="#">
 							<div>
-								<strong>John Smith</strong> <span class="pull-right text-muted">
+								<strong>Jezeem Aymen</strong> <span class="pull-right text-muted">
 									<em>Today</em>
 								</span>
 							</div>

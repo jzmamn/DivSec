@@ -1,5 +1,5 @@
 // default package
-// Generated Sep 29, 2015 7:42:07 PM by Hibernate Tools 4.3.1
+// Generated Sep 30, 2015 10:10:01 PM by Hibernate Tools 4.3.1
 package com.aymen.entity;
 
 import static javax.persistence.GenerationType.IDENTITY;
@@ -12,6 +12,8 @@ import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -22,11 +24,9 @@ import javax.persistence.Table;
 @Table(name = "subject", catalog = "divsec")
 public class Subject implements java.io.Serializable {
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 	private Integer sbjId;
+	private Division division;
 	private String sbjName;
 	private Boolean sbjActive;
 	private Set<SubjecStage> subjecStages = new HashSet<SubjecStage>(0);
@@ -35,7 +35,9 @@ public class Subject implements java.io.Serializable {
 	public Subject() {
 	}
 
-	public Subject(String sbjName, Boolean sbjActive, Set<SubjecStage> subjecStages, Set<Request> requests) {
+	public Subject(Division division, String sbjName, Boolean sbjActive, Set<SubjecStage> subjecStages,
+			Set<Request> requests) {
+		this.division = division;
 		this.sbjName = sbjName;
 		this.sbjActive = sbjActive;
 		this.subjecStages = subjecStages;
@@ -52,6 +54,16 @@ public class Subject implements java.io.Serializable {
 
 	public void setSbjId(Integer sbjId) {
 		this.sbjId = sbjId;
+	}
+
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "sbj_div_id")
+	public Division getDivision() {
+		return this.division;
+	}
+
+	public void setDivision(Division division) {
+		this.division = division;
 	}
 
 	@Column(name = "sbj_name", length = 50)
