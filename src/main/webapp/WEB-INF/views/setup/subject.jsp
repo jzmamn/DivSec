@@ -98,6 +98,8 @@
 											<tr>
 												<th>SubjectId</th>
 												<th>Name</th>
+												<th>DivId</th>
+												<th>Division</th>
 												<th>Active</th>
 											</tr>
 										</thead>
@@ -114,7 +116,7 @@
 				<div class="col-lg-12">
 					<div class="modal fade" id="modalSubject" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">
 						<div class="modal-dialog">
-							<form:form role="form" id="frmIdSubject" method="post" modelAttribute="maSubject" data-toggle="validator">
+							<form:form role="form" id="frmIdSubject" method="POST" modelAttribute="maSubject" data-toggle="validator">
 								<div class="modal-content">
 
 									<div class="modal-header">
@@ -128,7 +130,7 @@
 											<label class="control-label">Subject Id</label>
 											<div class="input-group">
 												<span class="input-group-addon"></span>
-												<form:input path="sbjId" type="text" id="txtIdsbjId" name="txtsbjId" class="form-control" placeholder="Subject Id"
+												<form:input path="sbjId" type="text" id="txtIdSbjId" name="txtsbjId" class="form-control" placeholder="Subject Id"
 													readonly="true" />
 											</div>
 										</div>

@@ -25,7 +25,7 @@ public class UserCreationDAOImpl implements UserCreationDAO {
 			Session session = sessionFactory.getCurrentSession();
 			session.persist(staff);
 
-			logger.debug("Staff saved successfully, Staff Details=" + staff);
+			logger.debug("Staff saved successfully, Staff Details=" + staff.getStfId());
 
 		} catch (Exception e) {
 			System.out.println(e.toString());
@@ -38,7 +38,7 @@ public class UserCreationDAOImpl implements UserCreationDAO {
 		try {
 			Session session = sessionFactory.getCurrentSession();
 			session.update(staff);
-			logger.debug("Staff saved successfully, Person Details=" + staff);
+			logger.debug("Staff saved successfully, Staff Details=" + staff.getStfId());
 
 		} catch (Exception e) {
 			System.out.println(e.toString());
@@ -63,7 +63,7 @@ public class UserCreationDAOImpl implements UserCreationDAO {
 	public Staff getStaffById(int id) {
 		Session session = this.sessionFactory.getCurrentSession();
 		Staff staff = (Staff) session.load(Staff.class, new Integer(id));
-		logger.info("Staff loaded successfully, Staff details=" + staff);
+		logger.info("Staff loaded successfully, Staff details=" + staff.getStfId());
 		return staff;
 	}
 
@@ -75,7 +75,7 @@ public class UserCreationDAOImpl implements UserCreationDAO {
 			if (null != staff) {
 				session.delete(staff);
 			}
-			logger.info("Staff deleted successfully, person details=" + staff);
+			logger.info("Staff deleted successfully, person details=" + staff.getStfId());
 		} catch (HibernateException e) {
 			logger.info("deleteStaff", e.toString());
 			System.out.println(e.toString());
