@@ -28,6 +28,10 @@ import javax.persistence.TemporalType;
 @Table(name = "request", catalog = "divsec")
 public class Request implements java.io.Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Integer reqId;
 	private Division division;
 	private PublicIndividual publicIndividual;

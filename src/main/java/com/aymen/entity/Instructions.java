@@ -24,6 +24,10 @@ import javax.persistence.TemporalType;
 @Table(name = "instructions", catalog = "divsec")
 public class Instructions implements java.io.Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Integer insId;
 	private ProcessRequest processRequest;
 	private String insInstruction;

@@ -14,6 +14,10 @@ import javax.persistence.Table;
 @Table(name = "sms_setup", catalog = "divsec")
 public class SmsSetup implements java.io.Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int smsId;
 	private String smsComPortId;
 

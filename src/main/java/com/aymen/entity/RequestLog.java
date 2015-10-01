@@ -24,6 +24,10 @@ import javax.persistence.TemporalType;
 @Table(name = "request_log", catalog = "divsec")
 public class RequestLog implements java.io.Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Integer rlId;
 	private ProcessRequest processRequest;
 	private Date rlTxnDate;

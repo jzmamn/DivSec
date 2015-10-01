@@ -27,6 +27,10 @@ import javax.persistence.TemporalType;
 @Table(name = "process_request", catalog = "divsec")
 public class ProcessRequest implements java.io.Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Integer prId;
 	private Request request;
 	private RequestStatus requestStatus;

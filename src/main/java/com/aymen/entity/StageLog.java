@@ -24,6 +24,10 @@ import javax.persistence.TemporalType;
 @Table(name = "stage_log", catalog = "divsec")
 public class StageLog implements java.io.Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Integer psId;
 	private ProcessStage processStage;
 	private Integer psStageId;

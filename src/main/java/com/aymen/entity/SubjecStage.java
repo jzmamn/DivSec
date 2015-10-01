@@ -22,6 +22,7 @@ import javax.persistence.Table;
 @Table(name = "subjec_stage", catalog = "divsec")
 public class SubjecStage implements java.io.Serializable {
 
+	private static final long serialVersionUID = 1L;
 	private Integer stgId;
 	private Subject subject;
 	private String stgName;

@@ -28,6 +28,10 @@ import javax.persistence.UniqueConstraint;
 @Table(name = "public_individual", catalog = "divsec", uniqueConstraints = @UniqueConstraint(columnNames = "pi_ind_user_id") )
 public class PublicIndividual implements java.io.Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Integer piId;
 	private Notification notification;
 	private String piName;

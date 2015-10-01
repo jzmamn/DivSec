@@ -17,6 +17,10 @@ import javax.persistence.Table;
 @Table(name = "email_setup", catalog = "divsec")
 public class EmailSetup implements java.io.Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Integer emailId;
 	private byte[] emailIsOutLook;
 	private String emailSenderName;

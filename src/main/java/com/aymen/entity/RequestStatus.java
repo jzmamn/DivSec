@@ -19,6 +19,10 @@ import javax.persistence.Table;
 @Table(name = "request_status", catalog = "divsec")
 public class RequestStatus implements java.io.Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private int rsId;
 	private String rsName;
 	private Boolean rsActive;

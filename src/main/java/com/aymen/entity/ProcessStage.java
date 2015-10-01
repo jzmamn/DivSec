@@ -27,6 +27,10 @@ import javax.persistence.TemporalType;
 @Table(name = "process_stage", catalog = "divsec")
 public class ProcessStage implements java.io.Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Integer rstId;
 	private ProcessRequest processRequest;
 	private Staff staff;
