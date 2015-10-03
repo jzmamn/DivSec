@@ -297,7 +297,6 @@
 						</div>
 					</div>
 				</div>
-
 				<!-- End Category Modal -->
 		</div>
 			<!--End of Inner  -->
