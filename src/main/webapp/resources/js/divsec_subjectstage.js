@@ -2,9 +2,9 @@ jQuery(function() {
 
 	// ==============Start Subject===================
 
-	$('#chkIdSbjActive').prop('checked', true); // check true when loading
+	$('#chkSbjStgIsActive').prop('checked', true); // check true when loading
 
-	// Intialize Data Table
+	// Intialize Subject Table
 
 	var dtSubject = $('#dtSubject').dataTable({
 
@@ -22,20 +22,35 @@ jQuery(function() {
 		}, {
 			"data" : "sbjName"
 		}, {
-			"data" : "division.divId"
-		}, {
-			"data" : "division.divName"
-		}, {
 			"data" : "sbjActive"
 		}
 
-		],
+		]
+	});
 
-		"columnDefs" : [ {
-			"targets" : [ 2 ],
-			"visible" : false
-		} ]
+	// Intialize Subject Stage Table
+	var dtSbjStage = $('#dtSbjStg').dataTable({
 
+		// No of records should be displayed
+		"lengthMenu" : [ 5, 10, 20 ],
+
+		// Load table using JSON data by ajax
+		"ajax" : {
+			"url" : "sbjstages/loadsbjstage/0",
+			"dataSrc" : ""
+		},
+
+		"columns" : [ {
+			"data" : "stgId"
+		}, {
+			"data" : "stgName"
+		}, {
+			"data" : "subject.sbjName"
+		}, {
+			"data" : "stgActive"
+		}
+
+		]
 	});
 
 	// Form submission save and edit
@@ -63,11 +78,9 @@ jQuery(function() {
 					dtSubject.fnReloadAjax('subject/loadsubject');
 					swal("Saved Sucessfully !", "....", "success");
 					$("#modalSubject").modal("hide");
-
 				} else {
 					swal("Oops", res, "error");
 				}
-
 			},
 
 			fail : function(res) {
@@ -97,22 +110,12 @@ jQuery(function() {
 	$('#dtSubject tbody').on('click', 'tr', function(e) {
 
 		var aPos = dtSubject.fnGetPosition(this);
-		// alert(aPos);
+		var sbjId = dtSubject.fnGetData(aPos, 0)
 		$('#txtIdSbjId').val(dtSubject.fnGetData(aPos, 0));
 		$('#txtIdSbjName').val(dtSubject.fnGetData(aPos, 1));
-		$('#txtIdDivisionId').val(dtSubject.fnGetData(aPos, 2));
-		$('#txtIdDivision').val(dtSubject.fnGetData(aPos, 3));
+		$("#modalSubject").modal("hide");
 
-		var varChkActive = dtSubject.fnGetData(aPos, 4);
-
-		if (varChkActive == true) {
-			blnIsDivActive = true;
-		} else {
-			blnIsDivActive = false;
-		}
-
-		$('#chkIdSbjActive').prop('checked', blnIsDivActive);
-		$("#modalSubject").modal("show");
+		dtSbjStage.fnReloadAjax('sbjstages/loadsbjstage/' + sbjId);
 
 	});
 
@@ -169,47 +172,47 @@ jQuery(function() {
 
 	// ==============End Subject===================
 
-	// =======================START DIVISION MODAL=========================
-
-	// Intialize Division Data Table
-	var dtDivision = $('#dtDivision').dataTable({
-
-		// No of records should be displayed
-		"lengthMenu" : [ 5, 10, 20 ],
-
-		// Load table using JSON data by ajax
-		"ajax" : {
-			"url" : "division/create1",
-			"dataSrc" : ""
-		},
-
-		"columns" : [ {
-			"data" : "divId"
-		}, {
-			"data" : "divName"
-		}, {
-			"data" : "divActive"
-		}
-
-		]
-
-	});
-
-	// GET VALUE ON TABLE ROW CLICK FROM DIVISION TABLE
-	$('#dtDivision tbody').on('click', 'tr', function(e) {
-		var data = $(this).children("td").map(function() {
-			return $(this).text();
-		}).get();
-
-		$('#txtIdDivisionId').val(data[0]);
-		$('#txtIdDivision').val(data[1]);
-
-		$("#modalDivision").modal("hide");
-	});
-
-	$("#btnIdShowDiv").click(function() {
-		dtDivision.fnReloadAjax('division/create1');
-	});
+	// // =======================START DIVISION MODAL=========================
+	//
+	// // Intialize Division Data Table
+	// var dtDivision = $('#dtDivision').dataTable({
+	//
+	// // No of records should be displayed
+	// "lengthMenu" : [ 5, 10, 20 ],
+	//
+	// // Load table using JSON data by ajax
+	// "ajax" : {
+	// "url" : "division/create1",
+	// "dataSrc" : ""
+	// },
+	//
+	// "columns" : [ {
+	// "data" : "divId"
+	// }, {
+	// "data" : "divName"
+	// }, {
+	// "data" : "divActive"
+	// }
+	//
+	// ]
+	//
+	// });
+	//
+	// // GET VALUE ON TABLE ROW CLICK FROM DIVISION TABLE
+	// $('#dtDivision tbody').on('click', 'tr', function(e) {
+	// var data = $(this).children("td").map(function() {
+	// return $(this).text();
+	// }).get();
+	//
+	// $('#txtIdDivisionId').val(data[0]);
+	// $('#txtIdDivision').val(data[1]);
+	//
+	// $("#modalDivision").modal("hide");
+	// });
+	//
+	// $("#btnIdShowDiv").click(function() {
+	// dtDivision.fnReloadAjax('division/create1');
+	// });
 
 	// =======================END DIVISION MODAL=========================
 });

@@ -39,7 +39,6 @@ public class DvisionDaoImpl implements DivisionDAO {
 		try {
 			Session session = sessionFactory.getCurrentSession();
 			session.update(division);
-
 			logger.debug("Division Updated successfully, Division Details=" + division.getDivId());
 
 		} catch (Exception e) {

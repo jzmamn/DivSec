@@ -8,7 +8,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>DivSec | Division</title>
+<title>DivSec | Subject Stage</title>
 
 
 <!-- GLOBAL STYLES -->
@@ -84,7 +84,7 @@
 						<div class="panel panel-default">
 							<div class="panel-heading">
 								Subject Stages
-								<button id="btnAddDivision" data-toggle="modal" data-target="#modalDivisionSave" class="btn btn-primary">
+								<button id="btnAddDivision" data-toggle="modal" data-target="#modalSubject" class="btn btn-primary">
 									<i class="icon-plus icon-white"></i> Add
 								</button>
 
@@ -97,58 +97,53 @@
 							<div class="row">
 								<br />
 								<div class="col-lg-6 col-lg-offset-3">
-									
-										<form:form role="form" id="frmIdSbjStg" method="post" modelAttribute="maSbjStg" data-toggle="validator">
-											<div class="form-group">
-												<label for="txtIdDivisionId" class="control-label">Subject</label>
-												<div class="input-group">
-													<form:input path="subject.sbjId" class="form-control" id="txtIdDivision" name="txtDivision" readonly="true" required="true"
-														placeholder="select a division" />
-													<span class="input-group-btn">
-														<button id="btnIdShowDiv" name="btnShoeDiv" class="btn btn-warning" type="button" data-toggle="modal"
-															data-target="#modalSubject">
-															<i class="icon-search"></i>
-														</button>
-													</span>
-													<form:input path="subject.sbjId" type="text" class="form-control" id="txtIdDivisionId" name="txtDivisionId" readonly="true"
-														required="true" />
-												</div>
+									<form:form role="form" id="frmIdSbjStg" method="post" modelAttribute="maSbjStg" data-toggle="validator">
+										<div class="form-group">
+											<label for="txtIdSbj" class="control-label">Subject</label>
+											<div class="input-group">
+												<input type="text" class="form-control" id="txtIdSbjName" name="txtSbjName" readonly="true" placeholder="select a Subject" /> <span
+													class="input-group-btn">
+													<button id="btnIdShowSbj" name="btnShowSbj" class="btn btn-warning" type="button" data-toggle="modal"
+														data-target="#modalSubject">
+														<i class="icon-search"></i>
+													</button>
+												</span>
+												<form:input path="subject.sbjId" type="text" class="form-control" id="txtIdSbjId" name="txtSbjId" readonly="true"
+													required="true" />
 											</div>
+										</div>
 
 
-											<div class="form-group">
-												
-													<form:input path="stgName" class="form-control" id="txtIdStgName" name="txtStgName"  required="true"
-														placeholder="select user category" />
-															</span>
-													<form:input path="stgId" type="text" class="form-control" id="txtIdStgId" name="txtStgId" readonly="true"
-														required="true" />
-												
-											</div>
+										<div class="form-group">
+											<form:input path="stgName" class="form-control" id="txtIdStgName" name="txtStgName" required="true"
+												placeholder="select user category" />
 
-											<div class="form-group">
-												<form:checkbox path="stgActive" id="chkSbjStgIsActive" />
-												Is Active
-											</div>
+											<form:input path="stgId" type="text" class="form-control" id="txtIdStgId" name="txtStgId" readonly="true" required="true" />
+										</div>
 
-											<div class="col-lg-4 col-sm-4 col-xs-4">
-												<button id="btnDelete" class="btn btn-danger btn-block">
-													<i class="glyphicon glyphicon-trash"></i> Delete
-												</button>
-											</div>
+										<div class="form-group">
+											<form:checkbox path="stgActive" id="chkSbjStgIsActive" />
+											<label>Is Active</label>
+										</div>
 
-											<div class="col-lg-4 col-sm-4 col-xs-4">
-												<button id="btnSave" type="submit" class="btn btn-success btn-block">
-													<i class="icon-save icon-white"></i> Save
-												</button>
-											</div>
+										<div class="col-lg-4 col-sm-4 col-xs-4">
+											<button id="btnDelete" class="btn btn-danger btn-block">
+												<i class="glyphicon glyphicon-trash"></i> Delete
+											</button>
+										</div>
 
-											<div class="col-lg-4 col-sm-4 col-xs-4">
-												<button id="btnClose" class="btn btn-block" data-dismiss="modal">
-													<i class="icon-remove icon-white"></i> Close
-												</button>
-											</div>
-										</form:form>
+										<div class="col-lg-4 col-sm-4 col-xs-4">
+											<button id="btnSave" type="submit" class="btn btn-success btn-block">
+												<i class="icon-save icon-white"></i> Save
+											</button>
+										</div>
+
+										<div class="col-lg-4 col-sm-4 col-xs-4">
+											<button id="btnClose" class="btn btn-block" data-dismiss="modal">
+												<i class="icon-remove icon-white"></i> Close
+											</button>
+										</div>
+									</form:form>
 								</div>
 							</div>
 							<hr />
@@ -156,7 +151,7 @@
 							<div class="row">
 								<div class="panel-body">
 									<div class="table-responsive">
-										<table class="table table-striped table-bordered table-hover" id="dtDivision">
+										<table class="table table-striped table-bordered table-hover" id="dtSbjStg">
 											<thead>
 												<tr>
 													<th>Id</th>
@@ -171,8 +166,7 @@
 							</div>
 
 
-
-							<!-- Category Modal -->
+							<!-- Subject Modal -->
 							<div class="col-lg-12">
 								<div class="modal fade" id="modalSubject" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">
 									<div class="modal-dialog">
@@ -180,21 +174,19 @@
 
 											<div class="modal-header">
 												<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-												<h4 class="modal-title" id="H4">Division</h4>
+												<h4 class="modal-title" id="H4">Subject</h4>
 											</div>
 											<div class="modal-body">
-												<div class="panel-body">
-													<div class="table-responsive">
-														<table class="table table-striped table-bordered table-hover" id="dtCategory">
-															<thead>
-																<tr>
-																	<th>Id</th>
-																	<th>Category</th>
-																</tr>
-															</thead>
-
-														</table>
-													</div>
+												<div class="table-responsive">
+													<table class="table table-striped table-bordered table-hover" id="dtSubject">
+														<thead>
+															<tr>
+																<th>SubjectId</th>
+																<th>Name</th>
+																<th>Active</th>
+															</tr>
+														</thead>
+													</table>
 												</div>
 											</div>
 
@@ -209,7 +201,7 @@
 									</div>
 								</div>
 							</div>
-							<!-- End Category Modal -->
+							<!-- End Subject Modal -->
 						</div>
 					</div>
 				</div>
@@ -242,7 +234,7 @@
 	<script src="${pageContext.request.contextPath}/resources/plugins/dataTables/js/jquery.dataTables.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/plugins/dataTables/js/dataTables.bootstrap.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/plugins/dataTables/js/fnReloadAjax.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/js/divsec_division.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/divsec_subjectstage.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/plugins/validator/validator.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/plugins/Sweetalert-master/lib/sweet-alert.js"></script>
 
