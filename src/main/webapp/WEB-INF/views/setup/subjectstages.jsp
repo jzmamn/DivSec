@@ -97,7 +97,7 @@
 							<div class="row">
 								<br />
 								<div class="col-lg-6 col-lg-offset-3">
-									<form:form role="form" id="frmIdSbjStg" method="post" modelAttribute="maSbjStg" data-toggle="validator">
+									<form:form role="form" id="frmIdSbjStg" method="POST" modelAttribute="maSbjStg" data-toggle="validator">
 										<div class="form-group">
 											<label for="txtIdSbj" class="control-label">Subject</label>
 											<div class="input-group">
@@ -113,12 +113,17 @@
 											</div>
 										</div>
 
-
 										<div class="form-group">
+										<label for="txtIdSbj" class="control-label">Stage Name</label>
 											<form:input path="stgName" class="form-control" id="txtIdStgName" name="txtStgName" required="true"
 												placeholder="select user category" />
+											<form:input path="stgId" type="text" class="form-control" id="txtIdStgId" name="txtStgId" readonly="true" />
+										</div>
 
-											<form:input path="stgId" type="text" class="form-control" id="txtIdStgId" name="txtStgId" readonly="true" required="true" />
+										<div class="form-group">
+										<label for="txtIdStgCost" class="control-label">Cost</label>
+											<form:input path="stgCost" class="form-control" id="txtIdStgCost" name="txtStgCost" value="100.0"
+												placeholder="select user category" />
 										</div>
 
 										<div class="form-group">

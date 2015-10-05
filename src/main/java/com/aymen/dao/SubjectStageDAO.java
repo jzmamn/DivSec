@@ -5,9 +5,9 @@ import java.util.List;
 import com.aymen.entity.SubjecStage;
 
 public interface SubjectStageDAO {
-	public void createSbjStg(SubjecStage division);
+	public void createSbjStg(SubjecStage stg);
 
-	public void updateSbjStg(SubjecStage division);
+	public void updateSbjStg(SubjecStage stg);
 
 	public List<SubjecStage> listSbjStg();
 

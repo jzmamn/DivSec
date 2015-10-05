@@ -54,20 +54,22 @@ jQuery(function() {
 	});
 
 	// Form submission save and edit
-	$("#frmIdSubject").submit(function() {
+	$("#frmIdSbjStg").submit(function() {
 
-		if ($('#txtIdCatId').val() == "") {
-			alert('Please select a user category');
+		if ($('#txtIdSbjId').val() == "") {
+			alert('Select a Subject');
 			return;
 		}
 
-		if ($('#txtIdDivisionId').val() == "") {
-			alert('Please select a user Division');
+		if ($('#txtIdStgName').val() == "") {
+			alert('Enter a Subject Stage');
 			return;
 		}
+
+		var sbjId = ('#txtIdSbjId').val();
 
 		// the Controller request mapping value as url.
-		var url = "subject/create";
+		var url = "sbjstages/create";
 		$.ajax({
 			type : "POST",
 			url : url,
@@ -75,9 +77,11 @@ jQuery(function() {
 			success : function(res) {
 
 				if (res == "1") {
-					dtSubject.fnReloadAjax('subject/loadsubject');
+
+					dtSbjStage.fnReloadAjax('sbjstages/loadsbjstage/' + sbjId);
 					swal("Saved Sucessfully !", "....", "success");
-					$("#modalSubject").modal("hide");
+					('#txtIdStgName').val() == "";
+
 				} else {
 					swal("Oops", res, "error");
 				}
@@ -114,9 +118,7 @@ jQuery(function() {
 		$('#txtIdSbjId').val(dtSubject.fnGetData(aPos, 0));
 		$('#txtIdSbjName').val(dtSubject.fnGetData(aPos, 1));
 		$("#modalSubject").modal("hide");
-
 		dtSbjStage.fnReloadAjax('sbjstages/loadsbjstage/' + sbjId);
-
 	});
 
 	// Delete function
@@ -124,10 +126,10 @@ jQuery(function() {
 			function(e) {
 				e.preventDefault();
 
-				if ($('#txtIdDivId').val() == "") {
-					swal("Oops",
-							"Please Select an Appropreate record to delete !",
-							"error");
+				var sbjId = ('#txtIdSbjId').val();
+
+				if ($('#txtIdSbjId').val() == "") {
+					swal("Oops", "Select a record to delete !", "error");
 					$("#modalSubject").modal("hide");
 					return;
 				}
@@ -149,70 +151,24 @@ jQuery(function() {
 						url : url,
 						success : function(data) {
 							if (data == "1") {
-								dtSubject.fnReloadAjax('subject/loadsubject');
+								dtSbjStage
+										.fnReloadAjax('sbjstages/loadsbjstage/'
+												+ sbjId);
 								swal("Deleted!",
-										"Staff has been Successfully Deleted!",
+										"Stage has been Successfully Deleted!",
 										"success");
-								$("#modalSubject").modal("hide");
-
 							} else {
-								swal("Oops", data, "error");
+								swal("Error", data, "error");
 							}
 						},
 
 						fail : function(data) {
 							alert(data);
-							swal("Oops", "Could Not Connect to the server!",
+							swal("Error", "Could Not Connect to the server!",
 									"error");
 						}
-
 					});
 				});
 			});
 
-	// ==============End Subject===================
-
-	// // =======================START DIVISION MODAL=========================
-	//
-	// // Intialize Division Data Table
-	// var dtDivision = $('#dtDivision').dataTable({
-	//
-	// // No of records should be displayed
-	// "lengthMenu" : [ 5, 10, 20 ],
-	//
-	// // Load table using JSON data by ajax
-	// "ajax" : {
-	// "url" : "division/create1",
-	// "dataSrc" : ""
-	// },
-	//
-	// "columns" : [ {
-	// "data" : "divId"
-	// }, {
-	// "data" : "divName"
-	// }, {
-	// "data" : "divActive"
-	// }
-	//
-	// ]
-	//
-	// });
-	//
-	// // GET VALUE ON TABLE ROW CLICK FROM DIVISION TABLE
-	// $('#dtDivision tbody').on('click', 'tr', function(e) {
-	// var data = $(this).children("td").map(function() {
-	// return $(this).text();
-	// }).get();
-	//
-	// $('#txtIdDivisionId').val(data[0]);
-	// $('#txtIdDivision').val(data[1]);
-	//
-	// $("#modalDivision").modal("hide");
-	// });
-	//
-	// $("#btnIdShowDiv").click(function() {
-	// dtDivision.fnReloadAjax('division/create1');
-	// });
-
-	// =======================END DIVISION MODAL=========================
 });

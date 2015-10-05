@@ -17,14 +17,14 @@ public class SubjectStageServiceImpl implements SubjectStageService {
 	SubjectStageDAO sbjStgDao;
 
 	@Override
-	public void createSvcSbjStg(SubjecStage division) {
-		// TODO Auto-generated method stub
+	public void createSvcSbjStg(SubjecStage stg) {
+		sbjStgDao.createSbjStg(stg);
 
 	}
 
 	@Override
-	public void updateSvcSbjStg(SubjecStage division) {
-		// TODO Auto-generated method stub
+	public void updateSvcSbjStg(SubjecStage stg) {
+		sbjStgDao.updateSbjStg(stg);
 
 	}
 
@@ -42,7 +42,7 @@ public class SubjectStageServiceImpl implements SubjectStageService {
 
 	@Override
 	public void deleteSvcSbjStg(int id) {
-		// TODO Auto-generated method stub
+		sbjStgDao.deleteSbjStg(id);
 
 	}
 

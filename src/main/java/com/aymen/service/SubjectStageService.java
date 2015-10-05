@@ -5,9 +5,9 @@ import java.util.List;
 import com.aymen.entity.SubjecStage;
 
 public interface SubjectStageService {
-	public void createSvcSbjStg(SubjecStage division);
+	public void createSvcSbjStg(SubjecStage stg);
 
-	public void updateSvcSbjStg(SubjecStage division);
+	public void updateSvcSbjStg(SubjecStage stg);
 
 	public List<SubjecStage> listSvcSbjStg();
 

@@ -26,7 +26,7 @@ public class DvisionDaoImpl implements DivisionDAO {
 			Session session = sessionFactory.getCurrentSession();
 			session.persist(division);
 
-			logger.debug("Division saved successfully, Person Details=" + division.getDivId());
+			logger.info("Division saved successfully, Person Details=" + division.getDivId());
 
 		} catch (Exception e) {
 			System.out.println(e.toString());
@@ -39,12 +39,10 @@ public class DvisionDaoImpl implements DivisionDAO {
 		try {
 			Session session = sessionFactory.getCurrentSession();
 			session.update(division);
-			logger.debug("Division Updated successfully, Division Details=" + division.getDivId());
-
+			logger.info("Division Updated successfully, Division Details=" + division.getDivId());
 		} catch (Exception e) {
 			System.out.println(e.toString());
 		}
-
 	}
 
 	@Override
@@ -58,7 +56,6 @@ public class DvisionDaoImpl implements DivisionDAO {
 			// System.out.println(d);
 		}
 		return divisionList;
-
 	}
 
 	@Override

@@ -2,6 +2,7 @@ package com.aymen.dao;
 
 import java.util.List;
 
+import org.hibernate.HibernateException;
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -20,33 +21,55 @@ public class SubjectStageDAOImpl implements SubjectStageDAO {
 	private SessionFactory sessionFactory;
 
 	@Override
-	public void createSbjStg(SubjecStage division) {
-		// TODO Auto-generated method stub
-
+	public void createSbjStg(SubjecStage stg) {
+		try {
+			Session session = sessionFactory.getCurrentSession();
+			session.persist(stg);
+			logger.info("Subject Stage saved successfully=" + stg.getStgId());
+		} catch (Exception e) {
+			System.out.println(e.toString());
+			logger.error("Subject Stage saved failed=" + stg.getStgId());
+		}
 	}
 
 	@Override
-	public void updateSbjStg(SubjecStage division) {
-		// TODO Auto-generated method stub
-
+	public void updateSbjStg(SubjecStage stg) {
+		try {
+			Session session = sessionFactory.getCurrentSession();
+			session.update(stg);
+			logger.info("Subject Stage updated successfully=" + stg.getStgId());
+		} catch (Exception e) {
+			System.out.println(e.toString());
+			logger.error("Subject Stage updated failed=" + stg.getStgId());
+		}
 	}
 
 	@Override
 	public List<SubjecStage> listSbjStg() {
-
 		return null;
 	}
 
 	@Override
 	public SubjecStage getSbjStgById(int id) {
-		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
 	public void deleteSbjStg(int id) {
-		// TODO Auto-generated method stub
+		try {
+			Session session = this.sessionFactory.getCurrentSession();
+			SubjecStage stg = (SubjecStage) session.load(SubjecStage.class, new Integer(id));
 
+			if (null != stg) {
+				session.delete(stg);
+			}
+
+			logger.info("Division deleted successfully, person details=" + stg);
+		} catch (HibernateException e) {
+			logger.error("deleteDivision", e.toString());
+			System.out.println(e.toString());
+			e.printStackTrace();
+		}
 	}
 
 	@Override

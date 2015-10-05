@@ -70,7 +70,6 @@ public class SbjStageController {
 		} catch (Exception e) {
 			System.out.println(e.toString());
 			e.printStackTrace();
-			// return "Save Failed ! " + "\n" + e.toString();
 			logger.error(e.toString());
 			return "Save Failed ! " + "\n" + "Subject Stage id already exists";
 		}
