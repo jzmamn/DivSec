@@ -40,11 +40,13 @@ public class SbjStageController {
 			ModelMap model) {
 
 		if (result.hasErrors()) {
-			logger.error("addPerson", result.getAllErrors());
+			System.out.println("binding error " + result.getFieldErrors("txtSbjId"));
+			logger.error("addSbjStg", result.getAllErrors());
 			return "error/error";
 		}
 
-		System.out.println(sbjStg.getStgId());
+		System.out.println("Subject Id" + sbjStg.getSubject().getSbjId());
+		System.out.println("Stage id " + sbjStg.getStgId());
 
 		model.addAttribute("stgId", sbjStg.getStgId());
 		model.addAttribute("subject", sbjStg.getSubject().getSbjId());
@@ -52,15 +54,17 @@ public class SbjStageController {
 		model.addAttribute("stgActive", sbjStg.getStgActive());
 		model.addAttribute("stgCost", sbjStg.getStgCost());
 
+		System.out.println("Stage id= " + sbjStg.getStgId());
+
 		System.out.println(sbjStg.getStgName());
 		System.out.println(sbjStg.getSubject().getSbjId());
 
-		logger.info("Subject Stage Name", sbjStg.getStgName());
-		logger.info("Subject Id", sbjStg.getSubject().getSbjId());
+		// logger.info("Subject Stage Name", sbjStg.getStgName());
+		// logger.info("Subject Id", sbjStg.getSubject().getSbjId());
 
 		try {
 			if (sbjStg.getStgId() == null) {
-				this.sbjStgSvc.updateSvcSbjStg(sbjStg);
+				this.sbjStgSvc.createSvcSbjStg(sbjStg);
 				return "1";
 			} else {
 				this.sbjStgSvc.updateSvcSbjStg(sbjStg);

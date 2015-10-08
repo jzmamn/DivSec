@@ -37,7 +37,7 @@ public class SubjectStageDAOImpl implements SubjectStageDAO {
 		try {
 			Session session = sessionFactory.getCurrentSession();
 			session.update(stg);
-			logger.info("Subject Stage updated successfully=" + stg.getStgId());
+			logger.info("Subject Stage update successfully=" + stg.getStgId());
 		} catch (Exception e) {
 			System.out.println(e.toString());
 			logger.error("Subject Stage updated failed=" + stg.getStgId());

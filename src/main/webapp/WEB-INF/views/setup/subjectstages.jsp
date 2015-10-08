@@ -101,7 +101,7 @@
 										<div class="form-group">
 											<label for="txtIdSbj" class="control-label">Subject</label>
 											<div class="input-group">
-												<input type="text" class="form-control" id="txtIdSbjName" name="txtSbjName" readonly="true" placeholder="select a Subject" /> <span
+												<form:input path="subject.sbjName"  class="form-control" id="txtIdSbjName" name="txtSbjName" readonly="true" placeholder="select a Subject" /> <span
 													class="input-group-btn">
 													<button id="btnIdShowSbj" name="btnShowSbj" class="btn btn-warning" type="button" data-toggle="modal"
 														data-target="#modalSubject">

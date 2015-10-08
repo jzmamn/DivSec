@@ -1,7 +1,7 @@
 jQuery(function() {
 
 	// ==============Start Subject===================
-
+	$("#txtIdSbjId").val("");
 	$('#chkSbjStgIsActive').prop('checked', true); // check true when loading
 
 	// Intialize Subject Table
@@ -54,48 +54,50 @@ jQuery(function() {
 	});
 
 	// Form submission save and edit
-	$("#frmIdSbjStg").submit(function() {
+	$("#frmIdSbjStg").submit(
+			function() {
 
-		if ($('#txtIdSbjId').val() == "") {
-			alert('Select a Subject');
-			return;
-		}
-
-		if ($('#txtIdStgName').val() == "") {
-			alert('Enter a Subject Stage');
-			return;
-		}
-
-		var sbjId = ('#txtIdSbjId').val();
-
-		// the Controller request mapping value as url.
-		var url = "sbjstages/create";
-		$.ajax({
-			type : "POST",
-			url : url,
-			data : $("#frmIdSubject").serialize(),
-			success : function(res) {
-
-				if (res == "1") {
-
-					dtSbjStage.fnReloadAjax('sbjstages/loadsbjstage/' + sbjId);
-					swal("Saved Sucessfully !", "....", "success");
-					('#txtIdStgName').val() == "";
-
-				} else {
-					swal("Oops", res, "error");
+				if ($('#txtIdSbjId').val() == "") {
+					alert('Select a Subject');
+					return;
 				}
-			},
 
-			fail : function(res) {
-				$("#modalSubject").modal("hide");
-				swal("Save Failed !", res, "error");
-			}
-		});
+				if ($('#txtIdStgName').val() == "") {
+					alert('Enter a Subject Stage');
+					return;
+				}
 
-		// avoid to execute the actual submit of the form.
-		return false;
-	});
+				var sbjId1 = $("#txtIdSbjId").val();
+				alert(sbjId1);
+
+				// the Controller request mapping value as url.
+				var url = "sbjstages/create";
+				$.ajax({
+					type : "POST",
+					url : url,
+					data : $("#frmIdSbjStg").serialize(),
+					success : function(res) {
+
+						if (res == "1") {
+
+							dtSbjStage.fnReloadAjax('sbjstages/loadsbjstage/'
+									+ sbjId1);
+							swal("Saved Sucessfully !", "....", "success");
+
+						} else {
+							swal("Oops", res, "error");
+						}
+					},
+
+					fail : function(res) {
+						$("#modalSubject").modal("hide");
+						swal("Save Failed !", res, "error");
+					}
+				});
+
+				// avoid to execute the actual submit of the form.
+				return false;
+			});
 
 	$("#btn").click(function() {
 		dtSubject.fnReloadAjax('subject/loadsubject');
