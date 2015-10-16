@@ -14,6 +14,7 @@ import com.aymen.entity.Division;
 
 @Repository
 public class DvisionDaoImpl implements DivisionDAO {
+
 	private static final Logger logger = LoggerFactory.getLogger(DvisionDaoImpl.class);
 
 	@Autowired
@@ -21,7 +22,6 @@ public class DvisionDaoImpl implements DivisionDAO {
 
 	@Override
 	public void createDivision(Division division) {
-
 		try {
 			Session session = sessionFactory.getCurrentSession();
 			session.persist(division);
@@ -31,7 +31,6 @@ public class DvisionDaoImpl implements DivisionDAO {
 		} catch (Exception e) {
 			System.out.println(e.toString());
 		}
-
 	}
 
 	@Override

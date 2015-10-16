@@ -39,12 +39,10 @@ public class DivisionController {
 
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
 	public String addDivision(@ModelAttribute("maDivision") Division division, BindingResult result, ModelMap model) {
-
 		if (result.hasErrors()) {
 			logger.error("addPerson", result.getAllErrors());
 			return "error/error";
 		}
-
 		System.out.println(division.getDivId());
 
 		model.addAttribute("id", division.getDivId());
@@ -53,7 +51,6 @@ public class DivisionController {
 
 		System.out.println(division.getDivName());
 		System.out.println(division.getDivActive());
-
 		logger.info("Division Name", division.getDivName());
 		logger.info("Division Active", division.getDivActive());
 
@@ -65,7 +62,6 @@ public class DivisionController {
 
 		model.addAttribute("cmdDivision", new Division());
 		model.addAttribute("listDivision", this.divisionSvc.listSvcDivision());
-
 		return "setup/division";
 	}
 

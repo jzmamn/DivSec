@@ -25,6 +25,7 @@
 	<context:component-scan base-package="com.aymen.service" />
 	<context:component-scan base-package="com.aymen.dao" />
 	<context:component-scan base-package="com.aymen.entity" />
+	
 	<tx:annotation-driven transaction-manager="transactionManager" />
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources 

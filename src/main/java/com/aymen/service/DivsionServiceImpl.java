@@ -24,13 +24,11 @@ public class DivsionServiceImpl implements DivisionService {
 	public void createSvcDivision(Division division) {
 		logger.info("createSvcDivision");
 		this.divisionDAO.createDivision(division);
-
 	}
 
 	@Override
 	public void updateSvcDivision(Division division) {
 		this.divisionDAO.updateDivision(division);
-
 	}
 
 	@Override
@@ -46,7 +44,6 @@ public class DivsionServiceImpl implements DivisionService {
 	@Override
 	public void deleteSvcDivision(int id) {
 		this.divisionDAO.deleteDivision(id);
-
 	}
 
 }
