@@ -19,8 +19,7 @@
            <![endif]-->
 <!-- GLOBAL STYLES -->
 
-<link rel="stylesheet"
-	href="<c:url value="/resources/plugins/bootstrap/css/bootstrap.css" />" />
+<link rel="stylesheet" href="<c:url value="/resources/plugins/bootstrap/css/bootstrap.css" />" />
 <link rel="stylesheet" href="<c:url value="/resources/css/main.css" />" />
 <link rel="stylesheet" href="<c:url value="/resources/css/theme.css" />" />
 <link rel="stylesheet" href="<c:url value="/resources/css/MoneAdmin.css" />" />
@@ -29,6 +28,7 @@
 <!--END GLOBAL STYLES -->
 
 <!-- PAGE LEVEL STYLES -->
+<link rel="stylesheet" href="<c:url value="/resources/css/layout2.css" />" />
 <link rel="stylesheet" href="<c:url value="/resources/plugins/morris/morris-0.4.3.min.css" />" />
 <link rel="stylesheet" href="<c:url value="/resources/plugins/datepicker/css/datepicker.css" />" />
 <link rel="stylesheet" href="<c:url value="/resources/plugins/fullcalendar-1.6.2/fullcalendar/fullcalendar.css" />" />
@@ -61,8 +61,8 @@
 		<jsp:include page="include/include_menu.jsp" />
 		<!--END MENU SECTION -->
 
-   
-         <!--PAGE CONTENT -->
+
+            <!--PAGE CONTENT -->
             <div id="content">
 
                 <div class="inner" style="min-height: 700px;">
@@ -273,7 +273,7 @@
             </div>
             <!--END PAGE CONTENT -->
 
-             <!-- RIGHT STRIP  SECTION -->
+            <!-- RIGHT STRIP  SECTION -->
             <div id="right">
                 <div class="well well-small">
                     <label> Logged In </label>
@@ -313,18 +313,12 @@
                     </div>
                 </div>
 
-                <div class="well well-small">
-                    <button class="btn btn-warning btn-block"> Send Instructions </button>
-                    <button class="btn btn-primary btn-block"> Find public</button>
-                    <button class="btn btn-info btn-block"> Find Request </button>
-                </div>
-
-
             </div>
             <!-- END RIGHT STRIP  SECTION -->
-        </div>
 
-	   
+	</div>
+
+
 
 
 	<!--END MAIN WRAPPER -->
@@ -337,103 +331,96 @@
 	<!-- GLOBAL SCRIPTS -->
 
 	<script src="<c:url value="/resources/plugins/jquery-2.1.4.min.js" />"></script>
-	<script
-		src="<c:url value="/resources/plugins/bootstrap/js/bootstrap.min.js" />"></script>
-	<script
-		src="<c:url value="/resources/plugins/modernizr-2.6.2-respond-1.1.0.min.js" />"></script>
+	<script src="<c:url value="/resources/plugins/bootstrap/js/bootstrap.min.js" />"></script>
+	<script src="<c:url value="/resources/plugins/modernizr-2.6.2-respond-1.1.0.min.js" />"></script>
 
 	<!-- END GLOBAL SCRIPTS -->
 
 	<!-- PAGE LEVEL SCRIPTS -->
 
-	
-	
-	       <script src="<c:url value="/resources/plugins/morris/raphael-2.1.0.min.js"/>"></script>
-        <script src="<c:url value="/resources/plugins/morris/morris.js"/>"></script>
-        <script src="<c:url value="/resources/plugins/morris/morris-demo.js"/>"></script>
-        <script src="<c:url value="/resources/plugins/datepicker/js/bootstrap-datepicker.js"/>"></script>
-        <script src="<c:url value="/resources/plugins/fullcalendar-1.6.2/fullcalendar/fullcalendar.min.js"/>"></script>  
-        <script src="<c:url value="/resources/js/calendarInit.js"/>"></script>        
-	
-	  <script type="text/javascript">
-
-            $("#dtpTop").datepicker({});
-
-            var date = new Date();
-            var d = date.getDate();
-            var m = date.getMonth();
-            var y = date.getFullYear();
-
-            var calendar = $('#calendar').fullCalendar({
-                selectable: true,
-                selectHelper: true,
-                select: function(start, end, allDay) {
-                    var title = prompt('Event Title:');
-                    if (title) {
-                        calendar.fullCalendar('renderEvent',
-                                {
-                                    title: title,
-                                    start: start,
-                                    end: end,
-                                    allDay: allDay
-                                },
-                        true // make the event "stick"
-                                );
-                    }
-                    calendar.fullCalendar('unselect');
-                },
-                editable: true,
-//                    events: [
-//                        {
-//                            title: 'All Day Event',
-//                            start: new Date(y, m, 1)
-//                        },
-//                        {
-//                            title: 'Long Event',
-//                            start: new Date(y, m, d - 5),
-//                            end: new Date(y, m, d - 2)
-//                        },
-//                        {
-//                            id: 999,
-//                            title: 'Repeating Event',
-//                            start: new Date(y, m, d - 3, 16, 0),
-//                            allDay: false
-//                        },
-//                        {
-//                            id: 999,
-//                            title: 'Repeating Event',
-//                            start: new Date(y, m, d + 4, 16, 0),
-//                            allDay: false
-//                        },
-//                        {
-//                            title: 'Meeting',
-//                            start: new Date(y, m, d, 10, 30),
-//                            allDay: false
-//                        },
-//                        {
-//                            title: 'Lunch',
-//                            start: new Date(y, m, d, 12, 0),
-//                            end: new Date(y, m, d, 14, 0),
-//                            allDay: false
-//                        },
-//                        {
-//                            title: 'Birthday Party',
-//                            start: new Date(y, m, d + 1, 19, 0),
-//                            end: new Date(y, m, d + 1, 22, 30),
-//                            allDay: false
-//                        },
-//                        {
-//                            title: 'Click for Google',
-//                            start: new Date(y, m, 28),
-//                            end: new Date(y, m, 29),
-//                            url: 'http://google.com/'
-//                        }
-//                    ]
-            });
 
 
-        </script>
-	
+	<script src="<c:url value="/resources/plugins/morris/raphael-2.1.0.min.js"/>"></script>
+	<script src="<c:url value="/resources/plugins/morris/morris.js"/>"></script>
+	<script src="<c:url value="/resources/plugins/morris/morris-demo.js"/>"></script>
+	<script src="<c:url value="/resources/plugins/datepicker/js/bootstrap-datepicker.js"/>"></script>
+	<script src="<c:url value="/resources/plugins/fullcalendar-1.6.2/fullcalendar/fullcalendar.min.js"/>"></script>
+	<script src="<c:url value="/resources/js/calendarInit.js"/>"></script>
+
+	<script type="text/javascript">
+		$("#dtpTop").datepicker({});
+
+		var date = new Date();
+		var d = date.getDate();
+		var m = date.getMonth();
+		var y = date.getFullYear();
+
+		var calendar = $('#calendar').fullCalendar({
+			selectable : true,
+			selectHelper : true,
+			select : function(start, end, allDay) {
+				var title = prompt('Event Title:');
+				if (title) {
+					calendar.fullCalendar('renderEvent', {
+						title : title,
+						start : start,
+						end : end,
+						allDay : allDay
+					}, true // make the event "stick"
+					);
+				}
+				calendar.fullCalendar('unselect');
+			},
+			editable : true,
+		//                    events: [
+		//                        {
+		//                            title: 'All Day Event',
+		//                            start: new Date(y, m, 1)
+		//                        },
+		//                        {
+		//                            title: 'Long Event',
+		//                            start: new Date(y, m, d - 5),
+		//                            end: new Date(y, m, d - 2)
+		//                        },
+		//                        {
+		//                            id: 999,
+		//                            title: 'Repeating Event',
+		//                            start: new Date(y, m, d - 3, 16, 0),
+		//                            allDay: false
+		//                        },
+		//                        {
+		//                            id: 999,
+		//                            title: 'Repeating Event',
+		//                            start: new Date(y, m, d + 4, 16, 0),
+		//                            allDay: false
+		//                        },
+		//                        {
+		//                            title: 'Meeting',
+		//                            start: new Date(y, m, d, 10, 30),
+		//                            allDay: false
+		//                        },
+		//                        {
+		//                            title: 'Lunch',
+		//                            start: new Date(y, m, d, 12, 0),
+		//                            end: new Date(y, m, d, 14, 0),
+		//                            allDay: false
+		//                        },
+		//                        {
+		//                            title: 'Birthday Party',
+		//                            start: new Date(y, m, d + 1, 19, 0),
+		//                            end: new Date(y, m, d + 1, 22, 30),
+		//                            allDay: false
+		//                        },
+		//                        {
+		//                            title: 'Click for Google',
+		//                            start: new Date(y, m, 28),
+		//                            end: new Date(y, m, 29),
+		//                            url: 'http://google.com/'
+		//                        }
+		//                    ]
+		});
+	</script>
+
 
 	<!-- END PAGE LEVEL SCRIPTS -->
 

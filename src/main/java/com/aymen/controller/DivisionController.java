@@ -19,6 +19,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.aymen.entity.Division;
 import com.aymen.service.DivisionService;
 
+/**
+ * This controller handles all the functions related to divisions.
+ */
+
 @Controller
 @RequestMapping(value = "/division")
 public class DivisionController {
@@ -28,6 +32,8 @@ public class DivisionController {
 	@Autowired
 	DivisionService divisionSvc;
 
+	// This method is called just before the division.jsp file is loading on the
+	// browser.
 	@RequestMapping(method = RequestMethod.GET)
 	public String home(@ModelAttribute("maDivision") Division division, ModelMap model) {
 		logger.info("Welcome home! The client locale is {}.", division);
@@ -37,6 +43,7 @@ public class DivisionController {
 		return "setup/division";
 	}
 
+	// Save or Update division
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
 	public String addDivision(@ModelAttribute("maDivision") Division division, BindingResult result, ModelMap model) {
 		if (result.hasErrors()) {
@@ -71,6 +78,7 @@ public class DivisionController {
 		return this.divisionSvc.listSvcDivision();
 	}
 
+	// Delete a division using division id
 	@RequestMapping("/delete/{id}")
 	public @ResponseBody String deleteDivision(@ModelAttribute("maDivision") Division division, BindingResult result,
 			@PathVariable("id") int id, Model model) {

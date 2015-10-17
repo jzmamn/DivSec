@@ -18,7 +18,7 @@
 	<ul id="menu" class="collapse">
 		<!-- Dashboard -->
 		<li class="panel active"><a
-			href="${pageContext.request.contextPath}/mainmenu/main/1" id="index">
+			href="${pageContext.request.contextPath}/admin-dashboard" id="index">
 				<i class="icon-table"></i> Dashboard
 		</a></li>
 		<!-- Quick View -->

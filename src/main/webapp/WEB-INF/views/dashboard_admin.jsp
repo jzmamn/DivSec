@@ -29,6 +29,7 @@
 <!--END GLOBAL STYLES -->
 
 <!-- PAGE LEVEL STYLES -->
+<link rel="stylesheet" href="<c:url value="/resources/css/layout2.css" />" />
 <link rel="stylesheet" href="<c:url value="/resources/plugins/morris/morris-0.4.3.min.css" />" />
 <link rel="stylesheet" href="<c:url value="/resources/plugins/datepicker/css/datepicker.css" />" />
 <link rel="stylesheet" href="<c:url value="/resources/plugins/fullcalendar-1.6.2/fullcalendar/fullcalendar.css" />" />

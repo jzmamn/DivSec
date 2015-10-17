@@ -24,7 +24,7 @@ public class MainMenuController {
 	// return new ModelAndView("setup/division");
 	// }
 
-	@RequestMapping(value = "/main/{menuId}", method = RequestMethod.GET)
+	@RequestMapping(value = "/dashboard_admin/{menuId}", method = RequestMethod.GET)
 	public String getProduct(@PathVariable("menuId") String menuId, HttpServletResponse response) {
 
 		try {
@@ -37,7 +37,7 @@ public class MainMenuController {
 			switch (intMenuId) {
 
 			case 1:
-				strMenu = "main";
+				strMenu = "dashboard_admin";
 				break;
 
 			// From 40 to 44 Process

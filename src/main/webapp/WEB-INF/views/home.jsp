@@ -40,7 +40,7 @@
             </div>
             <div class="tab-content">
                 <div id="login" class="tab-pane active">
-                    <form action="mainmenu/main/1" class="form-signin">
+                    <form action="mainmenu/dashboard_admin/1" class="form-signin">
                         <p class="text-muted text-center btn-block btn btn-primary btn-rect">
                             Login 
                         </p>
