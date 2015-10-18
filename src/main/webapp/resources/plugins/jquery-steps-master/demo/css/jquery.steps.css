@@ -57,7 +57,6 @@
     position: relative;
     display: block;
     width: 100%;
-    font-size: 12px;
 }
 
 .wizard.vertical > .steps
@@ -143,7 +142,7 @@
     background: #eee;
     display: block;
     margin: 0.5em;
-    min-height: 30em;
+    min-height: 35em;
     overflow: hidden;
     position: relative;
     width: auto;
@@ -357,7 +356,7 @@
     position: relative;
     display: inline-block;
     width: 100%;
-    height: 25em;
+    height: 35em;
     overflow: hidden;
     border-top: 1px solid #bbb;
     padding-top: 20px;
@@ -381,4 +380,3 @@
 {
     display: list-item;
 }
-

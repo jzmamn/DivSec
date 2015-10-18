@@ -1,32 +1,39 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+
 
 <!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
+<!--[if !IE]><!-->
 <html lang="en">
+<!--<![endif]-->
+
+<!-- BEGIN HEAD -->
 <head>
-<meta charset="utf-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>DivSec | Division</title>
 
-
+<meta charset="UTF-8" />
+<title>BCORE Admin Dashboard Template | Wizard</title>
+<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+<meta content="" name="description" />
+<meta content="" name="author" />
+<!--[if IE]>
+           <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+           <![endif]-->
 <!-- GLOBAL STYLES -->
-
+<!-- GLOBAL STYLES -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/plugins/bootstrap/css/bootstrap.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/main.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/theme.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/MoneAdmin.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/plugins/Font-Awesome/css/font-awesome.css" />
+
+
 <!--END GLOBAL STYLES -->
 
 <!-- PAGE LEVEL STYLES -->
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/plugins/dataTables/css/dataTables.bootstrap.css" />
-<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/plugins/Sweetalert-master/lib/sweet-alert.css" />
-
 
 
 <!-- END PAGE LEVEL  STYLES -->
+
 
 <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!--[if lt IE 9]>
@@ -35,11 +42,13 @@
         <![endif]-->
 </head>
 <!-- END HEAD -->
+
 <!-- BEGIN BODY -->
 <body class="padTop53 ">
 
 	<!-- MAIN WRAPPER -->
 	<div id="wrap">
+
 
 		<!-- HEADER SECTION -->
 		<jsp:include page="../include/include_header.jsp" />
@@ -50,17 +59,20 @@
 		<jsp:include page="../include/include_menu.jsp" />
 		<!--END MENU SECTION -->
 
+
+
 		<!--PAGE CONTENT -->
 		<div id="content">
-			<!-- Inner  -->
+
 			<div class="inner">
 				<div class="row">
 					<div class="col-lg-12">
-						<h2>Manage Division</h2>
+						<h2>Manage Public Information</h2>
 					</div>
 				</div>
-				<hr />
 
+				<hr />
+				
 				<!-- Bread Crumb -->
 				<div class="row">
 					<div class="col-lg-12">
@@ -72,13 +84,7 @@
 					</div>
 				</div>
 				<!--End Bread Crumb -->
-
-				<!-- Alert -->
-				<div class="row">
-					<div class="col-lg-12" id="alert"></div>
-				</div>
-				<!--End Alert -->
-
+<hr />
 				
 				<div class="row">
 					<div class="col-lg-12">
@@ -221,38 +227,41 @@
 						</form>
 					</div>
 				</div>
+			
 			</div>
-			<!--End of Inner  -->
 		</div>
-		<!--END PAGE CONTENT -->
 	</div>
+
+	<!--END PAGE CONTENT -->
+
+
 
 
 	<!--END MAIN WRAPPER -->
+
 
 	<!-- FOOTER -->
 	<jsp:include page="../include/include_footer.jsp" />
 	<!--END FOOTER -->
 
 
+	<!--END FOOTER -->
 	<!-- GLOBAL SCRIPTS -->
 	<script src="${pageContext.request.contextPath}/resources/plugins/jquery-2.1.4.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/plugins/bootstrap/js/bootstrap.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/plugins/modernizr-2.6.2-respond-1.1.0.min.js"></script>
 
-
 	<!-- END GLOBAL SCRIPTS -->
-
 	<!-- PAGE LEVEL SCRIPTS -->
 	<script src="${pageContext.request.contextPath}/resources/plugins/dataTables/js/jquery.dataTables.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/plugins/dataTables/js/dataTables.bootstrap.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/plugins/dataTables/js/fnReloadAjax.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/js/divsec_division.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/divsec_public.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/plugins/validator/validator.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/plugins/Sweetalert-master/lib/sweet-alert.js"></script>
+	<!--END PAGE LEVEL SCRIPTS -->
 
 
-	<!-- END PAGE LEVEL SCRIPTS -->
 </body>
 <!-- END BODY -->
 </html>

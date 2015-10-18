@@ -81,7 +81,7 @@
 		</a>
 			<ul class="collapse" id="process-nav">
 				<li class=""><a
-					href="${pageContext.request.contextPath}/mainmenu/main/40"><i
+					href="${pageContext.request.contextPath}/public"><i
 						class="icon-angle-right"></i> Public Details </a></li>
 				<li class=""><a
 					href="${pageContext.request.contextPath}/mainmenu/main/41"><i

@@ -140,6 +140,19 @@ function analyzeData(wizard, options, state)
     });
 }
 
+/**
+ * Triggers the onCanceled event.
+ *
+ * @static
+ * @private
+ * @method cancel
+ * @param wizard {Object} The jQuery wizard object
+ **/
+function cancel(wizard)
+{
+    wizard.triggerHandler("canceled");
+}
+
 function decreaseCurrentIndexBy(state, decreaseBy)
 {
     return state.currentIndex - decreaseBy;
@@ -178,12 +191,12 @@ function destroy(wizard, options)
     // Empty panels if the mode is set to 'async' or 'iframe'
     wizard.find(".content > [data-mode='async'],.content > [data-mode='iframe']").empty();
 
-    var wizardSubstitute = $(format("<{0} class=\"{1}\"></{0}>", wizard.get(0).tagName, wizard.attr("class")));
+    var wizardSubstitute = $("<{0} class=\"{1}\"></{0}>".format(wizard.get(0).tagName, wizard.attr("class")));
 
-    var wizardId = wizard._getId();
+    var wizardId = wizard._id();
     if (wizardId != null && wizardId !== "")
     {
-        wizardSubstitute._setId(wizardId);
+        wizardSubstitute._id(wizardId);
     }
 
     wizardSubstitute.html(wizard.find(".content").html());
@@ -215,18 +228,6 @@ function finishStep(wizard, state)
     {
         currentStep.addClass("error");
     }
-}
-
-function format(value)
-{
-    for (var i = 1; i < arguments.length; i++)
-    {
-        var index = (i - 1);
-        var pattern = new RegExp("\\{" + index + "\\}", "gm");
-        value = value.replace(pattern, arguments[i]);
-    }
-
-    return value;
 }
 
 /**
@@ -323,11 +324,11 @@ function getUniqueId(wizard)
 
     if (uniqueId == null)
     {
-        uniqueId = wizard._getId();
+        uniqueId = wizard._id();
         if (uniqueId == null)
         {
             uniqueId = "steps-uid-".concat(_uniqueId);
-            wizard._setId(uniqueId);
+            wizard._id(uniqueId);
         }
 
         _uniqueId++;
@@ -449,9 +450,10 @@ function goToStep(wizard, options, state, index)
         refreshStepNavigation(wizard, options, state, oldIndex);
         refreshPagination(wizard, options, state);
         loadAsyncContent(wizard, options, state);
-        startTransitionEffect(wizard, options, state, index, oldIndex);
-
-        wizard.triggerHandler("stepChanged", [index, oldIndex]);
+        startTransitionEffect(wizard, options, state, index, oldIndex, function()
+        {
+            wizard.triggerHandler("stepChanged", [index, oldIndex]);
+        });
     }
     else
     {
@@ -503,6 +505,8 @@ function initialize(options)
         {
             getStepAnchor(wizard, opts.startIndex).focus();
         }
+
+        wizard.triggerHandler("init", [opts.startIndex]);
     });
 }
 
@@ -538,7 +542,7 @@ function insertStep(wizard, options, state, index, step)
     // Change data
     step = $.extend({}, stepModel, step);
     insertStepToCache(wizard, index, step);
-    if (state.currentIndex >= index)
+    if (state.currentIndex !== state.stepCount && state.currentIndex >= index)
     {
         state.currentIndex++;
         saveCurrentStateToCookie(wizard, options, state);
@@ -546,8 +550,8 @@ function insertStep(wizard, options, state, index, step)
     state.stepCount++;
 
     var contentContainer = wizard.find(".content"),
-        header = $(format("<{0}>{1}</{0}>", options.headerTag, step.title)),
-        body = $(format("<{0}></{0}>", options.bodyTag));
+        header = $("<{0}>{1}</{0}>".format(options.headerTag, step.title)),
+        body = $("<{0}></{0}>".format(options.bodyTag));
 
     if (step.contentMode == null || step.contentMode === contentMode.html)
     {
@@ -563,9 +567,13 @@ function insertStep(wizard, options, state, index, step)
         getStepPanel(wizard, (index - 1)).after(body).after(header);
     }
 
-    renderBody(wizard, body, index);
+    renderBody(wizard, state, body, index);
     renderTitle(wizard, options, state, header, index);
     refreshSteps(wizard, options, state, index);
+    if (index === state.currentIndex)
+    {
+        refreshStepNavigation(wizard, options, state);
+    }
     refreshPagination(wizard, options, state);
 
     return wizard;
@@ -633,7 +641,8 @@ function loadAsyncContent(wizard, options, state)
 {
     if (state.stepCount > 0)
     {
-        var currentStep = getStep(wizard, state.currentIndex);
+        var currentIndex = state.currentIndex,
+            currentStep = getStep(wizard, currentIndex);
 
         if (!options.enableContentCache || !currentStep.contentLoaded)
         {
@@ -646,12 +655,13 @@ function loadAsyncContent(wizard, options, state)
                     break;
 
                 case contentMode.async:
-                    var currentStepContent = getStepPanel(wizard, state.currentIndex)._aria("busy", "true")
+                    var currentStepContent = getStepPanel(wizard, currentIndex)._aria("busy", "true")
                         .empty().append(renderTemplate(options.loadingTemplate, { text: options.labels.loading }));
 
                     $.ajax({ url: currentStep.contentUrl, cache: false }).done(function (data)
                     {
                         currentStepContent.empty().html(data)._aria("busy", "false").data("loaded", "1");
+                        wizard.triggerHandler("contentLoaded", [currentIndex]);
                     });
                     break;
             }
@@ -689,7 +699,7 @@ function paginationClick(wizard, options, state, index)
         if (oldIndex === state.currentIndex && isDisabled)
         {
             // Disable the step again if current index has not changed; prevents click action.
-            parent._disableAria();
+            parent._enableAria(false);
             return false;
         }
 
@@ -717,17 +727,21 @@ function paginationClickHandler(event)
         state = getState(wizard),
         href = anchor.attr("href");
 
-    switch (href.substring(href.lastIndexOf("#")))
+    switch (href.substring(href.lastIndexOf("#") + 1))
     {
-        case "#finish":
+        case "cancel":
+            cancel(wizard);
+            break;
+
+        case "finish":
             finishStep(wizard, state);
             break;
 
-        case "#next":
+        case "next":
             goToNextStep(wizard, options, state);
             break;
 
-        case "#previous":
+        case "previous":
             goToPreviousStep(wizard, options, state);
             break;
     }
@@ -753,55 +767,19 @@ function refreshPagination(wizard, options, state)
         if (!options.forceMoveForward)
         {
             var previous = wizard.find(".actions a[href$='#previous']").parent();
-            if (state.currentIndex > 0)
-            {
-                previous._enableAria();
-            }
-            else
-            {
-                previous._disableAria();
-            }
+            previous._enableAria(state.currentIndex > 0);
         }
 
         if (options.enableFinishButton && options.showFinishButtonAlways)
         {
-            if (state.stepCount === 0)
-            {
-                finish._disableAria();
-                next._disableAria();
-            }
-            else if (state.stepCount > 1 && state.stepCount > (state.currentIndex + 1))
-            {
-                finish._enableAria();
-                next._enableAria();
-            }
-            else
-            {
-                finish._enableAria();
-                next._disableAria();
-            }
+            finish._enableAria(state.stepCount > 0);
+            next._enableAria(state.stepCount > 1 && state.stepCount > (state.currentIndex + 1));
         }
         else
         {
-            if (state.stepCount === 0)
-            {
-                finish._hideAria();
-                next._showAria()._disableAria();
-            }
-            else if (state.stepCount > (state.currentIndex + 1))
-            {
-                finish._hideAria();
-                next._showAria()._enableAria();
-            }
-            else if (!options.enableFinishButton)
-            {
-                next._disableAria();
-            }
-            else
-            {
-                finish._showAria();
-                next._hideAria();
-            }
+            finish._showAria(options.enableFinishButton && state.stepCount === (state.currentIndex + 1));
+            next._showAria(state.stepCount === 0 || state.stepCount > (state.currentIndex + 1)).
+                _enableAria(state.stepCount > (state.currentIndex + 1) || !options.enableFinishButton);
         }
     }
 }
@@ -826,7 +804,7 @@ function refreshStepNavigation(wizard, options, state, oldIndex)
     if (oldIndex != null)
     {
         var oldStepAnchor = getStepAnchor(wizard, oldIndex);
-        oldStepAnchor.parent().addClass("done").removeClass("error")._deselectAria();
+        oldStepAnchor.parent().addClass("done").removeClass("error")._selectAria(false);
         stepTitles.eq(oldIndex).removeClass("current").next(".body").removeClass("current");
         currentInfo = oldStepAnchor.find(".current-info");
         currentOrNewStepAnchor.focus();
@@ -856,12 +834,12 @@ function refreshSteps(wizard, options, state, index)
         var uniqueStepId = uniqueId + _tabSuffix + i,
             uniqueBodyId = uniqueId + _tabpanelSuffix + i,
             uniqueHeaderId = uniqueId + _titleSuffix + i,
-            title = wizard.find(".title").eq(i)._setId(uniqueHeaderId);
+            title = wizard.find(".title").eq(i)._id(uniqueHeaderId);
 
-        wizard.find(".steps a").eq(i)._setId(uniqueStepId)
+        wizard.find(".steps a").eq(i)._id(uniqueStepId)
             ._aria("controls", uniqueBodyId).attr("href", "#" + uniqueHeaderId)
             .html(renderTemplate(options.titleTemplate, { index: i + 1, title: title.html() }));
-        wizard.find(".body").eq(i)._setId(uniqueBodyId)
+        wizard.find(".body").eq(i)._id(uniqueBodyId)
             ._aria("labelledby", uniqueHeaderId);
     }
 }
@@ -870,8 +848,11 @@ function registerEvents(wizard, options)
 {
     var eventNamespace = getEventNamespace(wizard);
 
+    wizard.bind("canceled" + eventNamespace, options.onCanceled);
+    wizard.bind("contentLoaded" + eventNamespace, options.onContentLoaded);
     wizard.bind("finishing" + eventNamespace, options.onFinishing);
     wizard.bind("finished" + eventNamespace, options.onFinished);
+    wizard.bind("init" + eventNamespace, options.onInit);
     wizard.bind("stepChanging" + eventNamespace, options.onStepChanging);
     wizard.bind("stepChanged" + eventNamespace, options.onStepChanged);
 
@@ -955,8 +936,8 @@ function render(wizard, options, state)
     var wrapperTemplate = "<{0} class=\"{1}\">{2}</{0}>",
         orientation = getValidEnumValue(stepsOrientation, options.stepsOrientation),
         verticalCssClass = (orientation === stepsOrientation.vertical) ? " vertical" : "",
-        contentWrapper = $(format(wrapperTemplate, options.contentContainerTag, "content " + options.clearFixCssClass, wizard.html())),
-        stepsWrapper = $(format(wrapperTemplate, options.stepsContainerTag, "steps " + options.clearFixCssClass, "<ul role=\"tablist\"></ul>")),
+        contentWrapper = $(wrapperTemplate.format(options.contentContainerTag, "content " + options.clearFixCssClass, wizard.html())),
+        stepsWrapper = $(wrapperTemplate.format(options.stepsContainerTag, "steps " + options.clearFixCssClass, "<ul role=\"tablist\"></ul>")),
         stepTitles = contentWrapper.children(options.headerTag),
         stepContents = contentWrapper.children(options.bodyTag);
 
@@ -967,11 +948,8 @@ function render(wizard, options, state)
     // Add WIA-ARIA support
     stepContents.each(function (index)
     {
-        renderBody(wizard, $(this), index);
+        renderBody(wizard, state, $(this), index);
     });
-
-    // Make the start step visible
-    stepContents.eq(state.currentIndex)._showAria();
 
     stepTitles.each(function (index)
     {
@@ -992,14 +970,14 @@ function render(wizard, options, state)
  * @param body {Object} A jQuery body object
  * @param index {Integer} The position of the body
  */
-function renderBody(wizard, body, index)
+function renderBody(wizard, state, body, index)
 {
     var uniqueId = getUniqueId(wizard),
         uniqueBodyId = uniqueId + _tabpanelSuffix + index,
         uniqueHeaderId = uniqueId + _titleSuffix + index;
 
-    body._setId(uniqueBodyId).attr("role", "tabpanel")._aria("labelledby", uniqueHeaderId)
-        .addClass("body")._hideAria();
+    body._id(uniqueBodyId).attr("role", "tabpanel")._aria("labelledby", uniqueHeaderId)
+        .addClass("body")._showAria(state.currentIndex === index);
 }
 
 /**
@@ -1022,17 +1000,22 @@ function renderPagination(wizard, options, state)
 
         if (!options.forceMoveForward)
         {
-            buttons += format(buttonTemplate, "previous", options.labels.previous);
+            buttons += buttonTemplate.format("previous", options.labels.previous);
         }
 
-        buttons += format(buttonTemplate, "next", options.labels.next);
+        buttons += buttonTemplate.format("next", options.labels.next);
 
         if (options.enableFinishButton)
         {
-            buttons += format(buttonTemplate, "finish", options.labels.finish);
+            buttons += buttonTemplate.format("finish", options.labels.finish);
         }
 
-        wizard.append(format(pagination, options.actionContainerTag, options.clearFixCssClass,
+        if (options.enableCancelButton)
+        {
+            buttons += buttonTemplate.format("cancel", options.labels.cancel);
+        }
+
+        wizard.append(pagination.format(options.actionContainerTag, options.clearFixCssClass,
             options.labels.pagination, buttons));
 
         refreshPagination(wizard, options, state);
@@ -1096,17 +1079,14 @@ function renderTitle(wizard, options, state, header, index)
         stepItem = $("<li role=\"tab\"><a id=\"" + uniqueStepId + "\" href=\"#" + uniqueHeaderId + 
             "\" aria-controls=\"" + uniqueBodyId + "\">" + title + "</a></li>");
         
-    if (!options.enableAllSteps)
-    {
-        stepItem._disableAria();
-    }
+    stepItem._enableAria(options.enableAllSteps || state.currentIndex > index);
 
     if (state.currentIndex > index)
     {
-        stepItem._enableAria().addClass("done");
+        stepItem.addClass("done");
     }
 
-    header._setId(uniqueHeaderId).attr("tabindex", "-1").addClass("title");
+    header._id(uniqueHeaderId).attr("tabindex", "-1").addClass("title");
 
     if (index === 0)
     {
@@ -1151,7 +1131,7 @@ function saveCurrentStateToCookie(wizard, options, state)
     }
 }
 
-function startTransitionEffect(wizard, options, state, index, oldIndex)
+function startTransitionEffect(wizard, options, state, index, oldIndex, doneCallback)
 {
     var stepContents = wizard.find(".content > .body"),
         effect = getValidEnumValue(transitionEffect, options.transitionEffect),
@@ -1169,7 +1149,7 @@ function startTransitionEffect(wizard, options, state, index, oldIndex)
             state.transitionElement = newStep;
             currentStep[hide](effectSpeed, function ()
             {
-                var wizard = $(this)._hideAria().parent().parent(),
+                var wizard = $(this)._showAria(false).parent().parent(),
                     state = getState(wizard);
 
                 if (state.transitionElement)
@@ -1177,10 +1157,10 @@ function startTransitionEffect(wizard, options, state, index, oldIndex)
                     state.transitionElement[show](effectSpeed, function ()
                     {
                         $(this)._showAria();
-                    });
+                    }).promise().done(doneCallback);
                     state.transitionElement = null;
                 }
-            }).promise();
+            });
             break;
 
         case transitionEffect.slideLeft:
@@ -1188,15 +1168,15 @@ function startTransitionEffect(wizard, options, state, index, oldIndex)
                 posFadeOut = (index > oldIndex) ? -(outerWidth) : outerWidth,
                 posFadeIn = (index > oldIndex) ? outerWidth : -(outerWidth);
 
-            currentStep.animate({ left: posFadeOut }, effectSpeed, 
-                function () { $(this)._hideAria(); }).promise();
-            newStep.css("left", posFadeIn + "px")._showAria()
-                .animate({ left: 0 }, effectSpeed).promise();
+            $.when(currentStep.animate({ left: posFadeOut }, effectSpeed, 
+                    function () { $(this)._showAria(false); }),
+                newStep.css("left", posFadeIn + "px")._showAria()
+                    .animate({ left: 0 }, effectSpeed)).done(doneCallback);
             break;
 
         default:
-            currentStep._hideAria();
-            newStep._showAria();
+            $.when(currentStep._showAria(false), newStep._showAria())
+                .done(doneCallback);
             break;
     }
 }
@@ -1239,7 +1219,7 @@ function throwError(message)
 {
     if (arguments.length > 1)
     {
-        message = format.apply(this, arguments);
+        message = message.format(Array.prototype.slice.call(arguments, 1));
     }
 
     throw new Error(message);
