@@ -1,5 +1,16 @@
 jQuery(function() {
 
+	// ============Form validation==============
+	$.validate({
+		form : '#frmIdSubject',
+		modules : 'toggleDisabled',
+		disabledFormFilter : 'form.toggle-disabled',
+		onError : function($form) {
+			event.preventDefault();
+		}
+
+	});
+
 	// ==============Start Subject===================
 
 	$('#chkIdSbjActive').prop('checked', true); // check true when loading
@@ -25,6 +36,10 @@ jQuery(function() {
 			"data" : "division.divId"
 		}, {
 			"data" : "division.divName"
+		}, {
+			"data" : "sbjDuration"
+		}, {
+			"data" : "sbjCost"
 		}, {
 			"data" : "sbjActive"
 		}
@@ -102,8 +117,10 @@ jQuery(function() {
 		$('#txtIdSbjName').val(dtSubject.fnGetData(aPos, 1));
 		$('#txtIdDivisionId').val(dtSubject.fnGetData(aPos, 2));
 		$('#txtIdDivision').val(dtSubject.fnGetData(aPos, 3));
+		$('#txtIdSbjDuration').val(dtSubject.fnGetData(aPos, 4));
+		$('#txtIdSbjCost').val(dtSubject.fnGetData(aPos, 5));
 
-		var varChkActive = dtSubject.fnGetData(aPos, 4);
+		var varChkActive = dtSubject.fnGetData(aPos, 6);
 
 		if (varChkActive == true) {
 			blnIsDivActive = true;

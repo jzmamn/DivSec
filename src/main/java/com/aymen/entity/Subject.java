@@ -1,5 +1,3 @@
-// default package
-// Generated Sep 30, 2015 10:10:01 PM by Hibernate Tools 4.3.1
 package com.aymen.entity;
 
 import static javax.persistence.GenerationType.IDENTITY;
@@ -34,17 +32,21 @@ public class Subject implements java.io.Serializable {
 	private Division division;
 	private String sbjName;
 	private Boolean sbjActive;
+	private Integer sbjDuration;
+	private Double sbjCost;
 	private Set<SubjecStage> subjecStages = new HashSet<SubjecStage>(0);
 	private Set<Request> requests = new HashSet<Request>(0);
 
 	public Subject() {
 	}
 
-	public Subject(Division division, String sbjName, Boolean sbjActive, Set<SubjecStage> subjecStages,
-			Set<Request> requests) {
+	public Subject(Division division, String sbjName, Boolean sbjActive, Integer sbjDuration, Double sbjCost,
+			Set<SubjecStage> subjecStages, Set<Request> requests) {
 		this.division = division;
 		this.sbjName = sbjName;
 		this.sbjActive = sbjActive;
+		this.sbjDuration = sbjDuration;
+		this.sbjCost = sbjCost;
 		this.subjecStages = subjecStages;
 		this.requests = requests;
 	}
@@ -86,6 +88,24 @@ public class Subject implements java.io.Serializable {
 
 	public void setSbjActive(Boolean sbjActive) {
 		this.sbjActive = sbjActive;
+	}
+
+	@Column(name = "sbj_duration")
+	public Integer getSbjDuration() {
+		return this.sbjDuration;
+	}
+
+	public void setSbjDuration(Integer sbjDuration) {
+		this.sbjDuration = sbjDuration;
+	}
+
+	@Column(name = "sbj_cost", precision = 18)
+	public Double getSbjCost() {
+		return this.sbjCost;
+	}
+
+	public void setSbjCost(Double sbjCost) {
+		this.sbjCost = sbjCost;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "subject")

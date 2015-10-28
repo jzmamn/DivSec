@@ -7,7 +7,7 @@
 			src="assets/img/user.gif" />
 		</a> <br />
 		<div class="media-body">
-			<h5 class="media-heading">Joe Romlin</h5>
+			<h5 class="media-heading">N.J.Aymen</h5>
 			<ul class="list-unstyled user-info">
 				<li><a class="btn btn-success btn-xs btn-circle"
 					style="width: 10px; height: 12px;"></a> Online</li>

@@ -54,6 +54,9 @@ public class SubjectController {
 		model.addAttribute("sbjId", subject.getSbjId());
 		model.addAttribute("sbjName", subject.getSbjName());
 		model.addAttribute("sbjActive", subject.getSbjActive());
+		model.addAttribute("sbjDuration", subject.getSbjDuration());
+		model.addAttribute("sbjCost", subject.getSbjCost());
+
 		model.addAttribute("division", subject.getDivision().getDivId());
 
 		try {

@@ -23,6 +23,7 @@
 <!-- PAGE LEVEL STYLES -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/plugins/dataTables/css/dataTables.bootstrap.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/plugins/Sweetalert-master/lib/sweet-alert.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/plugins/form-validator/theme-default.min.css" />
 
 
 
@@ -100,6 +101,8 @@
 												<th>Name</th>
 												<th>DivId</th>
 												<th>Division</th>
+												<th>Duration</th>
+												<th>Cost</th>
 												<th>Active</th>
 											</tr>
 										</thead>
@@ -128,25 +131,33 @@
 
 										<div class="form-group ">
 											<label class="control-label">Subject Id</label>
-											<div class="input-group">
-												<span class="input-group-addon"></span>
-												<form:input path="sbjId" type="text" id="txtIdSbjId" name="txtsbjId" class="form-control" placeholder="Subject Id"
-													readonly="true" />
-											</div>
+											<form:input path="sbjId" type="text" id="txtIdSbjId" name="txtsbjId" class="form-control" placeholder="Subject Id"
+												readonly="true" />
 										</div>
 
 										<div class="form-group">
 											<label for="txtIdSbjName" class="control-label">Subject</label>
-											<div class="input-group">
-												<span class="input-group-addon "></span>
-												<form:input path="sbjName" type="text" id="txtIdSbjName" name="txtSbjName" class="form-control" placeholder="Subject Name"
-													required="true" maxlength="30" />
-											</div>
+											<form:input path="sbjName" type="text" id="txtIdSbjName" name="txtSbjName" class="form-control" placeholder="Subject Name"
+												required="true" maxlength="30" />
 											<span class="help-block with-errors"></span>
 										</div>
 
 										<div class="form-group">
-										<label for="txtIdDivisionId" class="control-label">Division</label>
+											<label for="txtIdSbjDuration" class="control-label">Duration</label>
+											<form:input path="sbjDuration"  id="txtIdSbjDuration" name="txtDuration" class="form-control" placeholder="Durations"
+												required="true" type="number" maxlength="2" />
+											<span class="help-block with-errors"></span>
+										</div>
+
+										<div class="form-group">
+											<label for="txtIdSbjCost" class="control-label">Cost</label>
+											<form:input path="sbjCost"  id="txtIdSbjCost" name="txtSbjCost" class="form-control" placeholder="Cost" required="true"
+												data-validation="number,length" data-validation-allowing="float" data-validation-length="max10" type="text"/>
+											<span class="help-block with-errors"></span>
+										</div>
+
+										<div class="form-group">
+											<label for="txtIdDivisionId" class="control-label">Division</label>
 											<div class="input-group">
 												<input type="text" class="form-control" id="txtIdDivision" name="txtDivision" readonly="true" required="true"
 													placeholder="select a division" /> <span class="input-group-btn">
@@ -263,7 +274,8 @@
 	<script src="${pageContext.request.contextPath}/resources/plugins/dataTables/js/dataTables.bootstrap.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/plugins/dataTables/js/fnReloadAjax.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/divsec_subject.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/plugins/validator/validator.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/plugins/form-validator/jquery.form-validator.js"></script>
+	
 	<script src="${pageContext.request.contextPath}/resources/plugins/Sweetalert-master/lib/sweet-alert.js"></script>
 
 

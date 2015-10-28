@@ -52,14 +52,8 @@
                         <div class="form-group">
                             <input type="password" placeholder="Password" class="form-control" />
                         </div>
-                        
-                        <div class="form-group">
-                            <select class="form-control" id="people">
-                            </select>
-                        </div>
-
-                        <div id="id"></div>  <div id="name"></div>
-
+                       
+                       
                         <button class="text-muted text-center btn-block btn btn-primary btn-rect" type="submit">Sign in</button>
                         
                     </form>

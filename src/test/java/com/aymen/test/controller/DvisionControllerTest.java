@@ -1,4 +1,4 @@
-package com.aymen.test.service;
+package com.aymen.test.controller;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 
