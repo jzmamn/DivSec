@@ -31,6 +31,8 @@ jQuery(function() {
 		"columns" : [ {
 			"data" : "sbjId"
 		}, {
+			"data" : "sbjCode"
+		}, {
 			"data" : "sbjName"
 		}, {
 			"data" : "division.divId"
@@ -114,13 +116,14 @@ jQuery(function() {
 		var aPos = dtSubject.fnGetPosition(this);
 		// alert(aPos);
 		$('#txtIdSbjId').val(dtSubject.fnGetData(aPos, 0));
-		$('#txtIdSbjName').val(dtSubject.fnGetData(aPos, 1));
-		$('#txtIdDivisionId').val(dtSubject.fnGetData(aPos, 2));
-		$('#txtIdDivision').val(dtSubject.fnGetData(aPos, 3));
-		$('#txtIdSbjDuration').val(dtSubject.fnGetData(aPos, 4));
-		$('#txtIdSbjCost').val(dtSubject.fnGetData(aPos, 5));
+		$('#txtIdSbjCode').val(dtSubject.fnGetData(aPos, 1));
+		$('#txtIdSbjName').val(dtSubject.fnGetData(aPos, 2));
+		$('#txtIdDivisionId').val(dtSubject.fnGetData(aPos, 3));
+		$('#txtIdDivision').val(dtSubject.fnGetData(aPos, 4));
+		$('#txtIdSbjDuration').val(dtSubject.fnGetData(aPos, 5));
+		$('#txtIdSbjCost').val(dtSubject.fnGetData(aPos, 6));
 
-		var varChkActive = dtSubject.fnGetData(aPos, 6);
+		var varChkActive = dtSubject.fnGetData(aPos, 7);
 
 		if (varChkActive == true) {
 			blnIsDivActive = true;

@@ -98,6 +98,7 @@
 										<thead>
 											<tr>
 												<th>SubjectId</th>
+												<th>Code</th>
 												<th>Name</th>
 												<th>DivId</th>
 												<th>Division</th>
@@ -136,6 +137,13 @@
 										</div>
 
 										<div class="form-group">
+											<label for="txtIdSbjCode" class="control-label">Code</label>
+											<form:input path="sbjCode" type="text" id="txtIdSbjCode" name="txtSbjCode" class="form-control" placeholder="Subject Code"
+												required="true" maxlength="30" />
+											<span class="help-block with-errors"></span>
+										</div>
+
+										<div class="form-group">
 											<label for="txtIdSbjName" class="control-label">Subject</label>
 											<form:input path="sbjName" type="text" id="txtIdSbjName" name="txtSbjName" class="form-control" placeholder="Subject Name"
 												required="true" maxlength="30" />
@@ -144,15 +152,15 @@
 
 										<div class="form-group">
 											<label for="txtIdSbjDuration" class="control-label">Duration</label>
-											<form:input path="sbjDuration"  id="txtIdSbjDuration" name="txtDuration" class="form-control" placeholder="Durations"
+											<form:input path="sbjDuration" id="txtIdSbjDuration" name="txtDuration" class="form-control" placeholder="Durations"
 												required="true" type="number" maxlength="2" />
 											<span class="help-block with-errors"></span>
 										</div>
 
 										<div class="form-group">
 											<label for="txtIdSbjCost" class="control-label">Cost</label>
-											<form:input path="sbjCost"  id="txtIdSbjCost" name="txtSbjCost" class="form-control" placeholder="Cost" required="true"
-												data-validation="number,length" data-validation-allowing="float" data-validation-length="max10" type="text"/>
+											<form:input path="sbjCost" id="txtIdSbjCost" name="txtSbjCost" class="form-control" placeholder="Cost" required="true"
+												data-validation="number,length" data-validation-allowing="float" data-validation-length="max10" type="text" />
 											<span class="help-block with-errors"></span>
 										</div>
 
@@ -274,8 +282,9 @@
 	<script src="${pageContext.request.contextPath}/resources/plugins/dataTables/js/dataTables.bootstrap.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/plugins/dataTables/js/fnReloadAjax.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/divsec_subject.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/plugins/validator/validator.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/plugins/form-validator/jquery.form-validator.js"></script>
-	
+
 	<script src="${pageContext.request.contextPath}/resources/plugins/Sweetalert-master/lib/sweet-alert.js"></script>
 
 

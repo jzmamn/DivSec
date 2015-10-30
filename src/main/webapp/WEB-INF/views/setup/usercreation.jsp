@@ -56,7 +56,7 @@
 			<div class="inner">
 				<div class="row">
 					<div class="col-lg-12">
-						<h2>Manage Users</h2>
+						<h3 class="text-info">Manage Users</h3>
 					</div>
 				</div>
 				<hr />

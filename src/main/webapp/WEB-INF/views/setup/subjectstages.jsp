@@ -56,7 +56,7 @@
 			<div class="inner">
 				<div class="row">
 					<div class="col-lg-12">
-						<h2>Manage Subject Stages</h2>
+						<h3 class="text-info">Manage Subject Stages</h3>
 					</div>
 				</div>
 				<hr />
@@ -94,83 +94,84 @@
 							</div>
 
 
-							<div class="row">
-								<br />
-								<div class="col-lg-6 col-lg-offset-3">
-									<form:form role="form" id="frmIdSbjStg" method="POST" modelAttribute="maSbjStg" data-toggle="validator">
-										<div class="form-group">
-											<label for="txtIdSbj" class="control-label">Subject</label>
-											<div class="input-group">
-												<form:input path="subject.sbjName"  class="form-control" id="txtIdSbjName" name="txtSbjName" readonly="true" placeholder="select a Subject" /> <span
-													class="input-group-btn">
-													<button id="btnIdShowSbj" name="btnShowSbj" class="btn btn-warning" type="button" data-toggle="modal"
-														data-target="#modalSubject">
-														<i class="icon-search"></i>
+							<div class="panel-body">
+								<div class="row">
+									<div class="col-lg-12">
+										<div class="col-lg-4 ">
+											<form:form role="form" id="frmIdSbjStg" method="POST" modelAttribute="maSbjStg" data-toggle="validator">
+												<div class="form-group">
+													<label for="txtIdSbj" class="control-label">Subject</label>
+													<div class="input-group">
+														<form:input path="subject.sbjName" class="form-control" id="txtIdSbjName" name="txtSbjName" readonly="true"
+															placeholder="select a Subject" />
+														<span class="input-group-btn">
+															<button id="btnIdShowSbj" name="btnShowSbj" class="btn btn-warning" type="button" data-toggle="modal"
+																data-target="#modalSubject">
+																<i class="icon-search"></i>
+															</button>
+														</span>
+														<form:input path="subject.sbjId" type="hidden" class="form-control" id="txtIdSbjId" name="txtSbjId" required="true" />
+													</div>
+												</div>
+
+												<div class="form-group">
+													<label for="txtIdSbj" class="control-label">Stage Name</label>
+													<form:input path="stgName" class="form-control" id="txtIdStgName" name="txtStgName" required="true"
+														placeholder="select user category" />
+													<form:input path="stgId" type="hidden" class="form-control" id="txtIdStgId" name="txtStgId" />
+												</div>
+
+												<div class="form-group">
+													<label for="txtIdStgCost" class="control-label">Cost</label>
+													<form:input path="stgCost" class="form-control" id="txtIdStgCost" name="txtStgCost" value="100.0"
+														placeholder="select user category" />
+												</div>
+
+												<div class="form-group">
+													<form:checkbox path="stgActive" id="chkSbjStgIsActive" />
+													<label>Is Active</label>
+												</div>
+
+												<div class="col-lg-4 col-sm-4 col-xs-4">
+													<button id="btnDelete" class="btn btn-danger btn-block">
+														<i class="glyphicon glyphicon-trash"></i> Delete
 													</button>
-												</span>
-												<form:input path="subject.sbjId" type="text" class="form-control" id="txtIdSbjId" name="txtSbjId" readonly="true"
-													required="true" />
+												</div>
+
+												<div class="col-lg-4 col-sm-4 col-xs-4">
+													<button id="btnSave" type="submit" class="btn btn-success btn-block">
+														<i class="icon-save icon-white"></i> Save
+													</button>
+												</div>
+
+												<div class="col-lg-4 col-sm-4 col-xs-4">
+													<button id="btnClose" class="btn btn-block" data-dismiss="modal">
+														<i class="icon-remove icon-white"></i> Close
+													</button>
+												</div>
+											</form:form>
+										</div>
+
+
+
+										<div class="col-lg-8">
+											<div class="panel-body">
+												<div class="table-responsive">
+													<table class="table table-striped table-bordered table-hover table-condensed" id="dtSbjStg">
+														<thead>
+															<tr>
+																<th style="width:10%;">Id</th>
+																<th>Stage</th>
+																<th style="width:10%;">Active</th>
+															</tr>
+														</thead>
+													</table>
+												</div>
 											</div>
 										</div>
-
-										<div class="form-group">
-										<label for="txtIdSbj" class="control-label">Stage Name</label>
-											<form:input path="stgName" class="form-control" id="txtIdStgName" name="txtStgName" required="true"
-												placeholder="select user category" />
-											<form:input path="stgId" type="text" class="form-control" id="txtIdStgId" name="txtStgId" readonly="true" />
-										</div>
-
-										<div class="form-group">
-										<label for="txtIdStgCost" class="control-label">Cost</label>
-											<form:input path="stgCost" class="form-control" id="txtIdStgCost" name="txtStgCost" value="100.0"
-												placeholder="select user category" />
-										</div>
-
-										<div class="form-group">
-											<form:checkbox path="stgActive" id="chkSbjStgIsActive" />
-											<label>Is Active</label>
-										</div>
-
-										<div class="col-lg-4 col-sm-4 col-xs-4">
-											<button id="btnDelete" class="btn btn-danger btn-block">
-												<i class="glyphicon glyphicon-trash"></i> Delete
-											</button>
-										</div>
-
-										<div class="col-lg-4 col-sm-4 col-xs-4">
-											<button id="btnSave" type="submit" class="btn btn-success btn-block">
-												<i class="icon-save icon-white"></i> Save
-											</button>
-										</div>
-
-										<div class="col-lg-4 col-sm-4 col-xs-4">
-											<button id="btnClose" class="btn btn-block" data-dismiss="modal">
-												<i class="icon-remove icon-white"></i> Close
-											</button>
-										</div>
-									</form:form>
-								</div>
-							</div>
-							<hr />
-
-							<div class="row">
-								<div class="panel-body">
-									<div class="table-responsive">
-										<table class="table table-striped table-bordered table-hover" id="dtSbjStg">
-											<thead>
-												<tr>
-													<th>Id</th>
-													<th>Stage</th>
-													<th>Subject</th>
-													<th>Active</th>
-												</tr>
-											</thead>
-										</table>
 									</div>
 								</div>
 							</div>
-
-
 							<!-- Subject Modal -->
 							<div class="col-lg-12">
 								<div class="modal fade" id="modalSubject" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">
@@ -183,12 +184,12 @@
 											</div>
 											<div class="modal-body">
 												<div class="table-responsive">
-													<table class="table table-striped table-bordered table-hover" id="dtSubject">
+													<table class="table table-striped table-bordered table-hover table-condensed" id="dtSubject">
 														<thead>
 															<tr>
-																<th>SubjectId</th>
-																<th>Name</th>
-																<th>Active</th>
+																<th style="width:10%;">SbjId</th>
+																<th style="width:80%;">Name</th>
+																<th style="width:10%;">Active</th>
 															</tr>
 														</thead>
 													</table>

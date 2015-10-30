@@ -47,11 +47,12 @@ public class SubjectController {
 
 		if (result.hasErrors()) {
 			logger.error("addSubject", result.getAllErrors());
-			System.out.println("addSubject  " + result.getFieldError());
+			System.out.println("addSubject  " + result.getAllErrors());
 			return "error/error";
 		}
 
 		model.addAttribute("sbjId", subject.getSbjId());
+		model.addAttribute("sbjCode", subject.getSbjCode());
 		model.addAttribute("sbjName", subject.getSbjName());
 		model.addAttribute("sbjActive", subject.getSbjActive());
 		model.addAttribute("sbjDuration", subject.getSbjDuration());

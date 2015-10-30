@@ -45,8 +45,6 @@ jQuery(function() {
 		}, {
 			"data" : "stgName"
 		}, {
-			"data" : "subject.sbjName"
-		}, {
 			"data" : "stgActive"
 		}
 

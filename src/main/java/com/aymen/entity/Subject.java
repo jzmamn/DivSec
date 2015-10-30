@@ -30,6 +30,7 @@ public class Subject implements java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 	private Integer sbjId;
 	private Division division;
+	private String sbjCode;
 	private String sbjName;
 	private Boolean sbjActive;
 	private Integer sbjDuration;
@@ -40,9 +41,10 @@ public class Subject implements java.io.Serializable {
 	public Subject() {
 	}
 
-	public Subject(Division division, String sbjName, Boolean sbjActive, Integer sbjDuration, Double sbjCost,
-			Set<SubjecStage> subjecStages, Set<Request> requests) {
+	public Subject(Division division, String sbjCode, String sbjName, Boolean sbjActive, Integer sbjDuration,
+			Double sbjCost, Set<SubjecStage> subjecStages, Set<Request> requests) {
 		this.division = division;
+		this.sbjCode = sbjCode;
 		this.sbjName = sbjName;
 		this.sbjActive = sbjActive;
 		this.sbjDuration = sbjDuration;
@@ -70,6 +72,15 @@ public class Subject implements java.io.Serializable {
 
 	public void setDivision(Division division) {
 		this.division = division;
+	}
+
+	@Column(name = "sbj_code", length = 50)
+	public String getSbjCode() {
+		return this.sbjCode;
+	}
+
+	public void setSbjCode(String sbjCode) {
+		this.sbjCode = sbjCode;
 	}
 
 	@Column(name = "sbj_name", length = 50)
