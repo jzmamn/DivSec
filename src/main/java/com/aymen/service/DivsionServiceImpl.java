@@ -15,7 +15,7 @@ import com.aymen.entity.Division;
 @Transactional
 public class DivsionServiceImpl implements DivisionService {
 
-	private static final Logger logger = LoggerFactory.getLogger(DivisionService.class);
+	private static final Logger logger = LoggerFactory.getLogger(DivsionServiceImpl.class);
 
 	@Autowired
 	private DivisionDAO divisionDAO;

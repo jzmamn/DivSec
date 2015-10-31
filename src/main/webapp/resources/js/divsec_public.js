@@ -2,6 +2,11 @@ jQuery(function() {
 
 	// alert(ctx + '/resources/json/notification.json');
 
+	$('#dp1').datepicker({
+		format : 'mm-dd-yyyy',
+		todayBtn : 'true'
+	});
+
 	$("#divFrmOpened").hide({});
 
 	$('#dtTable').dataTable({

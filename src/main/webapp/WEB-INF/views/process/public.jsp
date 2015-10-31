@@ -23,6 +23,7 @@
 <!-- PAGE LEVEL STYLES -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/plugins/dataTables/css/dataTables.bootstrap.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/plugins/Sweetalert-master/lib/sweet-alert.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/plugins/datepicker/css/bootstrap-datepicker.css" />
 
 
 
@@ -88,9 +89,9 @@
 									<div class="col-lg-12">
 										<div class="col-lg-2">
 											<button class="btn btn-primary" id="idBtnAddPublic">
-												<i class="icon-plus icon-white" ></i> Add Public
+												<i class="icon-plus icon-white"></i> Add Public
 											</button>
-											
+
 										</div>
 										<div class="col-lg-8"></div>
 									</div>
@@ -123,7 +124,7 @@
 
 																<div class="col-lg-6">
 																	<div class="form-group ">
-																		<input type="text" id="txtIdDivId" name="txtDivId" class="form-control" placeholder="Public Name" />
+																		<input type="text" id="txtIdDivId" name="txtDivId" class="form-control" placeholder="Name With Initial" />
 																	</div>
 																</div>
 															</div>
@@ -137,10 +138,15 @@
 																</div>
 
 																<div class="col-lg-3">
-																	<div class="form-group ">
-																		<input type="text" id="txtIdDivId" name="txtDivId" class="form-control" placeholder="DOB" />
+																	<div class="input-group date">
+																		<input type="text" class="form-control" value="12-02-2012" id="dp1">
+																		<div class="input-group-addon">
+																			<span class="glyphicon glyphicon-th"></span>
+																		</div>
 																	</div>
 																</div>
+
+
 
 																<div class="col-lg-3">
 																	<div class="form-group">
@@ -187,19 +193,19 @@
 															<div class="col-lg-12">
 																<div class="col-lg-3">
 																	<div class="form-group">
-																		<input type="text" id="txtIdDivId" name="txtDivId" class="form-control" placeholder="Address1" />
+																		<input type="text" id="txtIdDivId" name="txtDivId" class="form-control" placeholder="Address e.g. 23, Gall Road" />
 																	</div>
 																</div>
 
 																<div class="col-lg-3">
 																	<div class="form-group ">
-																		<input type="text" id="txtIdDivId" name="txtDivId" class="form-control" placeholder="Address2" />
+																		<input type="text" id="txtIdDivId" name="txtDivId" class="form-control" placeholder="City e.g. Colombo" />
 																	</div>
 																</div>
 
 																<div class="col-lg-3">
 																	<div class="form-group ">
-																		<input type="text" id="txtIdDivId" name="txtDivId" class="form-control" placeholder="Address3" />
+																		<input type="text" id="txtIdDivId" name="txtDivId" class="form-control" placeholder="Division e.g. 04" />
 																	</div>
 																</div>
 															</div>
@@ -255,69 +261,15 @@
 												<table class="table table-striped  table-hover table-condensed" id="dtOpened">
 													<thead>
 														<tr>
-															<th style="width: 10%">Rq Id</th>
-															<th style="width: 12%">Status</th>
-															<th style="width: 15%">Subject</th>
-															<th style="width: 12%">Date</th>
-															<th style="width: 12%">Pb Id</th>
-															<th style="width: 20%">Pb Name</th>
+															<th style="width: 10%">Id</th>
+															<th style="width: 35%">Name</th>
+															<th style="width: 15%">NIC</th>
+															<th style="width: 15%">Mobile</th>
+															<th style="width: 15%">Tel</th>
+															<th style="width: 5%">Active</th>
 
 														</tr>
 													</thead>
-													<tbody>
-														<tr class="odd gradeX">
-															<td>120</td>
-															<td class="center"><span class="label label-warning">New</span></td>
-															<td class="center">Sand Permit</td>
-															<td class="center">2015-01-23</td>
-															<td>432</td>
-															<td>AbcAbcAbcAbc</td>
-														</tr>
-														<tr class="even gradeC">
-															<td>145</td>
-															<td><span class="label label-success">Opened</span></td>
-															<td>Win 95+</td>
-															<td class="center">5</td>
-															<td class="center">C</td>
-															<td class="center">5</td>
-
-														</tr>
-														<tr class="odd gradeA">
-															<td>160</td>
-															<td><span class="label label-success">Opened</span></td>
-															<td>Win 95+</td>
-															<td class="center">5.5</td>
-															<td class="center">A</td>
-															<td class="center">5</td>
-
-														</tr>
-														<tr class="odd gradeX">
-															<td>161</td>
-															<td><span class="label label-success">Opened</span></td>
-															<td>Win 95+</td>
-															<td class="center">4</td>
-															<td class="center">X</td>
-															<td class="center">5</td>
-
-														</tr>
-														<tr class="even gradeC">
-															<td>170</td>
-															<td><span class="label label-default">Closed</span></td>
-															<td>Win 95+</td>
-															<td class="center">5</td>
-															<td class="center">C</td>
-															<td class="center">5</td>
-
-														</tr>
-														<tr class="182 gradeA">
-															<td>Trident</td>
-															<td>Internet Explorer 5.5</td>
-															<td>Win 95+</td>
-															<td class="center">5.5</td>
-															<td class="center">A</td>
-															<td class="center">5</td>
-														</tr>
-													</tbody>
 												</table>
 											</div>
 										</div>
@@ -351,13 +303,15 @@
 	<!-- END GLOBAL SCRIPTS -->
 
 	<!-- PAGE LEVEL SCRIPTS -->
+	<script src="${pageContext.request.contextPath}/resources/js/divsec_public.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/plugins/dataTables/js/jquery.dataTables.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/plugins/dataTables/js/dataTables.bootstrap.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/plugins/dataTables/js/fnReloadAjax.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/js/divsec_public.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/plugins/validator/validator.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/plugins/form-validator/jquery.form-validator.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/plugins/Sweetalert-master/lib/sweet-alert.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/plugins/datepicker/js/bootstrap-datepicker.js"></script>
+
 	<script>
 		var ctx = "${pageContext.request.contextPath}"
 	</script>
