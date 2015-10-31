@@ -255,7 +255,7 @@
 												<table class="table table-striped  table-hover table-condensed" id="dtOpened">
 													<thead>
 														<tr>
-															<th style="width: 10%">Rq Id Opepnte</th>
+															<th style="width: 10%">Rq Id</th>
 															<th style="width: 12%">Status</th>
 															<th style="width: 15%">Subject</th>
 															<th style="width: 12%">Date</th>

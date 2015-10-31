@@ -84,6 +84,7 @@
 						<div class="panel panel-default">
 							<div class="panel-heading">
 								Subject Stages
+								<!-- 
 								<button id="btnAddDivision" data-toggle="modal" data-target="#modalSubject" class="btn btn-primary">
 									<i class="icon-plus icon-white"></i> Add
 								</button>
@@ -91,19 +92,20 @@
 								<button id="btn" class="btn btn-primary">
 									<i class="icon-plus icon-white"></i> test
 								</button>
+								 -->
 							</div>
 
 
-							<div class="panel-body">
+							<div class="panel-body ">
 								<div class="row">
 									<div class="col-lg-12">
-										<div class="col-lg-4 ">
+										<div class="col-lg-4" style=" border-right:solid;">
 											<form:form role="form" id="frmIdSbjStg" method="POST" modelAttribute="maSbjStg" data-toggle="validator">
 												<div class="form-group">
 													<label for="txtIdSbj" class="control-label">Subject</label>
 													<div class="input-group">
 														<form:input path="subject.sbjName" class="form-control" id="txtIdSbjName" name="txtSbjName" readonly="true"
-															placeholder="select a Subject" />
+															placeholder="select a Subject" required="true" />
 														<span class="input-group-btn">
 															<button id="btnIdShowSbj" name="btnShowSbj" class="btn btn-warning" type="button" data-toggle="modal"
 																data-target="#modalSubject">
@@ -121,7 +123,7 @@
 													<form:input path="stgId" type="hidden" class="form-control" id="txtIdStgId" name="txtStgId" />
 												</div>
 
-												<div class="form-group">
+												<div class="form-group"  style="display: none;">
 													<label for="txtIdStgCost" class="control-label">Cost</label>
 													<form:input path="stgCost" class="form-control" id="txtIdStgCost" name="txtStgCost" value="100.0"
 														placeholder="select user category" />
@@ -138,31 +140,27 @@
 													</button>
 												</div>
 
+												<div class="col-lg-4 col-sm-4 col-xs-4"></div>
+
 												<div class="col-lg-4 col-sm-4 col-xs-4">
 													<button id="btnSave" type="submit" class="btn btn-success btn-block">
 														<i class="icon-save icon-white"></i> Save
 													</button>
 												</div>
-
-												<div class="col-lg-4 col-sm-4 col-xs-4">
-													<button id="btnClose" class="btn btn-block" data-dismiss="modal">
-														<i class="icon-remove icon-white"></i> Close
-													</button>
-												</div>
 											</form:form>
 										</div>
-
-
-
+										
 										<div class="col-lg-8">
 											<div class="panel-body">
 												<div class="table-responsive">
 													<table class="table table-striped table-bordered table-hover table-condensed" id="dtSbjStg">
 														<thead>
 															<tr>
-																<th style="width:10%;">Id</th>
+																<th style="width: 10%;">Id</th>
+																<th style="width: 10%;">SbjId</th>
 																<th>Stage</th>
-																<th style="width:10%;">Active</th>
+																<th style="width: 10%;">Cost</th>
+																<th style="width: 10%;">Active</th>
 															</tr>
 														</thead>
 													</table>
@@ -187,9 +185,9 @@
 													<table class="table table-striped table-bordered table-hover table-condensed" id="dtSubject">
 														<thead>
 															<tr>
-																<th style="width:10%;">SbjId</th>
-																<th style="width:80%;">Name</th>
-																<th style="width:10%;">Active</th>
+																<th style="width: 10%;">SbjId</th>
+																<th style="width: 80%;">Name</th>
+																<th style="width: 10%;">Active</th>
 															</tr>
 														</thead>
 													</table>
@@ -211,8 +209,6 @@
 						</div>
 					</div>
 				</div>
-
-
 
 			</div>
 			<!--End of Inner  -->

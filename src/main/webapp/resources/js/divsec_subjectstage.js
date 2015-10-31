@@ -2,6 +2,9 @@ jQuery(function() {
 
 	// ==============Start Subject===================
 	$("#txtIdSbjId").val("");
+	$("#txtIdSbjName").val("");
+	$("#txtIdStgCost").val("");
+
 	$('#chkSbjStgIsActive').prop('checked', true); // check true when loading
 
 	// Intialize Subject Table
@@ -20,7 +23,7 @@ jQuery(function() {
 		"columns" : [ {
 			"data" : "sbjId"
 		}, {
-			"data" : "sbjName"
+			"data" : "sbjCode"
 		}, {
 			"data" : "sbjActive"
 		}
@@ -29,7 +32,7 @@ jQuery(function() {
 	});
 
 	// Intialize Subject Stage Table
-	var dtSbjStage = $('#dtSbjStg').dataTable({
+	var dtSbjStg = $('#dtSbjStg').dataTable({
 
 		// No of records should be displayed
 		"lengthMenu" : [ 5, 10, 20 ],
@@ -43,59 +46,69 @@ jQuery(function() {
 		"columns" : [ {
 			"data" : "stgId"
 		}, {
+			"data" : "subject.sbjId"
+		}, {
 			"data" : "stgName"
+		}, {
+			"data" : "stgCost"
 		}, {
 			"data" : "stgActive"
 		}
 
+		],
+
+		"columnDefs" : [ {
+			"targets" : [ 1 ],
+			"visible" : false
+		}, {
+			"targets" : [ 3 ],
+			"visible" : false
+		}
+
 		]
+
 	});
 
 	// Form submission save and edit
-	$("#frmIdSbjStg").submit(
-			function() {
+	$("#frmIdSbjStg").submit(function() {
 
-				if ($('#txtIdSbjId').val() == "") {
-					alert('Select a Subject');
-					return;
+		if ($('#txtIdSbjId').val() == "") {
+			alert('Select a Subject');
+			return;
+		}
+
+		if ($('#txtIdStgName').val() == "") {
+			alert('Enter a Subject Stage');
+			return;
+		}
+
+		var sbjId1 = $("#txtIdSbjId").val();
+
+		// the Controller request mapping value as url.
+		var url = "sbjstages/create";
+		$.ajax({
+			type : "POST",
+			url : url,
+			data : $("#frmIdSbjStg").serialize(),
+			success : function(res) {
+
+				if (res == "1") {
+					dtSbjStg.fnReloadAjax('sbjstages/loadsbjstage/' + sbjId1);
+					swal("Saved Sucessfully !", "....", "success");
+				} else {
+					swal("Oops", res, "error");
 				}
+			},
 
-				if ($('#txtIdStgName').val() == "") {
-					alert('Enter a Subject Stage');
-					return;
-				}
+			fail : function(res) {
+				$("#modalSubject").modal("hide");
+				swal("Save Failed !", res, "error");
+			}
+		});
 
-				var sbjId1 = $("#txtIdSbjId").val();
-				alert(sbjId1);
-
-				// the Controller request mapping value as url.
-				var url = "sbjstages/create";
-				$.ajax({
-					type : "POST",
-					url : url,
-					data : $("#frmIdSbjStg").serialize(),
-					success : function(res) {
-
-						if (res == "1") {
-
-							dtSbjStage.fnReloadAjax('sbjstages/loadsbjstage/'
-									+ sbjId1);
-							swal("Saved Sucessfully !", "....", "success");
-
-						} else {
-							swal("Oops", res, "error");
-						}
-					},
-
-					fail : function(res) {
-						$("#modalSubject").modal("hide");
-						swal("Save Failed !", res, "error");
-					}
-				});
-
-				// avoid to execute the actual submit of the form.
-				return false;
-			});
+		// avoid to execute the actual submit of the form.
+		return false;
+	});
 
 	$("#btn").click(function() {
 		dtSubject.fnReloadAjax('subject/loadsubject');
@@ -112,13 +125,30 @@ jQuery(function() {
 	// GET VALUE ON TABLE ROW CLICK From Subject table
 
 	$('#dtSubject tbody').on('click', 'tr', function(e) {
-
 		var aPos = dtSubject.fnGetPosition(this);
 		var sbjId = dtSubject.fnGetData(aPos, 0)
 		$('#txtIdSbjId').val(dtSubject.fnGetData(aPos, 0));
 		$('#txtIdSbjName').val(dtSubject.fnGetData(aPos, 1));
 		$("#modalSubject").modal("hide");
-		dtSbjStage.fnReloadAjax('sbjstages/loadsbjstage/' + sbjId);
+		dtSbjStg.fnReloadAjax('sbjstages/loadsbjstage/' + sbjId);
+	});
+
+	// GET VALUE ON TABLE ROW CLICK From Subject Stage table
+
+	$('#dtSbjStg tbody').on('click', 'tr', function(e) {
+		var aPos1 = dtSbjStg.fnGetPosition(this);
+		$('#txtIdStgId').val(dtSbjStg.fnGetData(aPos1, 0));
+		$('#txtIdSbjId').val(dtSbjStg.fnGetData(aPos1, 1));
+		$('#txtIdStgName').val(dtSbjStg.fnGetData(aPos1, 2));
+		$('#txtIdStgCost').val(dtSbjStg.fnGetData(aPos1, 3));
+		var varChkActive = dtSbjStg.fnGetData(aPos1, 4);
+		if (varChkActive == true) {
+			blnIsDivActive = true;
+		} else {
+			blnIsDivActive = false;
+		}
+
+		$('#chkIdSbjActive').prop('checked', blnIsDivActive);
 	});
 
 	// Delete function
