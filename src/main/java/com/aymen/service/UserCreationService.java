@@ -13,6 +13,8 @@ public interface UserCreationService {
 
 	public Staff getSvcStaffById(int id);
 
+	public String getSvcStaffByUserId(String userId);
+
 	public void deleteSvcStaff(int id);
 
 }

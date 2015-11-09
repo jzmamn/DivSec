@@ -33,6 +33,7 @@ public class Staff implements java.io.Serializable {
 	private Integer stfId;
 	private Division division;
 	private UserCategory userCategory;
+	// private Set<UserCategory> userCategory = new HashSet<UserCategory>(0);
 	private String stfName;
 	private String stfUserId;
 	private String stfPassword;
@@ -90,6 +91,7 @@ public class Staff implements java.io.Serializable {
 
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "stf_category_id")
+
 	public UserCategory getUserCategory() {
 		return this.userCategory;
 	}

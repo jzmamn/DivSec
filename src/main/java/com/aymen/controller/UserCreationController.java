@@ -75,7 +75,7 @@ public class UserCreationController {
 			}
 
 		} catch (Exception e) {
-			System.out.println(e.toString());
+			System.out.println(e);
 			e.printStackTrace();
 			// return "Save Failed ! " + "\n" + e.toString();
 			logger.error(e.toString());
@@ -98,6 +98,11 @@ public class UserCreationController {
 			return "Delete Failed ! " + "\n" + "Staff could not be deleted";
 		}
 
+	}
+
+	public boolean IsUserIdAvailable(String userId) {
+
+		return true;
 	}
 
 }

@@ -24,11 +24,9 @@ public class UserCreationDAOImpl implements UserCreationDAO {
 		try {
 			Session session = sessionFactory.getCurrentSession();
 			session.persist(staff);
-
 			logger.debug("Staff saved successfully, Staff Details=" + staff.getStfId());
-
 		} catch (Exception e) {
-			System.out.println(e.toString());
+			System.out.println("DAO" + e.toString());
 		}
 
 	}
@@ -81,6 +79,18 @@ public class UserCreationDAOImpl implements UserCreationDAO {
 			System.out.println(e.toString());
 		}
 
+	}
+
+	@Override
+	public String getStaffByUserId(String userId) {
+		Session session = this.sessionFactory.getCurrentSession();
+		@SuppressWarnings("unchecked")
+		List<Staff> staffList = session.createQuery(" from Staff").list();
+		for (Staff staff : staffList) {
+			logger.info("Staff List:" + staff);
+			// System.out.println(d);
+		}
+		return "";
 	}
 
 }

@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
 <!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
 <!--[if !IE]><!-->
@@ -8,22 +8,25 @@
 <!-- BEGIN HEAD -->
 <head>
 <meta charset="UTF-8" />
-<title>BCORE Admin Dashboard Template | Error 503</title>
+<title>BCORE Admin Dashboard Template | Error 403</title>
 <meta content="width=device-width, initial-scale=1.0" name="viewport" />
 <meta content="" name="description" />
 <meta content="" name="author" />
 <!--[if IE]>
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <![endif]-->
+
 <!-- GLOBAL STYLES -->
-<!-- GLOBAL STYLES -->
-<link rel="stylesheet" href="assets/plugins/bootstrap/css/bootstrap.css" />
-<link rel="stylesheet" href="assets/plugins/Font-Awesome/css/font-awesome.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/plugins/bootstrap/css/bootstrap.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/plugins/Font-Awesome/css/font-awesome.css" />
 <!--END GLOBAL STYLES -->
 
+
 <!-- PAGE LEVEL STYLES -->
-<link rel="stylesheet" href="assets/css/error.css" />
-<link rel="stylesheet" href="assets/plugins/magic/magic.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/error.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/plugins/magic/magic.css" />
+
+
 <!--END PAGE LEVEL STYLES -->
 <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!--[if lt IE 9]>
@@ -32,10 +35,9 @@
     <![endif]-->
 </head>
 <!-- END HEAD -->
-
 <!-- BEGIN BODY -->
 <body>
-	<!--  PAGE CONTENT -->
+	<!-- PAGE CONTENT -->
 	<div class="container">
 		<div class="col-lg-8 col-lg-offset-2 text-center">
 			<div class="logo">
@@ -47,7 +49,7 @@
 				<form action="index.html">
 
 					<div class="input-group">
-						<input type="text" placeholder="search .." class="form-control" /> <span class="input-group-btn">
+						<input type="text" placeholder="search ..." class="form-control" /> <span class="input-group-btn">
 							<button class="btn btn-primary" type="button">
 								<i class="icon-search"></i>
 							</button>
@@ -68,10 +70,7 @@
 
 
 	</div>
-
-
-	<!-- END  PAGE CONTENT -->
-
+	<!-- END PAGE CONTENT -->
 
 
 </body>

@@ -25,25 +25,26 @@ public class UserCreationServiceImpl implements UserCreationService {
 	@Override
 	public void updateSvcStaff(Staff staff) {
 		this.userCreationDAO.updateStaff(staff);
-
 	}
 
 	@Override
 	public List<Staff> listSvcStaff() {
-
 		return this.userCreationDAO.listStaff();
 	}
 
 	@Override
 	public Staff getSvcStaffById(int id) {
-
 		return this.userCreationDAO.getStaffById(id);
 	}
 
 	@Override
 	public void deleteSvcStaff(int id) {
 		this.userCreationDAO.deleteStaff(id);
+	}
 
+	@Override
+	public String getSvcStaffByUserId(String userId) {
+		return "";
 	}
 
 }
