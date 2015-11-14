@@ -20,7 +20,8 @@ public class LoginDAOImpl implements LoginDAO {
 	@Override
 	public Staff findByUserName(String username) {
 		Session session = this.sessionFactory.getCurrentSession();
-		Staff user = (Staff) session.load(Staff.class, new String(username));
+		Staff user = (Staff) session.load(Staff.class, new String("e"));
+		System.out.println(user.getStfName());
 		return user;
 	}
 

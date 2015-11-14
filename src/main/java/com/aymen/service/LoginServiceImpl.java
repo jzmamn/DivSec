@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -23,6 +24,7 @@ public class LoginServiceImpl implements UserDetailsService {
 
 	@SuppressWarnings("static-access")
 	public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
+
 		Staff staff = loginDao.findByUserName(userName);
 		System.out.println("User : " + staff);
 		if (staff == null) {
@@ -35,7 +37,8 @@ public class LoginServiceImpl implements UserDetailsService {
 
 	private List<GrantedAuthority> getGrantedAuthorities(Staff staff) {
 		List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
-
+		authorities.add(new SimpleGrantedAuthority("ROLE_" + staff.getUserCategory().getCatName()));
 		return authorities;
-	}
+
+	};
 }

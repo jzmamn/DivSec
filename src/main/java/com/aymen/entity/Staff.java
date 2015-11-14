@@ -13,6 +13,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -32,8 +34,8 @@ public class Staff implements java.io.Serializable {
 	private static final long serialVersionUID = 1L;
 	private Integer stfId;
 	private Division division;
+	private Integer stfCategoryId;
 	private UserCategory userCategory;
-	// private Set<UserCategory> userCategory = new HashSet<UserCategory>(0);
 	private String stfName;
 	private String stfUserId;
 	private String stfPassword;
@@ -43,6 +45,7 @@ public class Staff implements java.io.Serializable {
 	private Boolean stfActive;
 	private Set<ProcessStage> processStages = new HashSet<ProcessStage>(0);
 	private Set<Request> requests = new HashSet<Request>(0);
+	private Set<UserCategory> userCategories = new HashSet<UserCategory>(0);
 
 	public Staff() {
 	}
@@ -51,20 +54,22 @@ public class Staff implements java.io.Serializable {
 		this.division = division;
 	}
 
-	public Staff(Division division, UserCategory userCategory, String stfName, String stfUserId, String stfPassword,
-			String stfEmail, String stfMobile, String stfNote, Boolean stfActive, Set<ProcessStage> processStages,
-			Set<Request> requests) {
+	public Staff(Division division, String stfName, Integer stfCategoryId, String stfUserId, String stfPassword,
+			String stfEmail, String stfMobile, String stfNote, Boolean stfActive, UserCategory userCategory,
+			Set<ProcessStage> processStages, Set<Request> requests, Set<UserCategory> userCategories) {
 		this.division = division;
-		this.userCategory = userCategory;
 		this.stfName = stfName;
+		this.stfCategoryId = stfCategoryId;
 		this.stfUserId = stfUserId;
 		this.stfPassword = stfPassword;
 		this.stfEmail = stfEmail;
 		this.stfMobile = stfMobile;
 		this.stfNote = stfNote;
 		this.stfActive = stfActive;
+		this.userCategory = userCategory;
 		this.processStages = processStages;
 		this.requests = requests;
+		this.userCategories = userCategories;
 	}
 
 	@Id
@@ -107,6 +112,15 @@ public class Staff implements java.io.Serializable {
 
 	public void setStfName(String stfName) {
 		this.stfName = stfName;
+	}
+
+	@Column(name = "stf_category_id")
+	public Integer getStfCategoryId() {
+		return this.stfCategoryId;
+	}
+
+	public void setStfCategoryId(Integer stfCategoryId) {
+		this.stfCategoryId = stfCategoryId;
 	}
 
 	@Column(name = "stf_user_id", unique = true, length = 10)
@@ -181,6 +195,18 @@ public class Staff implements java.io.Serializable {
 
 	public void setRequests(Set<Request> requests) {
 		this.requests = requests;
+	}
+
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(name = "staff_role", catalog = "divsec", joinColumns = {
+			@JoinColumn(name = "staff_id", nullable = false, updatable = false) }, inverseJoinColumns = {
+					@JoinColumn(name = "role_id", nullable = false, updatable = false) })
+	public Set<UserCategory> getUserCategories() {
+		return this.userCategories;
+	}
+
+	public void setUserCategories(Set<UserCategory> userCategories) {
+		this.userCategories = userCategories;
 	}
 
 }

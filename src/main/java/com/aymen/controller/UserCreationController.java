@@ -62,7 +62,7 @@ public class UserCreationController {
 		model.addAttribute("stfMobile", staff.getStfMobile());
 		model.addAttribute("stfNote", staff.getStfNote());
 		model.addAttribute("stfActive", staff.getStfActive());
-		model.addAttribute("userCategory", staff.getUserCategory().getCatId());
+		model.addAttribute("userCategory", staff.getStfCategoryId());
 		model.addAttribute("division", staff.getDivision().getDivId());
 
 		try {
