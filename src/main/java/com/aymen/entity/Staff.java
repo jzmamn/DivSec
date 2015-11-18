@@ -11,6 +11,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -39,8 +41,8 @@ public class Staff implements java.io.Serializable {
 	private String stfMobile;
 	private String stfNote;
 	private Boolean stfActive;
-	private Set<UserCategory> userCategories = new HashSet<UserCategory>(0);
 	private Set<ProcessStage> processStages = new HashSet<ProcessStage>(0);
+	private Set<UserCategory> userCategories = new HashSet<UserCategory>(0);
 	private Set<Request> requests = new HashSet<Request>(0);
 
 	public Staff() {
@@ -51,8 +53,8 @@ public class Staff implements java.io.Serializable {
 	}
 
 	public Staff(Division division, String stfName, Integer stfCategoryId, String stfUserId, String stfPassword,
-			String stfEmail, String stfMobile, String stfNote, Boolean stfActive, Set<UserCategory> userCategories,
-			Set<ProcessStage> processStages, Set<Request> requests) {
+			String stfEmail, String stfMobile, String stfNote, Boolean stfActive, Set<ProcessStage> processStages,
+			Set<UserCategory> userCategories, Set<Request> requests) {
 		this.division = division;
 		this.stfName = stfName;
 		this.stfCategoryId = stfCategoryId;
@@ -62,8 +64,8 @@ public class Staff implements java.io.Serializable {
 		this.stfMobile = stfMobile;
 		this.stfNote = stfNote;
 		this.stfActive = stfActive;
-		this.userCategories = userCategories;
 		this.processStages = processStages;
+		this.userCategories = userCategories;
 		this.requests = requests;
 	}
 
@@ -162,6 +164,19 @@ public class Staff implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "staff")
+	public Set<ProcessStage> getProcessStages() {
+		return this.processStages;
+	}
+
+	public void setProcessStages(Set<ProcessStage> processStages) {
+		this.processStages = processStages;
+	}
+
+	@ManyToMany(fetch = FetchType.LAZY)
+	@JoinTable(name = "staff_role", catalog = "divsec", joinColumns = {
+			@JoinColumn(name = "staff_id", nullable = false, updatable = false) }, inverseJoinColumns = {
+					@JoinColumn(name = "role_id", nullable = false, updatable = false) })
+
 	@JsonIgnore
 	public Set<UserCategory> getUserCategories() {
 		return this.userCategories;
@@ -169,16 +184,6 @@ public class Staff implements java.io.Serializable {
 
 	public void setUserCategories(Set<UserCategory> userCategories) {
 		this.userCategories = userCategories;
-	}
-
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "staff")
-	@JsonIgnore
-	public Set<ProcessStage> getProcessStages() {
-		return this.processStages;
-	}
-
-	public void setProcessStages(Set<ProcessStage> processStages) {
-		this.processStages = processStages;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "staff")
