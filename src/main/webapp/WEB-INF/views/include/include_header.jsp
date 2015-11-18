@@ -31,7 +31,7 @@
 				<ul class="dropdown-menu dropdown-messages">
 					<li><a href="#">
 							<div>
-								<strong>Jezeem Aymen</strong> <span class="pull-right text-muted">
+								<strong>${user}</strong> <span class="pull-right text-muted">
 									<em>Today</em>
 								</span>
 							</div>
@@ -210,8 +210,9 @@
 					<li><a href="#"><i class="icon-user"></i> User Profile </a></li>
 					<li><a href="#"><i class="icon-gear"></i> Settings </a></li>
 					<li class="divider"></li>
-					<li><a href="login.html"><i class="icon-signout"></i>
+					<li><a href="${pageContext.request.contextPath}/logout"><i class="icon-signout"></i>
 							Logout </a></li>
+					
 				</ul></li>
 			<!--END ADMIN SETTINGS -->
 		</ul>

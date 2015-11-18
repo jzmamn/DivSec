@@ -11,8 +11,6 @@
  http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
 		http://www.springframework.org/schema/tx  http://www.springframework.org/schema/tx/spring-tx.xsd">
 
-
-
 	<context:component-scan base-package="com.aymen.controller" />
 	<context:component-scan base-package="com.aymen.service" />
 	<context:component-scan base-package="com.aymen.dao" />
@@ -28,7 +26,7 @@
 		<intercept-url pattern="/staff**" access="hasRole('ROLE_STAFF')" />
 
 		<!-- access denied page -->
-		<access-denied-handler error-page="/errors_403" />
+		<access-denied-handler error-page="/Access_Denied" />
 
 		<form-login login-page="/home" authentication-failure-url="/home?error"
 			username-parameter="username" password-parameter="password" />

@@ -99,6 +99,10 @@ public class UserCreationDAOImpl implements UserCreationDAO {
 			query.setParameter("Id", userId);
 			List results = query.list();
 
+			if (results == null || results.isEmpty()) {
+				return null;
+			}
+
 			for (Iterator iterator = results.iterator(); iterator.hasNext();) {
 				staff = new Staff();
 				staff = (Staff) iterator.next();

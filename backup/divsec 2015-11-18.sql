@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 30, 2015 at 08:17 PM
+-- Generation Time: Nov 18, 2015 at 03:24 PM
 -- Server version: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -104,9 +104,19 @@ CREATE TABLE IF NOT EXISTS `instructions` (
 CREATE TABLE IF NOT EXISTS `notification` (
   `ntn_id` int(11) NOT NULL AUTO_INCREMENT,
   `ntn_type` varchar(100) DEFAULT NULL,
-  `ntn_active` binary(1) DEFAULT NULL,
+  `ntn_active` bit(1) DEFAULT NULL,
   PRIMARY KEY (`ntn_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+
+--
+-- Dumping data for table `notification`
+--
+
+INSERT INTO `notification` (`ntn_id`, `ntn_type`, `ntn_active`) VALUES
+(1, 'Non', b'1'),
+(2, 'SMS', b'1'),
+(3, 'Email', b'1'),
+(4, 'SMS/Email', b'1');
 
 -- --------------------------------------------------------
 
@@ -173,9 +183,15 @@ CREATE TABLE IF NOT EXISTS `public_individual` (
   `pi_notfication_type_id` int(11) DEFAULT NULL,
   `pi_active` bit(1) DEFAULT NULL,
   PRIMARY KEY (`pi_id`),
-  UNIQUE KEY `pi_user_id_UNIQUE` (`pi_ind_user_id`),
   KEY `pi_notfication_id_idx` (`pi_notfication_type_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+
+--
+-- Dumping data for table `public_individual`
+--
+
+INSERT INTO `public_individual` (`pi_id`, `pi_name`, `pi_address1`, `pi_address2`, `pi_address3`, `pi_land_phone`, `pi_mobile_phone`, `pi_email`, `pi_ind_user_id`, `pi_user_pwd`, `pi_nic`, `pi_dob`, `pi_gender`, `pi_note`, `pi_user_id`, `pi_notfication_type_id`, `pi_active`) VALUES
+(1, 'N.J.Aymen', '105, Gall Road,', 'Colombo', '6', '123123', '777123123', 'jzmamn@gmail.com', 821491169, '123', '821491169v', '1980-10-01 00:00:00', 'Male', 'This a test', 1, 2, b'1');
 
 -- --------------------------------------------------------
 
@@ -264,19 +280,41 @@ CREATE TABLE IF NOT EXISTS `staff` (
   UNIQUE KEY `stf_user_id_UNIQUE` (`stf_user_id`),
   KEY `fk_stf_category_id_idx` (`stf_category_id`),
   KEY `fk_stf_divsion_id_idx` (`stf_dvision_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=38 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=39 ;
 
 --
 -- Dumping data for table `staff`
 --
 
 INSERT INTO `staff` (`stf_id`, `stf_name`, `stf_category_id`, `stf_user_id`, `stf_password`, `stf_dvision_id`, `stf_email`, `stf_mobile`, `stf_note`, `stf_active`) VALUES
-(21, 'admin', 2, 'e', '4', 1, '', '', '', b'0'),
+(21, 'admin1', 2, 'e', '4', 1, '', '', '', b'0'),
 (22, 'aymen', 2, 'aa', '11', 1, '', '', '', b'0'),
 (23, 'a', 1, 'a', '1', 2, '', '', '', b'0'),
 (29, 'af', 3, 'aaaa', '5', 2, '', '', '', b'0'),
 (36, 'aaa', 3, '11', '123', 1, '', '', '', b'1'),
-(37, 'abc', 1, 'auah', '12344', 1, 'jzmamn@gmail.com', '12343214', 'this si', b'1');
+(37, 'abc', 1, 'auah', '12344', 1, 'jzmamn@gmail.com', '12343214', 'this si', b'1'),
+(38, 'asdf', 3, 'adf', 'aaaa', 1, '', '', '', b'1');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `staff_role`
+--
+
+CREATE TABLE IF NOT EXISTS `staff_role` (
+  `staff_id` int(11) NOT NULL,
+  `role_id` int(11) NOT NULL,
+  PRIMARY KEY (`staff_id`,`role_id`),
+  KEY `fk_role_id_idx` (`role_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `staff_role`
+--
+
+INSERT INTO `staff_role` (`staff_id`, `role_id`) VALUES
+(23, 1),
+(21, 2);
 
 -- --------------------------------------------------------
 
@@ -360,7 +398,7 @@ CREATE TABLE IF NOT EXISTS `subjec_stage` (
 --
 
 INSERT INTO `subjec_stage` (`stg_id`, `stg_subject_id`, `stg_name`, `stg_active`, `stg_cost`) VALUES
-(1, 4, 'stage1', b'1', '1000.00'),
+(1, 4, 'Stage1', b'1', NULL),
 (2, 4, 'Stage2', b'1', '100.00');
 
 -- --------------------------------------------------------
@@ -372,18 +410,19 @@ INSERT INTO `subjec_stage` (`stg_id`, `stg_subject_id`, `stg_name`, `stg_active`
 CREATE TABLE IF NOT EXISTS `user_category` (
   `cat_id` int(11) NOT NULL AUTO_INCREMENT,
   `cat_name` varchar(50) DEFAULT NULL,
+  `cat_user_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`cat_id`),
-  UNIQUE KEY `cat_name_UNIQUE` (`cat_name`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='categories are saved. Admin, Head of Divison, Staff and publ' AUTO_INCREMENT=4 ;
+  UNIQUE KEY `cat_name_UNIQUE` (`cat_name`),
+  KEY `fk_cat_user_name_idx` (`cat_user_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='categories are saved. Admin, Head of Divison, Staff and publ' AUTO_INCREMENT=3 ;
 
 --
 -- Dumping data for table `user_category`
 --
 
-INSERT INTO `user_category` (`cat_id`, `cat_name`) VALUES
-(1, 'admin'),
-(2, 'hod'),
-(3, 'user');
+INSERT INTO `user_category` (`cat_id`, `cat_name`, `cat_user_id`) VALUES
+(1, 'ROLE_ADMIN', 23),
+(2, 'ROLE_USER', 21);
 
 -- --------------------------------------------------------
 
@@ -460,7 +499,6 @@ ALTER TABLE `request_log`
 -- Constraints for table `staff`
 --
 ALTER TABLE `staff`
-  ADD CONSTRAINT `fk_stf_category_id` FOREIGN KEY (`stf_category_id`) REFERENCES `user_category` (`cat_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_stf_divsion_id` FOREIGN KEY (`stf_dvision_id`) REFERENCES `division` (`div_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
@@ -480,6 +518,12 @@ ALTER TABLE `subject`
 --
 ALTER TABLE `subjec_stage`
   ADD CONSTRAINT `fk_sbject_id` FOREIGN KEY (`stg_subject_id`) REFERENCES `subject` (`sbj_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Constraints for table `user_category`
+--
+ALTER TABLE `user_category`
+  ADD CONSTRAINT `fk_cat_user_id` FOREIGN KEY (`cat_user_id`) REFERENCES `staff` (`stf_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

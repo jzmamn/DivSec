@@ -33,21 +33,9 @@ public class LoginServiceImpl implements UserDetailsService {
 	@Transactional(readOnly = true)
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException, DataAccessException {
 		String userName = username;
-		System.out.println("This is the error1================ " + userName);
-		Staff staff;
-		try {
-			// staff = this.userCreationDAO.getStaffByUserId(userName);
-			staff = this.userCreationDAO.getStaffByUserId(userName);
-
-		} catch (Exception e) {
-
-			System.out.println("This is the error2================" + e.toString());
-			return null;
-		}
-
+		Staff staff = this.userCreationDAO.getStaffByUserId(userName);
 		List<GrantedAuthority> authorities = buildUserAuthority(staff.getUserCategories());
 		return buildUserForAuthentication(staff, authorities);
-
 	}
 
 	private List<GrantedAuthority> buildUserAuthority(Set<UserCategory> appUserRole) {

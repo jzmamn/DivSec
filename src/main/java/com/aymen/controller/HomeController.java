@@ -54,6 +54,12 @@ public class HomeController {
 		return "login";
 	}
 
+	@RequestMapping(value = "/Access_Denied", method = RequestMethod.GET)
+	public String accessDeniedPage(ModelMap model) {
+		model.addAttribute("user", getPrincipal());
+		return "errors_403";
+	}
+
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
 	public String logoutPage(HttpServletRequest request, HttpServletResponse response) {
 		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -65,10 +71,12 @@ public class HomeController {
 
 	private String getPrincipal() {
 		String userName = null;
+		String name = null;
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
 		if (principal instanceof UserDetails) {
 			userName = ((UserDetails) principal).getUsername();
+
 		} else {
 			userName = principal.toString();
 		}
