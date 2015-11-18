@@ -1,18 +1,14 @@
-// default package
-// Generated Sep 29, 2015 7:42:07 PM by Hibernate Tools 4.3.1
 package com.aymen.entity;
 
 import static javax.persistence.GenerationType.IDENTITY;
-
-import java.util.HashSet;
-import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
@@ -23,20 +19,19 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
  */
 @Entity
 @Table(name = "user_category", catalog = "divsec", uniqueConstraints = @UniqueConstraint(columnNames = "cat_name") )
-
 public class UserCategory implements java.io.Serializable {
 
 	private static final long serialVersionUID = 1L;
 	private Integer catId;
+	private Staff staff;
 	private String catName;
-	private Set<Staff> staffs = new HashSet<Staff>(0);
 
 	public UserCategory() {
 	}
 
-	public UserCategory(String catName, Set<Staff> staffs) {
+	public UserCategory(Staff staff, String catName) {
+		this.staff = staff;
 		this.catName = catName;
-		this.staffs = staffs;
 	}
 
 	@Id
@@ -51,6 +46,17 @@ public class UserCategory implements java.io.Serializable {
 		this.catId = catId;
 	}
 
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "cat_user_id")
+	@JsonIgnore
+	public Staff getStaff() {
+		return this.staff;
+	}
+
+	public void setStaff(Staff staff) {
+		this.staff = staff;
+	}
+
 	@Column(name = "cat_name", unique = true, length = 50)
 	public String getCatName() {
 		return this.catName;
@@ -58,16 +64,6 @@ public class UserCategory implements java.io.Serializable {
 
 	public void setCatName(String catName) {
 		this.catName = catName;
-	}
-
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "userCategory")
-	@JsonIgnore
-	public Set<Staff> getStaffs() {
-		return this.staffs;
-	}
-
-	public void setStaffs(Set<Staff> staffs) {
-		this.staffs = staffs;
 	}
 
 }

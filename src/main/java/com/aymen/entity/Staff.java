@@ -1,5 +1,3 @@
-// default package
-// Generated Sep 29, 2015 7:42:07 PM by Hibernate Tools 4.3.1
 package com.aymen.entity;
 
 import static javax.persistence.GenerationType.IDENTITY;
@@ -13,8 +11,6 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -31,21 +27,21 @@ import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 @Table(name = "staff", catalog = "divsec", uniqueConstraints = @UniqueConstraint(columnNames = "stf_user_id") )
 @JsonIdentityInfo(generator = ObjectIdGenerators.IntSequenceGenerator.class, property = "@id")
 public class Staff implements java.io.Serializable {
+
 	private static final long serialVersionUID = 1L;
 	private Integer stfId;
 	private Division division;
-	private Integer stfCategoryId;
-	private UserCategory userCategory;
 	private String stfName;
+	private Integer stfCategoryId;
 	private String stfUserId;
 	private String stfPassword;
 	private String stfEmail;
 	private String stfMobile;
 	private String stfNote;
 	private Boolean stfActive;
+	private Set<UserCategory> userCategories = new HashSet<UserCategory>(0);
 	private Set<ProcessStage> processStages = new HashSet<ProcessStage>(0);
 	private Set<Request> requests = new HashSet<Request>(0);
-	private Set<UserCategory> userCategories = new HashSet<UserCategory>(0);
 
 	public Staff() {
 	}
@@ -55,8 +51,8 @@ public class Staff implements java.io.Serializable {
 	}
 
 	public Staff(Division division, String stfName, Integer stfCategoryId, String stfUserId, String stfPassword,
-			String stfEmail, String stfMobile, String stfNote, Boolean stfActive, UserCategory userCategory,
-			Set<ProcessStage> processStages, Set<Request> requests, Set<UserCategory> userCategories) {
+			String stfEmail, String stfMobile, String stfNote, Boolean stfActive, Set<UserCategory> userCategories,
+			Set<ProcessStage> processStages, Set<Request> requests) {
 		this.division = division;
 		this.stfName = stfName;
 		this.stfCategoryId = stfCategoryId;
@@ -66,10 +62,9 @@ public class Staff implements java.io.Serializable {
 		this.stfMobile = stfMobile;
 		this.stfNote = stfNote;
 		this.stfActive = stfActive;
-		this.userCategory = userCategory;
+		this.userCategories = userCategories;
 		this.processStages = processStages;
 		this.requests = requests;
-		this.userCategories = userCategories;
 	}
 
 	@Id
@@ -84,7 +79,7 @@ public class Staff implements java.io.Serializable {
 		this.stfId = stfId;
 	}
 
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "stf_dvision_id", nullable = false)
 	public Division getDivision() {
 		return this.division;
@@ -92,17 +87,6 @@ public class Staff implements java.io.Serializable {
 
 	public void setDivision(Division division) {
 		this.division = division;
-	}
-
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "stf_category_id")
-
-	public UserCategory getUserCategory() {
-		return this.userCategory;
-	}
-
-	public void setUserCategory(UserCategory userCategory) {
-		this.userCategory = userCategory;
 	}
 
 	@Column(name = "stf_name", length = 50)
@@ -179,6 +163,16 @@ public class Staff implements java.io.Serializable {
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "staff")
 	@JsonIgnore
+	public Set<UserCategory> getUserCategories() {
+		return this.userCategories;
+	}
+
+	public void setUserCategories(Set<UserCategory> userCategories) {
+		this.userCategories = userCategories;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "staff")
+	@JsonIgnore
 	public Set<ProcessStage> getProcessStages() {
 		return this.processStages;
 	}
@@ -188,25 +182,12 @@ public class Staff implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "staff")
-	@JsonIgnore
 	public Set<Request> getRequests() {
 		return this.requests;
 	}
 
 	public void setRequests(Set<Request> requests) {
 		this.requests = requests;
-	}
-
-	@ManyToMany(fetch = FetchType.LAZY)
-	@JoinTable(name = "staff_role", catalog = "divsec", joinColumns = {
-			@JoinColumn(name = "staff_id", nullable = false, updatable = false) }, inverseJoinColumns = {
-					@JoinColumn(name = "role_id", nullable = false, updatable = false) })
-	public Set<UserCategory> getUserCategories() {
-		return this.userCategories;
-	}
-
-	public void setUserCategories(Set<UserCategory> userCategories) {
-		this.userCategories = userCategories;
 	}
 
 }

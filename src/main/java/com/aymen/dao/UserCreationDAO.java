@@ -13,7 +13,7 @@ public interface UserCreationDAO {
 
 	public Staff getStaffById(int id);
 
-	public String getStaffByUserId(String userId);
+	public Staff getStaffByUserId(String userId);
 
 	public void deleteStaff(int id);
 }

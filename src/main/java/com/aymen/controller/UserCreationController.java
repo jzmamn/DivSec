@@ -62,7 +62,7 @@ public class UserCreationController {
 		model.addAttribute("stfMobile", staff.getStfMobile());
 		model.addAttribute("stfNote", staff.getStfNote());
 		model.addAttribute("stfActive", staff.getStfActive());
-		model.addAttribute("userCategory", staff.getStfCategoryId());
+		model.addAttribute("stfCategoryId", staff.getStfCategoryId());
 		model.addAttribute("division", staff.getDivision().getDivId());
 
 		try {
@@ -100,9 +100,12 @@ public class UserCreationController {
 
 	}
 
-	public boolean IsUserIdAvailable(String userId) {
-
-		return true;
+	@RequestMapping(value = "/loadbyuid", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody String getUserByUserId() {
+		Staff stf = this.userCreationsSVC.getSvcStaffByUserId("a");
+		int si = stf.getUserCategories().size();
+		String s = String.valueOf(si);
+		return s;
 	}
 
 }

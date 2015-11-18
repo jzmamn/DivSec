@@ -158,7 +158,7 @@
 													data-target="#modalCategory">
 													<i class="icon-search"></i>
 												</button>
-											</span> <form:input path="userCategory.catId" type="text" class="form-control" id="txtIdCatId" name="txtCatId" readonly="true" required="true" />
+											</span> <form:input path="stfCategoryId" type="text" class="form-control" id="txtIdCatId" name="txtCatId" readonly="true" required="true" />
 										</div>
 
 										<div class="form-group input-group">

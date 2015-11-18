@@ -18,11 +18,9 @@
 <!-- GLOBAL STYLES -->
 <!-- PAGE LEVEL STYLES -->
 
-<link rel="stylesheet"
-	href="<c:url value="/resources/plugins/bootstrap/css/bootstrap.css" />" />
+<link rel="stylesheet" href="<c:url value="/resources/plugins/bootstrap/css/bootstrap.css" />" />
 <link rel="stylesheet" href="<c:url value="/resources/css/login.css" />" />
-<link rel="stylesheet"
-	href="<c:url value="/resources/plugins/magic/magic.css" />" />
+<link rel="stylesheet" href="<c:url value="/resources/plugins/magic/magic.css" />" />
 
 <!-- END PAGE LEVEL STYLES -->
 <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -35,52 +33,57 @@
 <body>
 	<!-- PAGE CONTENT -->
 	<div class="container">
-	  <div class="text-center">
-                <img src="assets/img/logo.png" id="logoimg" alt=" Logo" />
-            </div>
-            <div class="tab-content">
-                <div id="login" class="tab-pane active">
-                    <form action="mainmenu/dashboard_admin/1" class="form-signin">
-                        <p class="text-muted text-center btn-block btn btn-primary btn-rect">
-                            Login 
-                        </p>
-                        
-                        <div class="form-group">
-                            <input type="text" placeholder="Username" class="form-control" />
-                        </div>
-                        
-                        <div class="form-group">
-                            <input type="password" placeholder="Password" class="form-control" />
-                        </div>
-                        
-                        <div class="form-group">
-                            <select class="form-control" id="people">
-                            </select>
-                        </div>
+		<div class="text-center">
+			<img src="assets/img/logo.png" id="logoimg" alt=" Logo" />
+		</div>
+		<div class="tab-content">
+			<div id="login" class="tab-pane active">
+				<c:url var="loginUrl" value="/login" />
 
-                        <div id="id"></div>  <div id="name"></div>
+				<form name='loginForm' action="${loginUrl}" method="POST" class="form-signin">
+					<c:if test="${param.error != null}">
+						<div class="alert alert-danger">
+							<p>Invalid username and password.</p>
+						</div>
+					</c:if>
+					<c:if test="${param.logout != null}">
+						<div class="alert alert-success">
+							<p>You have been logged out successfully.</p>
+						</div>
+					</c:if>
 
-                        <button class="text-muted text-center btn-block btn btn-primary btn-rect" type="submit">Sign in</button>
-                        
-                    </form>
-                </div>
+					<p class="text-muted text-center btn-block btn btn-primary btn-rect">Login</p>
 
-                <div id="forgot" class="tab-pane">
-                    <form action="index.html" class="form-signin">
-                        <p class="text-muted text-center btn-block btn btn-primary btn-rect">Enter your valid e-mail</p>
-                        <input type="email"  required="required" placeholder="Your E-mail"  class="form-control" />
-                        <br />
-                        <button class="btn text-muted text-center btn-success" type="submit">Recover Password</button>
-                    </form>
-                </div>
-            </div>
+					<div class="form-group">
+						<input type="text" placeholder="Username" class="form-control" name="username" />
+					</div>
 
-            <div class="text-center">
-                <ul class="list-inline">
-                    <li><a class="text-muted" href="#login" data-toggle="tab">Login</a></li>
-                    <li><a class="text-muted" href="#forgot" data-toggle="tab">Forgot Password</a></li>
-                </ul>
-            </div>
+					<div class="form-group">
+						<input type="password" placeholder="Password" class="form-control" name="password" />
+					</div>
+
+					<button class="text-muted text-center btn-block btn btn-primary btn-rect" type="submit">Sign in</button>
+
+					 <input type="hidden" name="${_csrf.parameterName}"  value="${_csrf.token}" />
+
+				</form>
+			</div>
+
+			<div id="forgot" class="tab-pane">
+				<form action="index.html" class="form-signin">
+					<p class="text-muted text-center btn-block btn btn-primary btn-rect">Enter your valid e-mail</p>
+					<input type="email" required="required" placeholder="Your E-mail" class="form-control" /> <br />
+					<button class="btn text-muted text-center btn-success" type="submit">Recover Password</button>
+				</form>
+			</div>
+		</div>
+
+		<div class="text-center">
+			<ul class="list-inline">
+				<li><a class="text-muted" href="#login" data-toggle="tab">Login</a></li>
+				<li><a class="text-muted" href="#forgot" data-toggle="tab">Forgot Password</a></li>
+			</ul>
+		</div>
 
 	</div>
 
@@ -88,8 +91,7 @@
 
 	<!-- PAGE LEVEL SCRIPTS -->
 	<script src="<c:url value="/resources/plugins/jquery-2.1.4.min.js" />"></script>
-	<script
-		src="<c:url value="/resources/plugins/bootstrap/js/bootstrap.js" />"></script>
+	<script src="<c:url value="/resources/plugins/bootstrap/js/bootstrap.js" />"></script>
 	<script src="<c:url value="/resources/js/login.js" />"></script>
 
 	<!--END PAGE LEVEL SCRIPTS -->

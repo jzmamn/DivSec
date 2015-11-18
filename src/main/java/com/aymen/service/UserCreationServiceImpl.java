@@ -19,7 +19,6 @@ public class UserCreationServiceImpl implements UserCreationService {
 	@Override
 	public void createSvcStaff(Staff staff) {
 		this.userCreationDAO.createStaff(staff);
-
 	}
 
 	@Override
@@ -43,8 +42,8 @@ public class UserCreationServiceImpl implements UserCreationService {
 	}
 
 	@Override
-	public String getSvcStaffByUserId(String userId) {
-		return "";
+	public Staff getSvcStaffByUserId(String userId) {
+		return this.userCreationDAO.getStaffByUserId(userId);
 	}
 
 }
