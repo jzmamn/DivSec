@@ -98,8 +98,6 @@
 											<tr>
 												<th>Id</th>
 												<th>Name</th>
-												<th>CatId</th>
-												<th>Cat.</th>
 												<th>DivId</th>
 												<th>DivName</th>
 												<th>UserId</th>
@@ -131,27 +129,29 @@
 
 									<div class="modal-body">
 										<div class="form-group input-group">
-											<span class="input-group-addon">Id</span> 
-											<form:input path="stfId"  type="text" id="txtIdUCId" name="txtUCId" class="form-control" placeholder="Id"
-												readonly="true" />
+											<span class="input-group-addon">Id</span>
+											<form:input path="stfId" type="text" id="txtIdUCId" name="txtUCId" class="form-control" placeholder="Id" readonly="true" />
 										</div>
 
 										<div class="form-group input-group">
-											<span class="input-group-addon ">Name</span> <form:input path="stfName" type="text" id="txtIdName" name="txtName" class="clsString form-control"
+											<span class="input-group-addon ">Name</span>
+											<form:input path="stfName" type="text" id="txtIdName" name="txtName" class="clsString form-control"
 												placeholder="Enter User or Staff Name" required="true" maxlength="30" />
 										</div>
 
 										<div class="form-group input-group">
-											<input type="text" class="form-control" id="txtIdDivision" name="txtDivision" readonly="true" required="true" placeholder="select a division" /> <span
-												class="input-group-btn">
+											<input type="text" class="form-control" id="txtIdDivision" name="txtDivision" readonly="true" required="true"
+												placeholder="select a division" /> <span class="input-group-btn">
 												<button id="btnIdShowDiv" name="btnShoeDiv" class="btn btn-warning" type="button" data-toggle="modal"
 													data-target="#modalDivision">
 													<i class="icon-search"></i>
 												</button>
-											</span> <form:input path="division.divId" type="text" class="form-control" id="txtIdDivisionId" name="txtDivisionId" readonly="true" required="true" />
+											</span>
+											<form:input path="division.divId" type="text" class="form-control" id="txtIdDivisionId" name="txtDivisionId" readonly="true"
+												required="true" />
 										</div>
 
-										<div class="form-group input-group">
+										<%-- <div class="form-group input-group">
 											<input type="text" class="form-control" id="txtIdCatName" name="txtCatName" readonly="true" required="true" placeholder="select user category" /> <span
 												class="input-group-btn">
 												<button id="btnIdUserCat" name="btnUserCat" class="btn btn-warning" type="button" data-toggle="modal"
@@ -160,35 +160,41 @@
 												</button>
 											</span> <form:input path="stfCategoryId" type="text" class="form-control" id="txtIdCatId" name="txtCatId" readonly="true" required="true" />
 										</div>
-
+ --%>
 										<div class="form-group input-group">
-											<span class="input-group-addon ">User Id</span> <form:input path="stfUserId" type="text" id="txtIdUserId" name="txtUserId"
-												class="clsString form-control" required="true" maxlength="8" placeholder="Enter Division Name" />
+											<span class="input-group-addon ">User Id</span>
+											<form:input path="stfUserId" type="text" id="txtIdUserId" name="txtUserId" class="clsString form-control" required="true"
+												maxlength="8" placeholder="Enter Division Name" />
 										</div>
 
 										<div class="form-group input-group">
-											<span class="input-group-addon ">Password</span> <form:input path="stfPassword" type="password" id="txtIdPwd" name="txtPwd"
-												class="clsString form-control" required="true" maxlength="8" placeholder="Enter User Password" />
+											<span class="input-group-addon ">Password</span>
+											<form:input path="stfPassword" type="password" id="txtIdPwd" name="txtPwd" class="clsString form-control" required="true"
+												maxlength="8" placeholder="Enter User Password" />
 										</div>
 
 										<div class="form-group input-group">
-											<span class="input-group-addon "><i class="glyphicon glyphicon-phone"></i></span> <form:input path="stfMobile" type="number" id="txtIdMobile"
-												name="txtMobile" class="form-control"  maxlength="10" placeholder="Mobile phone number. e.g. 07xx xxxxxxx" />
+											<span class="input-group-addon "><i class="glyphicon glyphicon-phone"></i></span>
+											<form:input path="stfMobile" type="number" id="txtIdMobile" name="txtMobile" class="form-control" maxlength="10"
+												placeholder="Mobile phone number. e.g. 07xx xxxxxxx" />
 										</div>
 
 
 										<div class="form-group input-group">
-											<span class="input-group-addon ">@</span> <form:input path="stfEmail" type="email" id="txtIdEmail" name="txtEmail" class="form-control"
-												placeholder="Enter Email address. e.g. divsec@gmail.com"  maxlength="100" />
+											<span class="input-group-addon ">@</span>
+											<form:input path="stfEmail" type="email" id="txtIdEmail" name="txtEmail" class="form-control"
+												placeholder="Enter Email address. e.g. divsec@gmail.com" maxlength="100" />
 										</div>
 
 										<div class="form-group input-group">
-											<span class="input-group-addon ">Note</span> <form:input path="stfNote" type="text" id="txtIdNote" name="txtNote" class="clsString form-control"
-												maxlength="80" placeholder="Note" />
+											<span class="input-group-addon ">Note</span>
+											<form:input path="stfNote" type="text" id="txtIdNote" name="txtNote" class="clsString form-control" maxlength="80"
+												placeholder="Note" />
 										</div>
 
 										<div class="form-group">
-											Is Active <form:checkbox path="stfActive" id="chkUserIsActive"  />
+											Is Active
+											<form:checkbox path="stfActive" id="chkUserIsActive" />
 										</div>
 									</div>
 
@@ -298,7 +304,7 @@
 					</div>
 				</div>
 				<!-- End Category Modal -->
-		</div>
+			</div>
 			<!--End of Inner  -->
 		</div>
 		<!--END PAGE CONTENT -->

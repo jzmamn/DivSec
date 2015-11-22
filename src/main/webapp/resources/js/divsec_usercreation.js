@@ -19,10 +19,6 @@ jQuery(function() {
 		}, {
 			"data" : "stfName"
 		}, {
-			"data" : "userCategory.catId"
-		}, {
-			"data" : "userCategory.catName"
-		}, {
 			"data" : "division.divId"
 		}, {
 			"data" : "division.divName"
@@ -46,13 +42,10 @@ jQuery(function() {
 			"targets" : [ 2 ],
 			"visible" : false
 		}, {
-			"targets" : [ 4 ],
+			"targets" : [ 5 ],
 			"visible" : false
 		}, {
-			"targets" : [ 7 ],
-			"visible" : false
-		}, {
-			"targets" : [ 10 ],
+			"targets" : [ 9 ],
 			"visible" : false
 		}
 
@@ -124,17 +117,15 @@ jQuery(function() {
 		// alert(aPos);
 		$('#txtIdUCId').val(dtUser.fnGetData(aPos, 0));
 		$('#txtIdName').val(dtUser.fnGetData(aPos, 1));
-		$('#txtIdCatId').val(dtUser.fnGetData(aPos, 2));
-		$('#txtIdCatName').val(dtUser.fnGetData(aPos, 3));
-		$('#txtIdDivisionId').val(dtUser.fnGetData(aPos, 4));
-		$('#txtIdDivision').val(dtUser.fnGetData(aPos, 5));
-		$('#txtIdUserId').val(dtUser.fnGetData(aPos, 6));
-		$('#txtIdPwd').val(dtUser.fnGetData(aPos, 7));
-		$('#txtIdEmail').val(dtUser.fnGetData(aPos, 8));
-		$('#txtIdMobile').val(dtUser.fnGetData(aPos, 9));
-		$('#txtIdNote').val(dtUser.fnGetData(aPos, 10));
+		$('#txtIdDivisionId').val(dtUser.fnGetData(aPos, 2));
+		$('#txtIdDivision').val(dtUser.fnGetData(aPos, 3));
+		$('#txtIdUserId').val(dtUser.fnGetData(aPos, 4));
+		$('#txtIdPwd').val(dtUser.fnGetData(aPos, 5));
+		$('#txtIdEmail').val(dtUser.fnGetData(aPos, 6));
+		$('#txtIdMobile').val(dtUser.fnGetData(aPos, 7));
+		$('#txtIdNote').val(dtUser.fnGetData(aPos, 8));
 
-		var varChkActive = dtUser.fnGetData(aPos, 11);
+		var varChkActive = dtUser.fnGetData(aPos, 9);
 
 		if (varChkActive == true) {
 			blnIsDivActive = true;

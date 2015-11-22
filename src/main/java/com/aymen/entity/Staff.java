@@ -48,10 +48,6 @@ public class Staff implements java.io.Serializable {
 	public Staff() {
 	}
 
-	public Staff(Division division) {
-		this.division = division;
-	}
-
 	public Staff(Division division, String stfName, Integer stfCategoryId, String stfUserId, String stfPassword,
 			String stfEmail, String stfMobile, String stfNote, Boolean stfActive, Set<ProcessStage> processStages,
 			Set<UserCategory> userCategories, Set<Request> requests) {
@@ -81,7 +77,7 @@ public class Staff implements java.io.Serializable {
 		this.stfId = stfId;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "stf_dvision_id", nullable = false)
 	public Division getDivision() {
 		return this.division;
@@ -164,6 +160,7 @@ public class Staff implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "staff")
+	@JsonIgnore
 	public Set<ProcessStage> getProcessStages() {
 		return this.processStages;
 	}
@@ -172,12 +169,11 @@ public class Staff implements java.io.Serializable {
 		this.processStages = processStages;
 	}
 
-	@ManyToMany(fetch = FetchType.LAZY)
+	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "staff_role", catalog = "divsec", joinColumns = {
 			@JoinColumn(name = "staff_id", nullable = false, updatable = false) }, inverseJoinColumns = {
 					@JoinColumn(name = "role_id", nullable = false, updatable = false) })
 
-	@JsonIgnore
 	public Set<UserCategory> getUserCategories() {
 		return this.userCategories;
 	}
@@ -187,6 +183,7 @@ public class Staff implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "staff")
+	@JsonIgnore
 	public Set<Request> getRequests() {
 		return this.requests;
 	}

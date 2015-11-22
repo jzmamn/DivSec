@@ -64,7 +64,7 @@
 
 					<button class="text-muted text-center btn-block btn btn-primary btn-rect" type="submit">Sign in</button>
 
-					 <input type="hidden" name="${_csrf.parameterName}"  value="${_csrf.token}" />
+					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 
 				</form>
 			</div>
@@ -80,6 +80,7 @@
 
 		<div class="text-center">
 			<ul class="list-inline">
+				<li><a class="text-muted" href="${pageContext.request.contextPath}/home">home</a></li>
 				<li><a class="text-muted" href="#login" data-toggle="tab">Login</a></li>
 				<li><a class="text-muted" href="#forgot" data-toggle="tab">Forgot Password</a></li>
 			</ul>

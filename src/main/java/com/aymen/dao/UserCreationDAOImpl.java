@@ -52,8 +52,7 @@ public class UserCreationDAOImpl implements UserCreationDAO {
 		@SuppressWarnings("unchecked")
 		List<Staff> staffList = session.createQuery(" from Staff").list();
 		for (Staff staff : staffList) {
-			logger.info("Staff List:" + staff);
-			// System.out.println(d);
+
 		}
 		return staffList;
 
@@ -90,9 +89,8 @@ public class UserCreationDAOImpl implements UserCreationDAO {
 		try {
 			System.out.println(userId);
 			String qry = "SELECT * FROM staff WHERE stf_user_id = :Id";
-			System.out.println(qry);
-			Staff staff = null;
 
+			Staff staff = null;
 			Session session = this.sessionFactory.getCurrentSession();
 			SQLQuery query = (SQLQuery) session.createSQLQuery(qry);
 			query.addEntity(Staff.class);
@@ -106,12 +104,10 @@ public class UserCreationDAOImpl implements UserCreationDAO {
 			for (Iterator iterator = results.iterator(); iterator.hasNext();) {
 				staff = new Staff();
 				staff = (Staff) iterator.next();
-				System.out.print(" Category size: " + staff.getUserCategories().size());
 			}
 			logger.debug("Staff by username", staff.getStfName());
 			return staff;
 		} catch (HibernateException e) {
-
 			e.printStackTrace();
 			System.out.println(e.toString());
 			return null;

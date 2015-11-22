@@ -6,7 +6,7 @@
 		</a> <br />
 		<div class="media-body">
 			<div id="divIdUserName" class="media-heading">${user}</div>
-			
+
 			<!-- <ul class="list-unstyled user-info">
 				<li><a class="btn btn-success btn-xs btn-circle"
 					style="width: 10px; height: 12px;"></a> Online</li>
@@ -48,11 +48,7 @@
 		</a>
 			<ul class="collapse" id="process-nav">
 				<li class=""><a href="${pageContext.request.contextPath}/public"><i class="icon-angle-right"></i> Public Details </a></li>
-				<li class=""><a href="${pageContext.request.contextPath}/mainmenu/main/41"><i class="icon-angle-right"></i> Request </a></li>
-				<li class=""><a href="${pageContext.request.contextPath}/mainmenu/main/42"><i class="icon-angle-right"></i> Request Processing
-				</a></li>
-				<li class=""><a href="${pageContext.request.contextPath}/mainmenu/main/43"><i class="icon-angle-right"></i> Email to Client </a></li>
-				<li class=""><a href="${pageContext.request.contextPath}/mainmenu/main/44"><i class="icon-angle-right"></i>SMS to Client </a></li>
+				<li class=""><a href="${pageContext.request.contextPath}/reqprocess"><i class="icon-angle-right"></i> Request Processing </a></li>
 			</ul></li>
 		<!-- Charts -->
 		<li class="panel"><a href="#" data-parent="#menu" data-toggle="collapse" class="accordion-toggle" data-target="#admin-nav"> <i
@@ -60,16 +56,16 @@
 			</span> &nbsp; <span class="label label-info">6</span>&nbsp;
 		</a>
 			<ul class="collapse" id="admin-nav">
-				<li><a href="${pageContext.request.contextPath}/mainmenu/main/50"><i class="icon-angle-right"></i> Preference </a></li>
+				<%-- 			<li><a href="${pageContext.request.contextPath}/mainmenu/main/50"><i class="icon-angle-right"></i> Preference </a></li> --%>
 				<li><a href="${pageContext.request.contextPath}/usercreation"><i class="icon-angle-right"></i> User Creation </a></li>
 				<li><a href="${pageContext.request.contextPath}/division"><i class="icon-angle-right"></i> Division </a></li>
 				<li><a href="${pageContext.request.contextPath}/subject"><i class="icon-angle-right"></i> Subject </a></li>
 				<li><a href="${pageContext.request.contextPath}/sbjstages"><i class="icon-angle-right"></i> Subject Stages </a></li>
-				<li><a href="${pageContext.request.contextPath}/mainmenu/main/55"><i class="icon-angle-right"></i> Request Status </a></li>
+				<%-- 	<li><a href="${pageContext.request.contextPath}/mainmenu/main/55"><i class="icon-angle-right"></i> Request Status </a></li>
 				<li><a href="${pageContext.request.contextPath}/mainmenu/main/56"><i class="icon-angle-right"></i> Stage Status </a></li>
 				<li><a href="${pageContext.request.contextPath}/mainmenu/main/57"><i class="icon-angle-right"></i> Email </a></li>
 				<li><a href="${pageContext.request.contextPath}/mainmenu/main/58"><i class="icon-angle-right"></i> SMS </a></li>
-				<li><a href="${pageContext.request.contextPath}/mainmenu/main/59"><i class="icon-angle-right"></i> User Category </a></li>
+				<li><a href="${pageContext.request.contextPath}/mainmenu/main/59"><i class="icon-angle-right"></i> User Category </a></li> --%>
 			</ul></li>
 
 	</ul>

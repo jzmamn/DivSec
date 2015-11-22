@@ -39,8 +39,6 @@
 		<div class="tab-content">
 			<div id="login" class="form-signin">
 
-
-			
 					<div>
 						<a href="<c:url value="/admin" />">Admin</a>
 					</div>
@@ -57,11 +55,13 @@
 							<p>Invalid username and password.</p>
 						</div>
 					</c:if>
+					
 					<c:if test="${param.logout != null}">
 						<div class="alert alert-success">
 							<p>You have been logged out successfully.</p>
 						</div>
 					</c:if>
+					
 			</div>
 		</div>
 	</div>
