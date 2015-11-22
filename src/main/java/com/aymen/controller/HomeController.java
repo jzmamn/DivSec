@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -17,11 +18,14 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.aymen.entity.Staff;
+import com.aymen.service.UserCreationService;
+
 @Controller
 
 public class HomeController {
-	// @Autowired
-	// LoginService loginService;
+	@Autowired
+	UserCreationService userCreationService;
 
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 
@@ -33,19 +37,40 @@ public class HomeController {
 
 	@RequestMapping(value = "/admin", method = RequestMethod.GET)
 	public String adminPage(ModelMap model) {
+		Staff staff = getStaffInfo();
+
 		model.addAttribute("user", getPrincipal());
+
+		model.addAttribute("userId", staff.getStfId());
+		model.addAttribute("name", staff.getStfName());
+		model.addAttribute("dvsnId", "All");
+		model.addAttribute("dvsnName", "All");
+
 		return "dashboard_admin";
 	}
 
 	@RequestMapping(value = "/hod", method = RequestMethod.GET)
 	public String hodPage(ModelMap model) {
+		Staff staff = getStaffInfo();
 		model.addAttribute("user", getPrincipal());
+
+		model.addAttribute("userid", staff.getStfId());
+		model.addAttribute("name", staff.getStfName());
+		model.addAttribute("dvsnId", staff.getDivision().getDivId());
+		model.addAttribute("dvsnName", staff.getDivision().getDivName());
+
 		return "dashboard_hod";
 	}
 
 	@RequestMapping(value = "/staff", method = RequestMethod.GET)
 	public String staffPage(ModelMap model) {
+		Staff staff = getStaffInfo();
 		model.addAttribute("user", getPrincipal());
+
+		model.addAttribute("userid", staff.getStfId());
+		model.addAttribute("name", staff.getStfName());
+		model.addAttribute("dvsnId", staff.getDivision().getDivId());
+		model.addAttribute("dvsnName", staff.getDivision().getDivName());
 		return "dashboard_staff";
 	}
 
@@ -71,16 +96,18 @@ public class HomeController {
 
 	private String getPrincipal() {
 		String userName = null;
-		String name = null;
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
 		if (principal instanceof UserDetails) {
 			userName = ((UserDetails) principal).getUsername();
-
 		} else {
 			userName = principal.toString();
 		}
 		return userName;
+	}
+
+	private Staff getStaffInfo() {
+		return this.userCreationService.getSvcStaffByUserId(getPrincipal());
 	}
 
 }

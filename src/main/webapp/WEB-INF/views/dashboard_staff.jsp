@@ -68,7 +68,7 @@
 			<div class="inner" style="min-height: 700px;">
 				<div class="row">
 					<div class="col-lg-12">
-						<h3>Dashboard Head Of Division - --Staff--</h3>
+						<h3>Dashboard - Staff</h3>
 					</div>
 				</div>
 
@@ -189,6 +189,7 @@
 	<script src="<c:url value="/resources/plugins/datepicker/js/bootstrap-datepicker.js"/>"></script>
 	<script src="<c:url value="/resources/plugins/fullcalendar-1.6.2/fullcalendar/fullcalendar.min.js"/>"></script>
 	<script src="<c:url value="/resources/js/calendarInit.js"/>"></script>
+	<script src="<c:url value="/resources/js/divsec_login.js" />"></script>
 
 	<script type="text/javascript">
 		$("#dtpTop").datepicker({});

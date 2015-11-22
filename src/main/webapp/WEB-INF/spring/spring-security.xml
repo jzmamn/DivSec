@@ -28,17 +28,16 @@
 		<!-- access denied page -->
 		<access-denied-handler error-page="/Access_Denied" />
 
-		<form-login login-page="/home" authentication-failure-url="/home?error"
+		<form-login login-page="/login" authentication-failure-url="/login?error"
 			username-parameter="username" password-parameter="password" />
 
-		<logout logout-success-url="/home?logout" />
+		<logout logout-success-url="/home" />
 
 		<!-- enable csrf protection -->
 		<csrf />
 	</http>
 
 	<global-method-security pre-post-annotations="enabled" />
-
 
 	<beans:bean id="loginService" class="com.aymen.service.LoginServiceImpl" />
 

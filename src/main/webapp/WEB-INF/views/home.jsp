@@ -37,10 +37,21 @@
 			<img src="assets/img/logo.png" id="logoimg" alt=" Logo" />
 		</div>
 		<div class="tab-content">
-			<div id="login" class="tab-pane active">
-				<c:url var="loginUrl" value="/login" />
+			<div id="login" class="form-signin">
 
-				<form name='loginForm' action="${loginUrl}" method="POST" class="form-signin">
+
+			
+					<div>
+						<a href="<c:url value="/admin" />">Admin</a>
+					</div>
+					<div>
+						<a href="<c:url value="/hod" />">Head Of Division</a>
+					</div>
+					<div>
+						<a href="<c:url value="/staff" />">Staff</a>
+					</div>
+
+
 					<c:if test="${param.error != null}">
 						<div class="alert alert-danger">
 							<p>Invalid username and password.</p>
@@ -51,40 +62,8 @@
 							<p>You have been logged out successfully.</p>
 						</div>
 					</c:if>
-
-					<p class="text-muted text-center btn-block btn btn-primary btn-rect">Login</p>
-
-					<div class="form-group">
-						<input type="text" placeholder="Username" class="form-control" name="username" />
-					</div>
-
-					<div class="form-group">
-						<input type="password" placeholder="Password" class="form-control" name="password" />
-					</div>
-
-					<button class="text-muted text-center btn-block btn btn-primary btn-rect" type="submit">Sign in</button>
-
-					 <input type="hidden" name="${_csrf.parameterName}"  value="${_csrf.token}" />
-
-				</form>
-			</div>
-
-			<div id="forgot" class="tab-pane">
-				<form action="index.html" class="form-signin">
-					<p class="text-muted text-center btn-block btn btn-primary btn-rect">Enter your valid e-mail</p>
-					<input type="email" required="required" placeholder="Your E-mail" class="form-control" /> <br />
-					<button class="btn text-muted text-center btn-success" type="submit">Recover Password</button>
-				</form>
 			</div>
 		</div>
-
-		<div class="text-center">
-			<ul class="list-inline">
-				<li><a class="text-muted" href="#login" data-toggle="tab">Login</a></li>
-				<li><a class="text-muted" href="#forgot" data-toggle="tab">Forgot Password</a></li>
-			</ul>
-		</div>
-
 	</div>
 
 	<!--END PAGE CONTENT -->
@@ -93,6 +72,7 @@
 	<script src="<c:url value="/resources/plugins/jquery-2.1.4.min.js" />"></script>
 	<script src="<c:url value="/resources/plugins/bootstrap/js/bootstrap.js" />"></script>
 	<script src="<c:url value="/resources/js/login.js" />"></script>
+	
 
 	<!--END PAGE LEVEL SCRIPTS -->
 </body>

@@ -100,12 +100,11 @@ public class UserCreationController {
 
 	}
 
-	@RequestMapping(value = "/loadbyuid", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody String getUserByUserId() {
-		Staff stf = this.userCreationsSVC.getSvcStaffByUserId("a");
-		int si = stf.getUserCategories().size();
-		String s = String.valueOf(si);
-		return s;
+	@RequestMapping(value = "/loadbyuserid/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody String getUserByUserId(@PathVariable("id") String userName, Model model) {
+		Staff stf = this.userCreationsSVC.getSvcStaffByUserId(userName);
+		String staffId = stf.getStfId().toString();
+		return staffId;
 	}
 
 }

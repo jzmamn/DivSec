@@ -99,17 +99,15 @@ public class UserCreationDAOImpl implements UserCreationDAO {
 			query.setParameter("Id", userId);
 			List results = query.list();
 
-			if (results == null || results.isEmpty()) {
-				return null;
-			}
+			// if (results == null || results.isEmpty()) {
+			// return null;
+			// }
 
 			for (Iterator iterator = results.iterator(); iterator.hasNext();) {
 				staff = new Staff();
 				staff = (Staff) iterator.next();
 				System.out.print(" Category size: " + staff.getUserCategories().size());
-
 			}
-
 			logger.debug("Staff by username", staff.getStfName());
 			return staff;
 		} catch (HibernateException e) {

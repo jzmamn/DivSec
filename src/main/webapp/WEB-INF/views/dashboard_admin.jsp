@@ -67,7 +67,7 @@
 			<div class="inner" style="min-height: 700px;">
 				<div class="row">
 					<div class="col-lg-12">
-						<h3>Admin Dashboard</h3>
+						<h3>Dashboard - Admin</h3>
 					</div>
 				</div>
 
@@ -123,20 +123,20 @@
 							<div class="row">
 
 								<div class="panel panel-warning" style="width: 130px; height: 145px;">
-									
-										<a href="#" class="btn btn-warning btn-xs btn-block">Admin</a>
-										<div id="morris-donut-chart1" style="width: 130px; height: 130px;"></div>
-									
+
+									<a href="#" class="btn btn-warning btn-xs btn-block">Admin</a>
+									<div id="morris-donut-chart1" style="width: 130px; height: 130px;"></div>
+
 								</div>
 
 							</div>
 							<div class="row">
 
 								<div class="panel panel-warning" style="width: 130px; height: 145px;">
-								
+
 									<a href="#" class="btn btn-info btn-xs btn-block">Accounts</a>
 									<div id="morris-donut-chart2" style="width: 130px; height: 130px;"></div>
-								
+
 								</div>
 
 							</div>
@@ -476,8 +476,13 @@
 	<script src="<c:url value="/resources/plugins/datepicker/js/bootstrap-datepicker.js"/>"></script>
 	<script src="<c:url value="/resources/plugins/fullcalendar-1.6.2/fullcalendar/fullcalendar.min.js"/>"></script>
 	<script src="<c:url value="/resources/js/calendarInit.js"/>"></script>
+	<script src="<c:url value="/resources/js/divsec_login.js" />"></script>
 
 	<script type="text/javascript">
+	
+		var userId= "${user}";
+	
+
 		$("#dtpTop").datepicker({});
 
 		var date = new Date();
