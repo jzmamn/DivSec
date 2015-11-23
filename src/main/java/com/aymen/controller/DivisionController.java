@@ -6,6 +6,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -37,9 +39,8 @@ public class DivisionController {
 	@RequestMapping(method = RequestMethod.GET)
 	public String home(@ModelAttribute("maDivision") Division division, ModelMap model) {
 		logger.info("Welcome home! The client locale is {}.", division);
-
+		model.addAttribute("user", getPrincipal());
 		model.addAttribute("cmdDivision", new Division());
-		model.addAttribute("listDivision", this.divisionSvc.listSvcDivision());
 		return "setup/division";
 	}
 
@@ -92,6 +93,18 @@ public class DivisionController {
 			return "Delete Failed ! " + "\n" + e.toString();
 		}
 
+	}
+
+	private String getPrincipal() {
+		String userName = null;
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+		if (principal instanceof UserDetails) {
+			userName = ((UserDetails) principal).getUsername();
+		} else {
+			userName = principal.toString();
+		}
+		return userName;
 	}
 
 }

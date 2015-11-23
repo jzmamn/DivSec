@@ -9,6 +9,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.http.MediaType;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -42,6 +44,7 @@ public class PublicDetailController {
 	@RequestMapping(method = RequestMethod.GET)
 	public String home(ModelMap model) {
 		logger.info("Welcome home! The client locale is {}.");
+		model.addAttribute("user", getPrincipal());
 		return "process/public";
 	}
 
@@ -117,5 +120,17 @@ public class PublicDetailController {
 			return "Delete Failed ! " + "\n" + "Subject could not be deleted";
 		}
 
+	}
+
+	private String getPrincipal() {
+		String userName = null;
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+		if (principal instanceof UserDetails) {
+			userName = ((UserDetails) principal).getUsername();
+		} else {
+			userName = principal.toString();
+		}
+		return userName;
 	}
 }

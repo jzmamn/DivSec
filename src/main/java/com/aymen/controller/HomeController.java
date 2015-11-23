@@ -18,12 +18,12 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.aymen.entity.Staff;
 import com.aymen.service.UserCreationService;
 
 @Controller
 
 public class HomeController {
+
 	@Autowired
 	UserCreationService userCreationService;
 
@@ -36,41 +36,20 @@ public class HomeController {
 	}
 
 	@RequestMapping(value = "/admin", method = RequestMethod.GET)
-	public String adminPage(ModelMap model) {
-		Staff staff = getStaffInfo();
-
+	public String adminPage(ModelMap model, HttpServletRequest request) {
 		model.addAttribute("user", getPrincipal());
-
-		model.addAttribute("userId", staff.getStfId());
-		model.addAttribute("name", staff.getStfName());
-		model.addAttribute("dvsnId", "All");
-		model.addAttribute("dvsnName", "All");
-
 		return "dashboard_admin";
 	}
 
 	@RequestMapping(value = "/hod", method = RequestMethod.GET)
 	public String hodPage(ModelMap model) {
-		Staff staff = getStaffInfo();
 		model.addAttribute("user", getPrincipal());
-
-		model.addAttribute("userid", staff.getStfId());
-		model.addAttribute("name", staff.getStfName());
-		model.addAttribute("dvsnId", staff.getDivision().getDivId());
-		model.addAttribute("dvsnName", staff.getDivision().getDivName());
-
 		return "dashboard_hod";
 	}
 
 	@RequestMapping(value = "/staff", method = RequestMethod.GET)
 	public String staffPage(ModelMap model) {
-		Staff staff = getStaffInfo();
 		model.addAttribute("user", getPrincipal());
-
-		model.addAttribute("userid", staff.getStfId());
-		model.addAttribute("name", staff.getStfName());
-		model.addAttribute("dvsnId", staff.getDivision().getDivId());
-		model.addAttribute("dvsnName", staff.getDivision().getDivName());
 		return "dashboard_staff";
 	}
 
@@ -104,10 +83,6 @@ public class HomeController {
 			userName = principal.toString();
 		}
 		return userName;
-	}
-
-	private Staff getStaffInfo() {
-		return this.userCreationService.getSvcStaffByUserId(getPrincipal());
 	}
 
 }
