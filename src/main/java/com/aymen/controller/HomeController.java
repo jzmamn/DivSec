@@ -31,13 +31,14 @@ public class HomeController {
 
 	@RequestMapping(value = { "/", "/home" }, method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
+
 		logger.info("Welcome home! The client locale is {}.", locale);
 		return "home";
 	}
 
 	@RequestMapping(value = "/admin", method = RequestMethod.GET)
 	public String adminPage(ModelMap model, HttpServletRequest request) {
-		model.addAttribute("user", getPrincipal());
+		model.addAttribute("userName", getPrincipal());
 		return "dashboard_admin";
 	}
 

@@ -13,6 +13,7 @@ import org.springframework.stereotype.Repository;
 import com.aymen.entity.PublicIndividual;
 
 @Repository
+
 public class PublicDetailDAOImpl implements PublicDetailDAO {
 
 	private static final Logger logger = LoggerFactory.getLogger(PublicDetailDAOImpl.class);

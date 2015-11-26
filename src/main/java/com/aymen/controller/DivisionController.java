@@ -21,10 +21,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.aymen.entity.Division;
 import com.aymen.service.DivisionService;
 
-/**
- * This controller handles all the functions related to divisions.
- */
-
 @Controller
 @RequestMapping(value = "/division")
 public class DivisionController {

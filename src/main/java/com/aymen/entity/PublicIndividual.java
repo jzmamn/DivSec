@@ -88,6 +88,7 @@ public class PublicIndividual implements java.io.Serializable {
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "pi_notfication_type_id")
+	@JsonIgnore
 	public Notification getNotification() {
 		return this.notification;
 	}
@@ -198,7 +199,7 @@ public class PublicIndividual implements java.io.Serializable {
 		this.piDob = piDob;
 	}
 
-	@Column(name = "pi_gender", length = 5)
+	@Column(name = "pi_gender", length = 20)
 	public String getPiGender() {
 		return this.piGender;
 	}

@@ -481,6 +481,7 @@
 	<script type="text/javascript">
 	
 		var userId= "${user}";
+		var contextPath = "${pageContext.request.contextPath}";
 	
 
 		$("#dtpTop").datepicker({});

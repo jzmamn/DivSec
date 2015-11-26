@@ -1,19 +1,12 @@
 jQuery(function() {
 
-	alert(userId);
-
-	$.ajax({
-		url : "/usercreation/loadbyuserid/" + userId,
-		type : "post",
-		success : function(response) {
-			alert(response);
-
-		},
-		error : function(jqXHR, textStatus, errorThrown) {
-			console.log(textStatus, errorThrown);
-			alert(textStatus);
-		}
-
-	});
+	// alert(contextPath + "/usercreation/loadbyuserid/" + userId);
+	// $.ajax({
+	// dataType : "json",
+	// url : contextPath + "/usercreation/loadbyuserid/" + userId,
+	// success : function(data) {
+	// alert(data);
+	// }
+	// });
 
 });

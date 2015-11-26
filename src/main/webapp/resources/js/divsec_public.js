@@ -1,13 +1,79 @@
 jQuery(function() {
 
-	// alert(ctx + '/resources/json/notification.json');
+	$("#divFrmOpened").hide({});
+
+	var dtPublic = $('#dtOpened').dataTable({
+
+		// No of records should be displayed
+		"lengthMenu" : [ 5, 10, 20 ],
+
+		// Load table using JSON data by ajax
+		"ajax" : {
+			"url" : ctx + "/public/loadpi",
+			"dataSrc" : ""
+		},
+
+		"columns" : [ {
+			"data" : "piId"
+		}, {
+			"data" : "piName"
+		}, {
+			"data" : "piAddress1"
+		}, {
+			"data" : "piAddress2"
+		}, {
+			"data" : "piAddress3"
+		}, {
+			"data" : "piLandPhone"
+		}, {
+			"data" : "piMobilePhone"
+		}, {
+			"data" : "piEmail"
+		}, {
+			"data" : "piNic"
+		}, {
+			"data" : "piDob"
+		}, {
+			"data" : "piGender"
+		}, {
+			"data" : "piNote"
+		}, {
+			"data" : "piUserId"
+		}, {
+			"data" : "piActive"
+		}
+
+		],
+
+		"columnDefs" : [ {
+			"targets" : [ 7 ],
+			"visible" : false
+		}, {
+			"targets" : [ 8 ],
+			"visible" : false
+		}, {
+			"targets" : [ 9 ],
+			"visible" : false
+		}, {
+			"targets" : [ 10 ],
+			"visible" : false
+		}, {
+			"targets" : [ 11 ],
+			"visible" : false
+		}, {
+			"targets" : [ 12 ],
+			"visible" : false
+		}, {
+			"targets" : [ 13 ],
+			"visible" : false
+		} ]
+
+	});
 
 	$('#dp1').datepicker({
 		format : 'mm-dd-yyyy',
 		todayBtn : 'true'
 	});
-
-	$("#divFrmOpened").hide({});
 
 	$('#dtTable').dataTable({
 		"lengthMenu" : [ 5, 10, 20 ],
@@ -15,29 +81,26 @@ jQuery(function() {
 
 	// ----------- Opened Tab -------------
 
-	$('#dtOpened').dataTable({
-		"lengthMenu" : [ 5, 10, 20 ]
-	});
-
-	dtOpend = $('#dtOpened').dataTable();
-
-	dtOpend.$('tr').click(function() {
-
+	$('#dtOpened tbody').on('click', 'tr', function(e) {
 		$("#divFrmOpened").show({});
 		$('#divOpened').hide({});
-
 	});
 
-	$("#idTabOpened").click(function() {
-		$("#divFrmOpened").hide({});
-		$('#divOpened').show({});
-	});
+	// $("#idTabOpened").click(function() {
+	// $("#divFrmOpened").hide({});
+	// $('#divOpened').show({});
+	// });
 
 	// -----------End Opened Tab -------------
 
 	$("#idBtnAddPublic").click(function() {
-		$("#divFrmOpened").toggle({});
+		$("#divFrmOpened").show({});
+		$('#divOpened').hide({});
+	});
 
+	$("#idBtnViewPublic").click(function() {
+		$("#divFrmOpened").hide({});
+		$('#divOpened').show({});
 	});
 
 	// ========== Load Gender Dropdown List============

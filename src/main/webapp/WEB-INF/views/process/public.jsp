@@ -88,11 +88,17 @@
 								<div class="row">
 									<div class="col-lg-12">
 										<div class="col-lg-2">
-											<button class="btn btn-primary" id="idBtnAddPublic">
+											<button class="btn btn-primary btn-block" id="idBtnAddPublic">
 												<i class="icon-plus icon-white"></i> Add Public
 											</button>
-
 										</div>
+
+										<div class="col-lg-2">
+											<button class="btn btn-primary btn-block" id="idBtnViewPublic">
+												<i class="icon-eye-open icon-white"></i> View
+											</button>
+										</div>
+
 										<div class="col-lg-8"></div>
 									</div>
 								</div>
@@ -109,22 +115,21 @@
 										<h4>Opened Request</h4>
 										<hr />
 										<div id="divFrmOpened">
-
 											<div class="row">
 												<div class="col-lg-12">
 													<!--Public Form  -->
-													<form>
+													<form:form role="form" id="frmIdPublic" method="post" modelAttribute="maDivision" data-toggle="validator">
 														<div class="row">
 															<div class="col-lg-12">
 																<div class="col-lg-3">
 																	<div class="form-group">
-																		<input type="text" id="txtIdDivId" name="txtDivId" class="form-control" placeholder="Public id" readonly="" />
+																		<form:input path="piId" id="txtIdPubId" name="txtPubId" class="form-control" placeholder="Public id" readonly="" />
 																	</div>
 																</div>
 
 																<div class="col-lg-6">
 																	<div class="form-group ">
-																		<input type="text" id="txtIdDivId" name="txtDivId" class="form-control" placeholder="Name With Initial" />
+																		<form:input path="piName" id="txtIdName" name="txtName" class="form-control" placeholder="Name With Initial" />
 																	</div>
 																</div>
 															</div>
@@ -133,27 +138,24 @@
 															<div class="col-lg-12">
 																<div class="col-lg-3">
 																	<div class="form-group">
-																		<input type="text" id="txtIdDivId" name="txtDivId" class="form-control" placeholder="NIC" />
+																		<form:input path="piNic" id="txtIdNic" name="txtNic" class="form-control" placeholder="NIC" />
 																	</div>
 																</div>
 
 																<div class="col-lg-3">
 																	<div class="input-group date">
-																		<input type="text" class="form-control" value="12-02-2012" id="dp1">
+																		<form:input path="piDob" id="dp1" name="txtDob" class="form-control" value="12-02-2012" />
 																		<div class="input-group-addon">
 																			<span class="glyphicon glyphicon-th"></span>
 																		</div>
 																	</div>
 																</div>
-
-
-
 																<div class="col-lg-3">
 																	<div class="form-group">
 																		<select class="form-control" id="idGender">
 																		</select>
 																		<div id="genderId"></div>
-																		<div id="genderName"></div>
+																		<form:input path="piGender" id="genderName" name="txtNic" class="form-control" placeholder="NIC" />
 																	</div>
 																</div>
 															</div>
@@ -163,13 +165,13 @@
 															<div class="col-lg-12">
 																<div class="col-lg-6">
 																	<div class="form-group ">
-																		<input type="text" id="txtIdDivId" name="txtDivId" class="form-control" placeholder="Note" />
+																		<form:input path="piNote" id="txtIdDivId" name="txtDivId" class="form-control" placeholder="Note" />
 																	</div>
 																</div>
 																<div class="col-lg-3">
 																	<div class="form-group">
-																		<select class="form-control" id="idNotification">
-																		</select>
+																		<form:select path="piGender" class="form-control" id="idNotification">
+																		</form:select>
 																		<div id="notificationId"></div>
 																		<div id="notificationName"></div>
 																	</div>
@@ -243,13 +245,13 @@
 																</div>
 																<div class="col-lg-3"></div>
 																<div class="col-lg-3">
-																	<button id="btnClose" class="btn btn-block" data-dismiss="modal">
-																		<i class="icon- icon-white"></i> Close
-																	</button>
+																	<div class="form-group ">
+																		<input type="text" id="txtIdDivId" name="txtDivId" class="form-control" placeholder="UserId" />
+																	</div>
 																</div>
 															</div>
 														</div>
-													</form>
+													</form:form>
 													<!-- END Public Form -->
 
 												</div>
@@ -261,13 +263,20 @@
 												<table class="table table-striped  table-hover table-condensed" id="dtOpened">
 													<thead>
 														<tr>
-															<th style="width: 10%">Id</th>
-															<th style="width: 35%">Name</th>
-															<th style="width: 15%">NIC</th>
-															<th style="width: 15%">Mobile</th>
-															<th style="width: 15%">Tel</th>
-															<th style="width: 5%">Active</th>
-
+															<th style="width: 5%">Id</th>
+															<th style="width: 25%">Name</th>
+															<th style="width: 15%">Add1</th>
+															<th style="width: 20%">Add2</th>
+															<th>Add3</th>
+															<th style="width: 12%">Tel</th>
+															<th style="width: 12%">Mobile</th>
+															<th>Email</th>
+															<th>NIC</th>
+															<th>DOB</th>
+															<th>Gender</th>
+															<th>Note</th>
+															<th>UId</th>
+															<th>Active</th>
 														</tr>
 													</thead>
 												</table>
