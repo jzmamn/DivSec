@@ -80,7 +80,6 @@
 				</div>
 				<!--End Alert -->
 
-
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="panel panel-default">
@@ -118,12 +117,12 @@
 											<div class="row">
 												<div class="col-lg-12">
 													<!--Public Form  -->
-													<form:form role="form" id="frmIdPublic" method="post" modelAttribute="maDivision" data-toggle="validator">
+													<form:form role="form" id="frmIdPublic" method="post" modelAttribute="maPublic" data-toggle="validator">
 														<div class="row">
 															<div class="col-lg-12">
 																<div class="col-lg-3">
 																	<div class="form-group">
-																		<form:input path="piId" id="txtIdPubId" name="txtPubId" class="form-control" placeholder="Public id" readonly="" />
+																		<form:input path="piId" id="txtIdPubId" name="txtPubId" class="form-control" placeholder="Public id" readonly="true" />
 																	</div>
 																</div>
 
@@ -155,7 +154,7 @@
 																		<select class="form-control" id="idGender">
 																		</select>
 																		<div id="genderId"></div>
-																		<form:input path="piGender" id="genderName" name="txtNic" class="form-control" placeholder="NIC" />
+																		<form:input path="piGender" id="genderName" name="txtNic" class="form-control" placeholder="gender" />
 																	</div>
 																</div>
 															</div>
@@ -170,10 +169,10 @@
 																</div>
 																<div class="col-lg-3">
 																	<div class="form-group">
-																		<form:select path="piGender" class="form-control" id="idNotification">
-																		</form:select>
-																		<div id="notificationId"></div>
-																		<div id="notificationName"></div>
+																		<select class="form-control" id="idNotification">
+																		</select>
+																		<form:input path="notification.ntnId" id="notificationId" name="txtDivId" class="form-control" placeholder="nfnId" />
+																		<input  type="text"  id="notificationName" name="txtDivId" class="form-control" placeholder="nfnName" />
 																	</div>
 																</div>
 															</div>
@@ -182,7 +181,7 @@
 															<div class="col-lg-12">
 																<div class="col-lg-3">
 																	<div class="checkbox">
-																		<label> Is Active &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" value="" />
+																		<label> Is Active &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<form:checkbox path="piActive" id="chkIdPiActive" />
 																		</label>
 																	</div>
 																</div>
@@ -195,19 +194,19 @@
 															<div class="col-lg-12">
 																<div class="col-lg-3">
 																	<div class="form-group">
-																		<input type="text" id="txtIdDivId" name="txtDivId" class="form-control" placeholder="Address e.g. 23, Gall Road" />
+																		<form:input path="piAddress1" id="txtIdAdd1" name="txtAdd1" class="form-control" placeholder="Address e.g. 23, Gall Road" />
 																	</div>
 																</div>
 
 																<div class="col-lg-3">
 																	<div class="form-group ">
-																		<input type="text" id="txtIdDivId" name="txtDivId" class="form-control" placeholder="City e.g. Colombo" />
+																		<form:input path="piAddress2" id="txtIdAdd2" name="txtAdd2" class="form-control" placeholder="City e.g. Colombo" />
 																	</div>
 																</div>
 
 																<div class="col-lg-3">
 																	<div class="form-group ">
-																		<input type="text" id="txtIdDivId" name="txtDivId" class="form-control" placeholder="Division e.g. 04" />
+																		<form:input path="piAddress3" id="txtIdAdd3" name="txtAdd3" class="form-control" placeholder="Division e.g. 04" />
 																	</div>
 																</div>
 															</div>
@@ -216,19 +215,19 @@
 															<div class="col-lg-12">
 																<div class="col-lg-3">
 																	<div class="form-group">
-																		<input type="text" id="txtIdDivId" name="txtDivId" class="form-control" placeholder="Email" />
+																		<form:input path="piEmail" id="txtIdEmail" name="txtEmail" class="form-control" placeholder="Email" />
 																	</div>
 																</div>
 
 																<div class="col-lg-3">
 																	<div class="form-group ">
-																		<input type="text" id="txtIdDivId" name="txtDivId" class="form-control" placeholder="Land Phone" />
+																		<form:input path="piLandPhone" id="txtIdTel" name="txtTel" class="form-control" placeholder="Land Phone" />
 																	</div>
 																</div>
 
 																<div class="col-lg-3">
 																	<div class="form-group ">
-																		<input type="text" id="txtIdDivId" name="txtDivId" class="form-control" placeholder="Mobile phone" />
+																		<form:input path="piMobilePhone" id="txtIdMobile" name="txtMobile" class="form-control" placeholder="Mobile phone" />
 																	</div>
 																</div>
 															</div>
@@ -246,14 +245,13 @@
 																<div class="col-lg-3"></div>
 																<div class="col-lg-3">
 																	<div class="form-group ">
-																		<input type="text" id="txtIdDivId" name="txtDivId" class="form-control" placeholder="UserId" />
+																		<form:input path="piUserId" id="txtIdUid" name="txtUid" class="form-control" placeholder="UserId" />
 																	</div>
 																</div>
 															</div>
 														</div>
 													</form:form>
 													<!-- END Public Form -->
-
 												</div>
 											</div>
 										</div>

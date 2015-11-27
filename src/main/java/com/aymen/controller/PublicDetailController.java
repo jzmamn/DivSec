@@ -42,9 +42,10 @@ public class PublicDetailController {
 	}
 
 	@RequestMapping(method = RequestMethod.GET)
-	public String home(ModelMap model) {
+	public String home(@ModelAttribute("maPublic") PublicIndividual pi, ModelMap model) {
 		logger.info("Welcome home! The client locale is {}.");
 		model.addAttribute("user", getPrincipal());
+		model.addAttribute("cmdPublic", new PublicIndividual());
 		return "process/public";
 	}
 

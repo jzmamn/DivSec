@@ -107,7 +107,8 @@ jQuery(function() {
 	var $gender = $('#idGender');
 	// request the JSON data and parse into the select element
 	$.ajax({
-		url : ctx + '/resources/json/gender.json',
+		// url : ctx + '/resources/json/gender.json',
+		url : ctx + '/gender/load',
 		dataType : 'JSON',
 		success : function(data) {
 			// clear the current content of the select
@@ -146,7 +147,8 @@ jQuery(function() {
 	var $notification = $('#idNotification');
 	// request the JSON data and parse into the select element
 	$.ajax({
-		url : ctx + '/resources/json/notification.json',
+		// url : ctx + '/resources/json/notification.json',
+		url : ctx + '/notification/load',
 		dataType : 'JSON',
 		success : function(data) {
 			// clear the current content of the select
