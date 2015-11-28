@@ -40,6 +40,10 @@ jQuery(function() {
 		}, {
 			"data" : "piUserId"
 		}, {
+			"data" : "notification.ntnId"
+		}, {
+			"data" : "notification.ntnType"
+		}, {
 			"data" : "piActive"
 		}
 
@@ -66,6 +70,9 @@ jQuery(function() {
 		}, {
 			"targets" : [ 13 ],
 			"visible" : false
+		}, {
+			"targets" : [ 14 ],
+			"visible" : false
 		} ]
 
 	});
@@ -82,6 +89,37 @@ jQuery(function() {
 	// ----------- Opened Tab -------------
 
 	$('#dtOpened tbody').on('click', 'tr', function(e) {
+
+		var aPos = dtPublic.fnGetPosition(this);
+		// alert(aPos);
+		$('#txtIdPubId').val(dtPublic.fnGetData(aPos, 0));
+		$('#txtIdName').val(dtPublic.fnGetData(aPos, 1));
+		$('#txtIdAdd1').val(dtPublic.fnGetData(aPos, 2));
+		$('#txtIdAdd2').val(dtPublic.fnGetData(aPos, 3));
+		$('#txtIdAdd3').val(dtPublic.fnGetData(aPos, 4));
+		$('#txtIdTel').val(dtPublic.fnGetData(aPos, 5));
+		$('#txtIdMobile').val(dtPublic.fnGetData(aPos, 6));
+		$('#txtIdEmail').val(dtPublic.fnGetData(aPos, 7));
+		$('#txtIdNic').val(dtPublic.fnGetData(aPos, 8));
+		$('#dp1').val(dtPublic.fnGetData(aPos, 9));
+		$('#genderName').val(dtPublic.fnGetData(aPos, 10));
+		$('#txtIdNote').val(dtPublic.fnGetData(aPos, 11));
+		$('#txtIdUid').val(dtPublic.fnGetData(aPos, 12));
+		$('#notificationId').val(dtPublic.fnGetData(aPos, 13));
+		$('#notificationName').val(dtPublic.fnGetData(aPos, 14));
+
+		$('#idNotification').val(dtPublic.fnGetData(aPos, 14));
+
+		var varChkActive = dtPublic.fnGetData(aPos, 15);
+
+		if (varChkActive == true) {
+			blnIsDivActive = true;
+		} else {
+			blnIsDivActive = false;
+		}
+
+		$('#chkIdPiActive').prop('checked', blnIsDivActive);
+
 		$("#divFrmOpened").show({});
 		$('#divOpened').hide({});
 	});
@@ -106,6 +144,7 @@ jQuery(function() {
 	// ========== Load Gender Dropdown List============
 	var $gender = $('#idGender');
 	// request the JSON data and parse into the select element
+
 	$.ajax({
 		// url : ctx + '/resources/json/gender.json',
 		url : ctx + '/gender/load',
@@ -115,7 +154,8 @@ jQuery(function() {
 			$gender.html('');
 			// iterate over the data and append a select option
 			$.each(data, function(key, val) {
-				$gender.append('<option id="' + val.id + '">' + val.name
+				// alert(val.id + " " + val.gender);
+				$gender.append('<option id="' + val.id + '">' + val.gender
 						+ '</option>');
 			})
 		},
@@ -136,7 +176,7 @@ jQuery(function() {
 		str2 = $('#idGender').val();
 		$("select option:selected").each(function() {
 			$("#genderId").text(str1);
-			$("#genderName").text(str2);
+			$("#genderName").val(str2);
 		});
 
 	}).trigger("change");
@@ -155,8 +195,8 @@ jQuery(function() {
 			$notification.html('');
 			// iterate over the data and append a select option
 			$.each(data, function(key, val) {
-				$notification.append('<option id="' + val.id + '">' + val.name
-						+ '</option>');
+				$notification.append('<option id="' + val.ntnId + '">'
+						+ val.ntnType + '</option>');
 			})
 		},
 		error : function() {
@@ -176,8 +216,8 @@ jQuery(function() {
 		str2 = $('#idNotification').val();
 
 		$("select option:selected").each(function() {
-			$("#notificationId").text(str1);
-			$("#notificationName").text(str2);
+			$("#notificationId").val(str1);
+			$("#notificationName").val(str2);
 		});
 
 	}).trigger("change");

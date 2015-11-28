@@ -86,9 +86,9 @@ public class PublicIndividual implements java.io.Serializable {
 		this.piId = piId;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "pi_notfication_type_id")
-	@JsonIgnore
+
 	public Notification getNotification() {
 		return this.notification;
 	}
