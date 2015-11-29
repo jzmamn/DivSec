@@ -15,6 +15,8 @@ public interface UserCreationService {
 
 	public Staff getSvcStaffByUserId(String userId);
 
+	public List getSvcStaffByUserIdWithoutPwd(String userId);
+
 	public void deleteSvcStaff(int id);
 
 }

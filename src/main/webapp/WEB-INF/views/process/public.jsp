@@ -24,7 +24,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/plugins/dataTables/css/dataTables.bootstrap.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/plugins/Sweetalert-master/lib/sweet-alert.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/plugins/datepicker/css/bootstrap-datepicker.css" />
-
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/plugins/form-validator/theme-default.min.css" />
 
 
 <!-- END PAGE LEVEL  STYLES -->
@@ -123,14 +123,15 @@
 																<div class="col-lg-3">
 																	<div class="form-group">
 																		<label for="txtIdPubId" class="control-label">Public Id</label>
-																		<form:input path="piId"  type="text" id="txtIdPubId" name="txtPubId" class="form-control" placeholder="Public id" readonly="true" />
+																		<form:input path="piId" type="text" id="txtIdPubId" name="txtPubId" class="form-control" placeholder="Public id"
+																			readonly="true" />
 																	</div>
 																</div>
 
 																<div class="col-lg-6">
 																	<div class="form-group ">
 																		<label for="txtIdName" class="control-label">Name With Initial</label>
-																		<form:input path="piName"  type="text" id="txtIdName" name="txtName" class="form-control" placeholder="Name With Initial"
+																		<form:input path="piName" type="text" id="txtIdName" name="txtName" class="form-control" placeholder="Name With Initial"
 																			required="true" maxlength="30" />
 																	</div>
 																</div>
@@ -141,14 +142,15 @@
 																<div class="col-lg-3">
 																	<div class="form-group">
 																		<label for="txtIdNic" class="control-label">NIC</label>
-																		<form:input path="piNic"  type="text" id="txtIdNic" name="txtNic" class="form-control" placeholder="NIC" maxlength="10" />
+																		<form:input path="piNic" type="text" id="txtIdNic" name="txtNic" class="form-control" placeholder="NIC" maxlength="10" />
 																	</div>
 																</div>
 
 																<div class="col-lg-3">
 																	<div class="input-group">
 																		<label for="dp1" class="control-label">Date Of Birth</label>
-																		<form:input path="piDob" id="dp1" type="text" data-validation="date" data-validation-format="yyyy-mm-dd" name="txtDob" class="form-control" value="12-02-2012" placeholder="yyyy-mm-dd" />
+																		<form:input path="piDob" id="dp1" type="text" data-validation="date" data-validation-format="yyyy-mm-dd" name="txtDob"
+																			class="form-control" value="12-02-2012" placeholder="yyyy-mm-dd" />
 
 																	</div>
 																</div>
@@ -157,7 +159,8 @@
 																		<label for="idGender" class="control-label">Gender</label> <select class="form-control" id="idGender">
 																		</select>
 																		<div id="genderId"></div>
-																		<form:input path="piGender" type="text" id="genderName" name="txtGenderName" class="form-control" placeholder="gender" required="true" />
+																		<form:input path="piGender" type="text" id="genderName" name="txtGenderName" class="form-control" placeholder="gender"
+																			required="true" />
 																	</div>
 																</div>
 															</div>
@@ -168,16 +171,16 @@
 																<div class="col-lg-6">
 																	<div class="form-group ">
 																		<label for="txtIdNote" class="control-label">Note</label>
-																		<form:input path="piNote"  type="text" id="txtIdNote" name="txtNote" class="form-control" placeholder="Note" maxlength="50" />
+																		<form:input path="piNote" type="text" id="txtIdNote" name="txtNote" class="form-control" placeholder="Note" maxlength="50" />
 																	</div>
 																</div>
 																<div class="col-lg-3">
 																	<div class="form-group">
 																		<label for="notificationId" class="control-label">Notification</label> <select class="form-control" id="idNotification">
 																		</select>
-																		<form:input path="notification.ntnId"  type="text" id="notificationId" name="txtNtnId" class="form-control" placeholder="nfnId"
-																			required="true" />
-																		<input type="text" id="notificationName"  type="text" name="txtNtnName" class="form-control" placeholder="nfnName" />
+																		<form:input path="notification.ntnId" type="text" id="notificationId" name="txtNtnId" class="form-control"
+																			placeholder="nfnId" required="true" />
+																		<input type="text" id="notificationName" type="text" name="txtNtnName" class="form-control" placeholder="nfnName" />
 																	</div>
 																</div>
 															</div>
@@ -200,24 +203,24 @@
 																<div class="col-lg-3">
 																	<div class="form-group">
 																		<label for="txtIdAdd1" class="control-label">Address1</label>
-																		<form:input path="piAddress1"  type="text" id="txtIdAdd1" name="txtAdd1" class="form-control" placeholder="Address e.g. 23, Gall Road"
-																			maxlength="50" />
+																		<form:input path="piAddress1" type="text" id="txtIdAdd1" name="txtAdd1" class="form-control"
+																			placeholder="Address e.g. 23, Gall Road" maxlength="50" />
 																	</div>
 																</div>
 
 																<div class="col-lg-3">
 																	<div class="form-group ">
 																		<label for="txtIdAdd2" class="control-label">Address2</label>
-																		<form:input path="piAddress2"  type="text" id="txtIdAdd2" name="txtAdd2" class="form-control" placeholder="City e.g. Colombo"
-																			maxlength="50" />
+																		<form:input path="piAddress2" type="text" id="txtIdAdd2" name="txtAdd2" class="form-control"
+																			placeholder="City e.g. Colombo" maxlength="50" />
 																	</div>
 																</div>
 
 																<div class="col-lg-3">
 																	<div class="form-group ">
 																		<label for="txtIdAdd3" class="control-label">Address3</label>
-																		<form:input path="piAddress3"  type="text" id="txtIdAdd3" name="txtAdd3" class="form-control" placeholder="Division e.g. 04"
-																			maxlength="50" />
+																		<form:input path="piAddress3" type="text" id="txtIdAdd3" name="txtAdd3" class="form-control"
+																			placeholder="Division e.g. 04" maxlength="50" />
 																	</div>
 																</div>
 															</div>
@@ -228,23 +231,24 @@
 																	<div class="form-group">
 																		<label for="txtIdEmail" class="control-label">Email</label>
 																		<form:input path="piEmail" type="email" id="txtIdEmail" name="txtEmail" class="form-control" placeholder="Email"
-																		data-validation="email"	maxlength="99" />
+																			data-validation="email" maxlength="99" />
 																	</div>
 																</div>
 
 																<div class="col-lg-3">
 																	<div class="form-group ">
 																		<label for="txtIdTel" class="control-label">Tel</label>
-																		<form:input path="piLandPhone" type="text" id="txtIdTel" name="txtTel" class="form-control" placeholder="Land Phone" maxlength="10"
-																			data-validation="number"e />
+																		<form:input path="piLandPhone" type="text" id="txtIdTel" name="txtTel" class="form-control" placeholder="Land Phone"
+																			maxlength="10" data-validation="number" />
+																			<span class="help-block with-errors"></span>
 																	</div>
 																</div>
 
 																<div class="col-lg-3">
 																	<div class="form-group ">
 																		<label for="txtIdMobile" class="control-label">Mobile</label>
-																		<form:input path="piMobilePhone" type="text" id="txtIdMobile" name="txtMobile" class="form-control" placeholder="Mobile phone"
-																			maxlength="10" data-validation="number" />
+																		<form:input path="piMobilePhone" type="text" id="txtIdMobile" name="txtMobile" class="form-control"
+																			placeholder="Mobile phone" maxlength="10" data-validation="number" />
 																	</div>
 																</div>
 															</div>
@@ -262,7 +266,7 @@
 																<div class="col-lg-3"></div>
 																<div class="col-lg-3">
 																	<div class="form-group ">
-																		<form:input path="piUserId" id="txtIdUid" name="txtUid" class="form-control" placeholder="UserId" />
+																		<form:input path="piUserId" value="${stfId}" id="txtIdUid" name="txtUid" class="form-control" placeholder="UserId" />
 																	</div>
 																</div>
 															</div>
@@ -339,7 +343,11 @@
 	<script src="${pageContext.request.contextPath}/resources/plugins/datepicker/js/bootstrap-datepicker.js"></script>
 
 	<script>
-		var ctx = "${pageContext.request.contextPath}"
+		var contextPath = "${pageContext.request.contextPath}"
+		var userName = "${userName}";
+		var stfId = "${stfId}";
+		var divId = "${stfDivId}"
+		var divName = "${stfDivName}"
 	</script>
 
 	<!-- END PAGE LEVEL SCRIPTS -->

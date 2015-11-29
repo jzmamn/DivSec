@@ -24,7 +24,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.aymen.entity.PublicIndividual;
+import com.aymen.entity.Staff;
 import com.aymen.service.PublicDetailService;
+import com.aymen.service.UserCreationService;
 
 @Controller
 @RequestMapping(value = "/public")
@@ -35,6 +37,9 @@ public class PublicDetailController {
 	@Autowired
 	PublicDetailService pds;
 
+	@Autowired
+	UserCreationService ucs;
+
 	@InitBinder
 	protected void initBinder(WebDataBinder binder) {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
@@ -44,7 +49,13 @@ public class PublicDetailController {
 	@RequestMapping(method = RequestMethod.GET)
 	public String home(@ModelAttribute("maPublic") PublicIndividual pi, ModelMap model) {
 		logger.info("Welcome home! The client locale is {}.");
-		model.addAttribute("user", getPrincipal());
+
+		Staff staff = ucs.getSvcStaffByUserId(getPrincipal());
+		model.addAttribute("stfId", staff.getStfId());
+		model.addAttribute("stfDivId", staff.getDivision().getDivId());
+		model.addAttribute("stfDivName", staff.getDivision().getDivName());
+
+		model.addAttribute("userName", getPrincipal());
 		model.addAttribute("cmdPublic", new PublicIndividual());
 		return "process/public";
 	}

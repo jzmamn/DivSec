@@ -1,7 +1,23 @@
 jQuery(function() {
 
+	resetForm();
+
+	// ============Form validation==============
+	$.validate({
+		form : '#frmIdPublic',
+		modules : 'toggleDisabled',
+		disabledFormFilter : 'form.toggle-disabled',
+		onError : function($form) {
+			event.preventDefault();
+		}
+
+	});
+
+	// ==============Start Subject===================
+
 	$("#divFrmOpened").hide({});
 
+	// Load datatable
 	var dtPublic = $('#dtOpened').dataTable({
 
 		// No of records should be displayed
@@ -9,7 +25,7 @@ jQuery(function() {
 
 		// Load table using JSON data by ajax
 		"ajax" : {
-			"url" : ctx + "/public/loadpi",
+			"url" : contextPath + "/public/loadpi",
 			"dataSrc" : ""
 		},
 
@@ -104,7 +120,8 @@ jQuery(function() {
 		$('#dp1').val(dtPublic.fnGetData(aPos, 9));
 		$('#genderName').val(dtPublic.fnGetData(aPos, 10));
 		$('#txtIdNote').val(dtPublic.fnGetData(aPos, 11));
-		$('#txtIdUid').val(dtPublic.fnGetData(aPos, 12));
+		// $('#txtIdUid').val(dtPublic.fnGetData(aPos, 12));
+		$('#txtIdUid').val(stfId);
 		$('#notificationId').val(dtPublic.fnGetData(aPos, 13));
 		$('#notificationName').val(dtPublic.fnGetData(aPos, 14));
 
@@ -132,8 +149,10 @@ jQuery(function() {
 	// -----------End Opened Tab -------------
 
 	$("#idBtnAddPublic").click(function() {
+		resetForm();
 		$("#divFrmOpened").show({});
 		$('#divOpened').hide({});
+
 	});
 
 	$("#idBtnViewPublic").click(function() {
@@ -147,7 +166,7 @@ jQuery(function() {
 
 	$.ajax({
 		// url : ctx + '/resources/json/gender.json',
-		url : ctx + '/gender/load',
+		url : contextPath + '/gender/load',
 		dataType : 'JSON',
 		success : function(data) {
 			// clear the current content of the select
@@ -188,7 +207,7 @@ jQuery(function() {
 	// request the JSON data and parse into the select element
 	$.ajax({
 		// url : ctx + '/resources/json/notification.json',
-		url : ctx + '/notification/load',
+		url : contextPath + '/notification/load',
 		dataType : 'JSON',
 		success : function(data) {
 			// clear the current content of the select
@@ -223,4 +242,26 @@ jQuery(function() {
 	}).trigger("change");
 
 	// ========== Get Value From Notification Dropdown List============
+
+	function resetForm() {
+		$('#txtIdPubId').val("");
+		$('#txtIdName').val("");
+		$('#txtIdAdd1').val("");
+		$('#txtIdAdd2').val("");
+		$('#txtIdAdd3').val("");
+		$('#txtIdTel').val("");
+		$('#txtIdMobile').val("");
+		$('#txtIdEmail').val("");
+		$('#txtIdNic').val("");
+		$('#dp1').val("");
+		$('#idGender').val("");
+		$('#genderName').val("");
+		$('#txtIdNote').val("");
+		// $('#txtIdUid').val(dtPublic.fnGetData(aPos, 12));
+		$('#txtIdUid').val(stfId);
+		$('#notificationId').val("");
+		$('#notificationName').val("");
+		$('#idNotification').val("");
+	}
+
 });

@@ -71,9 +71,7 @@
 	</ul>
 
 	<div>
-		<div id="divIdUserId">${userId}</div>
-		<div id="divIdName">${name}</div>
-		<div id="divIdDvsnId">${dvsnId}</div>
+		<div id="divIdDvsnId">${stfDivId}</div>
 	</div>
 	
 </div>

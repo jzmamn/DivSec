@@ -15,5 +15,8 @@ public interface UserCreationDAO {
 
 	public Staff getStaffByUserId(String userId);
 
+	public List getStaffByUserIdWithoutPwd(String userId);
+
 	public void deleteStaff(int id);
+
 }

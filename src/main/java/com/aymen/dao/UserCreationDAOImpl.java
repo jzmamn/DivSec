@@ -89,7 +89,7 @@ public class UserCreationDAOImpl implements UserCreationDAO {
 		try {
 			System.out.println(userId);
 			String qry = "SELECT * FROM staff WHERE stf_user_id = :Id";
-
+			System.out.println("Query" + qry);
 			Staff staff = null;
 			Session session = this.sessionFactory.getCurrentSession();
 			SQLQuery query = (SQLQuery) session.createSQLQuery(qry);
@@ -97,14 +97,11 @@ public class UserCreationDAOImpl implements UserCreationDAO {
 			query.setParameter("Id", userId);
 			List results = query.list();
 
-			// if (results == null || results.isEmpty()) {
-			// return null;
-			// }
-
 			for (Iterator iterator = results.iterator(); iterator.hasNext();) {
 				staff = new Staff();
 				staff = (Staff) iterator.next();
 			}
+
 			logger.debug("Staff by username", staff.getStfName());
 			return staff;
 		} catch (HibernateException e) {
@@ -113,6 +110,28 @@ public class UserCreationDAOImpl implements UserCreationDAO {
 			return null;
 		}
 
+	}
+
+	@SuppressWarnings({ "unchecked", "rawtypes" })
+	@Override
+	public List<Staff> getStaffByUserIdWithoutPwd(String userId) {
+		try {
+
+			Session session = this.sessionFactory.getCurrentSession();
+			String qry = "SELECT  `stf_id`,`stf_name`,`stf_category_id`,`stf_user_id`,`stf_dvision_id`, "
+					+ " `stf_email`,`stf_mobile`,`stf_note`,`stf_active` FROM staff WHERE stf_user_id = :Id";
+
+			List<Staff> staffList = session.createQuery(" from Staff").list();
+			for (Staff staff : staffList) {
+
+			}
+			return staffList;
+
+		} catch (HibernateException e) {
+			e.printStackTrace();
+			System.out.println(e.toString());
+			return null;
+		}
 	}
 
 }

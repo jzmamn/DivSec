@@ -104,8 +104,7 @@ public class UserCreationController {
 
 	@RequestMapping(value = "/loadbyuserid/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody Staff getUserByUserId(@PathVariable("id") String userName, Model model) {
-		Staff stf = this.userCreationsSVC.getSvcStaffByUserId(userName);
-		return stf;
+		return this.userCreationsSVC.getSvcStaffByUserId(userName);
 	}
 
 	private String getPrincipal() {

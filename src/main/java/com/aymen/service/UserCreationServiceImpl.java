@@ -46,4 +46,9 @@ public class UserCreationServiceImpl implements UserCreationService {
 		return this.userCreationDAO.getStaffByUserId(userId);
 	}
 
+	@Override
+	public List getSvcStaffByUserIdWithoutPwd(String userId) {
+		return this.userCreationDAO.getStaffByUserIdWithoutPwd(userId);
+	}
+
 }
