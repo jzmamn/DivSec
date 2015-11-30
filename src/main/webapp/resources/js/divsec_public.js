@@ -12,6 +12,7 @@ jQuery(function() {
 		}
 
 	});
+	// ============ END Form validation==============
 
 	// ==============Start Subject===================
 
@@ -25,7 +26,7 @@ jQuery(function() {
 
 		// Load table using JSON data by ajax
 		"ajax" : {
-			"url" : contextPath + "/public/loadpi",
+			"url" : "public/loadpi",
 			"dataSrc" : ""
 		},
 
@@ -165,8 +166,8 @@ jQuery(function() {
 	// request the JSON data and parse into the select element
 
 	$.ajax({
-		// url : ctx + '/resources/json/gender.json',
-		url : contextPath + '/gender/load',
+		// url : contextPath + '/gender/load',
+		url : 'gender/load',
 		dataType : 'JSON',
 		success : function(data) {
 			// clear the current content of the select
@@ -206,8 +207,8 @@ jQuery(function() {
 	var $notification = $('#idNotification');
 	// request the JSON data and parse into the select element
 	$.ajax({
-		// url : ctx + '/resources/json/notification.json',
-		url : contextPath + '/notification/load',
+		// url : contextPath + '/notification/load',
+		url : 'notification/load',
 		dataType : 'JSON',
 		success : function(data) {
 			// clear the current content of the select
@@ -243,6 +244,8 @@ jQuery(function() {
 
 	// ========== Get Value From Notification Dropdown List============
 
+	// ========== Reset entire form ============
+
 	function resetForm() {
 		$('#txtIdPubId').val("");
 		$('#txtIdName').val("");
@@ -263,5 +266,31 @@ jQuery(function() {
 		$('#notificationName').val("");
 		$('#idNotification').val("");
 	}
+	// ==========End Reset entire form ============
+
+	// Form submission save and edit
+	$("#frmIdPublic").submit(function() {
+		// the Controller request mapping value as url.
+		var url = "public/create";
+		$.ajax({
+			type : "POST",
+			url : url,
+			data : $("#frmIdPublic").serialize(),
+			success : function() {
+				$("#modalDivisionSave").modal("hide");
+				// window.location.reload();
+				dt.fnReloadAjax('division/create1');
+				swal("Saved Sucessfully !", "....", "success");
+			},
+
+			fail : function() {
+				$("#modalDivisionSave").modal("hide");
+				swal("Save Failed !", "....", "error");
+			}
+		});
+
+		// avoid to execute the actual submit of the form.
+		return false;
+	});
 
 });

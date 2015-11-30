@@ -73,8 +73,8 @@ public class PublicDetailController {
 
 	// Create User or staff accounts - save and update
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
-	public @ResponseBody String addPuclicDetail(@ModelAttribute("maPublicIndividual") PublicIndividual pi,
-			BindingResult result, ModelMap model) {
+	public @ResponseBody String addPuclicDetail(@ModelAttribute("maPublic") PublicIndividual pi, BindingResult result,
+			ModelMap model) {
 
 		if (result.hasErrors()) {
 			logger.error("addPuclicDetail", result.getAllErrors());
