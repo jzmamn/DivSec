@@ -117,7 +117,7 @@
 											<div class="row">
 												<div class="col-lg-12">
 													<!--Public Form  -->
-													<form:form role="form" id="frmIdPublic" method="post" modelAttribute="maPublic" data-toggle="validator">
+													<form:form  data-toggle="validator" role="form" id="frmIdPublic" method="POST" modelAttribute="maPublic">
 														<div class="row">
 															<div class="col-lg-12">
 																<div class="col-lg-3">
@@ -150,7 +150,7 @@
 																	<div class="input-group">
 																		<label for="dp1" class="control-label">Date Of Birth</label>
 																		<form:input path="piDob" id="dp1" type="text" data-validation="date" data-validation-format="yyyy-mm-dd" name="txtDob"
-																			class="form-control" value="12-02-2012" placeholder="yyyy-mm-dd" />
+																			class="form-control" value="2012-12-12" placeholder="yyyy-mm-dd" />
 
 																	</div>
 																</div>
@@ -240,7 +240,7 @@
 																		<label for="txtIdTel" class="control-label">Tel</label>
 																		<form:input path="piLandPhone" type="text" id="txtIdTel" name="txtTel" class="form-control" placeholder="Land Phone"
 																			maxlength="10" data-validation="number" />
-																			<span class="help-block with-errors"></span>
+																		<span class="help-block with-errors"></span>
 																	</div>
 																</div>
 
@@ -348,6 +348,8 @@
 		var stfId = "${stfId}";
 		var divId = "${stfDivId}"
 		var divName = "${stfDivName}"
+
+		$('#frmIdPublic').validator();
 	</script>
 
 	<!-- END PAGE LEVEL SCRIPTS -->

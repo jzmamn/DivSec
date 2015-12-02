@@ -78,7 +78,7 @@ public class PublicDetailController {
 
 		if (result.hasErrors()) {
 			logger.error("addPuclicDetail", result.getAllErrors());
-			System.out.println("addPuclicDetail  " + result.getAllErrors());
+			System.out.println("c  " + result.getAllErrors());
 			return "error/error";
 		}
 

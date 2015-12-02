@@ -3,6 +3,7 @@ jQuery(function() {
 	resetForm();
 
 	// ============Form validation==============
+
 	$.validate({
 		form : '#frmIdPublic',
 		modules : 'toggleDisabled',
@@ -12,6 +13,7 @@ jQuery(function() {
 		}
 
 	});
+
 	// ============ END Form validation==============
 
 	// ==============Start Subject===================
@@ -95,7 +97,8 @@ jQuery(function() {
 	});
 
 	$('#dp1').datepicker({
-		format : 'mm-dd-yyyy',
+		format : 'yyyy-mm-dd',
+		todayHighlight : true,
 		todayBtn : 'true'
 	});
 
@@ -157,6 +160,7 @@ jQuery(function() {
 	});
 
 	$("#idBtnViewPublic").click(function() {
+		dtPublic.fnReloadAjax('public/loadpi');
 		$("#divFrmOpened").hide({});
 		$('#divOpened').show({});
 	});
@@ -277,15 +281,13 @@ jQuery(function() {
 			url : url,
 			data : $("#frmIdPublic").serialize(),
 			success : function() {
-				$("#modalDivisionSave").modal("hide");
-				// window.location.reload();
-				dt.fnReloadAjax('division/create1');
+				dtPublic.fnReloadAjax('public/loadpi');
 				swal("Saved Sucessfully !", "....", "success");
 			},
 
-			fail : function() {
-				$("#modalDivisionSave").modal("hide");
-				swal("Save Failed !", "....", "error");
+			fail : function(data) {
+
+				swal("Save Failed !", "....", data);
 			}
 		});
 
