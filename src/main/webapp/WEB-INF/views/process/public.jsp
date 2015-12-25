@@ -67,8 +67,8 @@
 					<div class="col-lg-12">
 						<ol class="breadcrumb">
 							<li><a href="#">Home</a></li>
-							<li><a href="#">Library</a></li>
-							<li class="active">Data</li>
+							<li><a href="#">Process</a></li>
+							<li class="active">Public Detail</li>
 						</ol>
 					</div>
 				</div>
@@ -259,7 +259,7 @@
 															<div class="col-lg-12">
 
 																<div class="col-lg-3">
-																	<button id="btnSave" class="btn btn-success btn-block">
+																	<button id="btnSave" type="submit" class="btn btn-success btn-block">
 																		<i class="icon-save icon-white"></i> Save
 																	</button>
 																</div>

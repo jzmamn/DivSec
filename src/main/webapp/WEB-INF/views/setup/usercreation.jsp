@@ -66,8 +66,7 @@
 					<div class="col-lg-12">
 						<ol class="breadcrumb">
 							<li><a href="#">Home</a></li>
-							<li><a href="#">Library</a></li>
-							<li class="active">Data</li>
+							<li><a href="#">Manage Users</a></li>
 						</ol>
 					</div>
 				</div>
@@ -87,9 +86,9 @@
 									<i class="icon-plus icon-white"></i> Add
 								</button>
 
-								<button id="btn" class="btn btn-primary">
+								<!-- <button id="btn" class="btn btn-primary">
 									<i class="icon-plus icon-white"></i> test
-								</button>
+								</button> -->
 							</div>
 							<div class="panel-body">
 								<div class="table-responsive">

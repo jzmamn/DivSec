@@ -1,5 +1,3 @@
-// default package
-// Generated Sep 30, 2015 10:10:01 PM by Hibernate Tools 4.3.1
 package com.aymen.entity;
 
 import static javax.persistence.GenerationType.IDENTITY;

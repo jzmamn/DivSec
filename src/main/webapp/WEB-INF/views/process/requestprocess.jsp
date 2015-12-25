@@ -332,40 +332,35 @@
 									<form role="form" id="block-validate">
 
 										<div class="form-group">
-											<div>
-												<input type="text" id="txtIdReqId" name="txtRequestId" class="form-control" disabled placeholder="Request Ref No." />
+											<input type="text" id="txtIdReqId" name="txtRequestId" class="form-control" disabled placeholder="Request Ref No." />
+										</div>
+
+										<div class="form-group">
+											<div class="input-group">
+												<input type="text" class="form-control" id="txtIdPublicName" name="txtPublicName" disabled placeholder="Select Public" /> <span
+													class="input-group-btn">
+													<button class="btn btn-warning" type="button" data-toggle="modal" data-target="#subjecSelection">
+														<i class="icon-search"></i>
+													</button>
+												</span> <input type="text" class="form-control" id="txtIdPublicId" name="txtIdPublicId" />
 											</div>
 										</div>
-
-
-										<div class="form-group input-group">
-											<input type="text" class="form-control" id="txtIdPublicName" name="txtPublicName" disabled placeholder="Select Public" /> <span
-												class="input-group-btn">
-												<button class="btn btn-warning" type="button" data-toggle="modal" data-target="#subjecSelection">
-													<i class="icon-search"></i>
-												</button>
-											</span> <input type="text" class="form-control" id="txtIdPublicId" name="txtIdPublicId" />
-										</div>
-
 
 										<div class="form-group input-group">
 											<input type="text" class="form-control" id="txtIdSubject" name="txtSubject" disabled placeholder="Select Subject" /> <span
 												class="input-group-btn">
-												<button class="btn btn-warning" type="button" data-toggle="modal" data-target="#subjecSelection">
+												<button class="btn btn-warning" type="button" data-toggle="modal" data-target="#modalSubject">
 													<i class="icon-search"></i>
 												</button>
 											</span> <input type="text" class="form-control" id="txtIdSubjectId" name="txtSearch" />
 										</div>
 
-										<div class="form-group ">
-											<div class="input-group">
-												<input type="text" class="form-control" id="txtIdDivision" name="txtDivision" disabled placeholder="Select the division" /> <span
-													class="input-group-btn">
-													<button class="btn btn-warning" type="button" data-toggle="modal" data-target="#subjecSelection">
-														<i class="icon-search"></i>
-													</button>
-												</span> <input type="text" class="form-control" id="txtIdDivisionId" name="txtDivisionId" />
-											</div>
+										<div class="form-group">
+											<input type="text" id="txtIdDivisionId" name="txtDivisionId" class="form-control" placeholder="Division ID" />
+										</div>
+
+										<div class="form-group">
+											<input type="text" id="txtIdDivisionName" name="txtDivisionName" class="form-control" placeholder="Division" />
 										</div>
 
 										<div class="form-group">
@@ -382,8 +377,6 @@
 												<input type="text" id="txtIdReqFee" name="txtReqFee" class="form-control" placeholder="Request Fee in Rs" />
 											</div>
 										</div>
-
-
 									</form>
 								</div>
 
@@ -469,123 +462,115 @@
 						</div>
 					</div>
 				</div>
-				<!--Process Request Stage Modal -->
+				<!--End Process Request Stage Modal -->
 
-				<!--Subject Selection Modal -->
+
+				<!-- Public Modal -->
 				<div class="col-lg-12">
-					<div class="modal fade" id="subjecSelection" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+					<div class="modal fade" id="modalSubject" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">
 						<div class="modal-dialog">
 							<div class="modal-content">
+
 								<div class="modal-header">
 									<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-									<h4 class="modal-title" id="H4">New Registration</h4>
+									<h4 class="modal-title" id="H4">Subject</h4>
 								</div>
-								<div class="modal-body col-lg-12">
-									<div class="col-lg-12">
-										<div class="panel panel-default">
-
-											<div class="panel-body">
-												<div class="table-responsive">
-													<table class="table table-hover" id="dataTables-example1">
-														<thead>
-															<tr>
-																<th>Subject Id</th>
-																<th>Subject Name</th>
-
-															</tr>
-														</thead>
-														<tbody>
-															<tr class="odd gradeX">
-																<td>Trident</td>
-																<td>Internet Explorer 4.0</td>
-
-
-															</tr>
-															<tr class="even gradeC">
-																<td>Trident</td>
-																<td>Internet Explorer 5.0</td>
-
-															</tr>
-
-															<tr class="odd gradeX">
-																<td>Trident</td>
-																<td>Internet Explorer 4.0</td>
-
-
-															</tr>
-															<tr class="even gradeC">
-																<td>Trident</td>
-																<td>Internet Explorer 5.0</td>
-
-															</tr>
-															<tr class="odd gradeX">
-																<td>Trident</td>
-																<td>Internet Explorer 4.0</td>
-
-															</tr>
-															<tr class="even gradeC">
-																<td>Trident</td>
-																<td>Internet Explorer 5.0</td>
-															</tr>
-															<tr class="odd gradeX">
-																<td>Trident</td>
-																<td>Internet Explorer 4.0</td>
-
-															</tr>
-															<tr class="even gradeC">
-																<td>Trident</td>
-																<td>Internet Explorer 5.0</td>
-															</tr>
-
-														</tbody>
-													</table>
-												</div>
-
-											</div>
-										</div>
+								<div class="modal-body">
+									<div class="table-responsive">
+										<table class="table table-striped table-bordered table-hover table-condensed" id="dtSubject">
+											<thead>
+												<tr>
+													<th style="width: 10%;">SbjId</th>
+													<th style="width: 80%;">Name</th>
+													<th style="width: 10%;">Active</th>
+												</tr>
+											</thead>
+										</table>
 									</div>
-									<div class="modal-footer">
-										<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-										<button type="button" class="btn btn-primary">Save changes</button>
+								</div>
+
+								<div class="modal-footer">
+									<div class="col-lg-4 col-sm-4 col-xs-4">
+										<button id="btnClose" class="btn btn-block" data-dismiss="modal">
+											<i class="icon-remove icon-white"></i> Close
+										</button>
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
-					<!--Subject Selection Modal -->
-
 				</div>
-				<!--END PAGE CONTENT -->
+				<!-- End Public Modal -->
+
+				<!-- Subject Modal -->
+				<div class="col-lg-12">
+					<div class="modal fade" id="modalSubject" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">
+						<div class="modal-dialog">
+							<div class="modal-content">
+
+								<div class="modal-header">
+									<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+									<h4 class="modal-title" id="H4">Subject</h4>
+								</div>
+								<div class="modal-body">
+									<div class="table-responsive">
+										<table class="table table-striped table-bordered table-hover table-condensed" id="dtSubject">
+											<thead>
+												<tr>
+													<th style="width: 10%;">SbjId</th>
+													<th style="width: 80%;">Name</th>
+													<th style="width: 10%;">Active</th>
+												</tr>
+											</thead>
+										</table>
+									</div>
+								</div>
+
+								<div class="modal-footer">
+									<div class="col-lg-4 col-sm-4 col-xs-4">
+										<button id="btnClose" class="btn btn-block" data-dismiss="modal">
+											<i class="icon-remove icon-white"></i> Close
+										</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- End Subject Modal -->
+
+
+
 
 			</div>
-</div>
-			<!--END MAIN WRAPPER -->
+		</div>
+		<!--END MAIN WRAPPER -->
 
-</div>
-			<!-- FOOTER -->
+	</div>
+	<!-- FOOTER -->
 	<jsp:include page="../include/include_footer.jsp" />
 	<!--END FOOTER -->
 
 
 
-			<!-- GLOBAL SCRIPTS -->
-			<script src="${pageContext.request.contextPath}/resources/plugins/jquery-2.1.4.min.js"></script>
-			<script src="${pageContext.request.contextPath}/resources/plugins/bootstrap/js/bootstrap.min.js"></script>
-			<script src="${pageContext.request.contextPath}/resources/plugins/modernizr-2.6.2-respond-1.1.0.min.js"></script>
-			<!-- END GLOBAL SCRIPTS -->
+	<!-- GLOBAL SCRIPTS -->
+	<script src="${pageContext.request.contextPath}/resources/plugins/jquery-2.1.4.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/plugins/bootstrap/js/bootstrap.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/plugins/modernizr-2.6.2-respond-1.1.0.min.js"></script>
+	<!-- END GLOBAL SCRIPTS -->
 
-			<!-- PAGE LEVEL SCRIPTS -->
-			<script src="${pageContext.request.contextPath}/resources/plugins/dataTables/js/jquery.dataTables.js"></script>
-			<script src="${pageContext.request.contextPath}/resources/plugins/dataTables/js/dataTables.bootstrap.js"></script>
-			<script src="${pageContext.request.contextPath}/resources/plugins/dataTables/js/fnReloadAjax.js"></script>
-			<script src="${pageContext.request.contextPath}/resources/plugins/validator/validator.min.js"></script>
-			<script src="${pageContext.request.contextPath}/resources/plugins/form-validator/jquery.form-validator.js"></script>
-			<script src="${pageContext.request.contextPath}/resources/plugins/Sweetalert-master/lib/sweet-alert.js"></script>
-			<script src="${pageContext.request.contextPath}/resources/plugins/datepicker/js/bootstrap-datepicker.js"></script>
-			<script src="${pageContext.request.contextPath}/resources/js/divsec_request.js"></script>
+	<!-- PAGE LEVEL SCRIPTS -->
+	<script src="${pageContext.request.contextPath}/resources/plugins/dataTables/js/jquery.dataTables.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/plugins/dataTables/js/dataTables.bootstrap.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/plugins/dataTables/js/fnReloadAjax.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/plugins/validator/validator.min.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/plugins/form-validator/jquery.form-validator.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/plugins/Sweetalert-master/lib/sweet-alert.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/plugins/datepicker/js/bootstrap-datepicker.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/divsec_request.js"></script>
 
 
-			<!-- END PAGE LEVEL SCRIPTS -->
+	<!-- END PAGE LEVEL SCRIPTS -->
 </body>
 
 <!-- END BODY -->

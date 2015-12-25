@@ -9,7 +9,6 @@ jQuery(function() {
 	// {data: 'name'},
 	// {data: 'position'},
 	// {data: 'salary'},
-	// {data: 'office'}
 	// ]
 
 	});

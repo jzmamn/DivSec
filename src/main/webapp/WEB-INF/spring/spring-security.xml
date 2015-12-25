@@ -40,15 +40,15 @@
 	<global-method-security pre-post-annotations="enabled" />
 
 	<beans:bean id="loginService" class="com.aymen.service.LoginServiceImpl" />
-
-	<!-- <beans:bean id="daoAuthenticationProvider" class="org.springframework.security.authentication.dao.DaoAuthenticationProvider"> 
-		<beans:property name="userDetailsService" ref="loginService" /> </beans:bean> 
-		<beans:bean id="authenticationManager" class="org.springframework.security.authentication.ProviderManager"> 
-		<beans:property name="providers"> <beans:list> <beans:ref bean="daoAuthenticationProvider" 
-		/> </beans:list> </beans:property> </beans:bean> -->
+	<!-- <authentication-manager> <authentication-provider user-service-ref="loginService" 
+		/> </authentication-manager> -->
 
 	<authentication-manager>
-		<authentication-provider user-service-ref="loginService" />
+		<authentication-provider user-service-ref="loginService">
+			<password-encoder ref="bcryptEncoder" />
+		</authentication-provider>
 	</authentication-manager>
+	<beans:bean id="bcryptEncoder"
+		class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder" />
 
 </beans:beans>

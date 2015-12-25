@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 18, 2015 at 03:55 PM
+-- Generation Time: Dec 02, 2015 at 07:07 PM
 -- Server version: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -78,6 +78,27 @@ CREATE TABLE IF NOT EXISTS `email_setup` (
   `email_password` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`email_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `gender`
+--
+
+CREATE TABLE IF NOT EXISTS `gender` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `gender` varchar(20) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+
+--
+-- Dumping data for table `gender`
+--
+
+INSERT INTO `gender` (`id`, `gender`) VALUES
+(1, 'Male'),
+(2, 'Female'),
+(3, 'Other');
 
 -- --------------------------------------------------------
 
@@ -177,21 +198,24 @@ CREATE TABLE IF NOT EXISTS `public_individual` (
   `pi_user_pwd` varchar(100) DEFAULT NULL,
   `pi_nic` varchar(10) DEFAULT NULL,
   `pi_dob` datetime DEFAULT NULL,
-  `pi_gender` varchar(5) DEFAULT NULL,
+  `pi_gender` varchar(20) DEFAULT NULL,
   `pi_note` varchar(100) DEFAULT NULL,
   `pi_user_id` int(11) DEFAULT NULL,
   `pi_notfication_type_id` int(11) DEFAULT NULL,
   `pi_active` bit(1) DEFAULT NULL,
   PRIMARY KEY (`pi_id`),
   KEY `pi_notfication_id_idx` (`pi_notfication_type_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data for table `public_individual`
 --
 
 INSERT INTO `public_individual` (`pi_id`, `pi_name`, `pi_address1`, `pi_address2`, `pi_address3`, `pi_land_phone`, `pi_mobile_phone`, `pi_email`, `pi_ind_user_id`, `pi_user_pwd`, `pi_nic`, `pi_dob`, `pi_gender`, `pi_note`, `pi_user_id`, `pi_notfication_type_id`, `pi_active`) VALUES
-(1, 'N.J.Aymen', '105, Gall Road,', 'Colombo', '6', '123123', '777123123', 'jzmamn@gmail.com', 821491169, '123', '821491169v', '1980-10-01 00:00:00', 'Male', 'This a test', 1, 2, b'1');
+(1, 'N.J.Aymen', '105, Gall Road,', 'Colombo', '6', '123123', '777123123', 'jzmamn@gmail.com', 821491169, '123', '821491169v', '1980-10-01 00:00:00', 'Male', 'This a test', 1, 2, b'1'),
+(2, 'Rafatha J Aymen', 'adsf1', 'adsf2', 'adf3', '1234232323', '1223232321', 'jzmamn@gmail.com', NULL, NULL, '232323232v', '2015-09-11 00:00:00', 'Male', 'adfs', 23, 2, b'1'),
+(3, 'Rafatha', 'adsf1', 'adsf2', 'adf3', '1234232323', '1223232321', 'jzmamn@gmail.com', NULL, NULL, '232323232v', '2015-09-12 00:00:00', 'Male', 'adfs', 23, 2, b'1'),
+(4, 'Fathima Rafatha', 'qewr', 'qer', 'qewr', '11', '11', 'jzmamn@gmail.com', NULL, NULL, '2322323232', '2015-12-14 00:00:00', 'Male', '233232', 23, 1, b'1');
 
 -- --------------------------------------------------------
 
@@ -280,20 +304,21 @@ CREATE TABLE IF NOT EXISTS `staff` (
   UNIQUE KEY `stf_user_id_UNIQUE` (`stf_user_id`),
   KEY `fk_stf_category_id_idx` (`stf_category_id`),
   KEY `fk_stf_divsion_id_idx` (`stf_dvision_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=39 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=41 ;
 
 --
 -- Dumping data for table `staff`
 --
 
 INSERT INTO `staff` (`stf_id`, `stf_name`, `stf_category_id`, `stf_user_id`, `stf_password`, `stf_dvision_id`, `stf_email`, `stf_mobile`, `stf_note`, `stf_active`) VALUES
-(21, 'admin1', 2, 'e', '4', 1, '', '', '', b'0'),
+(21, 'admin1', 1, 'Aymen', '4', 1, '', '', '', b'0'),
 (22, 'aymen', 2, 'aa', '11', 1, '', '', '', b'0'),
 (23, 'a', 1, 'a', '1', 2, '', '', '', b'0'),
 (29, 'af', 3, 'aaaa', '5', 2, '', '', '', b'0'),
 (36, 'aaa', 3, '11', '123', 1, '', '', '', b'1'),
 (37, 'abc', 1, 'auah', '12344', 1, 'jzmamn@gmail.com', '12343214', 'this si', b'1'),
-(38, 'asdf', 3, 'adf', 'aaaa', 1, '', '', '', b'1');
+(38, 'asdf', 3, 'adf', 'aaaa', 1, '', '', '', b'1'),
+(40, 'Shameer', 1, 'wererere', '1234', 1, '', '', '', b'1');
 
 -- --------------------------------------------------------
 
@@ -503,8 +528,8 @@ ALTER TABLE `staff`
 -- Constraints for table `staff_role`
 --
 ALTER TABLE `staff_role`
-  ADD CONSTRAINT `fk_role_user_id` FOREIGN KEY (`staff_id`) REFERENCES `staff` (`stf_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_role_role_id` FOREIGN KEY (`role_id`) REFERENCES `user_category` (`cat_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+  ADD CONSTRAINT `fk_role_role_id` FOREIGN KEY (`role_id`) REFERENCES `user_category` (`cat_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_role_user_id` FOREIGN KEY (`staff_id`) REFERENCES `staff` (`stf_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `stage_log`

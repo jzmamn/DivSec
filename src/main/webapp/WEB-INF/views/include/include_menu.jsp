@@ -22,7 +22,7 @@
 		<!-- Quick View -->
 		<li class="panel "><a href="#" data-parent="#menu" data-toggle="collapse" class="accordion-toggle" data-target="#qview-nav"> <i
 				class="icon-tasks"> </i> Quick View <span class="pull-right"> <i class="icon-angle-left"></i>
-			</span> &nbsp; <span class="label label-default">10</span>&nbsp;
+<!-- 			</span> &nbsp; <span class="label label-default">10</span>&nbsp; -->
 		</a>
 			<ul class="collapse" id="qview-nav">
 
@@ -44,7 +44,7 @@
 		<!-- Process -->
 		<li class="panel "><a href="#" data-parent="#menu" data-toggle="collapse" class="accordion-toggle collapsed"
 			data-target="#process-nav"> <i class="icon-pencil"></i> Process <span class="pull-right"> <i class="icon-angle-left"></i>
-			</span> &nbsp; <span class="label label-success">5</span>&nbsp;
+<!-- 			</span> &nbsp; <span class="label label-success">5</span>&nbsp; -->
 		</a>
 			<ul class="collapse" id="process-nav">
 				<li class=""><a href="${pageContext.request.contextPath}/public"><i class="icon-angle-right"></i> Public Details </a></li>
@@ -53,7 +53,7 @@
 		<!-- Charts -->
 		<li class="panel"><a href="#" data-parent="#menu" data-toggle="collapse" class="accordion-toggle" data-target="#admin-nav"> <i
 				class="icon-table"></i> Setup <span class="pull-right"> <i class="icon-angle-left"></i>
-			</span> &nbsp; <span class="label label-info">6</span>&nbsp;
+<!-- 			</span> &nbsp; <span class="label label-info">6</span>&nbsp; -->
 		</a>
 			<ul class="collapse" id="admin-nav">
 				<%-- 			<li><a href="${pageContext.request.contextPath}/mainmenu/main/50"><i class="icon-angle-right"></i> Preference </a></li> --%>

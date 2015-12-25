@@ -3,6 +3,8 @@ package com.aymen.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -18,11 +20,13 @@ public class UserCreationServiceImpl implements UserCreationService {
 
 	@Override
 	public void createSvcStaff(Staff staff) {
+		staff.setStfPassword(encrypPassword(staff.getStfPassword()));
 		this.userCreationDAO.createStaff(staff);
 	}
 
 	@Override
 	public void updateSvcStaff(Staff staff) {
+		staff.setStfPassword(encrypPassword(staff.getStfPassword()));
 		this.userCreationDAO.updateStaff(staff);
 	}
 
@@ -49,6 +53,15 @@ public class UserCreationServiceImpl implements UserCreationService {
 	@Override
 	public List getSvcStaffByUserIdWithoutPwd(String userId) {
 		return this.userCreationDAO.getStaffByUserIdWithoutPwd(userId);
+	}
+
+	/**
+	 * Password encryption using BCrypt
+	 */
+	private String encrypPassword(String pwd) {
+		PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		String hashedPassword = passwordEncoder.encode(pwd);
+		return hashedPassword;
 	}
 
 }
