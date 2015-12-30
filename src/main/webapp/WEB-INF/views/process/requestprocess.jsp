@@ -52,7 +52,6 @@
 		<!--END MENU SECTION -->
 
 
-
 		<!--PAGE CONTENT -->
 		<div id="content">
 			<div class="inner">
@@ -73,8 +72,6 @@
 										<i class="icon-plus icon-white"></i> New Request
 									</button>
 								</div>
-
-
 								<div class="col-lg-8"></div>
 							</div>
 						</div>
@@ -92,7 +89,6 @@
 
 										<li id="idApproval"><a href="#" data-toggle="tab"> <span class="badge pull-right">8</span> Approval
 										</a></li>
-
 
 										<li id="idCompleted"><a href="#" data-toggle="tab"> <span class="badge pull-right">65</span> Completed
 										</a></li>
@@ -339,7 +335,7 @@
 											<div class="input-group">
 												<input type="text" class="form-control" id="txtIdPublicName" name="txtPublicName" disabled placeholder="Select Public" /> <span
 													class="input-group-btn">
-													<button class="btn btn-warning" type="button" data-toggle="modal" data-target="#subjecSelection">
+													<button class="btn btn-warning" type="button" data-toggle="modal" data-target="#modalPublic">
 														<i class="icon-search"></i>
 													</button>
 												</span> <input type="text" class="form-control" id="txtIdPublicId" name="txtIdPublicId" />
@@ -467,22 +463,22 @@
 
 				<!-- Public Modal -->
 				<div class="col-lg-12">
-					<div class="modal fade" id="modalSubject" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">
+					<div class="modal fade" id="modalPublic" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">
 						<div class="modal-dialog">
 							<div class="modal-content">
 
 								<div class="modal-header">
 									<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-									<h4 class="modal-title" id="H4">Subject</h4>
+									<h4 class="modal-title" id="H4">Select Public</h4>
 								</div>
 								<div class="modal-body">
 									<div class="table-responsive">
-										<table class="table table-striped table-bordered table-hover table-condensed" id="dtSubject">
+										<table class="table table-striped table-bordered table-hover table-condensed" id="dtPublic">
 											<thead>
 												<tr>
-													<th style="width: 10%;">SbjId</th>
+													<th style="width: 10%;">Id</th>
 													<th style="width: 80%;">Name</th>
-													<th style="width: 10%;">Active</th>
+													<th style="width: 10%;">NIC</th>
 												</tr>
 											</thead>
 										</table>
@@ -538,9 +534,6 @@
 					</div>
 				</div>
 				<!-- End Subject Modal -->
-
-
-
 
 			</div>
 		</div>

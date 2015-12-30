@@ -13,6 +13,54 @@ jQuery(function() {
 
 	});
 
+	// Intialize Public Table
+	var dtPublic = $('#dtPublic').dataTable({
+
+		// No of records should be displayed
+		"lengthMenu" : [ 5, 10, 20 ],
+
+		// Load table using JSON data by ajax
+		"ajax" : {
+			"url" : "public/loadpi",
+			"dataSrc" : ""
+		},
+
+		"columns" : [ {
+			"data" : "piId"
+		}, {
+			"data" : "piName"
+		}, {
+			"data" : "piNic"
+		}
+
+		]
+
+	});
+
+	// Intialize Subject Table
+
+	var dtSubject = $('#dtSubject').dataTable({
+
+		// No of records should be displayed
+		"lengthMenu" : [ 5, 10, 20 ],
+
+		// Load table using JSON data by ajax
+		"ajax" : {
+			"url" : "subject/loadsubject",
+			"dataSrc" : ""
+		},
+
+		"columns" : [ {
+			"data" : "sbjId"
+		}, {
+			"data" : "sbjCode"
+		}, {
+			"data" : "sbjActive"
+		}
+
+		]
+	});
+
 	oTable = $('#dtTable').dataTable();
 	oTable.$('tr').click(function() {
 		$("#frmProcessRequest").show({});
@@ -44,6 +92,8 @@ jQuery(function() {
 		$('#tblProcessRequest').show({});
 
 	});
+
+	// Load Public Table
 
 	$('#dtStage').dataTable({
 		"lengthMenu" : [ 5, 10, 20 ],
