@@ -6,8 +6,11 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import com.aymen.entity.Request;
 
 @Controller
 @RequestMapping(value = "/reqprocess")
@@ -18,10 +21,11 @@ public class RequestProcessController {
 	// DivisionService divisionSvc;
 
 	@RequestMapping(method = RequestMethod.GET)
-	public String home(ModelMap model) {
+	public String home(@ModelAttribute("maDivision") Request req, ModelMap model) {
+		logger.info("Welcome home! The client locale is {}.", req);
 		model.addAttribute("user", getPrincipal());
-		logger.info("Welcome home! The client locale is {}.");
-		return "process/requestprocess";
+		model.addAttribute("maRequest", new Request());
+		return "setup/division";
 	}
 
 	private String getPrincipal() {

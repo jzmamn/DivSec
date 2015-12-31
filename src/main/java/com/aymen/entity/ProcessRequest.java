@@ -1,10 +1,8 @@
 package com.aymen.entity;
-// default package
-
-// Generated Dec 30, 2015 8:11:03 PM by Hibernate Tools 4.3.1.Final
 
 import static javax.persistence.GenerationType.IDENTITY;
 
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -33,7 +31,9 @@ public class ProcessRequest implements java.io.Serializable {
 	private Integer prDivisionId;
 	private Integer prUserId;
 	private Date prTxnDate;
+	private Integer prDuration;
 	private String prNote;
+	private BigDecimal prCost;
 	private Set<RequestLog> requestLogs = new HashSet<RequestLog>(0);
 	private Set<Instructions> instructionses = new HashSet<Instructions>(0);
 	private Set<ProcessStage> processStages = new HashSet<ProcessStage>(0);
@@ -42,15 +42,17 @@ public class ProcessRequest implements java.io.Serializable {
 	}
 
 	public ProcessRequest(Request request, RequestStatus requestStatus, Integer prSubjectId, Integer prDivisionId,
-			Integer prUserId, Date prTxnDate, String prNote, Set<RequestLog> requestLogs,
-			Set<Instructions> instructionses, Set<ProcessStage> processStages) {
+			Integer prUserId, Date prTxnDate, Integer prDuration, String prNote, BigDecimal prCost,
+			Set<RequestLog> requestLogs, Set<Instructions> instructionses, Set<ProcessStage> processStages) {
 		this.request = request;
 		this.requestStatus = requestStatus;
 		this.prSubjectId = prSubjectId;
 		this.prDivisionId = prDivisionId;
 		this.prUserId = prUserId;
 		this.prTxnDate = prTxnDate;
+		this.prDuration = prDuration;
 		this.prNote = prNote;
+		this.prCost = prCost;
 		this.requestLogs = requestLogs;
 		this.instructionses = instructionses;
 		this.processStages = processStages;
@@ -125,6 +127,15 @@ public class ProcessRequest implements java.io.Serializable {
 		this.prTxnDate = prTxnDate;
 	}
 
+	@Column(name = "pr_duration")
+	public Integer getPrDuration() {
+		return this.prDuration;
+	}
+
+	public void setPrDuration(Integer prDuration) {
+		this.prDuration = prDuration;
+	}
+
 	@Column(name = "pr_note", length = 100)
 	public String getPrNote() {
 		return this.prNote;
@@ -132,6 +143,15 @@ public class ProcessRequest implements java.io.Serializable {
 
 	public void setPrNote(String prNote) {
 		this.prNote = prNote;
+	}
+
+	@Column(name = "pr_cost", precision = 18)
+	public BigDecimal getPrCost() {
+		return this.prCost;
+	}
+
+	public void setPrCost(BigDecimal prCost) {
+		this.prCost = prCost;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "processRequest")

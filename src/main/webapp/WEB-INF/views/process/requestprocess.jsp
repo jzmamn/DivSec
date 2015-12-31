@@ -325,60 +325,79 @@
 									<h4 class="modal-title" id="H4">Public Request Form</h4>
 								</div>
 								<div class="modal-body">
-									<form role="form" id="block-validate">
+									<form:form  data-toggle="validator" role="form" id="frmIdPublic" method="POST" modelAttribute="maRequest">
 
 										<div class="form-group">
-											<input type="text" id="txtIdReqId" name="txtRequestId" class="form-control" disabled placeholder="Request Ref No." />
+											<label for="txtIdReqId" class="control-label">Request Id</label> <form:input path="reqId" type="text" id="txtIdReqId" name="txtRequestId"
+												class="form-control" disabled placeholder="Request Ref No." />
 										</div>
 
 										<div class="form-group">
+											<label for="txtIdPublicId" class="control-label">Public Name</label>
 											<div class="input-group">
 												<input type="text" class="form-control" id="txtIdPublicName" name="txtPublicName" disabled placeholder="Select Public" /> <span
 													class="input-group-btn">
 													<button class="btn btn-warning" type="button" data-toggle="modal" data-target="#modalPublic">
 														<i class="icon-search"></i>
 													</button>
-												</span> <input type="text" class="form-control" id="txtIdPublicId" name="txtIdPublicId" />
+												</span> <form:input path="publicIndividual.piId" type="text" class="form-control" id="txtIdPublicId" name="txtIdPublicId" />
 											</div>
 										</div>
 
-										<div class="form-group input-group">
-											<input type="text" class="form-control" id="txtIdSubject" name="txtSubject" disabled placeholder="Select Subject" /> <span
-												class="input-group-btn">
-												<button class="btn btn-warning" type="button" data-toggle="modal" data-target="#modalSubject">
-													<i class="icon-search"></i>
-												</button>
-											</span> <input type="text" class="form-control" id="txtIdSubjectId" name="txtSearch" />
+										<div class="form-group">
+											<label for="txtIdSubjectId" class="control-label">Subject</label>
+											<div class="input-group">
+												<input type="text" class="form-control" id="txtIdSubject" name="txtSubject" disabled placeholder="Select Subject" /> <span
+													class="input-group-btn">
+													<button class="btn btn-warning" type="button" data-toggle="modal" data-target="#modalSubject">
+														<i class="icon-search"></i>
+													</button>
+												</span> <form:input path="subject.sbjId" type="text" class="form-control" id="txtIdSubjectId" name="txtSearch" />
+											</div>
 										</div>
 
 										<div class="form-group">
-											<input type="text" id="txtIdDivisionId" name="txtDivisionId" class="form-control" placeholder="Division ID" />
+											<form:input path="division.divId" type="text" id="txtIdDivisionId" name="txtDivisionId" class="form-control" placeholder="Division ID" />
 										</div>
 
 										<div class="form-group">
-											<input type="text" id="txtIdDivisionName" name="txtDivisionName" class="form-control" placeholder="Division" />
+											<label for="txtIdDivisionName" class="control-label">Division</label> <input type="text" id="txtIdDivisionName"
+												name="txtDivisionName" class="form-control" placeholder="Division" />
 										</div>
 
-										<div class="form-group">
-											<input type="text" id="idTxtTxnDate" name="txtTxnDate" class="form-control" placeholder="Current date to be hidden" />
+										<div class="input-group">
+											<form:input path="reqEntDate" type="text" id="dp1" data-validation="date" data-validation-format="yyyy-mm-dd" name="txtDob" class="form-control" />
 										</div>
 
 										<div class="form-group">
 											<div>
-												<input type="text" id="txtIdNote" name="txtNote" class="form-control" placeholder="Note" />
+												<form:input path="reqNote" type="text" id="txtIdNote" name="txtNote" class="form-control" placeholder="Note" />
 											</div>
 										</div>
 										<div class="form-group">
 											<div>
-												<input type="text" id="txtIdReqFee" name="txtReqFee" class="form-control" placeholder="Request Fee in Rs" />
+												<form:input path="reqFees" type="text" id="txtIdReqFee" name="txtReqFee" class="form-control" placeholder="Request Fee in Rs" />
 											</div>
 										</div>
-									</form>
+										
+										<div class="form-group">
+											<div>
+												<form:input path="reqDurartion" type="text" id="txtIdDuration" name="txtDuration" class="form-control" placeholder="Request Fee in Rs" />
+											</div>
+										</div>
+										
+										<div class="form-group">
+											<div>
+												<form:input path="staff.stfId" type="text" id="txtIdStaff" name="txtStaff" class="form-control" placeholder="staff Id" />
+											</div>
+										</div>
+										
+									</form:form>
 								</div>
 
 								<div class="modal-footer">
 									<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-									<button type="button" class="btn btn-primary">Save changes</button>
+									<button type="submit" class="btn btn-primary">Save changes</button>
 								</div>
 
 							</div>
@@ -516,6 +535,10 @@
 													<th style="width: 10%;">SbjId</th>
 													<th style="width: 80%;">Name</th>
 													<th style="width: 10%;">Active</th>
+													<th style="width: 10%;">DivId</th>
+													<th style="width: 10%;">DivName</th>
+													<th style="width: 10%;">Duration</th>
+													<th style="width: 10%;">Cost</th>
 												</tr>
 											</thead>
 										</table>
@@ -561,7 +584,11 @@
 	<script src="${pageContext.request.contextPath}/resources/plugins/Sweetalert-master/lib/sweet-alert.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/plugins/datepicker/js/bootstrap-datepicker.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/divsec_request.js"></script>
-
+	<script>
+		$('#dp1').datepicker({
+			format : "yyyy-mm-dd"
+		});
+	</script>
 
 	<!-- END PAGE LEVEL SCRIPTS -->
 </body>

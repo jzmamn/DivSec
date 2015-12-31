@@ -56,10 +56,61 @@ jQuery(function() {
 			"data" : "sbjCode"
 		}, {
 			"data" : "sbjActive"
+		}, {
+			"data" : "division.divId"
+		}, {
+			"data" : "division.divName"
+		}, {
+			"data" : "sbjDuration"
+		}, {
+			"data" : "sbjCost"
 		}
 
-		]
+		],
+
+		"columnDefs" : [ {
+			"targets" : [ 3 ],
+			"visible" : false
+		}, {
+			"targets" : [ 4 ],
+			"visible" : false
+		}, {
+			"targets" : [ 5 ],
+			"visible" : false
+		}, {
+			"targets" : [ 6 ],
+			"visible" : false
+		} ]
 	});
+
+	// GET VALUE ON TABLE ROW CLICK From Subject table
+
+	$('#dtPublic tbody').on('click', 'tr', function(e) {
+		var aPos = dtPublic.fnGetPosition(this);
+		var sbjId = dtPublic.fnGetData(aPos, 0)
+		$('#txtIdPublicId').val(dtPublic.fnGetData(aPos, 0));
+		$('#txtIdPublicName').val(dtPublic.fnGetData(aPos, 1));
+		$("#modalPublic").modal("hide");
+	});
+
+	// GET VALUE ON TABLE ROW CLICK From PUBLIC table
+
+	$('#dtSubject tbody').on('click', 'tr', function(e) {
+		var aPos = dtSubject.fnGetPosition(this);
+		var sbjId = dtSubject.fnGetData(aPos, 0)
+		$('#txtIdSubjectId').val(dtSubject.fnGetData(aPos, 0));
+		$('#txtIdSubject').val(dtSubject.fnGetData(aPos, 1));
+		$('#txtIdDivisionId').val(dtSubject.fnGetData(aPos, 3));
+		$('#txtIdDivisionName').val(dtSubject.fnGetData(aPos, 4));
+		$('#txtIdReqFee').val(dtSubject.fnGetData(aPos, 5));
+		$('#txtIdDuration').val(dtSubject.fnGetData(aPos, 6));
+
+		$("#modalSubject").modal("hide");
+		dtSbjStg.fnReloadAjax('sbjstages/loadsbjstage');
+	});
+
+	$('#dp1').datepicker('setDate', new Date());
+	$('#dp1').datepicker('update');
 
 	oTable = $('#dtTable').dataTable();
 	oTable.$('tr').click(function() {
