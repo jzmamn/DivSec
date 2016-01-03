@@ -15,4 +15,6 @@ public interface RequestDAO {
 	public Request getRequestById(int id);
 
 	public void deleteRequest(int id);
+
+	public Request getLastRequest();
 }

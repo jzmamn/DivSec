@@ -1,8 +1,10 @@
 package com.aymen.dao;
 
+import java.util.Iterator;
 import java.util.List;
 
 import org.hibernate.HibernateException;
+import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
@@ -82,6 +84,34 @@ public class RequestDAOImpl implements RequestDAO {
 			e.printStackTrace();
 		}
 
+	}
+
+	@SuppressWarnings("rawtypes")
+	@Override
+	public Request getLastRequest() {
+		try {
+
+			String qry = "SELECT * FROM request ORDER BY req_id DESC LIMIT 1;";
+			System.out.println("Query" + qry);
+			Request lastReq = null;
+			Session session = this.sessionFactory.getCurrentSession();
+			SQLQuery query = (SQLQuery) session.createSQLQuery(qry);
+			query.addEntity(Request.class);
+
+			List results = query.list();
+
+			for (Iterator iterator = results.iterator(); iterator.hasNext();) {
+				lastReq = new Request();
+				lastReq = (Request) iterator.next();
+			}
+
+			logger.debug("This is the last request the request id" + lastReq.getReqId());
+			return lastReq;
+		} catch (HibernateException e) {
+			e.printStackTrace();
+			System.out.println(e.toString());
+			return null;
+		}
 	}
 
 }

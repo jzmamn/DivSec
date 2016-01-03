@@ -173,7 +173,6 @@ jQuery(function() {
 
 	// New Request Form submission save and edit
 	$("#frmIdRequest").submit(function() {
-		alert('hi');
 		// the Controller request mapping value as url.
 		var url = "reqprocess/create";
 		$.ajax({
@@ -182,9 +181,9 @@ jQuery(function() {
 			data : $("#frmIdRequest").serialize(),
 			success : function() {
 				$("#idModalRequest").modal("hide");
-				// window.location.reload();
-				// dt.fnReloadAjax('division/create1');
-				// swal("Saved Sucessfully !", "....", "success");
+				swal("Saved Sucessfully !", "....", "success");
+				dt.fnReloadAjax('reqprocess/loadrequest');
+
 			},
 
 			fail : function() {
