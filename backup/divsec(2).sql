@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 26, 2015 at 07:05 PM
+-- Generation Time: Dec 31, 2015 at 08:02 PM
 -- Server version: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -148,11 +148,14 @@ INSERT INTO `notification` (`ntn_id`, `ntn_type`, `ntn_active`) VALUES
 CREATE TABLE IF NOT EXISTS `process_request` (
   `pr_id` int(11) NOT NULL AUTO_INCREMENT,
   `pr_request_id` int(11) DEFAULT NULL,
+  `pr_subject_id` int(11) DEFAULT NULL,
   `pr_division_id` int(11) DEFAULT NULL,
   `pr_user_id` int(11) DEFAULT NULL,
   `pr_txn_date` datetime DEFAULT NULL,
   `pr_status_id` int(11) DEFAULT NULL,
+  `pr_duration` int(3) DEFAULT NULL,
   `pr_note` varchar(100) DEFAULT NULL,
+  `pr_cost` decimal(18,2) DEFAULT NULL,
   PRIMARY KEY (`pr_id`),
   KEY `fk_pr_request_id_idx` (`pr_request_id`),
   KEY `fk_pr_status_id_idx` (`pr_status_id`)
@@ -205,14 +208,17 @@ CREATE TABLE IF NOT EXISTS `public_individual` (
   `pi_active` bit(1) DEFAULT NULL,
   PRIMARY KEY (`pi_id`),
   KEY `pi_notfication_id_idx` (`pi_notfication_type_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data for table `public_individual`
 --
 
 INSERT INTO `public_individual` (`pi_id`, `pi_name`, `pi_address1`, `pi_address2`, `pi_address3`, `pi_land_phone`, `pi_mobile_phone`, `pi_email`, `pi_ind_user_id`, `pi_user_pwd`, `pi_nic`, `pi_dob`, `pi_gender`, `pi_note`, `pi_user_id`, `pi_notfication_type_id`, `pi_active`) VALUES
-(1, 'N.J.Aymen', '105, Gall Road,', 'Colombo', '6', '123123', '777123123', 'jzmamn@gmail.com', 821491169, '123', '821491169v', '1980-10-01 00:00:00', 'Male', 'This a test', 1, 2, b'1');
+(1, 'N.J.Aymen', '105, Gall Road,', 'Colombo', '6', '123123', '777123123', 'jzmamn@gmail.com', 821491169, '123', '821491169v', '1980-10-01 00:00:00', 'Male', 'This a test', 1, 2, b'1'),
+(2, 'Rafatha J Aymen', 'adsf1', 'adsf2', 'adf3', '1234232323', '1223232321', 'jzmamn@gmail.com', NULL, NULL, '232323232v', '2015-09-11 00:00:00', 'Male', 'adfs', 23, 2, b'1'),
+(3, 'Rafatha', 'adsf1', 'adsf2', 'adf3', '1234232323', '1223232321', 'jzmamn@gmail.com', NULL, NULL, '232323232v', '2015-09-12 00:00:00', 'Male', 'adfs', 23, 2, b'1'),
+(4, 'Fathima Rafatha', 'qewr', 'qer', 'qewr', '11', '11', 'jzmamn@gmail.com', NULL, NULL, '2322323232', '2015-12-14 00:00:00', 'Male', '233232', 23, 1, b'1');
 
 -- --------------------------------------------------------
 
@@ -228,8 +234,12 @@ CREATE TABLE IF NOT EXISTS `request` (
   `req_ent_date` datetime DEFAULT NULL,
   `req_note` varchar(100) DEFAULT NULL,
   `req_fees` decimal(10,2) DEFAULT NULL,
-  `req_to_be_approved` bit(1) DEFAULT NULL,
   `req_user_id` int(11) DEFAULT NULL,
+  `req_durartion` int(11) DEFAULT NULL,
+  `req_status_id` int(11) DEFAULT NULL,
+  `req_is_read` bit(1) DEFAULT NULL,
+  `req_processed` bit(1) DEFAULT NULL,
+  `req_is_void` bit(1) DEFAULT NULL,
   PRIMARY KEY (`req_id`),
   KEY `fk_req_public_id_idx` (`req_public_id`),
   KEY `fk_req_division_id_idx` (`req_division_id`),
@@ -247,7 +257,6 @@ CREATE TABLE IF NOT EXISTS `request_log` (
   `rl_id` int(11) NOT NULL AUTO_INCREMENT,
   `rl_pr_id` int(11) DEFAULT NULL,
   `rl_txn_date` datetime DEFAULT NULL,
-  `rl_division_id` int(11) DEFAULT NULL,
   `rl_status_id` int(11) DEFAULT NULL,
   `rl_user_id` int(11) DEFAULT NULL,
   `rl_note` varchar(100) DEFAULT NULL,
@@ -267,6 +276,19 @@ CREATE TABLE IF NOT EXISTS `request_status` (
   `rs_active` bit(1) DEFAULT NULL,
   PRIMARY KEY (`rs_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `request_status`
+--
+
+INSERT INTO `request_status` (`rs_id`, `rs_name`, `rs_active`) VALUES
+(1, 'New', b'1'),
+(2, 'Opened', b'1'),
+(3, 'Completed', b'1'),
+(4, 'Closed', b'1'),
+(5, 'ToBeApp', b'1'),
+(6, 'Approved', b'1'),
+(7, 'Rejected', b'1');
 
 -- --------------------------------------------------------
 
@@ -291,7 +313,7 @@ CREATE TABLE IF NOT EXISTS `staff` (
   `stf_name` varchar(50) DEFAULT NULL,
   `stf_category_id` int(11) DEFAULT NULL,
   `stf_user_id` varchar(10) DEFAULT NULL,
-  `stf_password` varchar(100) DEFAULT NULL,
+  `stf_password` varchar(300) DEFAULT NULL,
   `stf_dvision_id` int(11) NOT NULL,
   `stf_email` varchar(100) DEFAULT NULL,
   `stf_mobile` varchar(10) DEFAULT NULL,
@@ -308,9 +330,9 @@ CREATE TABLE IF NOT EXISTS `staff` (
 --
 
 INSERT INTO `staff` (`stf_id`, `stf_name`, `stf_category_id`, `stf_user_id`, `stf_password`, `stf_dvision_id`, `stf_email`, `stf_mobile`, `stf_note`, `stf_active`) VALUES
-(21, 'admin1', 1, 'Aymen', '4', 1, '', '', '', b'0'),
+(21, 'admin1', 2, 'Aymen', '$2a$10$YRhk2f9tSmElt5OvQh9JcOJyw9hEVSMkvu.PV4rmL28wQU3PWTgoi', 1, '', '', '', b'0'),
 (22, 'aymen', 2, 'aa', '11', 1, '', '', '', b'0'),
-(23, 'a', 1, 'a', '1', 2, '', '', '', b'0'),
+(23, 'a', 1, 'a', '$2a$10$LOqePml/koRGsk2YAIOFI.1YNKZg7EsQ5BAIuYP1nWOyYRl21dlne', 2, '', '', '', b'1'),
 (29, 'af', 3, 'aaaa', '5', 2, '', '', '', b'0'),
 (36, 'aaa', 3, '11', '123', 1, '', '', '', b'1'),
 (37, 'abc', 1, 'auah', '12344', 1, 'jzmamn@gmail.com', '12343214', 'this si', b'1'),
@@ -367,7 +389,16 @@ CREATE TABLE IF NOT EXISTS `stage_status` (
   `ss_name` varchar(50) DEFAULT NULL,
   `ss_active` bit(1) DEFAULT NULL,
   PRIMARY KEY (`ss_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+
+--
+-- Dumping data for table `stage_status`
+--
+
+INSERT INTO `stage_status` (`ss_id`, `ss_name`, `ss_active`) VALUES
+(1, 'Progress', b'1'),
+(2, 'Pending', b'1'),
+(3, 'Complete', b'1');
 
 -- --------------------------------------------------------
 

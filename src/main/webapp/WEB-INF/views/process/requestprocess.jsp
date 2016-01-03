@@ -96,7 +96,6 @@
 										<li id="idClosed"><a href="#" data-toggle="tab"> <span class="badge pull-right">3</span> Closed
 										</a></li>
 									</ul>
-
 								</div>
 							</div>
 						</div>
@@ -112,75 +111,28 @@
 												<tr>
 													<th style="width: 10%">Rq Id</th>
 													<th style="width: 12%">Status</th>
+													<th style="width: 15%">SbjId</th>
 													<th style="width: 15%">Subject</th>
 													<th style="width: 12%">Date</th>
 													<th style="width: 12%">Pb Id</th>
 													<th style="width: 20%">Pb Name</th>
+													<th style="width: 12%">Div Id</th>
+													<th style="width: 20%">Div Name</th>
+													<th style="width: 12%">Note</th>
+													<th style="width: 20%">Stf Id</th>
+													<th style="width: 12%">Stf Name</th>
+													<th style="width: 12%">Fee</th>
+													<th style="width: 12%">Duration</th>
+													<th style="width: 12%">Date</th>
 
 												</tr>
 											</thead>
-											<tbody>
-												<tr class="odd gradeX">
-													<td>120</td>
-													<td class="center"><span class="label label-warning">New</span></td>
-													<td class="center">Sand Permit</td>
-													<td class="center">2015-01-23</td>
-													<td>432</td>
-													<td>AbcAbcAbcAbc</td>
-												</tr>
-												<tr class="even gradeC">
-													<td>145</td>
-													<td><span class="label label-success">Opened</span></td>
-													<td>Win 95+</td>
-													<td class="center">5</td>
-													<td class="center">C</td>
-													<td class="center">5</td>
-
-												</tr>
-												<tr class="odd gradeA">
-													<td>160</td>
-													<td><span class="label label-success">Opened</span></td>
-													<td>Win 95+</td>
-													<td class="center">5.5</td>
-													<td class="center">A</td>
-													<td class="center">5</td>
-
-												</tr>
-												<tr class="odd gradeX">
-													<td>161</td>
-													<td><span class="label label-success">Opened</span></td>
-													<td>Win 95+</td>
-													<td class="center">4</td>
-													<td class="center">X</td>
-													<td class="center">5</td>
-
-												</tr>
-												<tr class="even gradeC">
-													<td>170</td>
-													<td><span class="label label-info">Approved</span></td>
-													<td>Win 95+</td>
-													<td class="center">5</td>
-													<td class="center">C</td>
-													<td class="center">5</td>
-
-												</tr>
-												<tr class="182 gradeA">
-													<td>Trident</td>
-													<td>Internet Explorer 5.5</td>
-													<td>Win 95+</td>
-													<td class="center">5.5</td>
-													<td class="center">A</td>
-													<td class="center">5</td>
-												</tr>
-											</tbody>
 										</table>
 									</div>
-
 
 									<!-- The Request Status Process -->
 									<div id="frmProcessRequest" class="row">
 										<div class="col-lg-12">
-
 											<div class="col-lg-8 col-md-8 col-sm-8">
 												<table class="table table-striped  table-hover table-condensed" id="dtStage">
 													<thead>
@@ -196,8 +148,6 @@
 															<td>1</td>
 															<td class="center">Fill all the forms</td>
 															<td class="center"><span class="label label-success">In-Progress</span></td>
-
-
 														</tr>
 														<tr class="even gradeC">
 															<td>2</td>
@@ -208,24 +158,17 @@
 															<td>3</td>
 															<td>send for verification</td>
 															<td><span class="label label-warning">Pending</span></td>
-
-
 														</tr>
 														<tr class="odd gradeX">
 															<td>4</td>
 															<td>send for land registry</td>
 															<td><span class="label label-warning">Pending</span></td>
-
-
-
 														</tr>
 														<tr class="even gradeC">
 															<td>5</td>
 															<td>Attest surveyor plan</td>
 															<td><span class="label label-info">completed</span></td>
-
 														</tr>
-
 													</tbody>
 												</table>
 											</div>
@@ -240,69 +183,95 @@
 													</div>
 
 													<div class="panel-body">
-														<div class="list-group">
+														<form>
 															<div>
-																Request Id : <span class="pull-right text-muted small"><em> 4 minutes ago</em> </span>
-															</div>
-															<div>
-																Subject : <span class="pull-right text-muted small"><em> 12 minutes ago</em> </span>
-															</div>
-															<div>
-																Public Id : <span class="pull-right text-muted small"><em> 27 minutes ago</em> </span>
-															</div>
-															<div>
-																Public Name : <span class="pull-right text-muted small"><em>43 minutes ago</em> </span>
-															</div>
-															<div>
-																Division : <span class="pull-right text-muted small"><em>11:32 AM</em> </span>
-															</div>
-															<div>
-																Staff Accepted : <span class="pull-right text-muted small"><em>11:13 AM</em> </span>
-															</div>
+																<div>
+																	Request Id : <span id="spnReqId" class="pull-right text-muted small"></span>
+																</div>
 
-															<div>
-																Req Status <span class="pull-right text-muted small"> <select id="cmdIdReqStatus">
+																<div style="display: none;">
+																	Subject Id : <span id="spnSbjId" class="pull-right text-muted small"></span>
+																</div>
 
-																</select>
-																</span>
-																<div id="idCmbReqStausId"></div>
-																<div id="idCmbReqStausName"></div>
+																<div>
+																	Subject : <span id="spnSbj" class="pull-right text-muted small"></span>
+																</div>
+																<div>
+																	Public Id : <span id="spnPubId" class=" pull-right text-muted small"></span>
+																</div>
+																<div>
+																	Public Name : <span id="spnPubName" class=" pull-right text-muted small"></span>
+																</div>
+
+																<div style="display: none;">
+																	Division Id : <span id="spnDivId" class="pull-right text-muted small"></span>
+																</div>
+
+																<div>
+																	Division : <span id="spnDivision" class="pull-right text-muted small"></span>
+																</div>
+
+																<div style="display: none;">
+																	Staff Id : <span id="spnStaffId" class="pull-right text-muted small"></span>
+																</div>
+
+																<div>
+																	Staff Accepted : <span id="spnStaff" class="pull-right text-muted small"></span>
+																</div>
+
+																<div>
+																	Req Status <span class="pull-right text-muted small"> <select id="cmdIdReqStatus">
+
+																	</select>
+																	</span>
+																	<div id="idCmbReqStausId"></div>
+																</div>
+
+																<div>
+																	Fee : <span id="spnFee" class="pull-right text-muted small"> <em>Yesterday esterday esterday esterday </em></span>
+																</div>
+
+																<div>
+																	Duration : <span id="spnDuration" class="pull-right text-muted small"> <em>Yesterday esterday esterday esterday
+																	</em></span>
+																</div>
+
+																<div>
+																	Accepted on : <span id="spnDate" class="pull-right text-muted small"> <em>Yesterday esterday esterday esterday
+																	</em></span>
+																</div>
+
+
+																<div>
+																	Remark : <span id="spnRemark" class="text-muted small"> <em>Yesterday esterday esterday esterday </em></span>
+																</div>
+
+
+
+																<div class="list-group-item">
+																	<button class="btn  btn-block btn-primary">
+																		<span class="icon-save"></span> Save Changes
+																	</button>
+																</div>
+
+																<div class="list-group-item">
+																	<button class="btn  btn-block btn-primary">
+																		<span class="icon-envelope-alt"></span> Send Email
+																	</button>
+																</div>
+
+																<div class="list-group-item">
+																	<button class="btn  btn-block btn-primary">
+																		<span class="icon-mobile-phone"></span> Send SMS
+																	</button>
+																</div>
+
 															</div>
-
-															<div>
-																To be Approved : <span class="pull-right text-muted small"> <input type="checkbox" id="d" value="" />
-																</span>
-															</div>
-
-															<div>
-																Remark : <span class="text-muted small"> <em>Yesterday esterday esterday esterday </em></span>
-															</div>
-
-															<div class="list-group-item">
-																<button class="btn  btn-block btn-primary">
-																	<span class="icon-save"></span> Save Changes
-																</button>
-															</div>
-
-															<div class="list-group-item">
-																<button class="btn  btn-block btn-primary">
-																	<span class="icon-envelope-alt"></span> Send Email
-																</button>
-															</div>
-
-															<div class="list-group-item">
-																<button class="btn  btn-block btn-primary">
-																	<span class="icon-mobile-phone"></span> Send SMS
-																</button>
-															</div>
-
-														</div>
-
+														</form>
 													</div>
 												</div>
 											</div>
 											<!--End Request Info Panel -->
-
 										</div>
 									</div>
 									<!-- END Request Status Process -->
@@ -325,11 +294,12 @@
 									<h4 class="modal-title" id="H4">Public Request Form</h4>
 								</div>
 								<div class="modal-body">
-									<form:form  data-toggle="validator" role="form" id="frmIdPublic" method="POST" modelAttribute="maRequest">
+									<form:form data-toggle="validator" role="form" id="frmIdRequest" method="POST" modelAttribute="maRequest">
 
 										<div class="form-group">
-											<label for="txtIdReqId" class="control-label">Request Id</label> <form:input path="reqId" type="text" id="txtIdReqId" name="txtRequestId"
-												class="form-control" disabled placeholder="Request Ref No." />
+											<label for="txtIdReqId" class="control-label">Request Id</label>
+											<form:input path="reqId" type="text" id="txtIdReqId" name="txtRequestId" class="form-control" readonly="true"
+												placeholder="Request Ref No." />
 										</div>
 
 										<div class="form-group">
@@ -340,7 +310,8 @@
 													<button class="btn btn-warning" type="button" data-toggle="modal" data-target="#modalPublic">
 														<i class="icon-search"></i>
 													</button>
-												</span> <form:input path="publicIndividual.piId" type="text" class="form-control" id="txtIdPublicId" name="txtIdPublicId" />
+												</span>
+												<form:input path="publicIndividual.piId" type="text" class="form-control" id="txtIdPublicId" name="txtIdPublicId" />
 											</div>
 										</div>
 
@@ -352,12 +323,14 @@
 													<button class="btn btn-warning" type="button" data-toggle="modal" data-target="#modalSubject">
 														<i class="icon-search"></i>
 													</button>
-												</span> <form:input path="subject.sbjId" type="text" class="form-control" id="txtIdSubjectId" name="txtSearch" />
+												</span>
+												<form:input path="subject.sbjId" type="text" class="form-control" id="txtIdSubjectId" name="txtSearch" />
 											</div>
 										</div>
 
 										<div class="form-group">
-											<form:input path="division.divId" type="text" id="txtIdDivisionId" name="txtDivisionId" class="form-control" placeholder="Division ID" />
+											<form:input path="division.divId" type="text" id="txtIdDivisionId" name="txtDivisionId" class="form-control"
+												placeholder="Division ID" />
 										</div>
 
 										<div class="form-group">
@@ -366,7 +339,8 @@
 										</div>
 
 										<div class="input-group">
-											<form:input path="reqEntDate" type="text" id="dp1" data-validation="date" data-validation-format="yyyy-mm-dd" name="txtDob" class="form-control" />
+											<form:input path="reqEntDate" type="text" id="dp1" data-validation="date" data-validation-format="yyyy-mm-dd" name="txtDob"
+												class="form-control" />
 										</div>
 
 										<div class="form-group">
@@ -379,26 +353,44 @@
 												<form:input path="reqFees" type="text" id="txtIdReqFee" name="txtReqFee" class="form-control" placeholder="Request Fee in Rs" />
 											</div>
 										</div>
-										
+
 										<div class="form-group">
 											<div>
-												<form:input path="reqDurartion" type="text" id="txtIdDuration" name="txtDuration" class="form-control" placeholder="Request Fee in Rs" />
+												<form:input path="reqDurartion" type="text" id="txtIdDuration" name="txtDuration" class="form-control" placeholder="Duration" />
 											</div>
 										</div>
-										
+
 										<div class="form-group">
 											<div>
-												<form:input path="staff.stfId" type="text" id="txtIdStaff" name="txtStaff" class="form-control" placeholder="staff Id" />
+												<form:input path="staff.stfId" type="text" id="txtIdStaff" name="txtStaff" class="form-control" placeholder="staff Id"
+													value="${stfId}" />
 											</div>
 										</div>
-										
+
+										<div class="form-group">
+											<div>
+												<form:input path="reqStatusId" type="text" id="txtIdReqid" name="txtReqId" class="form-control" value="1" />
+											</div>
+										</div>
+
+										<div class="form-group">
+											<div>
+												<form:input path="reqIsVoid" type="text" id="txtIdVoid" name="txtVoid" class="form-control" value="0" />
+											</div>
+										</div>
+
+										<div class="modal-footer">
+											<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+											<button id="btnSave" type="submit" class="btn btn-success">
+												<i class="icon-save icon-white"></i> Save
+											</button>
+										</div>
+
 									</form:form>
+
 								</div>
 
-								<div class="modal-footer">
-									<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-									<button type="submit" class="btn btn-primary">Save changes</button>
-								</div>
+
 
 							</div>
 						</div>
@@ -406,7 +398,6 @@
 				</div>
 
 				<!--End New Request Modal -->
-
 
 
 				<!--Process Request Stage Modal -->
@@ -588,6 +579,13 @@
 		$('#dp1').datepicker({
 			format : "yyyy-mm-dd"
 		});
+
+		var contextPath = "${pageContext.request.contextPath}"
+		var userName = "${userName}";
+		var divId = "${stfDivId}"
+		var divName = "${stfDivName}"
+
+		$('#frmIdPublic').validator();
 	</script>
 
 	<!-- END PAGE LEVEL SCRIPTS -->

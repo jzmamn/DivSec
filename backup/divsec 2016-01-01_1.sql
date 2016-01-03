@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 25, 2015 at 05:25 PM
+-- Generation Time: Jan 01, 2016 at 06:41 PM
 -- Server version: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -148,11 +148,14 @@ INSERT INTO `notification` (`ntn_id`, `ntn_type`, `ntn_active`) VALUES
 CREATE TABLE IF NOT EXISTS `process_request` (
   `pr_id` int(11) NOT NULL AUTO_INCREMENT,
   `pr_request_id` int(11) DEFAULT NULL,
+  `pr_subject_id` int(11) DEFAULT NULL,
   `pr_division_id` int(11) DEFAULT NULL,
   `pr_user_id` int(11) DEFAULT NULL,
   `pr_txn_date` datetime DEFAULT NULL,
   `pr_status_id` int(11) DEFAULT NULL,
+  `pr_duration` int(3) DEFAULT NULL,
   `pr_note` varchar(100) DEFAULT NULL,
+  `pr_cost` decimal(18,2) DEFAULT NULL,
   PRIMARY KEY (`pr_id`),
   KEY `fk_pr_request_id_idx` (`pr_request_id`),
   KEY `fk_pr_status_id_idx` (`pr_status_id`)
@@ -231,14 +234,26 @@ CREATE TABLE IF NOT EXISTS `request` (
   `req_ent_date` datetime DEFAULT NULL,
   `req_note` varchar(100) DEFAULT NULL,
   `req_fees` decimal(10,2) DEFAULT NULL,
-  `req_to_be_approved` bit(1) DEFAULT NULL,
   `req_user_id` int(11) DEFAULT NULL,
+  `req_durartion` int(11) DEFAULT NULL,
+  `req_status_id` int(11) DEFAULT NULL,
+  `req_is_read` bit(1) DEFAULT NULL,
+  `req_processed` bit(1) DEFAULT NULL,
+  `req_is_void` bit(1) DEFAULT NULL,
   PRIMARY KEY (`req_id`),
   KEY `fk_req_public_id_idx` (`req_public_id`),
   KEY `fk_req_division_id_idx` (`req_division_id`),
   KEY `fk_req_user_id_idx` (`req_user_id`),
   KEY `fk_req_subject_id_idx` (`req_subject_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='details about the request submitted by the public individual' AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='details about the request submitted by the public individual' AUTO_INCREMENT=3 ;
+
+--
+-- Dumping data for table `request`
+--
+
+INSERT INTO `request` (`req_id`, `req_subject_id`, `req_division_id`, `req_public_id`, `req_ent_date`, `req_note`, `req_fees`, `req_user_id`, `req_durartion`, `req_status_id`, `req_is_read`, `req_processed`, `req_is_void`) VALUES
+(1, 4, 2, 1, '2016-01-01 00:00:00', 'adsf', '1.00', 23, 1200, 1, NULL, NULL, b'0'),
+(2, 4, 2, 2, '2016-01-01 00:00:00', 'aadf', '1.00', 23, 1200, 1, b'0', b'0', b'0');
 
 -- --------------------------------------------------------
 
@@ -250,7 +265,6 @@ CREATE TABLE IF NOT EXISTS `request_log` (
   `rl_id` int(11) NOT NULL AUTO_INCREMENT,
   `rl_pr_id` int(11) DEFAULT NULL,
   `rl_txn_date` datetime DEFAULT NULL,
-  `rl_division_id` int(11) DEFAULT NULL,
   `rl_status_id` int(11) DEFAULT NULL,
   `rl_user_id` int(11) DEFAULT NULL,
   `rl_note` varchar(100) DEFAULT NULL,

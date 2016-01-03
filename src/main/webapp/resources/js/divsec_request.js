@@ -2,14 +2,77 @@ jQuery(function() {
 
 	$("#frmProcessRequest").hide({});
 
-	$('#dtTable').dataTable({
+	var dtRequest = $('#dtTable').dataTable({
+
+		// No of records should be displayed
 		"lengthMenu" : [ 5, 10, 20 ],
-	// url: '/api/myData',
-	// columns: [
-	// {data: 'name'},
-	// {data: 'position'},
-	// {data: 'salary'},
-	// ]
+
+		// Load table using JSON data by ajax
+		"ajax" : {
+			"url" : "reqprocess/loadrequest",
+			"dataSrc" : ""
+		},
+
+		"columns" : [ {
+			"data" : "reqId"
+		}, {
+			"data" : "reqStatusId"
+		}, {
+			"data" : "subject.sbjId"
+		}, {
+			"data" : "subject.sbjCode"
+		}, {
+			"data" : "reqEntDate"
+		}, {
+			"data" : "publicIndividual.piId"
+		}, {
+			"data" : "publicIndividual.piName"
+		}, {
+			"data" : "division.divId"
+		}, {
+			"data" : "division.divName"
+		}, {
+			"data" : "reqNote"
+		}, {
+			"data" : "staff.stfId"
+		}, {
+			"data" : "staff.stfName"
+		}, {
+			"data" : "reqFees"
+		}, {
+			"data" : "reqDurartion"
+		}, {
+			"data" : "reqEntDate"
+		} ],
+
+		"columnDefs" : [ {
+			"targets" : [ 2 ],
+			"visible" : false
+		}, {
+			"targets" : [ 7 ],
+			"visible" : false
+		}, {
+			"targets" : [ 8 ],
+			"visible" : false
+		}, {
+			"targets" : [ 9 ],
+			"visible" : false
+		}, {
+			"targets" : [ 10 ],
+			"visible" : false
+		}, {
+			"targets" : [ 11 ],
+			"visible" : false
+		}, {
+			"targets" : [ 12 ],
+			"visible" : false
+		}, {
+			"targets" : [ 13 ],
+			"visible" : false
+		}, {
+			"targets" : [ 14 ],
+			"visible" : false
+		} ]
 
 	});
 
@@ -38,7 +101,6 @@ jQuery(function() {
 	});
 
 	// Intialize Subject Table
-
 	var dtSubject = $('#dtSubject').dataTable({
 
 		// No of records should be displayed
@@ -102,20 +164,66 @@ jQuery(function() {
 		$('#txtIdSubject').val(dtSubject.fnGetData(aPos, 1));
 		$('#txtIdDivisionId').val(dtSubject.fnGetData(aPos, 3));
 		$('#txtIdDivisionName').val(dtSubject.fnGetData(aPos, 4));
-		$('#txtIdReqFee').val(dtSubject.fnGetData(aPos, 5));
-		$('#txtIdDuration').val(dtSubject.fnGetData(aPos, 6));
+		$('#txtIdDuration').val(dtSubject.fnGetData(aPos, 5));
+		$('#txtIdReqFee').val(dtSubject.fnGetData(aPos, 6));
 
 		$("#modalSubject").modal("hide");
-		dtSbjStg.fnReloadAjax('sbjstages/loadsbjstage');
+
+	});
+
+	// New Request Form submission save and edit
+	$("#frmIdRequest").submit(function() {
+		alert('hi');
+		// the Controller request mapping value as url.
+		var url = "reqprocess/create";
+		$.ajax({
+			type : "POST",
+			url : url,
+			data : $("#frmIdRequest").serialize(),
+			success : function() {
+				$("#idModalRequest").modal("hide");
+				// window.location.reload();
+				// dt.fnReloadAjax('division/create1');
+				// swal("Saved Sucessfully !", "....", "success");
+			},
+
+			fail : function() {
+				$("#idModalRequest").modal("hide");
+				swal("Save Failed !", "....", "error");
+			}
+		});
+
+		// avoid to execute the actual submit of the form.
+		return false;
 	});
 
 	$('#dp1').datepicker('setDate', new Date());
 	$('#dp1').datepicker('update');
 
-	oTable = $('#dtTable').dataTable();
-	oTable.$('tr').click(function() {
+	$('#dtTable tbody').on('click', 'tr', function(e) {
 		$("#frmProcessRequest").show({});
 		$('#tblProcessRequest').hide({});
+
+		var aPos = dtRequest.fnGetPosition(this);
+		var reqId = dtRequest.fnGetData(aPos, 0);
+
+		$('#spnReqId').text(dtRequest.fnGetData(aPos, 0));
+		// $('#spnStatusId').text(dtRequest.fnGetData(aPos, 1));
+		$('#spnSbjId').text(dtRequest.fnGetData(aPos, 2));
+		$('#spnSbj').text(dtRequest.fnGetData(aPos, 3));
+		$('#spnSbj').text(dtRequest.fnGetData(aPos, 3));
+		$('#spnPubId').text(dtRequest.fnGetData(aPos, 5));
+		$('#spnPubName').text(dtRequest.fnGetData(aPos, 6));
+		$('#spnDivId').text(dtRequest.fnGetData(aPos, 7));
+		$('#spnRemark').text(dtRequest.fnGetData(aPos, 9));
+		$('#spnDivision').text(dtRequest.fnGetData(aPos, 8));
+		$('#spnStaffId').text(dtRequest.fnGetData(aPos, 10));
+		$('#spnStaff').text(dtRequest.fnGetData(aPos, 11));
+
+		$('#spnFee').text(dtRequest.fnGetData(aPos, 12));
+		$('#spnDuration').text(dtRequest.fnGetData(aPos, 13));
+		$('#spnDate').text(dtRequest.fnGetData(aPos, 14));
+
 	});
 
 	$("#idApprove").click(function() {
@@ -191,14 +299,14 @@ jQuery(function() {
 	var $select1 = $('#cmdIdReqStatus');
 	// request the JSON data and parse into the select element
 	$.ajax({
-		url : 'request_status.JSON',
+		url : 'requestStatus/loadStatus',
 		dataType : 'JSON',
 		success : function(data) {
 			// clear the current content of the select
 			$select1.html('');
 			// iterate over the data and append a select option
 			$.each(data, function(key, val) {
-				$select1.append('<option id="' + val.id + '">' + val.name
+				$select1.append('<option id="' + val.rsId + '">' + val.rsName
 						+ '</option>');
 			})
 		},

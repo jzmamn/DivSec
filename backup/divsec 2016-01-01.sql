@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 02, 2015 at 07:07 PM
+-- Generation Time: Dec 30, 2015 at 04:43 PM
 -- Server version: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -148,6 +148,7 @@ INSERT INTO `notification` (`ntn_id`, `ntn_type`, `ntn_active`) VALUES
 CREATE TABLE IF NOT EXISTS `process_request` (
   `pr_id` int(11) NOT NULL AUTO_INCREMENT,
   `pr_request_id` int(11) DEFAULT NULL,
+  `pr_subject_id` int(11) DEFAULT NULL,
   `pr_division_id` int(11) DEFAULT NULL,
   `pr_user_id` int(11) DEFAULT NULL,
   `pr_txn_date` datetime DEFAULT NULL,
@@ -271,6 +272,19 @@ CREATE TABLE IF NOT EXISTS `request_status` (
   PRIMARY KEY (`rs_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `request_status`
+--
+
+INSERT INTO `request_status` (`rs_id`, `rs_name`, `rs_active`) VALUES
+(1, 'New', b'1'),
+(2, 'Opened', b'1'),
+(3, 'Completed', b'1'),
+(4, 'Closed', b'1'),
+(5, 'ToBeApp', b'1'),
+(6, 'Approved', b'1'),
+(7, 'Rejected', b'1');
+
 -- --------------------------------------------------------
 
 --
@@ -294,7 +308,7 @@ CREATE TABLE IF NOT EXISTS `staff` (
   `stf_name` varchar(50) DEFAULT NULL,
   `stf_category_id` int(11) DEFAULT NULL,
   `stf_user_id` varchar(10) DEFAULT NULL,
-  `stf_password` varchar(100) DEFAULT NULL,
+  `stf_password` varchar(300) DEFAULT NULL,
   `stf_dvision_id` int(11) NOT NULL,
   `stf_email` varchar(100) DEFAULT NULL,
   `stf_mobile` varchar(10) DEFAULT NULL,
@@ -311,9 +325,9 @@ CREATE TABLE IF NOT EXISTS `staff` (
 --
 
 INSERT INTO `staff` (`stf_id`, `stf_name`, `stf_category_id`, `stf_user_id`, `stf_password`, `stf_dvision_id`, `stf_email`, `stf_mobile`, `stf_note`, `stf_active`) VALUES
-(21, 'admin1', 1, 'Aymen', '4', 1, '', '', '', b'0'),
+(21, 'admin1', 2, 'Aymen', '$2a$10$YRhk2f9tSmElt5OvQh9JcOJyw9hEVSMkvu.PV4rmL28wQU3PWTgoi', 1, '', '', '', b'0'),
 (22, 'aymen', 2, 'aa', '11', 1, '', '', '', b'0'),
-(23, 'a', 1, 'a', '1', 2, '', '', '', b'0'),
+(23, 'a', 1, 'a', '$2a$10$LOqePml/koRGsk2YAIOFI.1YNKZg7EsQ5BAIuYP1nWOyYRl21dlne', 2, '', '', '', b'1'),
 (29, 'af', 3, 'aaaa', '5', 2, '', '', '', b'0'),
 (36, 'aaa', 3, '11', '123', 1, '', '', '', b'1'),
 (37, 'abc', 1, 'auah', '12344', 1, 'jzmamn@gmail.com', '12343214', 'this si', b'1'),
@@ -370,7 +384,16 @@ CREATE TABLE IF NOT EXISTS `stage_status` (
   `ss_name` varchar(50) DEFAULT NULL,
   `ss_active` bit(1) DEFAULT NULL,
   PRIMARY KEY (`ss_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+
+--
+-- Dumping data for table `stage_status`
+--
+
+INSERT INTO `stage_status` (`ss_id`, `ss_name`, `ss_active`) VALUES
+(1, 'Progress', b'1'),
+(2, 'Pending', b'1'),
+(3, 'Complete', b'1');
 
 -- --------------------------------------------------------
 
