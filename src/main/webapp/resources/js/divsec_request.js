@@ -145,6 +145,41 @@ jQuery(function() {
 		} ]
 	});
 
+	// Load Request stage table
+
+	var dtStage = $('#dtStage').dataTable({
+		"lengthMenu" : [ 5, 10, 20 ],
+
+		// Load table using JSON data by ajax
+		"ajax" : {
+			"url" : "processstg/loadreqstage/0",
+			"dataSrc" : ""
+		},
+
+		"columns" : [ {
+			"data" : "rstId"
+		}, {
+			"data" : "subjecStage.stgId"
+		}, {
+			"data" : "subjecStage.stgName"
+		}, {
+			"data" : "stageStatus.ssId"
+		}, {
+			"data" : "request.reqId"
+		}
+
+		],
+
+		"columnDefs" : [ {
+			"targets" : [ 1 ],
+			"visible" : false
+		}, {
+			"targets" : [ 4 ],
+			"visible" : false
+		} ]
+
+	});
+
 	// GET VALUE ON TABLE ROW CLICK From Subject table
 
 	$('#dtPublic tbody').on('click', 'tr', function(e) {
@@ -182,7 +217,7 @@ jQuery(function() {
 			success : function() {
 				$("#idModalRequest").modal("hide");
 				swal("Saved Sucessfully !", "....", "success");
-				dt.fnReloadAjax('reqprocess/loadrequest');
+				dtRequest.fnReloadAjax('reqprocess/loadrequest');
 
 			},
 
@@ -205,8 +240,10 @@ jQuery(function() {
 
 		var aPos = dtRequest.fnGetPosition(this);
 		var reqId = dtRequest.fnGetData(aPos, 0);
+		alert(reqId);
 
 		$('#spnReqId').text(dtRequest.fnGetData(aPos, 0));
+
 		// $('#spnStatusId').text(dtRequest.fnGetData(aPos, 1));
 		$('#spnSbjId').text(dtRequest.fnGetData(aPos, 2));
 		$('#spnSbj').text(dtRequest.fnGetData(aPos, 3));
@@ -222,6 +259,13 @@ jQuery(function() {
 		$('#spnFee').text(dtRequest.fnGetData(aPos, 12));
 		$('#spnDuration').text(dtRequest.fnGetData(aPos, 13));
 		$('#spnDate').text(dtRequest.fnGetData(aPos, 14));
+
+		dtStage.fnReloadAjax('processstg/loadreqstage/' + reqId);
+
+	});
+
+	$('#dtStage tbody').on('click', 'tr', function(e) {
+		$('#idModalReqStage').modal('show');
 
 	});
 
@@ -249,17 +293,6 @@ jQuery(function() {
 		$("#frmProcessRequest").hide({});
 		$('#tblProcessRequest').show({});
 
-	});
-
-	// Load Public Table
-
-	$('#dtStage').dataTable({
-		"lengthMenu" : [ 5, 10, 20 ],
-	});
-
-	oTable1 = $('#dtStage').dataTable();
-	oTable1.$('tr').click(function() {
-		$("#idModalReqStage").modal('show');
 	});
 
 	var $select = $('#people');

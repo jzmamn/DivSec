@@ -137,39 +137,15 @@
 												<table class="table table-striped  table-hover table-condensed" id="dtStage">
 													<thead>
 														<tr>
+															<th style="width: 10%">PrcStage</th>
 															<th style="width: 10%">StgId</th>
 															<th style="width: 60%">Stage</th>
-															<th style="width: 20%">Status</th>
+															<th style="width: 30%">Status</th>
+															<th style="width: 20%">ReqId</th>
 														</tr>
 													</thead>
 
-													<tbody>
-														<tr class="odd gradeX">
-															<td>1</td>
-															<td class="center">Fill all the forms</td>
-															<td class="center"><span class="label label-success">In-Progress</span></td>
-														</tr>
-														<tr class="even gradeC">
-															<td>2</td>
-															<td>Submit to the cleark</td>
-															<td><span class="label label-info">Completed</span></td>
-														</tr>
-														<tr class="odd gradeA">
-															<td>3</td>
-															<td>send for verification</td>
-															<td><span class="label label-warning">Pending</span></td>
-														</tr>
-														<tr class="odd gradeX">
-															<td>4</td>
-															<td>send for land registry</td>
-															<td><span class="label label-warning">Pending</span></td>
-														</tr>
-														<tr class="even gradeC">
-															<td>5</td>
-															<td>Attest surveyor plan</td>
-															<td><span class="label label-info">completed</span></td>
-														</tr>
-													</tbody>
+												
 												</table>
 											</div>
 

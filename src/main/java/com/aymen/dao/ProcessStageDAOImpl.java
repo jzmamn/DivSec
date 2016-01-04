@@ -2,6 +2,7 @@ package com.aymen.dao;
 
 import java.util.List;
 
+import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
@@ -57,10 +58,23 @@ public class ProcessStageDAOImpl implements ProcessStageDAO {
 
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
-	public List<ProcessStage> listReqStgBySbjId(int reqId) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<ProcessStage> listReqStgByReqId(int reqId) {
+		String sql = "SELECT * FROM process_stage WHERE rst_pr_id = :Id ";
+		Session session = sessionFactory.getCurrentSession();
+		try {
+			SQLQuery query = session.createSQLQuery(sql);
+			query.addEntity(ProcessStage.class);
+			query.setParameter("Id", reqId);
+			List<ProcessStage> lst = query.list();
+			return lst;
+		} catch (Exception e) {
+			System.out.println(e.toString());
+			logger.error(e.toString());
+			return null;
+		}
+
 	}
 
 }

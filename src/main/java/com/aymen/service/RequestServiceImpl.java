@@ -1,5 +1,8 @@
 package com.aymen.service;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,9 +35,10 @@ public class RequestServiceImpl implements RequestService {
 		req.setReqIsRead(false);
 		req.setReqProcessed(false);
 
+		this.reqDao.createRequest(req);
+
 		// Save new Requests
 		Request lastRequest = reqDao.getLastRequest();
-		this.reqDao.createRequest(req);
 
 		// Save stages for new requests
 		List<SubjecStage> lstStg = sbjStgDao.listSbjStgBySbjId(lastRequest.getSubject().getSbjId());
@@ -42,14 +46,20 @@ public class RequestServiceImpl implements RequestService {
 
 		for (int i = 0; i < lstStg.size(); i++) {
 			ProcessStage prcStage = new ProcessStage();
+			SubjecStage sbjStage = new SubjecStage();
+
 			StageStatus stgStatus = new StageStatus();
 
 			prcStage.setRequest(lastRequest);
 			prcStage.getRequest().setReqId(lastRequest.getReqId());
-			prcStage.setRstId(lstStg.get(i).getStgId());
+
+			prcStage.setSubjecStage(sbjStage);
+			prcStage.getSubjecStage().setStgId(lstStg.get(i).getStgId());
 
 			prcStage.setStageStatus(stgStatus);
 			prcStage.getStageStatus().setSsId(1);
+
+			prcStage.setRstTxnDate(getCurrentDate());
 
 			prcStage.setRsSequenceNo(i);
 			prcStage.setRstNote("");
@@ -80,6 +90,20 @@ public class RequestServiceImpl implements RequestService {
 	@Override
 	public void deleteSvcRequest(int id) {
 		this.reqDao.deleteRequest(id);
+	}
+
+	public Date getCurrentDate() {
+		SimpleDateFormat sdf = new SimpleDateFormat("dd-M-yyyy hh:mm:ss");
+		String dateInString = sdf.format(new Date());
+		Date txnDate;
+		try {
+			txnDate = sdf.parse(dateInString);
+			return txnDate;
+		} catch (ParseException e) {
+			e.printStackTrace();
+			return null;
+		}
+
 	}
 
 }

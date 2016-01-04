@@ -111,6 +111,10 @@ public class RequestDAOImpl implements RequestDAO {
 			e.printStackTrace();
 			System.out.println(e.toString());
 			return null;
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println(e.toString());
+			return null;
 		}
 	}
 

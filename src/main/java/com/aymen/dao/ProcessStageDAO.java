@@ -16,6 +16,6 @@ public interface ProcessStageDAO {
 
 	public void deleteReqStg(int id);
 
-	public List<ProcessStage> listReqStgBySbjId(int reqId);
+	public List<ProcessStage> listReqStgByReqId(int reqId);
 
 }

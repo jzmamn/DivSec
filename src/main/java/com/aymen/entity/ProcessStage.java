@@ -20,8 +20,13 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+
 @Entity
 @Table(name = "process_stage", catalog = "divsec")
+@JsonIdentityInfo(generator = ObjectIdGenerators.None.class, property = "@rstId")
 public class ProcessStage implements java.io.Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -29,7 +34,7 @@ public class ProcessStage implements java.io.Serializable {
 	private Request request;
 	private Staff staff;
 	private StageStatus stageStatus;
-	private Integer rstStgId;
+	private SubjecStage subjecStage;
 	private Integer rsSequenceNo;
 	private Date rstTxnDate;
 	private String rstNote;
@@ -43,12 +48,13 @@ public class ProcessStage implements java.io.Serializable {
 		this.stageStatus = stageStatus;
 	}
 
-	public ProcessStage(Request request, Staff staff, StageStatus stageStatus, Integer rstStgId, Integer rsSequenceNo,
-			Date rstTxnDate, String rstNote, Set<StageLog> stageLogs) {
+	public ProcessStage(Request request, Staff staff, StageStatus stageStatus, SubjecStage subjecStage,
+			Integer rstStgId, Integer rsSequenceNo, Date rstTxnDate, String rstNote, Set<StageLog> stageLogs) {
 		this.request = request;
 		this.staff = staff;
 		this.stageStatus = stageStatus;
-		this.rstStgId = rstStgId;
+		this.subjecStage = subjecStage;
+
 		this.rsSequenceNo = rsSequenceNo;
 		this.rstTxnDate = rstTxnDate;
 		this.rstNote = rstNote;
@@ -67,7 +73,7 @@ public class ProcessStage implements java.io.Serializable {
 		this.rstId = rstId;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "rst_pr_id", nullable = false)
 	public Request getRequest() {
 		return this.request;
@@ -77,7 +83,7 @@ public class ProcessStage implements java.io.Serializable {
 		this.request = request;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "rst_user_id")
 	public Staff getStaff() {
 		return this.staff;
@@ -87,7 +93,7 @@ public class ProcessStage implements java.io.Serializable {
 		this.staff = staff;
 	}
 
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "rst_stage_status_id", nullable = false)
 	public StageStatus getStageStatus() {
 		return this.stageStatus;
@@ -97,13 +103,14 @@ public class ProcessStage implements java.io.Serializable {
 		this.stageStatus = stageStatus;
 	}
 
-	@Column(name = "rst_stg_id")
-	public Integer getRstStgId() {
-		return this.rstStgId;
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "rst_stg_id")
+	public SubjecStage getSubjecStage() {
+		return this.subjecStage;
 	}
 
-	public void setRstStgId(Integer rstStgId) {
-		this.rstStgId = rstStgId;
+	public void setSubjecStage(SubjecStage subjecStage) {
+		this.subjecStage = subjecStage;
 	}
 
 	@Column(name = "rs_sequence_no")
@@ -135,6 +142,7 @@ public class ProcessStage implements java.io.Serializable {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "processStage")
+	@JsonIgnore
 	public Set<StageLog> getStageLogs() {
 		return this.stageLogs;
 	}
