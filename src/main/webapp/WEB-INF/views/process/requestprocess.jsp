@@ -81,10 +81,13 @@
 								<div class="col-lg-12">
 									<ul class="nav nav-pills" style="max-width: 300%;">
 
-										<li class="active" id="idApprove"><a href="#" data-toggle="tab"> <span class="badge pull-right">25</span> To Be Approved
+										<li class="active" id="idAll"><a href="#" data-toggle="tab"> <span class="badge pull-right">25 </span> All
 										</a></li>
 
-										<li class="active" id="idOpened"><a href="#" data-toggle="tab"> <span class="badge pull-right">25</span> Opened
+										<li id="idApprove"><a href="#" data-toggle="tab"> <span class="badge pull-right">25</span> Approval
+										</a></li>
+
+										<li id="idOpened"><a href="#" data-toggle="tab"> <span class="badge pull-right">25</span> Opened
 										</a></li>
 
 										<li id="idApproval"><a href="#" data-toggle="tab"> <span class="badge pull-right">8</span> Approval
@@ -111,6 +114,7 @@
 												<tr>
 													<th style="width: 10%">Rq Id</th>
 													<th style="width: 12%">Status</th>
+													<th style="width: 12%">StatusName</th>
 													<th style="width: 15%">SbjId</th>
 													<th style="width: 15%">Subject</th>
 													<th style="width: 12%">Date</th>
@@ -145,7 +149,7 @@
 														</tr>
 													</thead>
 
-												
+
 												</table>
 											</div>
 
@@ -162,7 +166,10 @@
 														<form>
 															<div>
 																<div>
-																	Request Id : <span id="spnReqId" class="pull-right text-muted small"></span>
+																	Request Id : <span id="spnReqId" class="pull-right text-muted small"></span> <span class="pull-right text-muted small">
+																		<input type="text" style="width: 30px; height: 15px;" id="txtIdReqId" />
+																	</span>
+
 																</div>
 
 																<div style="display: none;">
@@ -199,8 +206,8 @@
 																	Req Status <span class="pull-right text-muted small"> <select id="cmdIdReqStatus">
 
 																	</select>
+																	</span> <span class="pull-right text-muted small"> <input type="text" id="idCmbReqStausId" />
 																	</span>
-																	<div id="idCmbReqStausId"></div>
 																</div>
 
 																<div>
@@ -217,12 +224,15 @@
 																	</em></span>
 																</div>
 
-
 																<div>
 																	Remark : <span id="spnRemark" class="text-muted small"> <em>Yesterday esterday esterday esterday </em></span>
 																</div>
 
-
+																<div>
+																<span class="label label-warning">Void Request:</span>	 <span id="spnDate" class="pull-right"> <input type="checkbox" id="chkIdPiActive" /></span>
+																</div>
+																
+																<br/>
 
 																<div class="list-group-item">
 																	<button class="btn  btn-block btn-primary">
@@ -345,7 +355,7 @@
 
 										<div class="form-group">
 											<div>
-												<form:input path="reqStatusId" type="text" id="txtIdReqid" name="txtReqId" class="form-control" value="1" />
+												<form:input path="requestStatus.rsId" type="text" id="txtIdReqid" name="txtReqId" class="form-control" value="1" />
 											</div>
 										</div>
 

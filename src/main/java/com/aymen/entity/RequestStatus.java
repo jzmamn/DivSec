@@ -25,6 +25,7 @@ public class RequestStatus implements java.io.Serializable {
 	private int rsId;
 	private String rsName;
 	private Boolean rsActive;
+	private Set<Request> requests = new HashSet<Request>(0);
 	private Set<ProcessRequest> processRequests = new HashSet<ProcessRequest>(0);
 
 	public RequestStatus() {
@@ -34,10 +35,12 @@ public class RequestStatus implements java.io.Serializable {
 		this.rsId = rsId;
 	}
 
-	public RequestStatus(int rsId, String rsName, Boolean rsActive, Set<ProcessRequest> processRequests) {
+	public RequestStatus(int rsId, String rsName, Boolean rsActive, Set<Request> requests,
+			Set<ProcessRequest> processRequests) {
 		this.rsId = rsId;
 		this.rsName = rsName;
 		this.rsActive = rsActive;
+		this.requests = requests;
 		this.processRequests = processRequests;
 	}
 
@@ -68,6 +71,16 @@ public class RequestStatus implements java.io.Serializable {
 
 	public void setRsActive(Boolean rsActive) {
 		this.rsActive = rsActive;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "requestStatus")
+	@JsonIgnore
+	public Set<Request> getRequests() {
+		return this.requests;
+	}
+
+	public void setRequests(Set<Request> requests) {
+		this.requests = requests;
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "requestStatus")

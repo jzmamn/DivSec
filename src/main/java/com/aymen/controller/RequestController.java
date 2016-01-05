@@ -81,7 +81,7 @@ public class RequestController {
 		model.addAttribute("reqNote", req.getReqNote());
 		model.addAttribute("reqFees", req.getReqFees());
 		model.addAttribute("reqDurartion", req.getReqDurartion());
-		model.addAttribute("reqStatusId", req.getReqStatusId());
+		model.addAttribute("reqStatusId", req.getRequestStatus().getRsId());
 		model.addAttribute("reqIsRead", req.getReqIsRead());
 		model.addAttribute("reqProcessed", req.getReqProcessed());
 		model.addAttribute("reqIsVoid", req.getReqIsVoid());

@@ -2,79 +2,109 @@ jQuery(function() {
 
 	$("#frmProcessRequest").hide({});
 
-	var dtRequest = $('#dtTable').dataTable({
+	var dtRequest = $('#dtTable')
+			.dataTable(
+					{
 
-		// No of records should be displayed
-		"lengthMenu" : [ 5, 10, 20 ],
+						// No of records should be displayed
+						"lengthMenu" : [ 5, 10, 20 ],
 
-		// Load table using JSON data by ajax
-		"ajax" : {
-			"url" : "reqprocess/loadrequest",
-			"dataSrc" : ""
-		},
+						// Load table using JSON data by ajax
+						"ajax" : {
+							"url" : "reqprocess/loadrequest",
+							"dataSrc" : ""
+						},
 
-		"columns" : [ {
-			"data" : "reqId"
-		}, {
-			"data" : "reqStatusId"
-		}, {
-			"data" : "subject.sbjId"
-		}, {
-			"data" : "subject.sbjCode"
-		}, {
-			"data" : "reqEntDate"
-		}, {
-			"data" : "publicIndividual.piId"
-		}, {
-			"data" : "publicIndividual.piName"
-		}, {
-			"data" : "division.divId"
-		}, {
-			"data" : "division.divName"
-		}, {
-			"data" : "reqNote"
-		}, {
-			"data" : "staff.stfId"
-		}, {
-			"data" : "staff.stfName"
-		}, {
-			"data" : "reqFees"
-		}, {
-			"data" : "reqDurartion"
-		}, {
-			"data" : "reqEntDate"
-		} ],
+						"columns" : [ {
+							"data" : "reqId"
+						}, {
+							"data" : "requestStatus.rsId"
+						}, {
+							"data" : "requestStatus.rsName"
+						}, {
+							"data" : "subject.sbjId"
+						}, {
+							"data" : "subject.sbjCode"
+						}, {
+							"data" : "reqEntDate"
+						}, {
+							"data" : "publicIndividual.piId"
+						}, {
+							"data" : "publicIndividual.piName"
+						}, {
+							"data" : "division.divId"
+						}, {
+							"data" : "division.divName"
+						}, {
+							"data" : "reqNote"
+						}, {
+							"data" : "staff.stfId"
+						}, {
+							"data" : "staff.stfName"
+						}, {
+							"data" : "reqFees"
+						}, {
+							"data" : "reqDurartion"
+						} ],
 
-		"columnDefs" : [ {
-			"targets" : [ 2 ],
-			"visible" : false
-		}, {
-			"targets" : [ 7 ],
-			"visible" : false
-		}, {
-			"targets" : [ 8 ],
-			"visible" : false
-		}, {
-			"targets" : [ 9 ],
-			"visible" : false
-		}, {
-			"targets" : [ 10 ],
-			"visible" : false
-		}, {
-			"targets" : [ 11 ],
-			"visible" : false
-		}, {
-			"targets" : [ 12 ],
-			"visible" : false
-		}, {
-			"targets" : [ 13 ],
-			"visible" : false
-		}, {
-			"targets" : [ 14 ],
-			"visible" : false
-		} ]
+						"columnDefs" : [
+								{
+									"targets" : [ 2 ],
+									"visible" : false
+								},
+								{
+									"targets" : [ 3 ],
+									"visible" : false
+								},
+								{
+									"targets" : [ 1 ],
+									"render" : function(data, type, full, meta) {
 
-	});
+										switch (data) {
+										case 1:
+											return '<span class="label label-info">New</span>';
+											break;
+										case 2:
+											return '<span class="label label-warning">Opened</span>';
+											break;
+										case 3:
+											return '<span class="label label-success">completed</span>';
+											break;
+										case 4:
+											return '<span class="label label-default">Closed</span>';
+											break;
+										case 5:
+											return '<span class="label label-danger">For Approval</span>';
+											break;
+										}
+									}
+								}, {
+									"targets" : [ 7 ],
+									"visible" : false
+								}, {
+									"targets" : [ 8 ],
+									"visible" : false
+								}, {
+									"targets" : [ 9 ],
+									"visible" : false
+								}, {
+									"targets" : [ 10 ],
+									"visible" : false
+								}, {
+									"targets" : [ 11 ],
+									"visible" : false
+								}, {
+									"targets" : [ 12 ],
+									"visible" : false
+								}, {
+									"targets" : [ 13 ],
+									"visible" : false
+								}, {
+									"targets" : [ 14 ],
+									"visible" : false
+								} ]
+
+					});
 
 	// Intialize Public Table
 	var dtPublic = $('#dtPublic').dataTable({
@@ -147,38 +177,60 @@ jQuery(function() {
 
 	// Load Request stage table
 
-	var dtStage = $('#dtStage').dataTable({
-		"lengthMenu" : [ 5, 10, 20 ],
+	var dtStage = $('#dtStage')
+			.dataTable(
+					{
+						"lengthMenu" : [ 5, 10, 20 ],
 
-		// Load table using JSON data by ajax
-		"ajax" : {
-			"url" : "processstg/loadreqstage/0",
-			"dataSrc" : ""
-		},
+						// Load table using JSON data by ajax
+						"ajax" : {
+							"url" : "processstg/loadreqstage/0",
+							"dataSrc" : ""
+						},
 
-		"columns" : [ {
-			"data" : "rstId"
-		}, {
-			"data" : "subjecStage.stgId"
-		}, {
-			"data" : "subjecStage.stgName"
-		}, {
-			"data" : "stageStatus.ssId"
-		}, {
-			"data" : "request.reqId"
-		}
+						"columns" : [ {
+							"data" : "rstId"
+						}, {
+							"data" : "subjecStage.stgId"
+						}, {
+							"data" : "subjecStage.stgName"
+						}, {
+							"data" : "stageStatus.ssId"
+						}, {
+							"data" : "request.reqId"
+						}
 
-		],
+						],
 
-		"columnDefs" : [ {
-			"targets" : [ 1 ],
-			"visible" : false
-		}, {
-			"targets" : [ 4 ],
-			"visible" : false
-		} ]
+						"columnDefs" : [
+								{
+									"targets" : [ 1 ],
+									"visible" : false
+								},
+								{
+									"targets" : [ 4 ],
+									"visible" : false
+								},
+								{
+									"targets" : [ 3 ],
+									"render" : function(data, type, full, meta) {
 
-	});
+										switch (data) {
+										case 1:
+											return '<span class="label label-warning">Pending</span>';
+											break;
+										case 2:
+											return '<span class="label label-success">In-Progress</span>';
+											break;
+										case 3:
+											return '<span class="label label-info">completed</span>';
+											break;
+
+										}
+									}
+								} ]
+
+					});
 
 	// GET VALUE ON TABLE ROW CLICK From Subject table
 
@@ -240,25 +292,28 @@ jQuery(function() {
 
 		var aPos = dtRequest.fnGetPosition(this);
 		var reqId = dtRequest.fnGetData(aPos, 0);
-		alert(reqId);
 
 		$('#spnReqId').text(dtRequest.fnGetData(aPos, 0));
+		$('#txtIdReqId').val(dtRequest.fnGetData(aPos, 0));
 
-		// $('#spnStatusId').text(dtRequest.fnGetData(aPos, 1));
-		$('#spnSbjId').text(dtRequest.fnGetData(aPos, 2));
-		$('#spnSbj').text(dtRequest.fnGetData(aPos, 3));
-		$('#spnSbj').text(dtRequest.fnGetData(aPos, 3));
-		$('#spnPubId').text(dtRequest.fnGetData(aPos, 5));
-		$('#spnPubName').text(dtRequest.fnGetData(aPos, 6));
-		$('#spnDivId').text(dtRequest.fnGetData(aPos, 7));
-		$('#spnRemark').text(dtRequest.fnGetData(aPos, 9));
-		$('#spnDivision').text(dtRequest.fnGetData(aPos, 8));
-		$('#spnStaffId').text(dtRequest.fnGetData(aPos, 10));
-		$('#spnStaff').text(dtRequest.fnGetData(aPos, 11));
+		$('#idCmbReqStausId').val(dtRequest.fnGetData(aPos, 1));
+		$('#cmdIdReqStatus').val(dtRequest.fnGetData(aPos, 2));
 
-		$('#spnFee').text(dtRequest.fnGetData(aPos, 12));
-		$('#spnDuration').text(dtRequest.fnGetData(aPos, 13));
-		$('#spnDate').text(dtRequest.fnGetData(aPos, 14));
+		$('#spnSbjId').text(dtRequest.fnGetData(aPos, 3));
+		$('#spnSbj').text(dtRequest.fnGetData(aPos, 4));
+		$('#spnDate').text(dtRequest.fnGetData(aPos, 5));
+
+		$('#spnPubId').text(dtRequest.fnGetData(aPos, 6));
+		$('#spnPubName').text(dtRequest.fnGetData(aPos, 7));
+		$('#spnDivId').text(dtRequest.fnGetData(aPos, 8));
+		$('#spnDivision').text(dtRequest.fnGetData(aPos, 9));
+		$('#spnRemark').text(dtRequest.fnGetData(aPos, 10));
+
+		$('#spnStaffId').text(dtRequest.fnGetData(aPos, 11));
+		$('#spnStaff').text(dtRequest.fnGetData(aPos, 12));
+
+		$('#spnFee').text(dtRequest.fnGetData(aPos, 13));
+		$('#spnDuration').text(dtRequest.fnGetData(aPos, 14));
 
 		dtStage.fnReloadAjax('processstg/loadreqstage/' + reqId);
 
@@ -267,6 +322,11 @@ jQuery(function() {
 	$('#dtStage tbody').on('click', 'tr', function(e) {
 		$('#idModalReqStage').modal('show');
 
+	});
+
+	$("#idAll").click(function() {
+		$("#frmProcessRequest").hide({});
+		$('#tblProcessRequest').show({});
 	});
 
 	$("#idApprove").click(function() {

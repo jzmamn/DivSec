@@ -33,39 +33,44 @@ public class Request implements java.io.Serializable {
 	private Integer reqId;
 	private Division division;
 	private PublicIndividual publicIndividual;
+	private RequestStatus requestStatus;
 	private Staff staff;
 	private Subject subject;
 	private Date reqEntDate;
 	private String reqNote;
 	private BigDecimal reqFees;
 	private Integer reqDurartion;
-	private Integer reqStatusId;
 	private Boolean reqIsRead;
 	private Boolean reqProcessed;
 	private Boolean reqIsVoid;
+	private Set<RequestLog> requestLogs = new HashSet<RequestLog>(0);
 	private Set<Aproval> aprovals = new HashSet<Aproval>(0);
 	private Set<ProcessRequest> processRequests = new HashSet<ProcessRequest>(0);
+	private Set<ProcessStage> processStages = new HashSet<ProcessStage>(0);
 
 	public Request() {
 	}
 
-	public Request(Division division, PublicIndividual publicIndividual, Staff staff, Subject subject, Date reqEntDate,
-			String reqNote, BigDecimal reqFees, Integer reqDurartion, Integer reqStatusId, Boolean reqIsRead,
-			Boolean reqProcessed, Boolean reqIsVoid, Set<Aproval> aprovals, Set<ProcessRequest> processRequests) {
+	public Request(Division division, PublicIndividual publicIndividual, RequestStatus requestStatus, Staff staff,
+			Subject subject, Date reqEntDate, String reqNote, BigDecimal reqFees, Integer reqDurartion,
+			Boolean reqIsRead, Boolean reqProcessed, Boolean reqIsVoid, Set<RequestLog> requestLogs,
+			Set<Aproval> aprovals, Set<ProcessRequest> processRequests, Set<ProcessStage> processStages) {
 		this.division = division;
 		this.publicIndividual = publicIndividual;
+		this.requestStatus = requestStatus;
 		this.staff = staff;
 		this.subject = subject;
 		this.reqEntDate = reqEntDate;
 		this.reqNote = reqNote;
 		this.reqFees = reqFees;
 		this.reqDurartion = reqDurartion;
-		this.reqStatusId = reqStatusId;
 		this.reqIsRead = reqIsRead;
 		this.reqProcessed = reqProcessed;
 		this.reqIsVoid = reqIsVoid;
+		this.requestLogs = requestLogs;
 		this.aprovals = aprovals;
 		this.processRequests = processRequests;
+		this.processStages = processStages;
 	}
 
 	@Id
@@ -98,6 +103,16 @@ public class Request implements java.io.Serializable {
 
 	public void setPublicIndividual(PublicIndividual publicIndividual) {
 		this.publicIndividual = publicIndividual;
+	}
+
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "req_status_id")
+	public RequestStatus getRequestStatus() {
+		return this.requestStatus;
+	}
+
+	public void setRequestStatus(RequestStatus requestStatus) {
+		this.requestStatus = requestStatus;
 	}
 
 	@ManyToOne(fetch = FetchType.EAGER)
@@ -158,15 +173,6 @@ public class Request implements java.io.Serializable {
 		this.reqDurartion = reqDurartion;
 	}
 
-	@Column(name = "req_status_id")
-	public Integer getReqStatusId() {
-		return this.reqStatusId;
-	}
-
-	public void setReqStatusId(Integer reqStatusId) {
-		this.reqStatusId = reqStatusId;
-	}
-
 	@Column(name = "req_is_read")
 	public Boolean getReqIsRead() {
 		return this.reqIsRead;
@@ -196,6 +202,16 @@ public class Request implements java.io.Serializable {
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "request")
 	@JsonIgnore
+	public Set<RequestLog> getRequestLogs() {
+		return this.requestLogs;
+	}
+
+	public void setRequestLogs(Set<RequestLog> requestLogs) {
+		this.requestLogs = requestLogs;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "request")
+	@JsonIgnore
 	public Set<Aproval> getAprovals() {
 		return this.aprovals;
 	}
@@ -212,6 +228,16 @@ public class Request implements java.io.Serializable {
 
 	public void setProcessRequests(Set<ProcessRequest> processRequests) {
 		this.processRequests = processRequests;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "request")
+	@JsonIgnore
+	public Set<ProcessStage> getProcessStages() {
+		return this.processStages;
+	}
+
+	public void setProcessStages(Set<ProcessStage> processStages) {
+		this.processStages = processStages;
 	}
 
 }

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 30, 2015 at 04:43 PM
+-- Generation Time: Jan 03, 2016 at 07:21 PM
 -- Server version: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -153,7 +153,9 @@ CREATE TABLE IF NOT EXISTS `process_request` (
   `pr_user_id` int(11) DEFAULT NULL,
   `pr_txn_date` datetime DEFAULT NULL,
   `pr_status_id` int(11) DEFAULT NULL,
+  `pr_duration` int(3) DEFAULT NULL,
   `pr_note` varchar(100) DEFAULT NULL,
+  `pr_cost` decimal(18,2) DEFAULT NULL,
   PRIMARY KEY (`pr_id`),
   KEY `fk_pr_request_id_idx` (`pr_request_id`),
   KEY `fk_pr_status_id_idx` (`pr_status_id`)
@@ -178,7 +180,7 @@ CREATE TABLE IF NOT EXISTS `process_stage` (
   KEY `fk_rst_stage_status_idx` (`rst_stage_status_id`),
   KEY `fk_rst_user_id_idx` (`rst_user_id`),
   KEY `fk_stg_pr_id_idx` (`rst_pr_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
 -- --------------------------------------------------------
 
@@ -232,14 +234,18 @@ CREATE TABLE IF NOT EXISTS `request` (
   `req_ent_date` datetime DEFAULT NULL,
   `req_note` varchar(100) DEFAULT NULL,
   `req_fees` decimal(10,2) DEFAULT NULL,
-  `req_to_be_approved` bit(1) DEFAULT NULL,
   `req_user_id` int(11) DEFAULT NULL,
+  `req_durartion` int(11) DEFAULT NULL,
+  `req_status_id` int(11) DEFAULT NULL,
+  `req_is_read` bit(1) DEFAULT NULL,
+  `req_processed` bit(1) DEFAULT NULL,
+  `req_is_void` bit(1) DEFAULT NULL,
   PRIMARY KEY (`req_id`),
   KEY `fk_req_public_id_idx` (`req_public_id`),
   KEY `fk_req_division_id_idx` (`req_division_id`),
   KEY `fk_req_user_id_idx` (`req_user_id`),
   KEY `fk_req_subject_id_idx` (`req_subject_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='details about the request submitted by the public individual' AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='details about the request submitted by the public individual' AUTO_INCREMENT=24 ;
 
 -- --------------------------------------------------------
 
@@ -251,7 +257,6 @@ CREATE TABLE IF NOT EXISTS `request_log` (
   `rl_id` int(11) NOT NULL AUTO_INCREMENT,
   `rl_pr_id` int(11) DEFAULT NULL,
   `rl_txn_date` datetime DEFAULT NULL,
-  `rl_division_id` int(11) DEFAULT NULL,
   `rl_status_id` int(11) DEFAULT NULL,
   `rl_user_id` int(11) DEFAULT NULL,
   `rl_note` varchar(100) DEFAULT NULL,
@@ -391,9 +396,9 @@ CREATE TABLE IF NOT EXISTS `stage_status` (
 --
 
 INSERT INTO `stage_status` (`ss_id`, `ss_name`, `ss_active`) VALUES
-(1, 'Progress', b'1'),
-(2, 'Pending', b'1'),
-(3, 'Complete', b'1');
+(1, 'Pending', b'1'),
+(2, 'Progress', b'1'),
+(3, 'Completed', b'1');
 
 -- --------------------------------------------------------
 
@@ -446,7 +451,7 @@ CREATE TABLE IF NOT EXISTS `subjec_stage` (
 --
 
 INSERT INTO `subjec_stage` (`stg_id`, `stg_subject_id`, `stg_name`, `stg_active`, `stg_cost`) VALUES
-(1, 4, 'Stage1', b'1', NULL),
+(1, 4, 'Stage1', b'1', '100.00'),
 (2, 4, 'Stage2', b'1', '100.00');
 
 -- --------------------------------------------------------
@@ -516,7 +521,7 @@ ALTER TABLE `process_request`
 -- Constraints for table `process_stage`
 --
 ALTER TABLE `process_stage`
-  ADD CONSTRAINT `fk_rst_pr_id` FOREIGN KEY (`rst_pr_id`) REFERENCES `process_request` (`pr_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_rst_pr_id` FOREIGN KEY (`rst_pr_id`) REFERENCES `request` (`req_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_rst_stage_status` FOREIGN KEY (`rst_stage_status_id`) REFERENCES `stage_status` (`ss_id`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `fk_rst_user_id` FOREIGN KEY (`rst_user_id`) REFERENCES `staff` (`stf_id`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
