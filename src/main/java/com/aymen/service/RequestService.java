@@ -14,6 +14,8 @@ public interface RequestService {
 
 	public Request getSvcRequestById(int id);
 
+	public void updateSvcRequestStatus(int reqId, int statusId);
+
 	public void deleteSvcRequest(int id);
 
 }

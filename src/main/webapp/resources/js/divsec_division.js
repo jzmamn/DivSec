@@ -1,4 +1,5 @@
 jQuery(function() {
+
 	$('#chkIdDivActive').prop('checked', true); // check true when loading
 
 	// Intialize Division Data Table
@@ -137,4 +138,4 @@ jQuery(function() {
 					});
 				});
 			});
-});
+})

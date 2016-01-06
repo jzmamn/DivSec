@@ -23,7 +23,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.aymen.entity.Division;
 import com.aymen.entity.Request;
 import com.aymen.entity.Staff;
 import com.aymen.service.RequestService;
@@ -105,11 +104,28 @@ public class RequestController {
 
 	// Delete a division using division id
 	@RequestMapping("/delete/{id}")
-	public @ResponseBody String deleteDivision(@ModelAttribute("maRequest") Division division, BindingResult result,
+	public @ResponseBody String deleteDivision(@ModelAttribute("maRequest") Request req, BindingResult result,
 			@PathVariable("id") int id, Model model) {
 		try {
 			model.addAttribute("maRequest", new Request());
 			this.reqSvc.deleteSvcRequest(id);
+			return "1";
+		} catch (Exception e) {
+			System.out.println(e.toString());
+			e.printStackTrace();
+			return "Delete Failed ! " + "\n" + e.toString();
+		}
+
+	}
+
+	// Update request after status changing
+	@RequestMapping("/requestid/{requestId}/statusid/{statusId}")
+	public @ResponseBody String updateReqStatus(@PathVariable("requestId") int reqId,
+			@PathVariable("statusId") int reqStatusId) {
+		try {
+
+			this.reqSvc.updateSvcRequestStatus(reqId, reqStatusId);
+
 			return "1";
 		} catch (Exception e) {
 			System.out.println(e.toString());

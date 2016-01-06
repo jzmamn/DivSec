@@ -89,7 +89,13 @@ public class RequestServiceImpl implements RequestService {
 
 	@Override
 	public void deleteSvcRequest(int id) {
-		this.reqDao.deleteRequest(id);
+		this.deleteSvcRequest(id);
+	}
+
+	@Override
+	public void updateSvcRequestStatus(int reqId, int statusId) {
+		this.reqDao.updateRequestStatus(reqId, statusId);
+
 	}
 
 	public Date getCurrentDate() {

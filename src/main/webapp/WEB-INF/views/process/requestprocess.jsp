@@ -163,12 +163,12 @@
 													</div>
 
 													<div class="panel-body">
-														<form>
+														<form  role="form" id="frmIdUpdateStatus" method="POST">
 															<div>
 																<div>
 																	Request Id : <span id="spnReqId" class="pull-right text-muted small"></span>
 																	<span class="pull-right small">
-																		<input type="text" style="width: 50%; height: 20%;" id="txtIdReqId" readonly="true"/>
+																		<input type="hidden" style="width: 50%; height: 20%;" id="txtIdReqId" readonly="true"/>
 																	</span>
 
 																</div>
@@ -185,7 +185,7 @@
 																<div>
 																	Public Id : <span id="spnPubId" class=" pull-right text-muted small"></span>
 																	<span class="pull-right small">
-																		<input type="text" style="width: 50%; height: 20%;" id="txtIdPublic" />
+																		<input type="hidden" style="width: 50%; height: 20%;" id="txtIdPublic" />
 																	</span>
 																</div>
 																
@@ -205,7 +205,7 @@
 <div>
 																	Staff Id : <span id="spnStaffId" class="pull-right text-muted small"></span>
 																	<span class="pull-right small">
-																		<input type="text" style="width: 50%; height: 20%;" id="txtIdStaff" />
+																		<input type="hidden" style="width: 50%; height: 20%;" id="txtIdStaff" />
 																	</span>
 																</div>
 
@@ -217,7 +217,7 @@
 																	Req Status <span class="pull-right text-muted small"> <select id="cmdIdReqStatus">
 
 																	</select>
-																	</span> <span class="pull-right text-muted small"> <input type="text" id="idCmbReqStausId" />
+																	</span> <span class="pull-right text-muted small"> <input type="hidden" id="idCmbReqStausId" />
 																	</span>
 																</div>
 
@@ -246,19 +246,19 @@
 																<br/>
 
 																<div class="list-group-item">
-																	<button class="btn  btn-block btn-primary">
+																	<button id="btnIdSaveChanges" class="btn  btn-block btn-primary">
 																		<span class="icon-save"></span> Save Changes
 																	</button>
 																</div>
 
 																<div class="list-group-item">
-																	<button class="btn  btn-block btn-primary">
+																	<button id="btnIdSendEmail" class="btn  btn-block btn-primary">
 																		<span class="icon-envelope-alt"></span> Send Email
 																	</button>
 																</div>
 
 																<div class="list-group-item">
-																	<button class="btn  btn-block btn-primary">
+																	<button id="btnIdSendSMS" class="btn  btn-block btn-primary">
 																		<span class="icon-mobile-phone"></span> Send SMS
 																	</button>
 																</div>

@@ -27,18 +27,20 @@ public class RequestLog implements java.io.Serializable {
 	private Integer rlUserId;
 	private String rlNote;
 	private Date rlEntDate;
+	private Boolean rlVoid;
 
 	public RequestLog() {
 	}
 
 	public RequestLog(Request request, Date rlTxnDate, Integer rlStatusId, Integer rlUserId, String rlNote,
-			Date rlEntDate) {
+			Date rlEntDate, Boolean rlVoid) {
 		this.request = request;
 		this.rlTxnDate = rlTxnDate;
 		this.rlStatusId = rlStatusId;
 		this.rlUserId = rlUserId;
 		this.rlNote = rlNote;
 		this.rlEntDate = rlEntDate;
+		this.rlVoid = rlVoid;
 	}
 
 	@Id
@@ -108,6 +110,15 @@ public class RequestLog implements java.io.Serializable {
 
 	public void setRlEntDate(Date rlEntDate) {
 		this.rlEntDate = rlEntDate;
+	}
+
+	@Column(name = "rl_void")
+	public Boolean getRlVoid() {
+		return this.rlVoid;
+	}
+
+	public void setRlVoid(Boolean rlVoid) {
+		this.rlVoid = rlVoid;
 	}
 
 }

@@ -226,7 +226,6 @@ jQuery(function() {
 										}
 									}
 								} ]
-
 					});
 
 	// GET VALUE ON TABLE ROW CLICK From Subject table
@@ -419,10 +418,40 @@ jQuery(function() {
 
 		$("select option:selected").each(function() {
 			str2 = $(this).text() + " ";
-			$("#idCmbReqStausId").text(str1);
+			$("#idCmbReqStausId").val(str1);
 			$("#idCmbReqStausName").text(str2);
 		});
 
 	}).trigger("change");
+
+	// Update Request after changing status
+	$("#btnIdSaveChanges").click(function(e) {
+
+		var reqId = $("#txtIdReqId").val();
+		var stausId = $("#idCmbReqStausId").val();
+		var url = 'reqprocess/requestid/requestId/statusid/statusId'
+		alert(url);
+		e.preventDefault(),
+
+		function() {
+			$.ajax({
+				type : "POST",
+				url : url,
+				data : {
+					requestId : $("#txtIdReqId").val(),
+					statusId : $("#idCmbReqStausId").val()
+				},
+				dataType : 'json',
+				success : function(data) {
+					alert(data);
+				},
+
+				fail : function(data) {
+					alert(data);
+				}
+
+			});
+		};
+	});
 
 });

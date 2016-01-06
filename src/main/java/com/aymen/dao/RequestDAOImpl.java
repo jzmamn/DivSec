@@ -12,8 +12,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.aymen.entity.Division;
 import com.aymen.entity.Request;
+import com.aymen.entity.RequestStatus;
 
 @Repository
 public class RequestDAOImpl implements RequestDAO {
@@ -30,7 +30,7 @@ public class RequestDAOImpl implements RequestDAO {
 			Session session = sessionFactory.getCurrentSession();
 			session.persist(req);
 
-			logger.info("Division saved successfully, Person Details=" + req.getReqId());
+			logger.info("Request saved successfully, Person Details=" + req.getReqId());
 
 		} catch (Exception e) {
 			System.out.println(e.toString());
@@ -42,7 +42,7 @@ public class RequestDAOImpl implements RequestDAO {
 		try {
 			Session session = sessionFactory.getCurrentSession();
 			session.update(req);
-			logger.info("Division Updated successfully, Division Details=" + req.getReqId());
+			logger.info("Request Updated successfully, Request Details=" + req.getReqId());
 		} catch (Exception e) {
 			System.out.println(e.toString());
 		}
@@ -64,7 +64,7 @@ public class RequestDAOImpl implements RequestDAO {
 	@Override
 	public Request getRequestById(int id) {
 		Session session = this.sessionFactory.getCurrentSession();
-		Request req = (Request) session.load(Division.class, new Integer(id));
+		Request req = (Request) session.load(Request.class, new Integer(id));
 		logger.info("Person loaded successfully, Person details=" + req);
 		return req;
 	}
@@ -79,7 +79,7 @@ public class RequestDAOImpl implements RequestDAO {
 			}
 			logger.info("Request deleted successfully, request details=" + req);
 		} catch (HibernateException e) {
-			logger.info("deleteDivision", e.toString());
+			logger.info("deleteRequest", e.toString());
 			System.out.println(e.toString());
 			e.printStackTrace();
 		}
@@ -116,6 +116,25 @@ public class RequestDAOImpl implements RequestDAO {
 			System.out.println(e.toString());
 			return null;
 		}
+	}
+
+	@Override
+	public void updateRequestStatus(int reqId, int statusId) {
+		try {
+			Session session = sessionFactory.getCurrentSession();
+			Request req = getRequestById(reqId);
+			RequestStatus requestStatus = new RequestStatus();
+			requestStatus.setRsId(statusId);
+			req.setRequestStatus(requestStatus);
+
+			System.out.println(req.getRequestStatus().getRsId());
+
+			session.update(req);
+			logger.info("Request Updated successfully, Request Details=" + req.getReqId());
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
+
 	}
 
 }
