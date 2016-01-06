@@ -114,21 +114,21 @@
 												<tr>
 													<th style="width: 10%">Rq Id</th>
 													<th style="width: 12%">Status</th>
-													<th style="width: 12%">StatusName</th>
-													<th style="width: 15%">SbjId</th>
+													<th>StatusName</th>
+													<th>SbjId</th>
 													<th style="width: 15%">Subject</th>
+													
 													<th style="width: 12%">Date</th>
 													<th style="width: 12%">Pb Id</th>
 													<th style="width: 20%">Pb Name</th>
-													<th style="width: 12%">Div Id</th>
-													<th style="width: 20%">Div Name</th>
-													<th style="width: 12%">Note</th>
-													<th style="width: 20%">Stf Id</th>
-													<th style="width: 12%">Stf Name</th>
-													<th style="width: 12%">Fee</th>
-													<th style="width: 12%">Duration</th>
-													<th style="width: 12%">Date</th>
-
+													<th>Div Id</th>
+													<th>Div Name</th>
+													<th>Note</th>
+													<th>Stf Id</th>
+													<th>Stf Name</th>
+													<th>Fee</th>
+													<th>Duration</th>
+												
 												</tr>
 											</thead>
 										</table>
@@ -166,8 +166,9 @@
 														<form>
 															<div>
 																<div>
-																	Request Id : <span id="spnReqId" class="pull-right text-muted small"></span> <span class="pull-right text-muted small">
-																		<input type="text" style="width: 30px; height: 15px;" id="txtIdReqId" />
+																	Request Id : <span id="spnReqId" class="pull-right text-muted small"></span>
+																	<span class="pull-right small">
+																		<input type="text" style="width: 50%; height: 20%;" id="txtIdReqId" readonly="true"/>
 																	</span>
 
 																</div>
@@ -179,9 +180,15 @@
 																<div>
 																	Subject : <span id="spnSbj" class="pull-right text-muted small"></span>
 																</div>
+																
+																														
 																<div>
 																	Public Id : <span id="spnPubId" class=" pull-right text-muted small"></span>
+																	<span class="pull-right small">
+																		<input type="text" style="width: 50%; height: 20%;" id="txtIdPublic" />
+																	</span>
 																</div>
+																
 																<div>
 																	Public Name : <span id="spnPubName" class=" pull-right text-muted small"></span>
 																</div>
@@ -194,8 +201,12 @@
 																	Division : <span id="spnDivision" class="pull-right text-muted small"></span>
 																</div>
 
-																<div style="display: none;">
+<!-- 																<div style="display: none;"> -->
+<div>
 																	Staff Id : <span id="spnStaffId" class="pull-right text-muted small"></span>
+																	<span class="pull-right small">
+																		<input type="text" style="width: 50%; height: 20%;" id="txtIdStaff" />
+																	</span>
 																</div>
 
 																<div>

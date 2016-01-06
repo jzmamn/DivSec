@@ -79,9 +79,6 @@ jQuery(function() {
 										}
 									}
 								}, {
-									"targets" : [ 7 ],
-									"visible" : false
-								}, {
 									"targets" : [ 8 ],
 									"visible" : false
 								}, {
@@ -286,6 +283,9 @@ jQuery(function() {
 	$('#dp1').datepicker('setDate', new Date());
 	$('#dp1').datepicker('update');
 
+	// Request table row Click and Fill the request info
+	// PublicId,Status and void can be updated manually
+
 	$('#dtTable tbody').on('click', 'tr', function(e) {
 		$("#frmProcessRequest").show({});
 		$('#tblProcessRequest').hide({});
@@ -304,12 +304,16 @@ jQuery(function() {
 		$('#spnDate').text(dtRequest.fnGetData(aPos, 5));
 
 		$('#spnPubId').text(dtRequest.fnGetData(aPos, 6));
+		$('#txtIdPublic').val(dtRequest.fnGetData(aPos, 6));
+
 		$('#spnPubName').text(dtRequest.fnGetData(aPos, 7));
 		$('#spnDivId').text(dtRequest.fnGetData(aPos, 8));
 		$('#spnDivision').text(dtRequest.fnGetData(aPos, 9));
 		$('#spnRemark').text(dtRequest.fnGetData(aPos, 10));
 
 		$('#spnStaffId').text(dtRequest.fnGetData(aPos, 11));
+		$('#txtIdStaff').val(dtRequest.fnGetData(aPos, 11));
+
 		$('#spnStaff').text(dtRequest.fnGetData(aPos, 12));
 
 		$('#spnFee').text(dtRequest.fnGetData(aPos, 13));
