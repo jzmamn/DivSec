@@ -39,4 +39,21 @@ public class ProcessStageController {
 		return this.prcStgSvc.listSvcReqStgByReqId(reqId);
 	}
 
+	// Update request after status changing
+	@RequestMapping("/reqstgid/{reqStgtId}/statusid/{statusId}/note/{note}")
+	public @ResponseBody String updateReqStatus(@PathVariable("reqStgtId") int reqId,
+			@PathVariable("statusId") int reqStatusId, @PathVariable("note") String note) {
+		try {
+
+			this.prcStgSvc.updateSvcStageStatus(reqId, reqStatusId, note);
+
+			return "1";
+		} catch (Exception e) {
+			System.out.println(e.toString());
+			e.printStackTrace();
+			return "Request Status Updated ! " + "\n" + e.toString();
+		}
+
+	}
+
 }

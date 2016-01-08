@@ -56,7 +56,7 @@ public class RequestDAOImpl implements RequestDAO {
 		@SuppressWarnings("unchecked")
 		List<Request> reqList = session.createQuery(" from Request").list();
 		for (Request d : reqList) {
-			logger.info("Person List::" + d);
+			// logger.info("Person List::" + d);
 			// System.out.println(d);
 		}
 		return reqList;
@@ -120,7 +120,7 @@ public class RequestDAOImpl implements RequestDAO {
 	}
 
 	@Override
-	public void updateRequestStatus(int reqId, int statusId, boolean isVoid) {
+	public void updateRequestStatus(int reqId, int statusId, boolean isVoid, String note) {
 		try {
 			Session session = sessionFactory.getCurrentSession();
 			Request req = getRequestById(reqId);
@@ -130,6 +130,7 @@ public class RequestDAOImpl implements RequestDAO {
 			req.setRequestStatus(requestStatus);
 
 			req.setReqIsVoid(isVoid);
+			req.setReqNote(note);
 
 			System.out.println(req.getRequestStatus().getRsId());
 

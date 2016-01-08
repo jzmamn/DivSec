@@ -119,18 +119,19 @@ public class RequestController {
 	}
 
 	// Update request after status changing
-	@RequestMapping("/requestid/{requestId}/statusid/{statusId}/void/{void}")
+	@RequestMapping("/requestid/{requestId}/statusid/{statusId}/void/{void}/note/{note}")
 	public @ResponseBody String updateReqStatus(@PathVariable("requestId") int reqId,
-			@PathVariable("statusId") int reqStatusId, @PathVariable("void") boolean isVoid) {
+			@PathVariable("statusId") int reqStatusId, @PathVariable("void") boolean isVoid,
+			@PathVariable("note") String note) {
 		try {
 
-			this.reqSvc.updateSvcRequestStatus(reqId, reqStatusId, isVoid);
+			this.reqSvc.updateSvcRequestStatus(reqId, reqStatusId, isVoid, note);
 
 			return "1";
 		} catch (Exception e) {
 			System.out.println(e.toString());
 			e.printStackTrace();
-			return "Delete Failed ! " + "\n" + e.toString();
+			return "Request Status Updated ! " + "\n" + e.toString();
 		}
 
 	}

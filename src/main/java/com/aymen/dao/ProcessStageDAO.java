@@ -18,4 +18,6 @@ public interface ProcessStageDAO {
 
 	public List<ProcessStage> listReqStgByReqId(int reqId);
 
+	public void updateStageStatus(int reqStageId, int reqStgStsId, String note);
+
 }

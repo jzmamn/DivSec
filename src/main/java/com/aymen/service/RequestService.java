@@ -14,7 +14,7 @@ public interface RequestService {
 
 	public Request getSvcRequestById(int id);
 
-	public void updateSvcRequestStatus(int reqId, int statusId, boolean isVoid);
+	public void updateSvcRequestStatus(int reqId, int statusId, boolean isVoid, String note);
 
 	public void deleteSvcRequest(int id);
 

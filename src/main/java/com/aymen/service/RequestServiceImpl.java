@@ -93,8 +93,8 @@ public class RequestServiceImpl implements RequestService {
 	}
 
 	@Override
-	public void updateSvcRequestStatus(int reqId, int statusId, boolean isVoid) {
-		this.reqDao.updateRequestStatus(reqId, statusId, isVoid);
+	public void updateSvcRequestStatus(int reqId, int statusId, boolean isVoid, String note) {
+		this.reqDao.updateRequestStatus(reqId, statusId, isVoid, note);
 	}
 
 	public Date getCurrentDate() {

@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.aymen.entity.ProcessStage;
+import com.aymen.entity.StageStatus;
 
 @Repository
 public class ProcessStageDAOImpl implements ProcessStageDAO {
@@ -75,6 +76,26 @@ public class ProcessStageDAOImpl implements ProcessStageDAO {
 			return null;
 		}
 
+	}
+
+	@Override
+	public void updateStageStatus(int reqStageId, int reqStgStsId, String note) {
+		try {
+			Session session = sessionFactory.getCurrentSession();
+
+			ProcessStage prcStage = (ProcessStage) session.load(ProcessStage.class, new Integer(reqStageId));
+			StageStatus stgSts = new StageStatus();
+
+			stgSts.setSsId(reqStgStsId);
+			prcStage.setStageStatus(stgSts);
+
+			prcStage.setRstNote(note);
+
+			session.update(prcStage);
+			logger.info("Request Updated successfully, Request Details=" + prcStage.getRstId());
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
 	}
 
 }

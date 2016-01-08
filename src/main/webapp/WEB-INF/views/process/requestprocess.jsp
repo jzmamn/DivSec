@@ -140,11 +140,13 @@
 												<table class="table table-striped  table-hover table-condensed" id="dtStage">
 													<thead>
 														<tr>
-															<th style="width: 10%">PrcStage</th>
-															<th style="width: 10%">StgId</th>
+															<th style="width: 20%">PrcStage</th>
+															<th>StgId</th>
 															<th style="width: 60%">Stage</th>
-															<th style="width: 30%">Status</th>
-															<th style="width: 20%">ReqId</th>
+															<th style="width: 20%">StatusId</th>
+															<th>Status</th>
+															<th>ReqId</th>
+															<th>Note</th>
 														</tr>
 													</thead>
 
@@ -235,7 +237,11 @@
 																</div>
 
 																<div>
+																Note: <span class="small"><input type="text" style="width: 280px; height: 20px;" id="txtIdNote" maxlength="90" /></span>
+																<!-- 
 																	Remark : <span id="spnRemark" class="text-muted small"> <em>Yesterday esterday esterday esterday </em></span>
+																 -->
+																
 																</div>
 
 																<div>
@@ -410,7 +416,7 @@
 
 										<div class="form-group">
 											<div>
-												<input type="text" id="txtIdReqId1" name="txtRequestId" class="form-control" placeholder="RequestId" />
+												<input type="text" id="txtIdReqStgId" name="txtReqStgId" class="form-control" placeholder="Request Stage Id" />
 											</div>
 										</div>
 															
@@ -424,14 +430,14 @@
 										<div class="form-group">
 											<select class="form-control" id="idCmbReqStgSts">
 											</select>
-											<input type="text" id="idTxtReqStgSts" name="txtUserId" class="form-control" placeholder="Stage status id" />
+											<input type="text" id="idTxtReqStgSts" name="txtReqStgSts" class="form-control" placeholder="Stage status id" />
 										</div>
 
 										
 
 										<div class="form-group">
 											<div>
-												<input type="text" id="txtIdNote" name="txtNote" class="form-control" placeholder="Note" />
+												<input type="text" id="txtIdStgNote" name="txtStgNote" class="form-control" placeholder="Note" />
 											</div>
 										</div>
 
@@ -440,7 +446,7 @@
 
 								<div class="modal-footer">
 									<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-									<button type="button" class="btn btn-primary">Save changes</button>
+									<button id="btnSaveStg" type="button" class="btn btn-primary">Save changes</button>
 								</div>
 
 							</div>

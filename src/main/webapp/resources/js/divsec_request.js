@@ -11,8 +11,12 @@ jQuery(function() {
 		success : function(data) {
 			var newReq = 0;
 			var opened = 0;
+
 			$.each(data, function(index, element) {
 				newReq += element.count;
+			});
+
+			$.each(data, function(index, element) {
 
 				switch (element.rs_name) {
 				case "New":
@@ -49,7 +53,6 @@ jQuery(function() {
 	var dtRequest = $('#dtTable')
 			.dataTable(
 					{
-
 						// No of records should be displayed
 						"lengthMenu" : [ 5, 10, 20 ],
 
@@ -92,6 +95,8 @@ jQuery(function() {
 						}, {
 							"data" : "reqIsVoid"
 						} ],
+
+						"order" : [ [ 0, "desc" ] ],
 
 						"columnDefs" : [
 								{
@@ -240,7 +245,11 @@ jQuery(function() {
 						}, {
 							"data" : "stageStatus.ssId"
 						}, {
+							"data" : "stageStatus.ssName"
+						}, {
 							"data" : "request.reqId"
+						}, {
+							"data" : "rstNote"
 						}
 
 						],
@@ -252,6 +261,14 @@ jQuery(function() {
 								},
 								{
 									"targets" : [ 4 ],
+									"visible" : false
+								},
+								{
+									"targets" : [ 5 ],
+									"visible" : false
+								},
+								{
+									"targets" : [ 6 ],
 									"visible" : false
 								},
 								{
@@ -355,7 +372,9 @@ jQuery(function() {
 		$('#spnPubName').text(dtRequest.fnGetData(aPos, 7));
 		$('#spnDivId').text(dtRequest.fnGetData(aPos, 8));
 		$('#spnDivision').text(dtRequest.fnGetData(aPos, 9));
-		$('#spnRemark').text(dtRequest.fnGetData(aPos, 10));
+
+		// $('#spnRemark').text(dtRequest.fnGetData(aPos, 10));
+		$('#txtIdNote').val(dtRequest.fnGetData(aPos, 10));
 
 		$('#spnStaffId').text(dtRequest.fnGetData(aPos, 11));
 		$('#txtIdStaff').val(dtRequest.fnGetData(aPos, 11));
@@ -365,8 +384,6 @@ jQuery(function() {
 
 		$('#spnFee').text(dtRequest.fnGetData(aPos, 13));
 		$('#spnDuration').text(dtRequest.fnGetData(aPos, 14));
-
-		alert(dtRequest.fnGetData(aPos, 15));
 
 		if (dtRequest.fnGetData(aPos, 15) == true) {
 			blnIsDivActive = true;
@@ -379,8 +396,14 @@ jQuery(function() {
 	});
 
 	$('#dtStage tbody').on('click', 'tr', function(e) {
-		$('#idModalReqStage').modal('show');
+		var aPos = dtStage.fnGetPosition(this);
+		var reqId = dtStage.fnGetData(aPos, 0);
+		$('#txtIdReqStgId').val(dtStage.fnGetData(aPos, 0));
+		$('#idTxtReqStgSts').val(dtStage.fnGetData(aPos, 3));
+		$('#idCmbReqStgSts').val(dtStage.fnGetData(aPos, 4));
+		$('#txtIdNote').val(dtStage.fnGetData(aPos, 6));
 
+		$('#idModalReqStage').modal('show');
 	});
 
 	$("#idAll").click(function() {
@@ -525,9 +548,11 @@ jQuery(function() {
 			function(e) {
 				var reqId = $("#txtIdReqId").val();
 				var stausId = $("#idCmbReqStausId").val();
+				var d = $("#txtIdNote").val();
 
 				var a = parseInt(reqId);
 				var b = parseInt(stausId);
+				var d = $("#txtIdNote").val();
 
 				if ($('#chkIdPiActive').is(":checked")) {
 					c = true;
@@ -536,7 +561,7 @@ jQuery(function() {
 				}
 
 				var url1 = 'reqprocess/requestid/' + a + '/statusid/' + b
-						+ '/void/' + c;
+						+ '/void/' + c + '/note/' + d;
 
 				alert(url1);
 
@@ -547,6 +572,39 @@ jQuery(function() {
 						dtRequest.fnReloadAjax('reqprocess/loadrequest');
 						$("#frmProcessRequest").hide({});
 						$('#tblProcessRequest').show({});
+					},
+					error : function(data) {
+						alert('aymen2 fail' + data);
+					}
+				});
+			});
+
+	$("#btnSaveStg").click(
+			function(e) {
+				var reqId = $("#txtIdReqId").val();
+				var reqStgId = $("#txtIdReqStgId").val();
+				var stausId = $("#idTxtReqStgSts").val();
+				var c = $("#txtIdStgNote").val();
+
+				var a = parseInt(reqStgId);
+				var b = parseInt(stausId);
+
+				alert('note' + c);
+
+				alert('/reqstgid/' + a + '/statusid/' + b + '/note/' + c);
+
+				var url1 = 'processstg/reqstgid/' + a + '/statusid/' + b
+						+ '/note/' + c;
+
+				alert(url1);
+
+				$.ajax({
+					type : 'GET',
+					url : url1,
+					success : function() {
+						dtStage
+								.fnReloadAjax('processstg/loadreqstage/'
+										+ reqId);
 					},
 					error : function(data) {
 						alert('aymen2 fail' + data);

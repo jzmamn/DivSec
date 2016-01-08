@@ -51,4 +51,10 @@ public class ProcessStageServiceImpl implements ProcessStageService {
 		return prStgDao.listReqStgByReqId(reqId);
 	}
 
+	@Override
+	public void updateSvcStageStatus(int reqStageId, int reqStgStsId, String note) {
+		prStgDao.updateStageStatus(reqStageId, reqStgStsId, note);
+
+	}
+
 }

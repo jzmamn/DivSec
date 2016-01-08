@@ -17,4 +17,6 @@ public interface ProcessStageService {
 
 	public List<ProcessStage> listSvcReqStgByReqId(int reqId);
 
+	public void updateSvcStageStatus(int reqStageId, int reqStgStsId, String note);
+
 }
