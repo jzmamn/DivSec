@@ -119,12 +119,12 @@ public class RequestController {
 	}
 
 	// Update request after status changing
-	@RequestMapping("/requestid/{requestId}/statusid/{statusId}")
+	@RequestMapping("/requestid/{requestId}/statusid/{statusId}/void/{void}")
 	public @ResponseBody String updateReqStatus(@PathVariable("requestId") int reqId,
-			@PathVariable("statusId") int reqStatusId) {
+			@PathVariable("statusId") int reqStatusId, @PathVariable("void") boolean isVoid) {
 		try {
 
-			this.reqSvc.updateSvcRequestStatus(reqId, reqStatusId);
+			this.reqSvc.updateSvcRequestStatus(reqId, reqStatusId, isVoid);
 
 			return "1";
 		} catch (Exception e) {
@@ -133,6 +133,18 @@ public class RequestController {
 			return "Delete Failed ! " + "\n" + e.toString();
 		}
 
+	}
+
+	// display the count in the batch
+	@RequestMapping(value = "/batchcount", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody List<Object> getBatchCount() {
+		return this.reqSvc.listSvcBatchCount();
+	}
+
+	// display request by status
+	@RequestMapping(value = "/status/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody List<Request> loadRequestByStaus(@PathVariable("id") int id) {
+		return this.reqSvc.getSvcReqByStatus(id);
 	}
 
 	private String getPrincipal() {

@@ -81,22 +81,22 @@
 								<div class="col-lg-12">
 									<ul class="nav nav-pills" style="max-width: 300%;">
 
-										<li class="active" id="idAll"><a href="#" data-toggle="tab"> <span class="badge pull-right">25 </span> All
+										<li class="active" id="idAll"><a href="#" data-toggle="tab"> <span id="spnIdNew" class="badge pull-right"> </span> All
 										</a></li>
 
-										<li id="idApprove"><a href="#" data-toggle="tab"> <span class="badge pull-right">25</span> Approval
+										<li id="idApprove"><a href="#" data-toggle="tab"> <span id="spnIdApprove" class="badge pull-right"></span> Approval
 										</a></li>
 
-										<li id="idOpened"><a href="#" data-toggle="tab"> <span class="badge pull-right">25</span> Opened
+										<li id="idOpened"><a href="#" data-toggle="tab"> <span id="spnIdOpened" class="badge pull-right"></span> Opened
 										</a></li>
 
-										<li id="idApproval"><a href="#" data-toggle="tab"> <span class="badge pull-right">8</span> Approval
+										<li id="idApproval"><a href="#" data-toggle="tab"> <span id="spnIdApproval" class="badge pull-right"></span> Approval
 										</a></li>
 
-										<li id="idCompleted"><a href="#" data-toggle="tab"> <span class="badge pull-right">65</span> Completed
+										<li id="idCompleted"><a href="#" data-toggle="tab"> <span id="spnIdCompleted" class="badge pull-right"></span> Completed
 										</a></li>
 
-										<li id="idClosed"><a href="#" data-toggle="tab"> <span class="badge pull-right">3</span> Closed
+										<li id="idClosed"><a href="#" data-toggle="tab"> <span id="spnIdClosed"class="badge pull-right"></span> Closed
 										</a></li>
 									</ul>
 								</div>
@@ -117,7 +117,6 @@
 													<th>StatusName</th>
 													<th>SbjId</th>
 													<th style="width: 15%">Subject</th>
-													
 													<th style="width: 12%">Date</th>
 													<th style="width: 12%">Pb Id</th>
 													<th style="width: 20%">Pb Name</th>
@@ -128,7 +127,7 @@
 													<th>Stf Name</th>
 													<th>Fee</th>
 													<th>Duration</th>
-												
+													<th>Void</th>
 												</tr>
 											</thead>
 										</table>
@@ -163,7 +162,7 @@
 													</div>
 
 													<div class="panel-body">
-														<form  role="form" id="frmIdUpdateStatus" method="POST">
+														<form  role="form" id="frmIdUpdateStatus" method="GET">
 															<div>
 																<div>
 																	Request Id : <span id="spnReqId" class="pull-right text-muted small"></span>
@@ -246,7 +245,7 @@
 																<br/>
 
 																<div class="list-group-item">
-																	<button id="btnIdSaveChanges" class="btn  btn-block btn-primary">
+																	<button id="btnIdSaveChanges" type="button" class="btn  btn-block btn-primary">
 																		<span class="icon-save"></span> Save Changes
 																	</button>
 																</div>
@@ -414,24 +413,7 @@
 												<input type="text" id="txtIdReqId1" name="txtRequestId" class="form-control" placeholder="RequestId" />
 											</div>
 										</div>
-
-										<div class="form-group">
-											<div>
-												<input type="text" id="txtIdReqStageId" name="txtReqStageId" class="form-control" placeholder="Request Stage Id." />
-											</div>
-										</div>
-
-										<div class="form-group">
-											<div>
-												<input type="text" id="txtIdSeqNo" name="txtIdSeqNo" class="form-control" placeholder="SequenceNo" />
-											</div>
-										</div>
-
-										<div class="form-group">
-											<div>
-												<input type="text" id="txtIdTxnDate" name="txtTxnDate" class="form-control" placeholder="User Id" />
-											</div>
-										</div>
+															
 
 										<div class="form-group">
 											<div>
@@ -440,12 +422,12 @@
 										</div>
 
 										<div class="form-group">
-											<select class="form-control" id="people">
+											<select class="form-control" id="idCmbReqStgSts">
 											</select>
+											<input type="text" id="idTxtReqStgSts" name="txtUserId" class="form-control" placeholder="Stage status id" />
 										</div>
 
-										<div id="id"></div>
-										<div id="name"></div>
+										
 
 										<div class="form-group">
 											<div>

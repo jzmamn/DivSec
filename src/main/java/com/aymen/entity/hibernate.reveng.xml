@@ -23,4 +23,7 @@
 	<table-filter match-name="subjec_stage" match-catalog="divsec"></table-filter>
 	<table-filter match-name="subject" match-catalog="divsec"></table-filter>
 	<table-filter match-name="user_category" match-catalog="divsec"></table-filter>
+	<table-filter match-name="vw_req_batch_count"
+		match-catalog="divsec">
+	</table-filter>
 </hibernate-reverse-engineering>

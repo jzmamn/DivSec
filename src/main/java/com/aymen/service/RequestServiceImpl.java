@@ -93,9 +93,8 @@ public class RequestServiceImpl implements RequestService {
 	}
 
 	@Override
-	public void updateSvcRequestStatus(int reqId, int statusId) {
-		this.reqDao.updateRequestStatus(reqId, statusId);
-
+	public void updateSvcRequestStatus(int reqId, int statusId, boolean isVoid) {
+		this.reqDao.updateRequestStatus(reqId, statusId, isVoid);
 	}
 
 	public Date getCurrentDate() {
@@ -110,6 +109,16 @@ public class RequestServiceImpl implements RequestService {
 			return null;
 		}
 
+	}
+
+	@Override
+	public List<Object> listSvcBatchCount() {
+		return this.reqDao.listBatchCount();
+	}
+
+	@Override
+	public List<Request> getSvcReqByStatus(int statusId) {
+		return this.reqDao.getReqByStatus(statusId);
 	}
 
 }

@@ -2,6 +2,50 @@ jQuery(function() {
 
 	$("#frmProcessRequest").hide({});
 
+	// batch numbers load
+
+	$.ajax({
+		type : 'GET',
+		url : 'reqprocess/batchcount',
+		dataType : 'json',
+		success : function(data) {
+			var newReq = 0;
+			var opened = 0;
+			$.each(data, function(index, element) {
+				newReq += element.count;
+
+				switch (element.rs_name) {
+				case "New":
+					// All pills batch number
+					$("#spnIdNew").text(newReq);
+					break;
+				case "Opened":
+					$("#spnIdOpened").text(element.count);
+					break;
+				case "Completed":
+					$("#spnIdCompleted").text(element.count);
+					break;
+				case "Closed":
+					$("#spnIdClosed").text(element.count);
+					break;
+				// case "Rejected":
+				// break;
+				case "Approved":
+					$("#spnIdApprove").text(element.count);
+					break;
+				case "ToBeApp":
+					$("#spnIdApproval").text(element.count);
+					break;
+				}
+
+				// alert(element.rs_name + ':' + index);
+			});
+		},
+		error : function(data) {
+			alert('aymen2 fail' + data);
+		}
+	});
+
 	var dtRequest = $('#dtTable')
 			.dataTable(
 					{
@@ -45,6 +89,8 @@ jQuery(function() {
 							"data" : "reqFees"
 						}, {
 							"data" : "reqDurartion"
+						}, {
+							"data" : "reqIsVoid"
 						} ],
 
 						"columnDefs" : [
@@ -266,7 +312,8 @@ jQuery(function() {
 				$("#idModalRequest").modal("hide");
 				swal("Saved Sucessfully !", "....", "success");
 				dtRequest.fnReloadAjax('reqprocess/loadrequest');
-
+				$("#frmProcessRequest").hide({});
+				$('#tblProcessRequest').show({});
 			},
 
 			fail : function() {
@@ -312,14 +359,23 @@ jQuery(function() {
 
 		$('#spnStaffId').text(dtRequest.fnGetData(aPos, 11));
 		$('#txtIdStaff').val(dtRequest.fnGetData(aPos, 11));
+		$('#txtIdUserId').val(dtRequest.fnGetData(aPos, 11));
 
 		$('#spnStaff').text(dtRequest.fnGetData(aPos, 12));
 
 		$('#spnFee').text(dtRequest.fnGetData(aPos, 13));
 		$('#spnDuration').text(dtRequest.fnGetData(aPos, 14));
 
-		dtStage.fnReloadAjax('processstg/loadreqstage/' + reqId);
+		alert(dtRequest.fnGetData(aPos, 15));
 
+		if (dtRequest.fnGetData(aPos, 15) == true) {
+			blnIsDivActive = true;
+		} else {
+			blnIsDivActive = false;
+		}
+
+		$('#chkIdPiActive').prop('checked', blnIsDivActive);
+		dtStage.fnReloadAjax('processstg/loadreqstage/' + reqId);
 	});
 
 	$('#dtStage tbody').on('click', 'tr', function(e) {
@@ -330,31 +386,37 @@ jQuery(function() {
 	$("#idAll").click(function() {
 		$("#frmProcessRequest").hide({});
 		$('#tblProcessRequest').show({});
+		dtRequest.fnReloadAjax('reqprocess/loadrequest');
 	});
 
 	$("#idApprove").click(function() {
 		$("#frmProcessRequest").hide({});
 		$('#tblProcessRequest').show({});
+		dtRequest.fnReloadAjax('reqprocess/status/6');
 	});
 
 	$("#idOpened").click(function() {
 		$("#frmProcessRequest").hide({});
 		$('#tblProcessRequest').show({});
+		dtRequest.fnReloadAjax('reqprocess/status/2');
 	});
 
 	$("#idApproval").click(function() {
 		$("#frmProcessRequest").hide({});
 		$('#tblProcessRequest').show({});
+		dtRequest.fnReloadAjax('reqprocess/status/5');
 	});
 
 	$("#idCompleted").click(function() {
 		$("#frmProcessRequest").hide({});
 		$('#tblProcessRequest').show({});
+		dtRequest.fnReloadAjax('reqprocess/status/3');
 	});
 
 	$("#idClosed").click(function() {
 		$("#frmProcessRequest").hide({});
 		$('#tblProcessRequest').show({});
+		dtRequest.fnReloadAjax('reqprocess/status/4');
 
 	});
 
@@ -424,34 +486,72 @@ jQuery(function() {
 
 	}).trigger("change");
 
+	// Load Stage status in the Dropdown
+	var $select2 = $('#idCmbReqStgSts');
+	// request the JSON data and parse into the select element
+	$.ajax({
+		url : 'stageStatus/loadStageStaus',
+		dataType : 'JSON',
+		success : function(data) {
+			// clear the current content of the select
+			$select2.html('');
+			// iterate over the data and append a select option
+			$.each(data, function(key, val) {
+				$select2.append('<option id="' + val.ssId + '">' + val.ssName
+						+ '</option>');
+			})
+		},
+		error : function() {
+			// if there is an error append a 'none available' option
+			$select2.html('<option id="-1">none available</option>');
+		}
+	});
+
+	$select2.change(function() {
+		var str1 = "";
+		var str2 = "";
+		str1 = $(this).children(":selected").attr("id");
+
+		$("select option:selected").each(function() {
+			str2 = $(this).text() + " ";
+			$("#idTxtReqStgSts").val(str1);
+			$("#idCmbReqStausName").text(str2);
+		});
+
+	}).trigger("change");
+
 	// Update Request after changing status
-	$("#btnIdSaveChanges").click(function(e) {
+	$("#btnIdSaveChanges").click(
+			function(e) {
+				var reqId = $("#txtIdReqId").val();
+				var stausId = $("#idCmbReqStausId").val();
 
-		var reqId = $("#txtIdReqId").val();
-		var stausId = $("#idCmbReqStausId").val();
-		var url = 'reqprocess/requestid/requestId/statusid/statusId'
-		alert(url);
-		e.preventDefault(),
+				var a = parseInt(reqId);
+				var b = parseInt(stausId);
 
-		function() {
-			$.ajax({
-				type : "POST",
-				url : url,
-				data : {
-					requestId : $("#txtIdReqId").val(),
-					statusId : $("#idCmbReqStausId").val()
-				},
-				dataType : 'json',
-				success : function(data) {
-					alert(data);
-				},
-
-				fail : function(data) {
-					alert(data);
+				if ($('#chkIdPiActive').is(":checked")) {
+					c = true;
+				} else {
+					c = false;
 				}
 
+				var url1 = 'reqprocess/requestid/' + a + '/statusid/' + b
+						+ '/void/' + c;
+
+				alert(url1);
+
+				$.ajax({
+					type : 'GET',
+					url : url1,
+					success : function() {
+						dtRequest.fnReloadAjax('reqprocess/loadrequest');
+						$("#frmProcessRequest").hide({});
+						$('#tblProcessRequest').show({});
+					},
+					error : function(data) {
+						alert('aymen2 fail' + data);
+					}
+				});
 			});
-		};
-	});
 
 });

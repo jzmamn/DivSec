@@ -14,8 +14,12 @@ public interface RequestService {
 
 	public Request getSvcRequestById(int id);
 
-	public void updateSvcRequestStatus(int reqId, int statusId);
+	public void updateSvcRequestStatus(int reqId, int statusId, boolean isVoid);
 
 	public void deleteSvcRequest(int id);
+
+	public List<Object> listSvcBatchCount();
+
+	public List<Request> getSvcReqByStatus(int statusId);
 
 }

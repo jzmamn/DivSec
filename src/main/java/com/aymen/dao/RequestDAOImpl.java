@@ -3,6 +3,7 @@ package com.aymen.dao;
 import java.util.Iterator;
 import java.util.List;
 
+import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
@@ -119,13 +120,16 @@ public class RequestDAOImpl implements RequestDAO {
 	}
 
 	@Override
-	public void updateRequestStatus(int reqId, int statusId) {
+	public void updateRequestStatus(int reqId, int statusId, boolean isVoid) {
 		try {
 			Session session = sessionFactory.getCurrentSession();
 			Request req = getRequestById(reqId);
 			RequestStatus requestStatus = new RequestStatus();
+
 			requestStatus.setRsId(statusId);
 			req.setRequestStatus(requestStatus);
+
+			req.setReqIsVoid(isVoid);
 
 			System.out.println(req.getRequestStatus().getRsId());
 
@@ -135,6 +139,41 @@ public class RequestDAOImpl implements RequestDAO {
 			System.out.println(e.toString());
 		}
 
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Object> listBatchCount() {
+		String strQry = "select  rs.rs_id id, rs_name,count(req_id) `count` from `request` r "
+				+ "right outer join  `request_status` rs on r.req_status_id= rs.rs_id  group by r.req_status_id, rs_name;";
+
+		System.out.println(strQry);
+		Session session = this.sessionFactory.getCurrentSession();
+
+		SQLQuery query = session.createSQLQuery(strQry);
+		query.setResultTransformer(Criteria.ALIAS_TO_ENTITY_MAP);
+		List<Object> results = query.list();
+
+		return results;
+
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Request> getReqByStatus(int statusId) {
+		String sql = "SELECT * FROM request WHERE req_status_id = :Id ";
+		Session session = sessionFactory.getCurrentSession();
+		try {
+			SQLQuery query = session.createSQLQuery(sql);
+			query.addEntity(Request.class);
+			query.setParameter("Id", statusId);
+			List<Request> lst = query.list();
+			return lst;
+		} catch (Exception e) {
+			System.out.println(e.toString());
+			logger.error(e.toString());
+			return null;
+		}
 	}
 
 }

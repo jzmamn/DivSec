@@ -18,5 +18,9 @@ public interface RequestDAO {
 
 	public Request getLastRequest();
 
-	public void updateRequestStatus(int reqId, int statusId);
+	public void updateRequestStatus(int reqId, int statusId, boolean isVoid);
+
+	public List<Object> listBatchCount();
+
+	public List<Request> getReqByStatus(int statusId);
 }
