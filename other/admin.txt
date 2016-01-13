@@ -1,3 +1,11 @@
+admin User Name and password
+--------------------------------
 a
 123456
 $2a$10$LOqePml/koRGsk2YAIOFI.1YNKZg7EsQ5BAIuYP1nWOyYRl21dlne
+
+
+Email:
+----------------
+radgroup02@gmail.com
+rad@group02

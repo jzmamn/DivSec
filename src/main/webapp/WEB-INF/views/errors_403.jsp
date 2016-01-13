@@ -50,7 +50,7 @@
 			<p class="lead text-muted">Access Denied!.
 				Forbidden!</p>
 			<div class="clearfix"></div>
-		
+		<h3>${exception.message}</h3>
 			<div class="clearfix"></div>
 			<br />
 			<div class="col-lg-6  col-lg-offset-3">
