@@ -86,12 +86,25 @@
 							
 							<div class="panel-body">
 								<div class="table-responsive">
-									<table class="table table-striped table-bordered table-hover table-condensed" id="dtDivision">
+									<table class="table table-striped table-bordered table-hover table-condensed" id="dtOpened">
 										<thead>
 											<tr>
-												<th>DivId</th>
-												<th>Name</th>
-												<th>Active</th>
+												<th style="width: 5%">Id</th>
+															<th style="width: 25%">Name</th>
+															<th style="width: 15%">Add1</th>
+															<th style="width: 20%">Add2</th>
+															<th>Add3</th>
+															<th style="width: 12%">Tel</th>
+															<th style="width: 12%">Mobile</th>
+															<th>Email</th>
+															<th>NIC</th>
+															<th>DOB</th>
+															<th>Gender</th>
+															<th>Note</th>
+															<th>UId</th>
+															<th>NtnId</th>
+															<th>Ntn</th>
+															<th>Active</th>
 											</tr>
 										</thead>
 
@@ -138,7 +151,7 @@
 	<script src="${pageContext.request.contextPath}/resources/plugins/dataTables/js/pdfmake.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/plugins/dataTables/js/vfs_fonts.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/plugins/dataTables/js/fnReloadAjax.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/js/divsec_rpt_request.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/divsec_rpt_public.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/plugins/validator/validator.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/plugins/Sweetalert-master/lib/sweet-alert.js"></script>
 

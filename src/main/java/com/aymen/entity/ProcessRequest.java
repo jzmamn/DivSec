@@ -4,7 +4,6 @@ import static javax.persistence.GenerationType.IDENTITY;
 
 import java.math.BigDecimal;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -14,7 +13,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -34,7 +32,7 @@ public class ProcessRequest implements java.io.Serializable {
 	private Integer prDuration;
 	private String prNote;
 	private BigDecimal prCost;
-	private Set<Instructions> instructionses = new HashSet<Instructions>(0);
+	// private Set<Instructions> instructionses = new HashSet<Instructions>(0);
 
 	public ProcessRequest() {
 	}
@@ -51,7 +49,7 @@ public class ProcessRequest implements java.io.Serializable {
 		this.prDuration = prDuration;
 		this.prNote = prNote;
 		this.prCost = prCost;
-		this.instructionses = instructionses;
+		// this.instructionses = instructionses;
 	}
 
 	@Id
@@ -150,13 +148,13 @@ public class ProcessRequest implements java.io.Serializable {
 		this.prCost = prCost;
 	}
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "processRequest")
-	public Set<Instructions> getInstructionses() {
-		return this.instructionses;
-	}
-
-	public void setInstructionses(Set<Instructions> instructionses) {
-		this.instructionses = instructionses;
-	}
+	// @OneToMany(fetch = FetchType.LAZY, mappedBy = "processRequest")
+	// public Set<Instructions> getInstructionses() {
+	// return this.instructionses;
+	// }
+	//
+	// public void setInstructionses(Set<Instructions> instructionses) {
+	// this.instructionses = instructionses;
+	// }
 
 }

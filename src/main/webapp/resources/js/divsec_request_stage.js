@@ -1,55 +1,5 @@
 jQuery(function() {
 
-	$("#frmProcessRequest").hide({});
-
-	// batch numbers load
-
-	$.ajax({
-		type : 'GET',
-		url : 'reqprocess/batchcount',
-		dataType : 'json',
-		success : function(data) {
-			var newReq = 0;
-			var opened = 0;
-
-			$.each(data, function(index, element) {
-				newReq += element.count;
-			});
-
-			$.each(data, function(index, element) {
-
-				switch (element.rs_name) {
-				case "New":
-					// All pills batch number
-					$("#spnIdNew").text(newReq);
-					break;
-				case "Opened":
-					$("#spnIdOpened").text(element.count);
-					break;
-				case "Completed":
-					$("#spnIdCompleted").text(element.count);
-					break;
-				case "Closed":
-					$("#spnIdClosed").text(element.count);
-					break;
-				// case "Rejected":
-				// break;
-				case "Approved":
-					$("#spnIdApprove").text(element.count);
-					break;
-				case "ToBeApp":
-					$("#spnIdApproval").text(element.count);
-					break;
-				}
-
-				// alert(element.rs_name + ':' + index);
-			});
-		},
-		error : function(data) {
-			alert('aymen2 fail' + data);
-		}
-	});
-
 	var dtRequest = $('#dtTable')
 			.dataTable(
 					{
@@ -150,7 +100,38 @@ jQuery(function() {
 								}, {
 									"targets" : [ 14 ],
 									"visible" : false
-								} ]
+								} ],
+						dom : 'Bfrtip',
+						buttons : [ {
+							extend : 'copyHtml5',
+							exportOptions : {
+								columns : [ 0, ':visible' ]
+							}
+						}, {
+							extend : 'excelHtml5',
+							exportOptions : {
+								columns : ':visible'
+							}
+						},
+
+						{
+							extend : 'pdfHtml5',
+
+						}, 'colvis',
+
+						{
+							text : 'Filter',
+							action : function(e, dt, node, config) {
+								alert('Button activated');
+							}
+						}, {
+							extend : 'print',
+							message : 'Request List',
+							exportOptions : {
+								columns : ':visible'
+							}
+
+						} ]
 
 					});
 
@@ -228,16 +209,18 @@ jQuery(function() {
 	var dtStage = $('#dtStage')
 			.dataTable(
 					{
-						"lengthMenu" : [ 5, 10, 20 ],
+						"lengthMenu" : [ 40 ],
 
 						// Load table using JSON data by ajax
 						"ajax" : {
-							"url" : "processstg/loadreqstage/0",
+							"url" : "rptrequeststage/loadallreqstage",
 							"dataSrc" : ""
 						},
 
 						"columns" : [ {
 							"data" : "rstId"
+						}, {
+							"data" : "request.reqId"
 						}, {
 							"data" : "subjecStage.stgId"
 						}, {
@@ -247,32 +230,19 @@ jQuery(function() {
 						}, {
 							"data" : "stageStatus.ssName"
 						}, {
-							"data" : "request.reqId"
-						}, {
 							"data" : "rstNote"
 						}
 
 						],
 
 						"columnDefs" : [
-								{
-									"targets" : [ 1 ],
-									"visible" : false
-								},
-								{
-									"targets" : [ 4 ],
-									"visible" : false
-								},
+
 								{
 									"targets" : [ 5 ],
 									"visible" : false
 								},
 								{
-									"targets" : [ 6 ],
-									"visible" : false
-								},
-								{
-									"targets" : [ 3 ],
+									"targets" : [ 4 ],
 									"render" : function(data, type, full, meta) {
 
 										switch (data) {
@@ -288,7 +258,38 @@ jQuery(function() {
 
 										}
 									}
-								} ]
+								} ],
+						dom : 'Bfrtip',
+						buttons : [ {
+							extend : 'copyHtml5',
+							exportOptions : {
+								columns : [ 0, ':visible' ]
+							}
+						}, {
+							extend : 'excelHtml5',
+							exportOptions : {
+								columns : ':visible'
+							}
+						},
+
+						{
+							extend : 'pdfHtml5',
+
+						}, 'colvis',
+
+						{
+							text : 'Filter',
+							action : function(e, dt, node, config) {
+								alert('Button activated');
+							}
+						}, {
+							extend : 'print',
+							message : 'Request List',
+							exportOptions : {
+								columns : ':visible'
+							}
+
+						} ]
 					});
 
 	// GET VALUE ON TABLE ROW CLICK From Subject table
@@ -315,32 +316,6 @@ jQuery(function() {
 
 		$("#modalSubject").modal("hide");
 
-	});
-
-	// New Request Form submission save and edit
-	$("#frmIdRequest").submit(function() {
-		// the Controller request mapping value as url.
-		var url = "reqprocess/create";
-		$.ajax({
-			type : "POST",
-			url : url,
-			data : $("#frmIdRequest").serialize(),
-			success : function() {
-				$("#idModalRequest").modal("hide");
-				swal("Saved Sucessfully !", "....", "success");
-				dtRequest.fnReloadAjax('reqprocess/loadrequest');
-				$("#frmProcessRequest").hide({});
-				$('#tblProcessRequest').show({});
-			},
-
-			fail : function() {
-				$("#idModalRequest").modal("hide");
-				swal("Save Failed !", "....", "error");
-			}
-		});
-
-		// avoid to execute the actual submit of the form.
-		return false;
 	});
 
 	$('#dp1').datepicker('setDate', new Date());
@@ -401,7 +376,7 @@ jQuery(function() {
 		$('#txtIdReqStgId').val(dtStage.fnGetData(aPos, 0));
 		$('#idTxtReqStgSts').val(dtStage.fnGetData(aPos, 3));
 		$('#idCmbReqStgSts').val(dtStage.fnGetData(aPos, 4));
-		$('#txtIdStgNote').val(dtStage.fnGetData(aPos, 6));
+		$('#txtIdNote').val(dtStage.fnGetData(aPos, 6));
 
 		$('#idModalReqStage').modal('show');
 	});
@@ -563,6 +538,8 @@ jQuery(function() {
 				var url1 = 'reqprocess/requestid/' + a + '/statusid/' + b
 						+ '/void/' + c + '/note/' + d;
 
+				alert(url1);
+
 				$.ajax({
 					type : 'GET',
 					url : url1,
@@ -587,26 +564,25 @@ jQuery(function() {
 				var a = parseInt(reqStgId);
 				var b = parseInt(stausId);
 
-				// alert('/reqstgid/' + a + '/statusid/' + b + '/note/' + c);
+				alert('note' + c);
 
-				if (c == "") {
-					c = "stage";
-				}
+				alert('/reqstgid/' + a + '/statusid/' + b + '/note/' + c);
 
 				var url1 = 'processstg/reqstgid/' + a + '/statusid/' + b
 						+ '/note/' + c;
+
+				alert(url1);
 
 				$.ajax({
 					type : 'GET',
 					url : url1,
 					success : function() {
-						$("#idModalReqStage").modal("hide");
 						dtStage
 								.fnReloadAjax('processstg/loadreqstage/'
 										+ reqId);
 					},
 					error : function(data) {
-						alert('fail ' + data);
+						alert('aymen2 fail' + data);
 					}
 				});
 			});

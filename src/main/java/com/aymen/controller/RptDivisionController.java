@@ -26,8 +26,6 @@ public class RptDivisionController {
 	@Autowired
 	DivisionService divisionSvc;
 
-	// This method is called just before the division.jsp file is loading on the
-	// browser.
 	@RequestMapping(method = RequestMethod.GET)
 	public String home(ModelMap model) {
 		logger.info("Welcome home! The client locale is {}.");

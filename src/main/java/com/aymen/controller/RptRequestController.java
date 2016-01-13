@@ -14,8 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.aymen.entity.Division;
-import com.aymen.service.DivisionService;
+import com.aymen.entity.Request;
+import com.aymen.service.RequestService;
+import com.aymen.service.UserCreationService;
 
 @Controller
 @RequestMapping(value = "/rptrequest")
@@ -24,7 +25,10 @@ public class RptRequestController {
 	private static final Logger logger = LoggerFactory.getLogger(RptRequestController.class);
 
 	@Autowired
-	DivisionService divisionSvc;
+	RequestService reqSvc;
+
+	@Autowired
+	UserCreationService ucs;
 
 	// This method is called just before the division.jsp file is loading on the
 	// browser.
@@ -36,9 +40,9 @@ public class RptRequestController {
 	}
 
 	// This method sends JSON response to the client (REST)
-	@RequestMapping(value = "/create1", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody List<Division> getData() {
-		return this.divisionSvc.listSvcDivision();
+	@RequestMapping(value = "/loadrequest", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody List<Request> getData() {
+		return this.reqSvc.listSvcRequest();
 	}
 
 	private String getPrincipal() {

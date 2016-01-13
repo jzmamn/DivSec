@@ -43,8 +43,14 @@ public class ProcessStageDAOImpl implements ProcessStageDAO {
 
 	@Override
 	public List<ProcessStage> listReqStg() {
-		// TODO Auto-generated method stub
-		return null;
+		Session session = this.sessionFactory.getCurrentSession();
+		@SuppressWarnings("unchecked")
+		List<ProcessStage> reqStgList = session.createQuery(" from ProcessStage").list();
+		for (ProcessStage d : reqStgList) {
+			// logger.info("Person List::" + d);
+			// System.out.println(d);
+		}
+		return reqStgList;
 	}
 
 	@Override

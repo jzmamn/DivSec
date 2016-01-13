@@ -83,14 +83,20 @@
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="panel panel-default">
-							
+
 							<div class="panel-body">
 								<div class="table-responsive">
-									<table class="table table-striped table-bordered table-hover table-condensed" id="dtDivision">
+									<table class="table table-striped table-bordered table-hover table-condensed" id="dtStaff">
 										<thead>
 											<tr>
-												<th>DivId</th>
+												<th>Id</th>
 												<th>Name</th>
+												<th>DivId</th>
+												<th>DivName</th>
+												<th>UserId</th>
+												<th>Email</th>
+												<th>Mobile</th>
+												<th>Note</th>
 												<th>Active</th>
 											</tr>
 										</thead>
@@ -103,7 +109,7 @@
 				</div>
 
 
-			
+
 			</div>
 			<!--End of Inner  -->
 		</div>
@@ -138,7 +144,7 @@
 	<script src="${pageContext.request.contextPath}/resources/plugins/dataTables/js/pdfmake.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/plugins/dataTables/js/vfs_fonts.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/plugins/dataTables/js/fnReloadAjax.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/js/divsec_rpt_division.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/divsec_rpt_staff.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/plugins/validator/validator.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/plugins/Sweetalert-master/lib/sweet-alert.js"></script>
 

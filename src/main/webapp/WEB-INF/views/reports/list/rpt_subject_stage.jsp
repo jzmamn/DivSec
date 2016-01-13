@@ -57,7 +57,7 @@
 			<div class="inner">
 				<div class="row">
 					<div class="col-lg-12">
-						<h3 class="text-info">Division Report</h3>
+						<h3 class="text-info">Subject Stage Report</h3>
 					</div>
 				</div>
 				<hr />
@@ -83,14 +83,17 @@
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="panel panel-default">
-							
+
 							<div class="panel-body">
 								<div class="table-responsive">
-									<table class="table table-striped table-bordered table-hover table-condensed" id="dtDivision">
+									<table class="table table-striped table-bordered table-hover table-condensed" id="dtSbjStg">
 										<thead>
 											<tr>
-												<th>DivId</th>
-												<th>Name</th>
+												<th>Id</th>
+												<th>SbjId</th>
+												<th>SbjName</th>
+												<th>Stage</th>
+												<th>Cost</th>
 												<th>Active</th>
 											</tr>
 										</thead>
@@ -103,7 +106,7 @@
 				</div>
 
 
-			
+
 			</div>
 			<!--End of Inner  -->
 		</div>
@@ -138,7 +141,7 @@
 	<script src="${pageContext.request.contextPath}/resources/plugins/dataTables/js/pdfmake.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/plugins/dataTables/js/vfs_fonts.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/plugins/dataTables/js/fnReloadAjax.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/js/divsec_rpt_division.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/divsec_rpt_subjectstage.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/plugins/validator/validator.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/plugins/Sweetalert-master/lib/sweet-alert.js"></script>
 

@@ -30,8 +30,7 @@ public class SubjectStageServiceImpl implements SubjectStageService {
 
 	@Override
 	public List<SubjecStage> listSvcSbjStg() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.sbjStgDao.listSbjStg();
 	}
 
 	@Override

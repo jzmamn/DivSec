@@ -57,7 +57,7 @@
 			<div class="inner">
 				<div class="row">
 					<div class="col-lg-12">
-						<h3 class="text-info">Division Report</h3>
+						<h3 class="text-info">Subject Report</h3>
 					</div>
 				</div>
 				<hr />
@@ -86,11 +86,16 @@
 							
 							<div class="panel-body">
 								<div class="table-responsive">
-									<table class="table table-striped table-bordered table-hover table-condensed" id="dtDivision">
+									<table class="table table-striped table-bordered table-hover table-condensed" id="dtSubject">
 										<thead>
 											<tr>
-												<th>DivId</th>
+												<th>SubjectId</th>
+												<th>Code</th>
 												<th>Name</th>
+												<th>DivId</th>
+												<th>Division</th>
+												<th>Duration</th>
+												<th>Cost</th>
 												<th>Active</th>
 											</tr>
 										</thead>
@@ -138,7 +143,7 @@
 	<script src="${pageContext.request.contextPath}/resources/plugins/dataTables/js/pdfmake.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/plugins/dataTables/js/vfs_fonts.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/plugins/dataTables/js/fnReloadAjax.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/js/divsec_rpt_division.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/divsec_rpt_subject.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/plugins/validator/validator.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/plugins/Sweetalert-master/lib/sweet-alert.js"></script>
 

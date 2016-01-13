@@ -62,9 +62,6 @@ public class SbjStageController {
 		System.out.println(sbjStg.getStgName());
 		System.out.println(sbjStg.getSubject().getSbjId());
 
-		// logger.info("Subject Stage Name", sbjStg.getStgName());
-		// logger.info("Subject Id", sbjStg.getSubject().getSbjId());
-
 		try {
 			if (sbjStg.getStgId() == null) {
 				this.sbjStgSvc.createSvcSbjStg(sbjStg);

@@ -62,7 +62,7 @@ public class RequestController {
 		return "process/requestprocess";
 	}
 
-	// Save or Update division
+	// Save or Update Request
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
 	public String addRequest(@ModelAttribute("maRequest") Request req, BindingResult result, ModelMap model) {
 		if (result.hasErrors()) {

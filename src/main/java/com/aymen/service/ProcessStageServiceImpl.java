@@ -30,8 +30,7 @@ public class ProcessStageServiceImpl implements ProcessStageService {
 
 	@Override
 	public List<ProcessStage> listSvcReqStg() {
-		// TODO Auto-generated method stub
-		return null;
+		return prStgDao.listReqStg();
 	}
 
 	@Override

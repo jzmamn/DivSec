@@ -46,7 +46,13 @@ public class SubjectStageDAOImpl implements SubjectStageDAO {
 
 	@Override
 	public List<SubjecStage> listSbjStg() {
-		return null;
+		Session session = this.sessionFactory.getCurrentSession();
+		@SuppressWarnings("unchecked")
+		List<SubjecStage> subjectStgList = session.createQuery(" from SubjecStage").list();
+		for (SubjecStage s : subjectStgList) {
+			logger.info("SubjectStage List::" + s);
+		}
+		return subjectStgList;
 	}
 
 	@Override

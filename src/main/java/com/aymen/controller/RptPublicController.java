@@ -14,8 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.aymen.entity.Division;
-import com.aymen.service.DivisionService;
+import com.aymen.entity.PublicIndividual;
+import com.aymen.service.PublicDetailService;
+import com.aymen.service.UserCreationService;
 
 @Controller
 @RequestMapping(value = "/rptpublic")
@@ -24,10 +25,11 @@ public class RptPublicController {
 	private static final Logger logger = LoggerFactory.getLogger(RptPublicController.class);
 
 	@Autowired
-	DivisionService divisionSvc;
+	PublicDetailService pds;
 
-	// This method is called just before the division.jsp file is loading on the
-	// browser.
+	@Autowired
+	UserCreationService ucs;
+
 	@RequestMapping(method = RequestMethod.GET)
 	public String home(ModelMap model) {
 		logger.info("Welcome home! The client locale is {}.");
@@ -36,9 +38,9 @@ public class RptPublicController {
 	}
 
 	// This method sends JSON response to the client (REST)
-	@RequestMapping(value = "/create1", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody List<Division> getData() {
-		return this.divisionSvc.listSvcDivision();
+	@RequestMapping(value = "/loadpi", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody List<PublicIndividual> getListOfPI() {
+		return this.pds.listSvcPublicIndividual();
 	}
 
 	private String getPrincipal() {

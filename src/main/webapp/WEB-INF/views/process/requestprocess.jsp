@@ -96,7 +96,7 @@
 										<li id="idCompleted"><a href="#" data-toggle="tab"> <span id="spnIdCompleted" class="badge pull-right"></span> Completed
 										</a></li>
 
-										<li id="idClosed"><a href="#" data-toggle="tab"> <span id="spnIdClosed"class="badge pull-right"></span> Closed
+										<li id="idClosed"><a href="#" data-toggle="tab"> <span id="spnIdClosed" class="badge pull-right"></span> Closed
 										</a></li>
 									</ul>
 								</div>
@@ -137,6 +137,20 @@
 									<div id="frmProcessRequest" class="row">
 										<div class="col-lg-12">
 											<div class="col-lg-8 col-md-8 col-sm-8">
+
+												<form role="form" id="frmIdUpdateStatus" >
+													<div class="form-group input-group">
+														<input type="text" class="form-control" id="txtIdInstruction" /> <span class="input-group-btn">
+															<button class="btn btn-primary" type="button" id="btnIdAddInstruction">Add Instruction</button>
+														</span>
+													</div>
+
+													<div class="form-group">
+														<textarea class="form-control" rows="3" id="txtIdAreaInstruction"></textarea>
+													</div>
+												</form>
+												<hr />
+
 												<table class="table table-striped  table-hover table-condensed" id="dtStage">
 													<thead>
 														<tr>
@@ -150,8 +164,9 @@
 														</tr>
 													</thead>
 
-
 												</table>
+
+												<hr />
 											</div>
 
 
@@ -164,12 +179,11 @@
 													</div>
 
 													<div class="panel-body">
-														<form  role="form" id="frmIdUpdateStatus" method="GET">
+														<form role="form" id="frmIdUpdateStatus" method="GET">
 															<div>
 																<div>
-																	Request Id : <span id="spnReqId" class="pull-right text-muted small"></span>
-																	<span class="pull-right small">
-																		<input type="hidden" style="width: 50%; height: 20%;" id="txtIdReqId" readonly="true"/>
+																	Request Id : <span id="spnReqId" class="pull-right text-muted small"></span> <span class="pull-right small"> <input
+																		type="hidden" style="width: 50%; height: 20%;" id="txtIdReqId" readonly="true" />
 																	</span>
 
 																</div>
@@ -181,15 +195,14 @@
 																<div>
 																	Subject : <span id="spnSbj" class="pull-right text-muted small"></span>
 																</div>
-																
-																														
+
+
 																<div>
-																	Public Id : <span id="spnPubId" class=" pull-right text-muted small"></span>
-																	<span class="pull-right small">
-																		<input type="hidden" style="width: 50%; height: 20%;" id="txtIdPublic" />
+																	Public Id : <span id="spnPubId" class=" pull-right text-muted small"></span> <span class="pull-right small"> <input
+																		type="hidden" style="width: 50%; height: 20%;" id="txtIdPublic" />
 																	</span>
 																</div>
-																
+
 																<div>
 																	Public Name : <span id="spnPubName" class=" pull-right text-muted small"></span>
 																</div>
@@ -202,11 +215,10 @@
 																	Division : <span id="spnDivision" class="pull-right text-muted small"></span>
 																</div>
 
-<!-- 																<div style="display: none;"> -->
-<div>
-																	Staff Id : <span id="spnStaffId" class="pull-right text-muted small"></span>
-																	<span class="pull-right small">
-																		<input type="hidden" style="width: 50%; height: 20%;" id="txtIdStaff" />
+																<!-- 																<div style="display: none;"> -->
+																<div>
+																	Staff Id : <span id="spnStaffId" class="pull-right text-muted small"></span> <span class="pull-right small"> <input
+																		type="hidden" style="width: 50%; height: 20%;" id="txtIdStaff" />
 																	</span>
 																</div>
 
@@ -237,18 +249,19 @@
 																</div>
 
 																<div>
-																Note: <span class="small"><input type="text" style="width: 280px; height: 20px;" id="txtIdNote" maxlength="90" /></span>
-																<!-- 
+																	Note: <span class="small"><input type="text" style="width: 280px; height: 20px;" id="txtIdNote" maxlength="90" /></span>
+																	<!-- 
 																	Remark : <span id="spnRemark" class="text-muted small"> <em>Yesterday esterday esterday esterday </em></span>
 																 -->
-																
+
 																</div>
 
 																<div>
-																<span class="label label-warning">Void Request:</span>	 <span id="spnDate" class="pull-right"> <input type="checkbox" id="chkIdPiActive" /></span>
+																	<span class="label label-warning">Void Request:</span> <span id="spnDate" class="pull-right"> <input type="checkbox"
+																		id="chkIdPiActive" /></span>
 																</div>
-																
-																<br/>
+
+																<br />
 
 																<div class="list-group-item">
 																	<button id="btnIdSaveChanges" type="button" class="btn  btn-block btn-primary">
@@ -419,7 +432,7 @@
 												<input type="text" id="txtIdReqStgId" name="txtReqStgId" class="form-control" placeholder="Request Stage Id" />
 											</div>
 										</div>
-															
+
 
 										<div class="form-group">
 											<div>
@@ -429,11 +442,10 @@
 
 										<div class="form-group">
 											<select class="form-control" id="idCmbReqStgSts">
-											</select>
-											<input type="text" id="idTxtReqStgSts" name="txtReqStgSts" class="form-control" placeholder="Stage status id" />
+											</select> <input type="text" id="idTxtReqStgSts" name="txtReqStgSts" class="form-control" placeholder="Stage status id" />
 										</div>
 
-										
+
 
 										<div class="form-group">
 											<div>
