@@ -665,26 +665,81 @@ jQuery(function() {
 
 	var $textArea = $('#txtIdAreaInstruction');
 
+	// function getInstruction(reqId) {
+	// alert('reqprocess/inst/' + reqId);
+	//
+	// $textArea.html('');
+	//
+	// $.ajax({
+	// type : 'GET',
+	// url : 'reqprocess/inst/' + reqId,
+	//
+	// success : function(data) {
+	// $.each(data, function(key, val) {
+	// $textArea.append(val.insInstruction);
+	// $('#fake_textarea_content').val(
+	// $('#txtIdAreaInstruction').html());
+	// })
+	// },
+	// error : function(data) {
+	// alert('getInstruction fail' + data);
+	// }
+	// });
+
+	var list = '';
+	var list1 = '';
+	var list2 = '';
+
 	function getInstruction(reqId) {
 		alert('reqprocess/inst/' + reqId);
 
 		$textArea.html('');
 
-		$.ajax({
-			type : 'GET',
-			url : 'reqprocess/inst/' + reqId,
+		$
+				.ajax({
+					type : 'GET',
+					url : 'reqprocess/inst/' + reqId,
 
-			success : function(data) {
-				$.each(data, function(key, val) {
-					$textArea.append(val.insInstruction);
-					$('#fake_textarea_content').val(
-							$('#txtIdAreaInstruction').html());
-				})
-			},
-			error : function(data) {
-				alert('getInstruction fail' + data);
-			}
-		});
+					success : function(data) {
+
+						var x = 1;
+						$
+								.each(
+										data,
+										function(key, val) {
+
+											x = x + 1;
+											res = x % 2;
+
+											if (res == 0) {
+
+												list1 = '<li> \n<div class="chat-body clearfix"> \n<div class="header"> \n<p class= "text-left"> \n<strong>Division </strong> \n</p> \n</div> \n<p>'
+														+ val.insInstruction
+														+ '</p> \n<p class="text-primary pull-right"> \n<i class="icon-time"></i><em>'
+														+ val.insDate
+														+ '</em> \n</p> \n</div> \n</li> <hr/>';
+
+											} else {
+
+												list1 = '<li> \n<div class="chat-body clearfix"> \n<div class="header"> \n<p class= "text-right"> \n<strong>Division </strong> \n</p> \n</div> \n<p>'
+														+ val.insInstruction
+														+ '</p> \n<p class="text-primary pull-left"> \n<i class="icon-time"></i><em>'
+														+ val.insDate
+														+ '</em> \n</p> \n</div> \n</li> <hr/>';
+
+											}
+
+											list += list1;
+
+										})
+						alert('completed ' + list);
+						$('#idInst').append(list);
+
+					},
+					error : function(data) {
+						alert('getInstruction fail' + data);
+					}
+				});
 
 	}
 

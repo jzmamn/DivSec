@@ -150,9 +150,6 @@
 													<input type="hidden" class="form-control" id="txtIdInstId" name="txtInsId" /> <input type="hidden" class="form-control"
 														id="txtIdInstReqId" name="txtInsReqId" />
 
-
-
-
 													<div class="form-group ">
 														<input type="hidden" class="form-control" id="txtIdInsIsRead" name="txtInsIsRead" />
 													</div>
@@ -165,13 +162,18 @@
 														<textarea class="form-control" rows="3" id="txtIdAreaInstruction" name="txtAreaInst" ></textarea>
 													</div> -->
 
-													<div style="height: 200px;" class="panel panel-default">
-														<div class="col-lg-12">
-															<div style="height: 200px; overflow-y: scroll;" id='txtIdAreaInstruction'></div>
-															<input type='hidden' id='fake_textarea_content' name='foobar' />
-														</div>
+													<div style="height: 200px; overflow-y: scroll;" class="panel panel-success">
+														
+														<div id="idInst" class="panel-body"></div>
 													</div>
 
+													<!-- <div style="height: 200px;" class="panel panel-default">
+														<div id="idInst" class="col-lg-12">
+															<div style="height: 200px; overflow-y: scroll;" id='txtIdAreaInstruction'></div>
+															<input  
+															type='hidden' id='fake_textarea_content' name='foobar' />
+														</div>
+													</div> -->
 												</form>
 												<hr />
 

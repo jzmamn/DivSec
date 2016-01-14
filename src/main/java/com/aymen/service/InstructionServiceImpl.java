@@ -13,7 +13,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.aymen.dao.InstructionDAO;
 import com.aymen.entity.Instructions;
-import com.aymen.entity.Staff;
 
 @Service
 @Transactional
@@ -30,13 +29,11 @@ public class InstructionServiceImpl implements InstructionService {
 	@Override
 	public void createSvcInstruction(Instructions inst) {
 
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
-		String dateInString = sdf.format(new Date());
-
-		Staff stf = ucs.getSvcStaffById(inst.getInsStfId());
+		// Staff stf = ucs.getSvcStaffById(inst.getInsStfId());
 
 		String strInst = inst.getInsInstruction();
-		strInst = "<br>" + dateInString + "<br> <strong>" + stf.getStfName() + "</strong><br>" + strInst + "<hr/>";
+		// strInst = "<br>" + dateInString + "<br> <strong>" + stf.getStfName()
+		// + "</strong><br>" + strInst + "<hr/>";
 		inst.setInsInstruction(strInst);
 		inst.setInsDate(getCurrentDate());
 		instDao.createInstructions(inst);
