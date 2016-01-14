@@ -137,17 +137,41 @@
 									<div id="frmProcessRequest" class="row">
 										<div class="col-lg-12">
 											<div class="col-lg-8 col-md-8 col-sm-8">
+												<form data-toggle="validator" role="form" id="frmIdInstruction" method="POST">
 
-												<form role="form" id="frmIdUpdateStatus" >
+
+
 													<div class="form-group input-group">
-														<input type="text" class="form-control" id="txtIdInstruction" /> <span class="input-group-btn">
+														<input type="text" class="form-control" id="txtIdInstruction" name="txtInstruction" /> <span class="input-group-btn">
 															<button class="btn btn-primary" type="button" id="btnIdAddInstruction">Add Instruction</button>
 														</span>
 													</div>
 
-													<div class="form-group">
-														<textarea class="form-control" rows="3" id="txtIdAreaInstruction"></textarea>
+													<input type="hidden" class="form-control" id="txtIdInstId" name="txtInsId" /> <input type="hidden" class="form-control"
+														id="txtIdInstReqId" name="txtInsReqId" />
+
+
+
+
+													<div class="form-group ">
+														<input type="hidden" class="form-control" id="txtIdInsIsRead" name="txtInsIsRead" />
 													</div>
+
+													<div class="form-group ">
+														<input type="hidden" class="form-control" id="txtIdInsStfId" name="txtInstStfId" />
+													</div>
+
+													<!-- <div class="form-group">
+														<textarea class="form-control" rows="3" id="txtIdAreaInstruction" name="txtAreaInst" ></textarea>
+													</div> -->
+
+													<div style="height: 200px;" class="panel panel-default">
+														<div class="col-lg-12">
+															<div style="height: 200px; overflow-y: scroll;" id='txtIdAreaInstruction'></div>
+															<input type='hidden' id='fake_textarea_content' name='foobar' />
+														</div>
+													</div>
+
 												</form>
 												<hr />
 
@@ -354,7 +378,7 @@
 										</div>
 
 										<div class="input-group">
-											<form:input path="reqEntDate" type="text" id="dp1" data-validation="date" data-validation-format="yyyy-mm-dd" name="txtDob"
+											<form:input path="reqEntDate" type="text" id="dp1" data-validation="date" data-validation-format="yyyy-mm-dd" name="txtDp1"
 												class="form-control" />
 										</div>
 
@@ -574,6 +598,10 @@
 	<script src="${pageContext.request.contextPath}/resources/js/divsec_request.js"></script>
 	<script>
 		$('#dp1').datepicker({
+			format : "yyyy-mm-dd"
+		});
+
+		$('#idTxtInstDate').datepicker({
 			format : "yyyy-mm-dd"
 		});
 

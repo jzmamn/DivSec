@@ -1,5 +1,8 @@
 package com.aymen.service;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -10,50 +13,77 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.aymen.dao.InstructionDAO;
 import com.aymen.entity.Instructions;
+import com.aymen.entity.Staff;
 
 @Service
 @Transactional
-public class InstructionServiceImpl implements InstructionDAO {
+public class InstructionServiceImpl implements InstructionService {
 
 	private static final Logger logger = LoggerFactory.getLogger(InstructionServiceImpl.class);
 
 	@Autowired
 	private InstructionDAO instDao;
 
+	@Autowired
+	UserCreationService ucs;
+
 	@Override
-	public void createInstructions(Instructions inst) {
+	public void createSvcInstruction(Instructions inst) {
+
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
+		String dateInString = sdf.format(new Date());
+
+		Staff stf = ucs.getSvcStaffById(inst.getInsStfId());
+
+		String strInst = inst.getInsInstruction();
+		strInst = "<br>" + dateInString + "<br> <strong>" + stf.getStfName() + "</strong><br>" + strInst + "<hr/>";
+		inst.setInsInstruction(strInst);
+		inst.setInsDate(getCurrentDate());
+		instDao.createInstructions(inst);
+
+	}
+
+	@Override
+	public void updateSvcInstruction(Instructions inst) {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	public void updateInstructions(Instructions inst) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public List<Instructions> listInstructions() {
+	public List<Instructions> listSvcInstruction() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public Instructions getInstructionsById(int id) {
+	public Instructions getSvcInstructionById(int id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public void deleteInstructions(int id) {
+	public void deleteSvcInstruction(int id) {
 		// TODO Auto-generated method stub
 
 	}
 
 	@Override
-	public List<Instructions> listInstByRequest(int reqId) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Instructions> listSvcInstByRequest(int reqId) {
+		return this.instDao.listInstByRequest(reqId);
+	}
+
+	public Date getCurrentDate() {
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
+		String dateInString = sdf.format(new Date());
+		Date txnDate;
+		try {
+			txnDate = sdf.parse(dateInString);
+			return txnDate;
+		} catch (ParseException e) {
+			e.printStackTrace();
+			return null;
+		}
+
 	}
 
 }

@@ -346,6 +346,9 @@ jQuery(function() {
 	$('#dp1').datepicker('setDate', new Date());
 	$('#dp1').datepicker('update');
 
+	$('#idTxtInstDate').datepicker('setDate', new Date());
+	$('#idTxtInstDate').datepicker('update');
+
 	// Request table row Click and Fill the request info
 	// PublicId,Status and void can be updated manually
 
@@ -393,6 +396,14 @@ jQuery(function() {
 
 		$('#chkIdPiActive').prop('checked', blnIsDivActive);
 		dtStage.fnReloadAjax('processstg/loadreqstage/' + reqId);
+
+		// Instruction
+		$('#txtIdInsStfId').val(dtRequest.fnGetData(aPos, 11));
+		$('#txtIdInsIsRead').val(0);
+		$('#txtIdInstReqId').val(dtRequest.fnGetData(aPos, 0));
+
+		getInstruction(parseInt(reqId));
+
 	});
 
 	$('#dtStage tbody').on('click', 'tr', function(e) {
@@ -610,5 +621,71 @@ jQuery(function() {
 					}
 				});
 			});
+
+	// Instruction submission
+
+	// Update Request after changing status
+	$("#btnIdAddInstruction").click(
+			function(e) {
+
+				// /{requestId}/{instruction}/{instDate}/{isRead}/{stfId}/
+
+				var reqId = $("#txtIdInstReqId").val();
+				var inst = $("#txtIdInstruction").val();
+				var instDate = $("#idTxtInstDate").val();
+				var isRead = $("#txtIdInsIsRead").val();
+				var instStaffId = $("#txtIdInsStfId").val();
+
+				var a = parseInt(reqId);
+
+				var b = parseInt(instStaffId);
+
+				if (isRead == "1") {
+					c = true;
+				} else {
+					c = false;
+				}
+
+				var url1 = 'reqprocess/instruction/' + a + '/' + inst + '/' + c
+						+ '/' + b;
+
+				// alert(url1);
+
+				$.ajax({
+					type : 'GET',
+					url : url1,
+					success : function() {
+						getInstruction(a);
+					},
+					error : function(data) {
+						alert('aymen2 fail' + data);
+					}
+				});
+			});
+
+	var $textArea = $('#txtIdAreaInstruction');
+
+	function getInstruction(reqId) {
+		alert('reqprocess/inst/' + reqId);
+
+		$textArea.html('');
+
+		$.ajax({
+			type : 'GET',
+			url : 'reqprocess/inst/' + reqId,
+
+			success : function(data) {
+				$.each(data, function(key, val) {
+					$textArea.append(val.insInstruction);
+					$('#fake_textarea_content').val(
+							$('#txtIdAreaInstruction').html());
+				})
+			},
+			error : function(data) {
+				alert('getInstruction fail' + data);
+			}
+		});
+
+	}
 
 });

@@ -98,7 +98,7 @@ public class RequestServiceImpl implements RequestService {
 	}
 
 	public Date getCurrentDate() {
-		SimpleDateFormat sdf = new SimpleDateFormat("dd-M-yyyy hh:mm:ss");
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
 		String dateInString = sdf.format(new Date());
 		Date txnDate;
 		try {

@@ -23,8 +23,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.aymen.entity.Instructions;
 import com.aymen.entity.Request;
 import com.aymen.entity.Staff;
+import com.aymen.service.InstructionService;
 import com.aymen.service.RequestService;
 import com.aymen.service.UserCreationService;
 
@@ -35,6 +37,9 @@ public class RequestController {
 
 	@Autowired
 	RequestService reqSvc;
+
+	@Autowired
+	InstructionService instSvc;
 
 	@Autowired
 	UserCreationService ucs;
@@ -146,6 +151,42 @@ public class RequestController {
 	@RequestMapping(value = "/status/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody List<Request> loadRequestByStaus(@PathVariable("id") int id) {
 		return this.reqSvc.getSvcReqByStatus(id);
+	}
+
+	// Add Instruction
+	@RequestMapping("instruction/{requestId}/{instruction}/{isRead}/{stfId}")
+	public @ResponseBody String saveInstruction(@PathVariable("requestId") int reqId,
+			@PathVariable("instruction") String instruction, @PathVariable("isRead") boolean isRead,
+			@PathVariable("stfId") int stfId) {
+		try {
+
+			Instructions inst = new Instructions();
+			Request req = new Request();
+
+			req.setReqId(reqId);
+			inst.setRequest(req);
+			inst.setInsInstruction(instruction);
+
+			inst.setInsIsRead(isRead);
+			inst.setInsStfId(stfId);
+
+			this.instSvc.createSvcInstruction(inst);
+
+			return "1";
+		} catch (Exception e) {
+			System.out.println(e.toString());
+			e.printStackTrace();
+			return "Request Status Updated ! " + "\n" + e.toString();
+		}
+
+	}
+
+	// Get Instruction by request id
+
+	// display request by status
+	@RequestMapping(value = "/inst/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody List<Instructions> loadInstByReqId(@PathVariable("id") int id) {
+		return this.instSvc.listSvcInstByRequest(id);
 	}
 
 	private String getPrincipal() {

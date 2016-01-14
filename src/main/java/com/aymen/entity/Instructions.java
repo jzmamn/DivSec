@@ -67,7 +67,7 @@ public class Instructions implements java.io.Serializable {
 		this.request = request;
 	}
 
-	@Column(name = "ins_instruction", length = 100)
+	@Column(name = "ins_instruction", length = 500)
 	public String getInsInstruction() {
 		return this.insInstruction;
 	}
