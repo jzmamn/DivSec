@@ -1,6 +1,6 @@
 var dtRequest = $('#dtTable').dataTable({
 	// No of records should be displayed
-	"lengthMenu" : [ 5, 10, 20 ],
+	"lengthMenu" : [ 40 ],
 
 	// Load table using JSON data by ajax
 	"ajax" : {
@@ -115,8 +115,9 @@ var dtRequest = $('#dtTable').dataTable({
 	{
 		text : 'Filter',
 		action : function(e, dt, node, config) {
-			alert('Button activated');
+			$("#mdlReqFilter").modal("show")
 		}
+
 	}, {
 		extend : 'print',
 		message : 'Request List',

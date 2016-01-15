@@ -72,6 +72,7 @@
 			<ul class="collapse" id="process-nav">
 				<li class=""><a href="${pageContext.request.contextPath}/public"><i class="icon-angle-right"></i> Public Details </a></li>
 				<li class=""><a href="${pageContext.request.contextPath}/reqprocess"><i class="icon-angle-right"></i> Request Processing </a></li>
+				<li class=""><a href="${pageContext.request.contextPath}/ticket"><i class="icon-angle-right"></i> Ticket </a></li>
 			</ul></li>
 		<!-- Process -->	
 			

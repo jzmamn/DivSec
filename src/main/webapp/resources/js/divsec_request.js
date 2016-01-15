@@ -454,38 +454,38 @@ jQuery(function() {
 
 	});
 
-	var $select = $('#people');
-	// request the JSON data and parse into the select element
-	$.ajax({
-		url : 'request_status_stages.JSON',
-		dataType : 'JSON',
-		success : function(data) {
-			// clear the current content of the select
-			$select.html('');
-			// iterate over the data and append a select option
-			$.each(data, function(key, val) {
-				$select.append('<option id="' + val.id + '">' + val.name
-						+ '</option>');
-			})
-		},
-		error : function() {
-			// if there is an error append a 'none available' option
-			$select.html('<option id="-1">none available</option>');
-		}
-	});
+	// var $select = $('#people');
+	// // request the JSON data and parse into the select element
+	// $.ajax({
+	// url : 'request_status_stages.JSON',
+	// dataType : 'JSON',
+	// success : function(data) {
+	// // clear the current content of the select
+	// $select.html('');
+	// // iterate over the data and append a select option
+	// $.each(data, function(key, val) {
+	// $select.append('<option id="' + val.id + '">' + val.name
+	// + '</option>');
+	// })
+	// },
+	// error : function() {
+	// // if there is an error append a 'none available' option
+	// $select.html('<option id="-1">none available</option>');
+	// }
+	// });
 
-	$select.change(function() {
-		var str1 = "";
-		var str2 = "";
-		str1 = $(this).children(":selected").attr("id");
-
-		$("select option:selected").each(function() {
-			str2 = $(this).text() + " ";
-			$("#id").text(str1);
-			$("#name").text(str2);
-		});
-
-	}).trigger("change");
+	// $select.change(function() {
+	// var str1 = "";
+	// var str2 = "";
+	// str1 = $(this).children(":selected").attr("id");
+	//
+	// $("select option:selected").each(function() {
+	// str2 = $(this).text() + " ";
+	// $("#id").text(str1);
+	// $("#name").text(str2);
+	// });
+	//
+	// }).trigger("change");
 
 	var $select1 = $('#cmdIdReqStatus');
 	// request the JSON data and parse into the select element

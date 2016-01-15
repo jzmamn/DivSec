@@ -139,8 +139,6 @@
 											<div class="col-lg-8 col-md-8 col-sm-8">
 												<form data-toggle="validator" role="form" id="frmIdInstruction" method="POST">
 
-
-
 													<div class="form-group input-group">
 														<input type="text" class="form-control" id="txtIdInstruction" name="txtInstruction" /> <span class="input-group-btn">
 															<button class="btn btn-primary" type="button" id="btnIdAddInstruction">Add Instruction</button>
@@ -163,17 +161,10 @@
 													</div> -->
 
 													<div style="height: 200px; overflow-y: scroll;" class="panel panel-success">
-														
 														<div id="idInst" class="panel-body"></div>
 													</div>
 
-													<!-- <div style="height: 200px;" class="panel panel-default">
-														<div id="idInst" class="col-lg-12">
-															<div style="height: 200px; overflow-y: scroll;" id='txtIdAreaInstruction'></div>
-															<input  
-															type='hidden' id='fake_textarea_content' name='foobar' />
-														</div>
-													</div> -->
+													
 												</form>
 												<hr />
 
