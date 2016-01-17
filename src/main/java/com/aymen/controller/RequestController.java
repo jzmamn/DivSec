@@ -182,7 +182,6 @@ public class RequestController {
 	}
 
 	// Get Instruction by request id
-
 	// display request by status
 	@RequestMapping(value = "/inst/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody List<Instructions> loadInstByReqId(@PathVariable("id") int id) {

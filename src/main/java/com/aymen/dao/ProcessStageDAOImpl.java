@@ -2,6 +2,7 @@ package com.aymen.dao;
 
 import java.util.List;
 
+import org.hibernate.Criteria;
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -102,6 +103,91 @@ public class ProcessStageDAOImpl implements ProcessStageDAO {
 		} catch (Exception e) {
 			System.out.println(e.toString());
 		}
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Object> filterRequestStages(int reqId, int sbjId, int pubId, int divId, int statusId, String fromDate,
+			String toDate) {
+
+		String strQuery = "";
+		String strQuery1 = "SELECT *  FROM  request r";
+		strQuery1 = strQuery1 + " left JOIN `process_stage` s ON r.req_id = s.rst_pr_id";
+		strQuery1 = strQuery1 + " left JOIN `subject` sb ON r.req_subject_id = sb.sbj_id";
+		strQuery1 = strQuery1 + " left JOIN `subjec_stage` sg ON sg.stg_id = s.rst_stg_id";
+		// strQuery = strQuery + " left JOIN `staff` sf ON r.req_user_id =
+		// sf.stf_id";
+		strQuery1 = strQuery1 + " left JOIN `staff` sf1 ON s.rst_user_id = sf1.stf_id";
+		strQuery1 = strQuery1 + " left JOIN `Public_individual` p ON r.req_public_id = p.pi_id";
+		strQuery1 = strQuery1 + " left JOIN `division` d ON r.req_division_id = d.div_id";
+		strQuery1 = strQuery1 + " left JOIN `request_status` rs ON r.req_status_id = rs.rs_id ";
+		strQuery1 = strQuery1 + " left JOIN `stage_status` ss ON  s.rst_stage_status_id = ss.ss_id";
+		strQuery1 = strQuery1 + " WHERE";
+
+		String strQuery2 = "";
+
+		if (reqId > 0) {
+			strQuery2 = " req_id= " + reqId + " AND";
+		}
+
+		if (sbjId > 0) {
+			strQuery2 = " req_subject_id= " + sbjId + " AND";
+		}
+
+		if (pubId > 0) {
+			strQuery2 = " req_public_id= " + pubId + " AND";
+		}
+
+		if (divId > 0) {
+			strQuery2 = " req_division_id= " + divId + " AND";
+		}
+
+		if (statusId > 0) {
+			strQuery2 = " req_status_id= " + statusId + " AND";
+		}
+
+		if (!fromDate.equals("0") && !toDate.equals("0")) {
+			strQuery2 = " DATE_FORMAT(req_ent_date, '%Y-%m-%d') BETWEEN  '" + fromDate + "' AND '" + toDate + "' AND";
+		}
+
+		if (strQuery2.length() > 0) {
+			strQuery2 = strQuery2.substring(0, strQuery2.length() - 4);
+			strQuery = strQuery1 + strQuery2;
+		} else {
+			strQuery = strQuery1.substring(0, strQuery1.length() - 6);
+		}
+
+		System.out.println(strQuery);
+		Session session = this.sessionFactory.getCurrentSession();
+		SQLQuery query = session.createSQLQuery(strQuery);
+		query.setResultTransformer(Criteria.ALIAS_TO_ENTITY_MAP);
+		List<Object> results = query.list();
+		return results;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Object> filterAllRequestStages() {
+		String strQuery = "SELECT * FROM request r ";
+		strQuery = strQuery + " left JOIN `process_stage` s ON r.req_id = s.rst_pr_id";
+		strQuery = strQuery + " left JOIN `subject` sb ON r.req_subject_id = sb.sbj_id";
+		strQuery = strQuery + " left JOIN `subjec_stage` sg ON sg.stg_id = s.rst_stg_id";
+		// strQuery = strQuery + " left JOIN `staff` sf ON r.req_user_id =
+		// sf.stf_id";
+		strQuery = strQuery + " left JOIN `staff` sf1 ON s.rst_user_id = sf1.stf_id";
+		strQuery = strQuery + " left JOIN `Public_individual` p ON r.req_public_id = p.pi_id";
+		strQuery = strQuery + " left JOIN `division` d ON r.req_division_id = d.div_id";
+		strQuery = strQuery + " left JOIN `request_status` rs ON r.req_status_id = rs.rs_id ";
+		strQuery = strQuery + " left JOIN `stage_status` ss ON  s.rst_stage_status_id = ss.ss_id";
+		strQuery = strQuery + " ORDER BY req_id";
+
+		System.out.println(strQuery);
+		Session session = this.sessionFactory.getCurrentSession();
+		SQLQuery query = session.createSQLQuery(strQuery);
+		query.setResultTransformer(Criteria.ALIAS_TO_ENTITY_MAP);
+		List<Object> results = query.list();
+		return results;
+
 	}
 
 }

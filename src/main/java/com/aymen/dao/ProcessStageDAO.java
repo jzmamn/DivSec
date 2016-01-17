@@ -20,4 +20,11 @@ public interface ProcessStageDAO {
 
 	public void updateStageStatus(int reqStageId, int reqStgStsId, String note);
 
+	// For Request Stage Reports
+
+	public List<Object> filterAllRequestStages();
+
+	public List<Object> filterRequestStages(int reqId, int sbjId, int pubId, int divId, int statusId, String fromDate,
+			String toDate);
+
 }

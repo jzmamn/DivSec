@@ -7,42 +7,50 @@ jQuery(function() {
 
 						// Load table using JSON data by ajax
 						"ajax" : {
-							"url" : "rptrequest/loadrequest",
+							"url" : "rptrequeststage/loadrequestStage",
 							"dataSrc" : ""
 						},
 
 						"columns" : [ {
-							"data" : "Request.reqId"
+							"data" : "req_id"
 						}, {
-							"data" : "Request.requestStatus.rsId"
+							"data" : "req_status_id"
 						}, {
-							"data" : "Request.requestStatus.rsName"
+							"data" : "rs_name"
 						}, {
-							"data" : "Request.subject.sbjId"
+							"data" : "req_subject_id"
 						}, {
-							"data" : "Request.subject.sbjCode"
+							"data" : "sbj_code"
 						}, {
-							"data" : "Request.reqEntDate"
+							"data" : "rst_stg_id"
 						}, {
-							"data" : "Request.publicIndividual.piId"
+							"data" : "stg_name"
 						}, {
-							"data" : "Request.publicIndividual.piName"
+							"data" : "rst_stage_status_id"
 						}, {
-							"data" : "Request.division.divId"
+							"data" : "ss_name"
 						}, {
-							"data" : "Request.division.divName"
+							"data" : "req_ent_date"
 						}, {
-							"data" : "Request.reqNote"
+							"data" : "req_public_id"
 						}, {
-							"data" : "Request.staff.stfId"
+							"data" : "pi_name"
 						}, {
-							"data" : "Request.staff.stfName"
+							"data" : "req_division_id"
 						}, {
-							"data" : "Request.reqFees"
+							"data" : "div_name"
 						}, {
-							"data" : "Request.reqDurartion"
+							"data" : "req_note"
 						}, {
-							"data" : "Request.reqIsVoid"
+							"data" : "rst_user_id"
+						}, {
+							"data" : "stf_name"
+						}, {
+							"data" : "req_fees"
+						}, {
+							"data" : "req_durartion"
+						}, {
+							"data" : "req_is_void"
 						} ],
 
 						"order" : [ [ 0, "desc" ] ],
@@ -54,6 +62,16 @@ jQuery(function() {
 								},
 								{
 									"targets" : [ 3 ],
+									"visible" : false
+								},
+
+								{
+									"targets" : [ 5 ],
+									"visible" : false
+								},
+
+								{
+									"targets" : [ 8 ],
 									"visible" : false
 								},
 								{
@@ -76,19 +94,58 @@ jQuery(function() {
 										case 5:
 											return '<span class="label label-danger">For Approval</span>';
 											break;
+										default:
+											return 'Stage Not Available';
+
 										}
 									}
-								}, {
-									"targets" : [ 8 ],
-									"visible" : false
-								}, {
+								},
+								{
+									"targets" : [ 7 ],
+									"render" : function(data, type, full, meta) {
+
+										switch (data) {
+										case 1:
+											return '<span class="label label-warning">Pending</span>';
+											break;
+										case 2:
+											return '<span class="label label-success">In-Progress</span>';
+											break;
+										case 3:
+											return '<span class="label label-info">completed</span>';
+											break;
+
+										}
+									}
+								},
+								{
 									"targets" : [ 9 ],
-									"visible" : false
+									"render" : function(data, type, full, meta) {
+										var currentTime = new Date(data);
+										var month = currentTime.getMonth() + 1;
+										var month1 = month.toString();
+
+										if (month1.length < 2) {
+											month1 = "0" + month1;
+										}
+
+										var day = currentTime.getDate();
+										var day1 = day.toString();
+
+										if (day1.length < 2) {
+											day1 = "0" + day1;
+										}
+
+										var year = currentTime.getFullYear();
+
+										var date = year + "-" + month1 + "-"
+												+ day1;
+
+										return date;
+
+									}
 								}, {
 									"targets" : [ 10 ],
-									"visible" : false
-								}, {
-									"targets" : [ 11 ],
 									"visible" : false
 								}, {
 									"targets" : [ 12 ],
@@ -98,6 +155,21 @@ jQuery(function() {
 									"visible" : false
 								}, {
 									"targets" : [ 14 ],
+									"visible" : false
+								}, {
+									"targets" : [ 15 ],
+									"visible" : false
+								}, {
+									"targets" : [ 16 ],
+									"visible" : false
+								}, {
+									"targets" : [ 17 ],
+									"visible" : false
+								}, {
+									"targets" : [ 18 ],
+									"visible" : false
+								}, {
+									"targets" : [ 19 ],
 									"visible" : false
 								} ],
 						dom : 'Bfrtip',
@@ -140,8 +212,9 @@ jQuery(function() {
 									text : 'Refresh',
 									action : function(e, dt, node, config) {
 										dtRequest
-												.fnReloadAjax('rptrequest/loadrequest');
+												.fnReloadAjax('rptrequeststage/loadrequestStage');
 									}
+
 								} ]
 
 					});
@@ -160,37 +233,30 @@ jQuery(function() {
 
 				if (reqId === "") {
 					reqId = "0";
-
 				}
 
 				if (sbjId === "") {
 					sbjId = "0";
-
 				}
 
 				if (pubId === "") {
 					pubId = "0";
-
 				}
 
 				if (divId === "") {
 					divId = "0";
-
 				}
 
 				if (statusId === "") {
 					statusId = "0";
-
 				}
 
 				if (fromDate === "") {
 					fromDate = "0";
-
 				}
 
 				if (toDate === "") {
 					toDate = "0";
-
 				}
 
 				var intReqId = parseInt(reqId);
@@ -204,11 +270,11 @@ jQuery(function() {
 						&& toDate === "0") {
 
 					$("#mdlReqFilter").modal("hide")
-					dtRequest.fnReloadAjax('rptrequest/loadrequest');
+					dtRequest.fnReloadAjax('rptrequeststage/loadrequestStage');
 
 				} else {
-					url1 = 'rptrequest/filterby/' + intReqId + '/' + intSbjId
-							+ '/' + intPubId + '/' + intDivId + '/'
+					url1 = 'rptrequeststage/filterby/' + intReqId + '/'
+							+ intSbjId + '/' + intPubId + '/' + intDivId + '/'
 							+ intStausId + '/' + fromDate + '/' + toDate;
 
 					alert(url1);
@@ -218,5 +284,6 @@ jQuery(function() {
 				}
 
 			});
+
 });
 // ------------------ END Apply Filter------------------

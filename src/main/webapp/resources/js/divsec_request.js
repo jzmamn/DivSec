@@ -54,7 +54,7 @@ jQuery(function() {
 			.dataTable(
 					{
 						// No of records should be displayed
-						"lengthMenu" : [ 5, 10, 20 ],
+						"lengthMenu" : [ 40 ],
 
 						// Load table using JSON data by ajax
 						"ajax" : {

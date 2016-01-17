@@ -10,6 +10,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -42,7 +43,16 @@ public class RptRequestController {
 	// This method sends JSON response to the client (REST)
 	@RequestMapping(value = "/loadrequest", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody List<Request> getData() {
-		return this.reqSvc.listSvcRequest();
+		return this.reqSvc.filterSvcAllRequest();
+	}
+
+	// display the count in the batch
+	@RequestMapping(value = "/filterby/{reqId}/{sbjId}/{pubId}/{divId}/{statusId}/{fromDate}/{toDate}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody List<Request> filterReport(@PathVariable("reqId") int reqId, @PathVariable("sbjId") int sbjId,
+			@PathVariable("pubId") int pubId, @PathVariable("divId") int divId, @PathVariable("statusId") int statusId,
+			@PathVariable("fromDate") String fromDate, @PathVariable("toDate") String toDate) {
+
+		return this.reqSvc.filterRequest(reqId, sbjId, pubId, divId, statusId, fromDate, toDate);
 	}
 
 	private String getPrincipal() {

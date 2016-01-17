@@ -23,4 +23,13 @@ public interface RequestDAO {
 	public List<Object> listBatchCount();
 
 	public List<Request> getReqByStatus(int statusId);
+
+	// For Request Reports
+	public List<Request> filterAllRequest();
+
+	public List<Request> filterRequest(int reqId, int sbjId, int pubId, int divId, int statusId, String fromDate,
+			String toDate);
+
+	public List<Object> getRequestTrail(int reqId, String fromDate, String toDate);
+
 }

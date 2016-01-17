@@ -1,6 +1,6 @@
 jQuery(function() {
 
-	$("#idCmbReqStausId").val("1");
+	// Load Requests in the report
 
 	// Filter for request Id
 
@@ -126,7 +126,11 @@ jQuery(function() {
 
 			$select1.html('');
 
+			var blankOption = '<option id="' + 0
+					+ '"> -- Select Status -- </option>';
+			$select1.append(blankOption);
 			$.each(data, function(key, val) {
+
 				$select1.append('<option id="' + val.rsId + '">' + val.rsName
 						+ '</option>');
 			})
@@ -152,5 +156,6 @@ jQuery(function() {
 	// ------------------ END Filter for Request Status ------------------
 
 	// ------------------ Filter for Date Range ------------------
+	// ------------------ END Filter for Date Range ------------------
 
 });

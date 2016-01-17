@@ -56,4 +56,15 @@ public class ProcessStageServiceImpl implements ProcessStageService {
 
 	}
 
+	@Override
+	public List<Object> filterSvcRequestStage(int rqId, int sbId, int pbId, int dvId, int stsId, String fromDate,
+			String toDate) {
+		return this.prStgDao.filterRequestStages(rqId, sbId, pbId, dvId, stsId, fromDate, toDate);
+	}
+
+	@Override
+	public List<Object> filterSvcAllRequestStage() {
+		return this.prStgDao.filterAllRequestStages();
+	}
+
 }

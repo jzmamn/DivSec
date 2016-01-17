@@ -122,7 +122,7 @@ jQuery(function() {
 						{
 							text : 'Filter',
 							action : function(e, dt, node, config) {
-								alert('Button activated');
+								$("#mdlReqFilter").modal("show")
 							}
 						}, {
 							extend : 'print',
@@ -564,10 +564,6 @@ jQuery(function() {
 				var a = parseInt(reqStgId);
 				var b = parseInt(stausId);
 
-				alert('note' + c);
-
-				alert('/reqstgid/' + a + '/statusid/' + b + '/note/' + c);
-
 				var url1 = 'processstg/reqstgid/' + a + '/statusid/' + b
 						+ '/note/' + c;
 
@@ -585,6 +581,77 @@ jQuery(function() {
 						alert('aymen2 fail' + data);
 					}
 				});
+			});
+
+	// ------------------ Apply Filter------------------
+	$("#btnIdApplyFilter").click(
+			function(e) {
+				var url1 = "";
+				var reqId = $("#idTxtRequest").val();
+				var sbjId = $("#txtIdSbjId").val();
+				var pubId = $("#txtIdPublicId").val();
+				var divId = $("#txtIdDivisionId").val();
+				var statusId = $("#idCmbReqStausId").val();
+				var fromDate = $("#dpFrom").val();
+				var toDate = $("#dpTo").val();
+
+				if (reqId === "") {
+					reqId = "0";
+
+				}
+
+				if (sbjId === "") {
+					sbjId = "0";
+
+				}
+
+				if (pubId === "") {
+					pubId = "0";
+
+				}
+
+				if (divId === "") {
+					divId = "0";
+
+				}
+
+				if (statusId === "") {
+					statusId = "0";
+
+				}
+
+				if (fromDate === "") {
+					fromDate = "0";
+
+				}
+
+				if (toDate === "") {
+					toDate = "0";
+
+				}
+
+				var intReqId = parseInt(reqId);
+				var intSbjId = parseInt(sbjId);
+				var intPubId = parseInt(pubId);
+				var intDivId = parseInt(divId);
+				var intStausId = parseInt(statusId);
+
+				if (intReqId == 0 && intSbjId == 0 && intPubId == 0
+						&& intDivId == 0 && intStausId == 0 && fromDate === "0"
+						&& toDate === "0") {
+
+					$("#mdlReqFilter").modal("hide")
+					dtRequest.fnReloadAjax('rptrequest/loadrequest');
+
+				} else {
+					url1 = 'rptrequest/filterby/' + intReqId + '/' + intSbjId
+							+ '/' + intPubId + '/' + intDivId + '/'
+							+ intStausId + '/' + fromDate + '/' + toDate;
+
+					$("#mdlReqFilter").modal("hide");
+					dtRequest.fnReloadAjax(url1);
+				}
+
 			});
 
 });

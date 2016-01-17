@@ -22,4 +22,13 @@ public interface RequestService {
 
 	public List<Request> getSvcReqByStatus(int statusId);
 
+	// For Request Report
+
+	public List<Request> filterRequest(int rqId, int sbId, int pbId, int dvId, int stsId, String fromDate,
+			String toDate);
+
+	public List<Request> filterSvcAllRequest();
+
+	public List<Object> getSvcRequestTrail(int reqId, String fromDate, String toDate);
+
 }

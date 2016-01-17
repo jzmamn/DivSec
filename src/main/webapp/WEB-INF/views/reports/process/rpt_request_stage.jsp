@@ -25,6 +25,10 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/plugins/dataTables/css/buttons.dataTables.min.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/plugins/Sweetalert-master/lib/sweet-alert.css" />
 
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/plugins/datepicker/css/bootstrap-datepicker.min.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/plugins/datepicker/css/datepicker.css" />
+
+
 
 
 <!-- END PAGE LEVEL  STYLES -->
@@ -83,19 +87,32 @@
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="panel panel-default">
-
 							<div class="panel-body">
 								<div class="table-responsive">
-									<table class="table table-striped table-bordered table-hover table-condensed" id="dtStage">
+									<table class="table table-striped table-bordered table-hover table-condensed" id="dtTable">
 										<thead>
 											<tr>
-												<th>PrcStage</th>
-												<th>ReqId</th>
-												<th>StgId</th>
-												<th>Stage</th>
-												<th>StatusId</th>
-												<th>Status</th>
+												<th style="width: 10%">Rq Id</th>
+												<th style="width: 12%">Status</th>
+												<th>StatusName</th>
+												<th>SbjId</th>
+												<th>Subject</th>
+												
+												<th>Stage Id</th>
+												<th>Stage Name</th>
+												<th>Stage Status</th>
+												<th style="width: 15%">Stage status name</th>
+						<th>Date</th>
+												<th>Pb Id</th>
+												<th>Pb Name</th>
+												<th>Div Id</th>
+												<th>Div Name</th>
 												<th>Note</th>
+												<th>Stf Id</th>
+												<th>Stf Name</th>
+												<th>Fee</th>
+												<th>Duration</th>
+												<th>Void</th>
 											</tr>
 										</thead>
 
@@ -103,11 +120,9 @@
 								</div>
 							</div>
 						</div>
+						<jsp:include page="../../include/include_report_fileter.jsp" />
 					</div>
 				</div>
-
-
-
 			</div>
 			<!--End of Inner  -->
 		</div>
@@ -142,9 +157,24 @@
 	<script src="${pageContext.request.contextPath}/resources/plugins/dataTables/js/pdfmake.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/plugins/dataTables/js/vfs_fonts.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/plugins/dataTables/js/fnReloadAjax.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/js/divsec_request_stage.js"></script>
+
 	<script src="${pageContext.request.contextPath}/resources/plugins/validator/validator.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/plugins/Sweetalert-master/lib/sweet-alert.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/divsec_rpt_request_stage.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/plugins/datepicker/js/bootstrap-datepicker.min.js"></script>
+
+	<script src="${pageContext.request.contextPath}/resources/js/divsec_rpt_filter.js"></script>
+
+
+	<script>
+		$('.input-daterange input').each(function() {
+			$(this).datepicker({
+				format : "yyyy-mm-dd"
+			});
+		});
+	</script>
+
+
 
 
 	<!-- END PAGE LEVEL SCRIPTS -->

@@ -5,6 +5,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,6 +22,8 @@ import com.aymen.entity.SubjecStage;
 @Service
 @Transactional
 public class RequestServiceImpl implements RequestService {
+
+	private static final Logger logger = LoggerFactory.getLogger(RequestServiceImpl.class);
 
 	@Autowired
 	RequestDAO reqDao;
@@ -119,6 +123,22 @@ public class RequestServiceImpl implements RequestService {
 	@Override
 	public List<Request> getSvcReqByStatus(int statusId) {
 		return this.reqDao.getReqByStatus(statusId);
+	}
+
+	@Override
+	public List<Request> filterRequest(int rqId, int sbId, int pbId, int dvId, int stsId, String fromDate,
+			String toDate) {
+		return this.reqDao.filterRequest(rqId, sbId, pbId, dvId, stsId, fromDate, toDate);
+	}
+
+	@Override
+	public List<Request> filterSvcAllRequest() {
+		return this.reqDao.filterAllRequest();
+	}
+
+	@Override
+	public List<Object> getSvcRequestTrail(int reqId, String fromDate, String toDate) {
+		return this.reqDao.getRequestTrail(reqId, fromDate, toDate);
 	}
 
 }

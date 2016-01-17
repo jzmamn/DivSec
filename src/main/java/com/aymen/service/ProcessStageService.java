@@ -19,4 +19,11 @@ public interface ProcessStageService {
 
 	public void updateSvcStageStatus(int reqStageId, int reqStgStsId, String note);
 
+	// For Request Report
+
+	public List<Object> filterSvcRequestStage(int rqId, int sbId, int pbId, int dvId, int stsId, String fromDate,
+			String toDate);
+
+	public List<Object> filterSvcAllRequestStage();
+
 }

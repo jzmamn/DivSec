@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.aymen.entity.ProcessStage;
 import com.aymen.service.ProcessStageService;
+import com.aymen.service.RequestService;
 
 @Controller
 @RequestMapping(value = "/rptrequeststage")
@@ -29,6 +30,9 @@ public class RptRequestStageController {
 
 	@Autowired
 	ProcessStageService prcStgSvc;
+
+	@Autowired
+	RequestService reqSvc;
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String home(ModelMap model) {
@@ -46,6 +50,21 @@ public class RptRequestStageController {
 	public @ResponseBody List<ProcessStage> getData(@ModelAttribute("maReqStg") ProcessStage prcStg,
 			BindingResult result, @PathVariable("id") int reqId, Model model) {
 		return this.prcStgSvc.listSvcReqStgByReqId(reqId);
+	}
+
+	// This method sends JSON response to the client (REST)
+	@RequestMapping(value = "/loadrequestStage", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody List<Object> getData() {
+		return this.prcStgSvc.filterSvcAllRequestStage();
+	}
+
+	// display the count in the batch
+	@RequestMapping(value = "/filterby/{reqId}/{sbjId}/{pubId}/{divId}/{statusId}/{fromDate}/{toDate}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody List<Object> filterReport(@PathVariable("reqId") int reqId, @PathVariable("sbjId") int sbjId,
+			@PathVariable("pubId") int pubId, @PathVariable("divId") int divId, @PathVariable("statusId") int statusId,
+			@PathVariable("fromDate") String fromDate, @PathVariable("toDate") String toDate) {
+
+		return this.prcStgSvc.filterSvcRequestStage(reqId, sbjId, pubId, divId, statusId, fromDate, toDate);
 	}
 
 	private String getPrincipal() {
