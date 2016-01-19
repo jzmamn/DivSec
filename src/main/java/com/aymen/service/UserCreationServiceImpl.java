@@ -8,6 +8,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.aymen.dao.UserCategoryDAO;
 import com.aymen.dao.UserCreationDAO;
 import com.aymen.entity.Staff;
 
@@ -18,6 +19,10 @@ public class UserCreationServiceImpl implements UserCreationService {
 	@Autowired
 	private UserCreationDAO userCreationDAO;
 
+	@Autowired
+	private UserCategoryDAO userCatDao;
+
+	@SuppressWarnings("unchecked")
 	@Override
 	public void createSvcStaff(Staff staff) {
 		staff.setStfPassword(encrypPassword(staff.getStfPassword()));

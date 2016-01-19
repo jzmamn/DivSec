@@ -141,4 +141,9 @@ public class RequestServiceImpl implements RequestService {
 		return this.reqDao.getRequestTrail(reqId, fromDate, toDate);
 	}
 
+	@Override
+	public List<Object> getSvcOverDueRequests(int reqId, String fromDate, String toDate) {
+		return this.reqDao.getOverDueRequests(reqId, fromDate, toDate);
+	}
+
 }

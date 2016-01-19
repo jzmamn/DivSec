@@ -90,16 +90,22 @@
 									<table class="table table-striped table-bordered table-hover table-condensed" id="dtTable">
 										<thead>
 											<tr>
-												<th>Status</th>
-												<th>ReqId</th>
-												<th>Date</th>
-												<th>Modified</th>
-												<th>Staff</th>
+												<th style="width: 10%">Rq Id</th>
+												<th style="width: 12%">Status</th>
 												<th>StatusName</th>
-												<th>Status</th>
-												<th>Void</th>
+												<th>SbjId</th>
+												<th style="width: 15%">Subject</th>
+												<th style="width: 12%">Date</th>
+												<th style="width: 12%">Pb Id</th>
+												<th style="width: 20%">Pb Name</th>
+												<th>Div Id</th>
+												<th>Div Name</th>
 												<th>Note</th>
-												<th>UserId</th>
+												<th>Stf Id</th>
+												<th>Stf Name</th>
+												<th>Fee</th>
+												<th>Duration</th>
+												<th>Void</th>
 											</tr>
 										</thead>
 									</table>

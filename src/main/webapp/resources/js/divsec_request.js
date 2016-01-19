@@ -46,7 +46,7 @@ jQuery(function() {
 			});
 		},
 		error : function(data) {
-			alert('aymen2 fail' + data);
+			alert('1. aymen2 fail' + data);
 		}
 	});
 
@@ -583,7 +583,7 @@ jQuery(function() {
 						$('#tblProcessRequest').show({});
 					},
 					error : function(data) {
-						alert('aymen2 fail' + data);
+						alert('2. aymen2 fail' + data);
 					}
 				});
 			});
@@ -658,43 +658,17 @@ jQuery(function() {
 						getInstruction(a);
 					},
 					error : function(data) {
-						alert('aymen2 fail' + data);
+						alert('Please enter an instruction');
 					}
 				});
 			});
 
-	var $textArea = $('#txtIdAreaInstruction');
-
-	// function getInstruction(reqId) {
-	// alert('reqprocess/inst/' + reqId);
-	//
-	// $textArea.html('');
-	//
-	// $.ajax({
-	// type : 'GET',
-	// url : 'reqprocess/inst/' + reqId,
-	//
-	// success : function(data) {
-	// $.each(data, function(key, val) {
-	// $textArea.append(val.insInstruction);
-	// $('#fake_textarea_content').val(
-	// $('#txtIdAreaInstruction').html());
-	// })
-	// },
-	// error : function(data) {
-	// alert('getInstruction fail' + data);
-	// }
-	// });
-
-	var list = '';
-	var list1 = '';
-	var list2 = '';
-
 	function getInstruction(reqId) {
-		alert('reqprocess/inst/' + reqId);
 
-		$textArea.html('');
+		var list = '';
+		var list1 = '';
 
+		$('#idInst').html('');
 		$
 				.ajax({
 					type : 'GET',
@@ -732,12 +706,12 @@ jQuery(function() {
 											list += list1;
 
 										})
-						alert('completed ' + list);
-						$('#idInst').append(list);
+
+						$('#idInst').html(list);
 
 					},
 					error : function(data) {
-						alert('getInstruction fail' + data);
+						alert("Get Instruction");
 					}
 				});
 

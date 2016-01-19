@@ -10,12 +10,12 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.aymen.entity.Division;
-import com.aymen.service.DivisionService;
+import com.aymen.service.RequestService;
 
 @Controller
 @RequestMapping(value = "/rptrequestoverdue")
@@ -24,7 +24,7 @@ public class RptRequestOverdueController {
 	private static final Logger logger = LoggerFactory.getLogger(RptRequestOverdueController.class);
 
 	@Autowired
-	DivisionService divisionSvc;
+	RequestService reqSvc;
 
 	// This method is called just before the division.jsp file is loading on the
 	// browser.
@@ -35,10 +35,10 @@ public class RptRequestOverdueController {
 		return "reports/process/rpt_request_overdue";
 	}
 
-	// This method sends JSON response to the client (REST)
-	@RequestMapping(value = "/create1", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody List<Division> getData() {
-		return this.divisionSvc.listSvcDivision();
+	@RequestMapping(value = "/loadTrail/{reqId}/{fromDate}/{toDate}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody List<Object> loadRequesOverdue(@PathVariable("reqId") int reqId,
+			@PathVariable("fromDate") String fromDate, @PathVariable("toDate") String toDate) {
+		return this.reqSvc.getSvcOverDueRequests(reqId, fromDate, toDate);
 	}
 
 	private String getPrincipal() {

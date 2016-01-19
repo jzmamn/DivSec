@@ -190,4 +190,39 @@ public class ProcessStageDAOImpl implements ProcessStageDAO {
 
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Object> getRequestStageTrail(int reqId, String fromDate, String toDate) {
+		String strQuery = "";
+		String strQuery1 = "SELECT * FROM vw_req_stg_trail Where";
+		String strQuery2 = "";
+		String strQuery3 = "ORDER BY rst_id, rst_pr_id";
+
+		if (reqId == 0 && fromDate.equals("0") && toDate.equals("0")) {
+			if (reqId > 0) {
+				strQuery2 = " rst_pr_id= " + reqId + " AND";
+			}
+
+			if (!fromDate.equals("0") && !toDate.equals("0")) {
+				strQuery2 = " DATE_FORMAT(rst_txn_date, '%Y-%m-%d') BETWEEN  '" + fromDate + "' AND '" + toDate
+						+ "' AND";
+			}
+		}
+
+		if (strQuery2.length() > 0) {
+			strQuery2 = strQuery2.substring(0, strQuery2.length() - 4);
+			strQuery = strQuery1 + strQuery2 + strQuery3;
+		} else {
+			strQuery = strQuery1.substring(0, strQuery1.length() - 6) + strQuery3;
+		}
+
+		System.out.println(strQuery);
+		Session session = this.sessionFactory.getCurrentSession();
+
+		SQLQuery query = session.createSQLQuery(strQuery);
+		query.setResultTransformer(Criteria.ALIAS_TO_ENTITY_MAP);
+		List<Object> results = query.list();
+		return results;
+	}
+
 }

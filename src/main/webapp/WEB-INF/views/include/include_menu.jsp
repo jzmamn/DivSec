@@ -16,13 +16,13 @@
 	</div>
 	<ul id="menu" class="collapse">
 		<!-- Dashboard -->
-		<li class="panel active"><a href="${pageContext.request.contextPath}/admin-dashboard" id="index"> <i class="icon-table"></i>
+		<li class="panel active"><a href="${pageContext.request.contextPath}/getDashboard" id="index"> <i class="icon-table"></i>
 				Dashboard
 		</a></li>
-	<!-- Dashboard -->
-	
-	
-<!-- Quick View -->
+		<!-- Dashboard -->
+
+
+		<!-- Quick View -->
 		<li class="panel"><a href="#" data-parent="#menu" data-toggle="collapse" class="accordion-toggle" data-target="#DDL-nav"> <i
 				class=" icon-sitemap"></i> Reports <span class="pull-right"> <i class="icon-angle-left"></i>
 			</span>
@@ -34,11 +34,11 @@
 					</span>
 				</a>
 					<ul class="collapse" id="DDL1-nav">
-										<li class=""><a href="${pageContext.request.contextPath}/rptpublic"><i class="icon-angle-right"></i> Public Info </a></li>
-				<li class=""><a href="${pageContext.request.contextPath}/rptrequest"><i class="icon-angle-right"></i> Request </a></li>
-				<li class=""><a href="${pageContext.request.contextPath}/rptrequeststage"><i class="icon-angle-right"></i> Request Stage </a></li>
-				<li class=""><a href="${pageContext.request.contextPath}/rptrequestoverdue"><i class="icon-angle-right"></i> Request Overdue </a></li>
-				<li class=""><a href="${pageContext.request.contextPath}/rptrequeststage"><i class="icon-angle-right"></i> Request Aging </a></li>
+						<li class=""><a href="${pageContext.request.contextPath}/rptpublic"><i class="icon-angle-right"></i> Public Info </a></li>
+						<li class=""><a href="${pageContext.request.contextPath}/rptrequest"><i class="icon-angle-right"></i> Request </a></li>
+						<li class=""><a href="${pageContext.request.contextPath}/rptrequeststage"><i class="icon-angle-right"></i> Request Stage </a></li>
+						<li class=""><a href="${pageContext.request.contextPath}/rptrequestoverdue"><i class="icon-angle-right"></i> Request Overdue
+						</a></li>
 					</ul></li>
 
 				<li><a href="#" data-parent="#DDL-nav" data-toggle="collapse" class="accordion-toggle" data-target="#DDL2-nav"> <i
@@ -47,7 +47,8 @@
 				</a>
 					<ul class="collapse" id="DDL2-nav">
 						<li class=""><a href="${pageContext.request.contextPath}/rptrequesttrail"><i class="icon-angle-right"></i> Request Trail </a></li>
-				<li class=""><a href="${pageContext.request.contextPath}/rptrequeststagetrail"><i class="icon-angle-right"></i> Request Stage Trail </a></li>
+						<li class=""><a href="${pageContext.request.contextPath}/rptrequeststagetrail"><i class="icon-angle-right"></i> Request Stage
+								Trail </a></li>
 					</ul></li>
 
 
@@ -58,14 +59,14 @@
 					<ul class="collapse" id="DDL3-nav">
 						<li class=""><a href="${pageContext.request.contextPath}/rptdivision"><i class="icon-angle-right"></i> Division List </a></li>
 						<li class=""><a href="${pageContext.request.contextPath}/rptsubject"><i class="icon-angle-right"></i> Subject List </a></li>
-						<li class=""><a href="${pageContext.request.contextPath}/rptsubjectstage"><i class="icon-angle-right"></i> Subject Stage
-								List </a></li>
+						<li class=""><a href="${pageContext.request.contextPath}/rptsubjectstage"><i class="icon-angle-right"></i> Subject Stage List
+						</a></li>
 						<li class=""><a href="${pageContext.request.contextPath}/rptstaff"><i class="icon-angle-right"></i> Staff List </a></li>
 					</ul></li>
 
 			</ul></li>
 		<!-- Quick View -->
-		
+
 		<!-- Process -->
 		<li class="panel "><a href="#" data-parent="#menu" data-toggle="collapse" class="accordion-toggle collapsed"
 			data-target="#process-nav"> <i class="icon-pencil"></i> Process <span class="pull-right"> <i class="icon-angle-left"></i> <!-- 			</span> &nbsp; <span class="label label-success">5</span>&nbsp; --></a>
@@ -74,9 +75,9 @@
 				<li class=""><a href="${pageContext.request.contextPath}/reqprocess"><i class="icon-angle-right"></i> Request Processing </a></li>
 				<li class=""><a href="${pageContext.request.contextPath}/ticket"><i class="icon-angle-right"></i> Ticket </a></li>
 			</ul></li>
-		<!-- Process -->	
-			
-			
+		<!-- Process -->
+
+
 		<!-- Charts -->
 		<li class="panel"><a href="#" data-parent="#menu" data-toggle="collapse" class="accordion-toggle" data-target="#admin-nav"> <i
 				class="icon-table"></i> Setup <span class="pull-right"> <i class="icon-angle-left"></i> <!-- 			</span> &nbsp; <span class="label label-info">6</span>&nbsp; --></a>

@@ -278,7 +278,40 @@ public class RequestDAOImpl implements RequestDAO {
 		query.setResultTransformer(Criteria.ALIAS_TO_ENTITY_MAP);
 		List<Object> results = query.list();
 		return results;
+	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Object> getOverDueRequests(int reqId, String fromDate, String toDate) {
+		String strQuery = "";
+		String strQuery1 = "SELECT * FROM vw_req_overdue Where";
+		String strQuery2 = "";
+
+		if (reqId == 0 && fromDate.equals("0") && toDate.equals("0")) {
+			if (reqId > 0) {
+				strQuery2 = " req_id= " + reqId + " AND";
+			}
+
+			if (!fromDate.equals("0") && !toDate.equals("0")) {
+				strQuery2 = " DATE_FORMAT(req_ent_date, '%Y-%m-%d') BETWEEN  '" + fromDate + "' AND '" + toDate
+						+ "' AND";
+			}
+		}
+
+		if (strQuery2.length() > 0) {
+			strQuery2 = strQuery2.substring(0, strQuery2.length() - 4);
+			strQuery = strQuery1 + strQuery2;
+		} else {
+			strQuery = strQuery1.substring(0, strQuery1.length() - 6);
+		}
+
+		System.out.println(strQuery);
+		Session session = this.sessionFactory.getCurrentSession();
+
+		SQLQuery query = session.createSQLQuery(strQuery);
+		query.setResultTransformer(Criteria.ALIAS_TO_ENTITY_MAP);
+		List<Object> results = query.list();
+		return results;
 	}
 
 }

@@ -10,12 +10,12 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.aymen.entity.Division;
-import com.aymen.service.DivisionService;
+import com.aymen.service.ProcessStageService;
 
 @Controller
 @RequestMapping(value = "/rptrequeststagetrail")
@@ -24,7 +24,7 @@ public class RptRequestStageTrailController {
 	private static final Logger logger = LoggerFactory.getLogger(RptRequestStageTrailController.class);
 
 	@Autowired
-	DivisionService divisionSvc;
+	ProcessStageService psSvc;
 
 	// This method is called just before the division.jsp file is loading on the
 	// browser.
@@ -35,10 +35,10 @@ public class RptRequestStageTrailController {
 		return "reports/trail/rpt_request_stage_trail";
 	}
 
-	// This method sends JSON response to the client (REST)
-	@RequestMapping(value = "/create1", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody List<Division> getData() {
-		return this.divisionSvc.listSvcDivision();
+	@RequestMapping(value = "/loadTrail/{reqId}/{fromDate}/{toDate}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody List<Object> filterReport(@PathVariable("reqId") int reqId,
+			@PathVariable("fromDate") String fromDate, @PathVariable("toDate") String toDate) {
+		return this.psSvc.getSvcRequestStageTrail(reqId, fromDate, toDate);
 	}
 
 	private String getPrincipal() {

@@ -26,6 +26,13 @@ public class UserCreationDAOImpl implements UserCreationDAO {
 		try {
 			Session session = sessionFactory.getCurrentSession();
 			session.persist(staff);
+
+			SQLQuery insertQuery = session
+					.createSQLQuery("" + "INSERT INTO staff_role(`staff_id`,`role_id`) VALUES(?,?)");
+			insertQuery.setParameter(0, staff.getStfId());
+			insertQuery.setParameter(1, staff.getStfCategoryId());
+			insertQuery.executeUpdate();
+
 			logger.debug("Staff saved successfully, Staff Details=" + staff.getStfId());
 		} catch (Exception e) {
 			System.out.println("DAO" + e.toString());
@@ -38,6 +45,12 @@ public class UserCreationDAOImpl implements UserCreationDAO {
 		try {
 			Session session = sessionFactory.getCurrentSession();
 			session.update(staff);
+			SQLQuery insertQuery = session
+					.createSQLQuery("" + "UPDATE `staff_role` SET `role_id` = ? WHERE`staff_id` = ? ");
+			insertQuery.setParameter(0, staff.getStfId());
+			insertQuery.setParameter(1, staff.getStfCategoryId());
+			insertQuery.executeUpdate();
+
 			logger.debug("Staff saved successfully, Staff Details=" + staff.getStfId());
 
 		} catch (Exception e) {
@@ -102,7 +115,7 @@ public class UserCreationDAOImpl implements UserCreationDAO {
 				staff = (Staff) iterator.next();
 			}
 
-			logger.debug("Staff by username", staff.getStfName());
+			// logger.debug("Staff by username", staff.getStfName());
 			return staff;
 		} catch (HibernateException e) {
 			e.printStackTrace();
@@ -132,6 +145,30 @@ public class UserCreationDAOImpl implements UserCreationDAO {
 			System.out.println(e.toString());
 			return null;
 		}
+	}
+
+	public void assigneUserRole(int stfId, int roleId) {
+		System.out.println(stfId);
+		Session session = sessionFactory.openSession();
+		session.beginTransaction();
+		SQLQuery insertQuery = session.createSQLQuery("" + "INSERT INTO staff_role(`staff_id`,`role_id`) VALUES(?,?)");
+		insertQuery.setParameter(0, stfId);
+		insertQuery.setParameter(1, roleId);
+		insertQuery.executeUpdate();
+		session.getTransaction().commit();
+
+	}
+
+	public void updateUserRole(int stfId, int roleId) {
+		Session session = sessionFactory.openSession();
+		session.beginTransaction();
+		SQLQuery insertQuery = session
+				.createSQLQuery("" + "UPDATE `staff_role` SET `role_id` = ? WHERE`staff_id` = ? ");
+		insertQuery.setParameter(0, roleId);
+		insertQuery.setParameter(1, stfId);
+		insertQuery.executeUpdate();
+		session.getTransaction().commit();
+
 	}
 
 }

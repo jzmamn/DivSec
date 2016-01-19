@@ -32,4 +32,6 @@ public interface RequestDAO {
 
 	public List<Object> getRequestTrail(int reqId, String fromDate, String toDate);
 
+	public List<Object> getOverDueRequests(int reqId, String fromDate, String toDate);
+
 }

@@ -36,9 +36,24 @@ public class HomeController {
 		return "home";
 	}
 
+	@RequestMapping(value = "/getDashboard", method = RequestMethod.GET)
+	public String getDashboard(ModelMap model) {
+
+		String role = getUserRole();
+
+		if (role.equals("ROLE_ADMIN")) {
+			return "dashboard_admin";
+		} else if (role.equals("ROLE_HOD")) {
+			return "dashboard_hod";
+		} else {
+			return "dashboard_staff";
+		}
+	}
+
 	@RequestMapping(value = "/admin", method = RequestMethod.GET)
-	public String adminPage(ModelMap model, HttpServletRequest request) {
+	public String adminPage(ModelMap model) {
 		model.addAttribute("userName", getPrincipal());
+		System.out.println(getUserRole().toString());
 		return "dashboard_admin";
 	}
 
@@ -84,6 +99,21 @@ public class HomeController {
 			userName = principal.toString();
 		}
 		return userName;
+	}
+
+	private String getUserRole() {
+		String userRole = null;
+		Object role = SecurityContextHolder.getContext().getAuthentication().getAuthorities();
+
+		if (role instanceof UserDetails) {
+			userRole = ((UserDetails) role).getAuthorities().toString();
+		} else {
+			userRole = role.toString();
+		}
+
+		userRole = userRole.replace("[", "");
+		userRole = userRole.replace("]", "");
+		return userRole;
 	}
 
 }

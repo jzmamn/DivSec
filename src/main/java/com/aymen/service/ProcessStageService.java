@@ -26,4 +26,6 @@ public interface ProcessStageService {
 
 	public List<Object> filterSvcAllRequestStage();
 
+	public List<Object> getSvcRequestStageTrail(int reqId, String fromDate, String toDate);
+
 }

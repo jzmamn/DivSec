@@ -65,7 +65,7 @@ public class InstructionDaoImpl implements InstructionDAO {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Instructions> listInstByRequest(int reqId) {
-		String sql = "SELECT * FROM Instructions WHERE ins_pr_id = :Id ";
+		String sql = "SELECT * FROM Instructions WHERE ins_pr_id = :Id Order by ins_id DESC";
 		Session session = sessionFactory.getCurrentSession();
 		try {
 			SQLQuery query = session.createSQLQuery(sql);

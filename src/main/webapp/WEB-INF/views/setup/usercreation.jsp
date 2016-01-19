@@ -150,7 +150,7 @@
 												required="true" />
 										</div>
 
-										<%-- <div class="form-group input-group">
+									 	<div class="form-group input-group">
 											<input type="text" class="form-control" id="txtIdCatName" name="txtCatName" readonly="true" required="true" placeholder="select user category" /> <span
 												class="input-group-btn">
 												<button id="btnIdUserCat" name="btnUserCat" class="btn btn-warning" type="button" data-toggle="modal"
@@ -158,8 +158,8 @@
 													<i class="icon-search"></i>
 												</button>
 											</span> <form:input path="stfCategoryId" type="text" class="form-control" id="txtIdCatId" name="txtCatId" readonly="true" required="true" />
-										</div>
- --%>
+										</div> 
+ 
 										<div class="form-group input-group">
 											<span class="input-group-addon ">User Id</span>
 											<form:input path="stfUserId" type="text" id="txtIdUserId" name="txtUserId" class="clsString form-control" required="true"
