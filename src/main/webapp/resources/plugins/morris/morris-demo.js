@@ -1,177 +1,54 @@
 $(function() {
+    createDonut("data.json", "morris-donut-chart1");
+    createDonut("data.json", "morris-donut-chart2");
+    createDonut("data.json", "morris-donut-chart3");
+    createDonut("data.json", "morris-donut-chart4");
+    createDonut("data.json", "morris-donut-chart5");
+    createDonut("data.json", "morris-donut-chart6");
+    createDonut("data.json", "morris-donut-chart7");
+    createDonut("data.json", "morris-donut-chart8");
+    createDonut("data.json", "morris-donut-chart9");
 
-	Morris.Donut({
-		element : 'morris-donut-chart1',
-		data : [ {
-			label : "Pending",
-			value : 12
-		}, {
-			label : "In Progress",
-			value : 30
-		}, {
-			label : "Opened",
-			value : 20
-		} ],
-		resize : true
-	});
+    function createDonut(url, element) {
+        $.getJSON(url, function(ab) {
+            Morris.Donut({
+                element: element,
+                data: ab,
+                //backgroundColor: '#ccc',
+                labelColor: '#449D45',
+                colors: ['#31B0D5', '#EC971F', '#3071A9','#449D44'],
+                formatter: function(x) {
+                    return x;
+                }
+            }).on('click', function(i, row) {
+                //  console.log(i, row[1]);
+                alert(i, row[1]);
+            });
+        });
+    }
 
-	Morris.Donut({
-		element : 'morris-donut-chart2',
-		data : [ {
-			label : "Pending",
-			value : 12
-		}, {
-			label : "In Progress",
-			value : 30
-		}, {
-			label : "Opened",
-			value : 20
-		} ],
-		resize : true
-	});
 
-	Morris.Donut({
-		element : 'morris-donut-chart3',
-		data : [ {
-			label : "Pending",
-			value : 12
-		}, {
-			label : "In Progress",
-			value : 30
-		}, {
-			label : "Opened",
-			value : 20
-		} ],
-		resize : true
-	});
 
-	Morris.Donut({
-		element : 'morris-donut-chart4',
-		data : [ {
-			label : "Pending",
-			value : 12
-		}, {
-			label : "In Progress",
-			value : 30
-		}, {
-			label : "Opened",
-			value : 20
-		} ],
-		resize : true
-	});
+    createBar("bar.json", "morris-bar-chart");
 
-	Morris.Donut({
-		element : 'morris-donut-chart5',
-		data : [ {
-			label : "Pending",
-			value : 12
-		}, {
-			label : "In Progress",
-			value : 30
-		}, {
-			label : "Opened",
-			value : 20
-		} ],
-		resize : true
-	});
+    function createBar(url, element) {
+        $.getJSON(url, function(ab) {
+            Morris.Bar({
+                element: element,
+                data: ab,
+                xkey: 'EntDate',
+                ykeys: ['New', 'Opend', 'Completed', 'Closed'],
+                labels: ['New', 'Opend', 'Completed', 'Closed'],
+                hideHover: 'auto',
+                resize: true,
+                barColors: ['#31B0D5', '#EC971F', '#3071A9','#000']
 
-	Morris.Donut({
-		element : 'morris-donut-chart6',
-		data : [ {
-			label : "Pending",
-			value : 12
-		}, {
-			label : "In Progress",
-			value : 30
-		}, {
-			label : "Opened",
-			value : 20
-		} ],
-		resize : true
-	});
+            });
+        });
+    }
 
-	Morris.Donut({
-		element : 'morris-donut-chart7',
-		data : [ {
-			label : "Pending",
-			value : 12
-		}, {
-			label : "In Progress",
-			value : 30
-		}, {
-			label : "Opened",
-			value : 20
-		} ],
-		resize : true
-	});
 
-	Morris.Donut({
-		element : 'morris-donut-chart8',
-		data : [ {
-			label : "Pending",
-			value : 12
-		}, {
-			label : "In Progress",
-			value : 30
-		}, {
-			label : "Opened",
-			value : 20
-		} ],
-		resize : true
-	});
 
-	Morris.Donut({
-		element : 'morris-donut-chart9',
-		data : [ {
-			label : "Pending",
-			value : 12
-		}, {
-			label : "In Progress",
-			value : 30
-		}, {
-			label : "Opened",
-			value : 20
-		} ],
-		resize : true
-	});
-	Morris.Bar({
-		element : 'morris-bar-chart',
-		data : [ {
-			y : 'Oct',
-			a : 100,
-			b : 90,
-			c : 150
-		}, {
-			y : 'Sep',
-			a : 75,
-			b : 65,
-			c : 251
-		}, {
-			y : 'Aug',
-			a : 50,
-			b : 40,
-			c : 128
-		}, {
-			y : 'Jul',
-			a : 75,
-			b : 65,
-			c : 146
-		}, {
-			y : 'Jun',
-			a : 50,
-			b : 40,
-			c : 155
-		}, {
-			y : 'May',
-			a : 75,
-			b : 65,
-			c : 150
-		} ],
-		xkey : 'y',
-		ykeys : [ 'a', 'b', 'c' ],
-		labels : [ 'Completed', 'Pending', 'Total' ],
-		hideHover : 'auto',
-		resize : true
-	});
+
 
 });

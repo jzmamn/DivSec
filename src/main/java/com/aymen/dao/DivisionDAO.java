@@ -11,6 +11,8 @@ public interface DivisionDAO {
 
 	public List<Division> listDivision();
 
+	public List<Division> listActiveDivision();
+
 	public Division getDivisionById(int id);
 
 	public void deleteDivision(int id);

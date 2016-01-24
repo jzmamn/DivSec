@@ -31,8 +31,6 @@
 <link rel="stylesheet" href="<c:url value="/resources/css/layout2.css" />" />
 <link rel="stylesheet" href="<c:url value="/resources/plugins/morris/morris-0.4.3.min.css" />" />
 <link rel="stylesheet" href="<c:url value="/resources/plugins/datepicker/css/datepicker.css" />" />
-<link rel="stylesheet" href="<c:url value="/resources/plugins/fullcalendar-1.6.2/fullcalendar/fullcalendar.css" />" />
-
 
 
 
@@ -67,7 +65,7 @@
 			<div class="inner" style="min-height: 700px;">
 				<div class="row">
 					<div class="col-lg-12">
-						<h3>Dashboard - Admin</h3>
+						<h3>Admin Dashboard</h3>
 					</div>
 				</div>
 
@@ -75,152 +73,231 @@
 
 
 				<!-- CALENDER +  WIDGETS  SECTION   -->
-
+				<jsp:include page="include/include_user_setting.jsp" />
 				<div class="row">
 					<div class="col-lg-12">
-						<div class="col-lg-8 table-responsive">
+						<div class="col-lg-8">
+							<div class="row">
+								<div class="col-lg-12">
+									<div style="text-align: center;">
+										<a class="quick-btn" href="#"> <i class="icon-check icon-2x"></i> <span>For Approval</span> <span class="label label-danger">2</span>
+										</a> <a class="quick-btn" href="#"> <i class="icon-envelope-alt icon-2x"></i> <span>New</span> <span class="label label-danger">2</span>
+										</a> <a class="quick-btn" href="#"> <i class="icon-folder-open-alt icon-2x"></i> <span>Opened</span> <span
+											class="label label-success">456</span>
+										</a>
+									</div>
+								</div>
+								<hr />
+								<div class="row">
+									<div class="col-lg-12">
+										<div class="col-lg-4 col-md-4 panel panel-warning" style="width: 130px;">
+											<a href="#" class="btn btn-warning btn-xs btn-block">Admin</a>
+											<div id="morris-donut-chart1" style="width: 120px; height: 120px;"></div>
+										</div>
 
-							<div id="calendar" class="col-lg-12 col-sm-12 col-xs-12"></div>
+										<div class="col-lg-4 col-md-4 panel panel-warning" style="width: 130px;">
+											<a href="#" class="btn btn-info btn-xs btn-block">Accounts</a>
+											<div id="morris-donut-chart2" style="width: 120px; height: 120px;"></div>
+										</div>
 
-						</div>
+										<div class="col-lg-4 col-md-4 panel panel-warning" style="width: 130px;">
+											<a href="#" class="btn btn-success btn-xs btn-block">Planning</a>
+											<div id="morris-donut-chart3" style="width: 120px; height: 120px;"></div>
+										</div>
 
-						<!--REQUEST BLOCK SECTION -->
+										<div class="col-lg-4 col-md-4 panel panel-warning" style="width: 130px;">
+											<a href="#" class="btn btn-danger btn-xs btn-block">Registrar</a>
+											<div id="morris-donut-chart4" style="width: 120px; height: 120px;"></div>
+										</div>
 
-						<div class="col-lg-4">
-							<!-- <p> <strong>My Task </strong> - <em class="text-muted">()</em></p>-->
-
-							<div style="text-align: center;">
-
-								<a class="quick-btn" href="#"> <i class="icon-check icon-2x"></i> <span>For Approval</span> <span class="label label-danger">2</span>
-								</a> <a class="quick-btn" href="#"> <i class="icon-envelope-alt icon-2x"></i> <span>New</span> <span class="label label-danger">2</span>
-								</a> <a class="quick-btn" href="#"> <i class="icon-folder-open-alt icon-2x"></i> <span>Opened</span> <span
-									class="label label-success">456</span>
-								</a> <a class="quick-btn" href="#"> <i class="icon-question-sign icon-2x"></i> <span>Pending</span> <span class="label label-danger">2</span>
-								</a> <a class="quick-btn" href="#"> <i class="icon-signal icon-2x"></i> <span>In-Progress</span> <span class="label label-success">456</span>
-								</a> <a class="quick-btn" href="#"> <i class="icon-thumbs-up-alt icon-2x"></i> <span>Completed</span> <span
-									class="label label-success">456</span>
-								</a> <a class="quick-btn" href="#"> <i class="icon-hand-right icon-2x"></i> <span>Handed Over</span> <span
-									class="label label-success">456</span>
-								</a> <a class="quick-btn" href="#"> <i class="icon-thumbs-down-alt icon-2x"></i> <span>Closed</span> <span
-									class="label label-success">456</span>
-								</a>
+									</div>
+								</div>
 							</div>
-
 						</div>
-
-
-						<!--END REQUEST BLOCK SECTION -->
+						<!--REQUEST BLOCK SECTION -->
+						<div class="col-lg-4">
+							<div style="width: 220px;" class="panel panel-primary" id="date1"></div>
+						</div>
 					</div>
-
 				</div>
+
 				<!-- CALENDER +  WIDGETS  SECTION   -->
+
 				<hr />
 
 				<div class="row">
-					<div class="col-lg-12 col-md-12  col-sm-12 col-xs-12 ">
-						<!-- DIVISION DONUT BLOCK SECTION -->
-						<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-							<div class="row">
-
-								<div class="panel panel-warning" style="width: 130px; height: 145px;">
-
-									<a href="#" class="btn btn-warning btn-xs btn-block">Admin</a>
-									<div id="morris-donut-chart1" style="width: 130px; height: 130px;"></div>
-
-								</div>
-
-							</div>
-							<div class="row">
-
-								<div class="panel panel-warning" style="width: 130px; height: 145px;">
-
-									<a href="#" class="btn btn-info btn-xs btn-block">Accounts</a>
-									<div id="morris-donut-chart2" style="width: 130px; height: 130px;"></div>
-
-								</div>
-
-							</div>
-
-							<div class="row">
-
-								<div class="panel panel-warning" style="width: 130px; height: 145px;">
-									<a href="#" class="btn btn-success btn-xs btn-block">Planning</a>
-									<div id="morris-donut-chart3" style="width: 130px; height: 130px;"></div>
-								</div>
-
-							</div>
+					<div class="col-lg-12 col-md-12">
+						<div class="col-lg-4 col-md-4 panel panel-warning" style="width: 130px;">
+							<a href="#" class="btn btn-primary btn-xs btn-block">Samurdhi</a>
+							<div id="morris-donut-chart5" style="width: 120px; height: 120px;"></div>
 						</div>
 
-						<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-							<div class="row">
-
-								<div class="panel panel-warning" style="width: 130px; height: 145px;">
-									<a href="#" class="btn btn-danger btn-xs btn-block">Registrar</a>
-									<div id="morris-donut-chart4" style="width: 130px; height: 130px;"></div>
-								</div>
-
-							</div>
-							<div class="row">
-
-								<div class="panel panel-warning" style="width: 130px; height: 145px;">
-									<a href="#" class="btn btn-primary btn-xs btn-block">Samurdhi</a>
-									<div id="morris-donut-chart5" style="width: 130px; height: 130px;"></div>
-								</div>
-
-							</div>
-							<div class="row">
-								<div class="panel panel-warning" style="width: 130px; height: 145px;">
-									<a href="#" class="btn btn-warning btn-xs btn-block"> Social Welfare</a>
-									<div id="morris-donut-chart6" style="width: 130px; height: 130px;"></div>
-								</div>
-
-							</div>
+						<div class="col-lg-4 col-md-4 panel panel-warning" style="width: 130px;">
+							<a href="#" class="btn btn-warning btn-xs btn-block"> Social Welfare</a>
+							<div id="morris-donut-chart6" style="width: 120px; height: 120px;"></div>
 						</div>
 
-						<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-							<div class="row">
-								<div class="panel panel-warning" style="width: 130px; height: 145px;">
-									<a href="#" class="btn btn-success btn-xs btn-block"> Agriculture</a>
-									<div id="morris-donut-chart7" style="width: 130px; height: 130px;"></div>
-								</div>
-
-							</div>
-							<div class="row">
-
-								<div class="panel panel-warning" style="width: 130px; height: 145px;">
-									<a href="#" class="btn btn-info btn-xs btn-block"> Social Welfare</a>
-									<div id="morris-donut-chart8" style="width: 130px; height: 130px;"></div>
-								</div>
-
-							</div>
-							<div class="row">
-
-								<div class="panel panel-warning" style="width: 130px; height: 145px;">
-									<a href="#" class="btn btn-danger btn-xs btn-block"> Social Welfare</a>
-									<div id="morris-donut-chart9" style="width: 130px; height: 130px;"></div>
-								</div>
-
-							</div>
+						<div class="col-lg-4 col-md-4 panel panel-warning" style="width: 130px;">
+							<a href="#" class="btn btn-success btn-xs btn-block"> Agriculture</a>
+							<div id="morris-donut-chart7" style="width: 120px; height: 120px;"></div>
 						</div>
 
+						<div class="col-lg-4 col-md-4 panel panel-warning" style="width: 130px;">
+							<a href="#" class="btn btn-info btn-xs btn-block"> Social Welfare</a>
+							<div id="morris-donut-chart8" style="width: 120px; height: 120px;"></div>
+						</div>
 
-
+						<div class="col-lg-4 col-md-4 panel panel-warning" style="width: 130px;">
+							<a href="#" class="btn btn-danger btn-xs btn-block"> Social Welfare</a>
+							<div id="morris-donut-chart9" style="width: 120px; height: 120px;"></div>
+						</div>
 						<!--END DIVISION DONUT BLOCK SECTION -->
-
-
-
 					</div>
 
 				</div>
 
 				<hr />
 
-				<!--START BAR CHART -->
+				<!--START AGING BY MONTH BLOCK SECTION -->
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="col-lg-6">
+							<div class="panel panel-default panel-danger">
+								<div class="panel-heading">
+									<strong> Request Summary </strong> - <em class="text-muted">(by Month)</em> <span class="pull-right"><small> <input
+											id="dpYear" class="form-control datepicker dpYear" style="width: 100px; height: 20px;">
+									</small></span>
+								</div>
+								<div class="panel-body">
+									<div class="table-responsive">
+										<div style="height: 170px; overflow: scroll;">
+											<table id="tblSummaryByMonth" class="table table-striped table-bordered table-hover table-condensed">
+												<thead class="alert alert-success">
+													<tr>
+														<th>Month</th>
+														<th>New</th>
+														<th>Opened</th>
+														<th>Completed</th>
+														<th>Closed</th>
+													</tr>
+												</thead>
+												<tbody>
+
+												</tbody>
+											</table>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-6">
+							<div class="panel panel-default panel-danger">
+								<div class="panel-heading">
+									<strong> Request Summary  </strong> - <em class="text-muted">(by Year)</em> <span class="pull-right"><small> <input
+											id="dpYear1" class="form-control  datepicker dpYear" style="width: 60px; height: 20px;">
+									</small></span>
+
+								</div>
+								<div class="panel-body">
+									<div class="table-responsive">
+										<div style="height: 170px; overflow: scroll;">
+											<table id="tblByAnnual" class="table table-striped table-bordered table-hover table-condensed">
+												<thead class="alert alert-success">
+													<tr>
+														<th>Year</th>
+														<th>New</th>
+														<th>Opened</th>
+														<th>Completed</th>
+														<th>Closed</th>
+													</tr>
+												</thead>
+												<tbody>
+												</tbody>
+											</table>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<hr />
+				<div class="row">
+					<div class="col-lg-12">
+					<div class="col-lg-6">
+							<div class="panel panel-default panel-danger">
+								<div class="panel-heading">
+									<strong> Request Summary </strong> - <em class="text-muted">(By Division)</em>
+									<!-- <span class="pull-right"><small> <input
+											id="dpYear3" class="form-control  datepicker dpYear" style="width: 60px; height: 20px;">
+									</small></span> -->
+								</div>
+								<div class="panel-body">
+									<div class="table-responsive">
+										<div style="height: 170px; overflow: scroll;">
+											<table id="tblDivisionSummary" class="table table-striped table-bordered table-hover table-condensed">
+												<thead class="alert alert-success">
+													<tr>
+														<th>Divsn</th>
+														<th>New</th>
+														<th>Opnd</th>
+														<th>Compltd</th>
+														<th>Closed</th>
+													</tr>
+												</thead>
+												<tbody>
+												</tbody>
+											</table>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					
+						<div class="col-lg-6">
+							<div class="panel panel-default panel-danger">
+								<div class="panel-heading">
+									<strong>Age Analysis </strong> - <em class="text-muted">(by Division)</em>
+									<!-- <span class="pull-right"><small> <input
+											id="dpYear2" class="form-control  datepicker dpYear" style="width: 60px; height: 20px;">
+									</small></span> -->
+								</div>
+								<div class="panel-body">
+									<div class="table-responsive">
+										<div style="height: 170px; overflow: scroll;">
+											<table id="tblByDivision" class="table table-striped table-bordered table-hover table-condensed">
+												<thead class="alert alert-success">
+													<tr>
+														<th>Div</th>
+														<th>New</th>
+														<th>Opened</th>
+														<th>Completed</th>
+														<th>Closed</th>
+													</tr>
+												</thead>
+												<tbody>
+												</tbody>
+											</table>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						
+
+					</div>
+				</div>
+				<!-- END START AGING BY MONTH BLOCK SECTION -->
+				<hr />
+
+				<!--START AGING BY LAST 6 MONTH BLOCK SECTION -->
 				<div class="row">
 					<div class="col-lg-12 col-sm-12">
 						<div class="panel panel-default panel-success">
 							<div class="panel-heading">
-								<strong>Age Analysis</strong> - <em>(Last 6 Months)</em>
+								<strong>Analysis</strong> - <em>Year</em>
 							</div>
 							<div class="panel-body">
 								<div class="table-responsive">
@@ -231,166 +308,8 @@
 					</div>
 
 				</div>
-				<!-- END  BAR CHART -->
+				<!-- END AGING BY LAST 6 MONTH BLOCK SECTION -->
 				<hr />
-
-				<!--START AGING BY MONTH BLOCK SECTION -->
-				<div class="row">
-					<div class="col-lg-12">
-						<div class="col-lg-8">
-							<div class="panel panel-default panel-danger">
-								<div class="panel-heading">
-									<strong>Age Analysis </strong> - <em class="text-muted">(Monthly)</em>
-								</div>
-								<div class="panel-body">
-									<div class="table-responsive">
-										<table class="table table-striped table-bordered table-hover table-condensed">
-											<thead class="alert alert-success">
-												<tr>
-													<th>Division</th>
-													<th>Pend</th>
-													<th>In-Prog</th>
-													<th>Completed</th>
-													<th>Closed</th>
-													<th>HOver</th>
-												</tr>
-											</thead>
-											<tbody>
-												<tr>
-													<td>Account</td>
-													<td>05</td>
-													<td>02</td>
-													<td>04</td>
-													<td>04</td>
-													<td>04</td>
-												</tr>
-												<tr>
-													<td>Admin</td>
-													<td>03</td>
-													<td>12</td>
-													<td>04</td>
-													<td>04</td>
-													<td>04</td>
-												</tr>
-												<tr>
-													<td>Registrar</td>
-													<td>08</td>
-													<td>14</td>
-													<td>04</td>
-													<td>08</td>
-													<td>14</td>
-
-												</tr>
-
-												<tr>
-													<td>Planning</td>
-													<td>08</td>
-													<td>14</td>
-													<td>04</td>
-													<td>08</td>
-													<td>04</td>
-												</tr>
-											</tbody>
-										</table>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!--START INSTRUCTION SECTION  -->
-						<div class="col-lg-4">
-							<div class="chat-panel panel panel-success">
-								<div class="panel-heading">
-									<i class="icon-comments"></i> Instructions
-								</div>
-								<div class="panel-body">
-									<ul class="chat">
-										<li>
-											<div class="chat-body clearfix">
-												<div class="header">
-													<p class="text-left">
-														<strong>Division </strong>
-													</p>
-												</div>
-												<p>Lorem ipsum dolor sit amet, consectetur a dolor, quis ullamcorper ligula sodales.</p>
-
-												<p class="text-primary pull-right">
-													<i class="icon-time"></i><em> 13 mins ago</em>
-												</p>
-											</div>
-										</li>
-										<li>
-											<div class="chat-body clearfix">
-												<div class="header">
-													<p class="text-right">
-														<strong>Division </strong>
-													</p>
-												</div>
-												<p>Lorem ipsum dolor sit amet, consectetur a dolor, quis ullamcorper ligula sodales.</p>
-
-												<p class="text-primary pull-left">
-													<i class="icon-time"></i><em> 13 mins ago</em>
-												</p>
-											</div>
-										</li>
-										<li>
-											<div class="chat-body clearfix">
-												<div class="header">
-													<p class="text-left">
-														<strong>Division </strong>
-													</p>
-												</div>
-												<p>Lorem ipsum dolor sit amet, consectetur a dolor, quis ullamcorper ligula sodales.</p>
-
-												<p class="text-primary pull-right">
-													<i class="icon-time"></i><em> 13 mins ago</em>
-												</p>
-											</div>
-										</li>
-										<li>
-											<div class="chat-body clearfix">
-												<div class="header">
-													<p class="text-right">
-														<strong>Division </strong>
-													</p>
-												</div>
-												<p>Lorem ipsum dolor sit amet, consectetur a dolor, quis ullamcorper ligula sodales.</p>
-												<p class="text-primary pull-left">
-													<i class="icon-time"></i><em> 13 mins ago</em>
-												</p>
-											</div>
-										</li>
-									</ul>
-								</div>
-
-								<div class="panel-footer">
-									<button class="btn btn-success btn-sm btn-block">Show All Instructions</button>
-								</div>
-							</div>
-
-						</div>
-						<!--END INSTRUCTION SECTION  -->
-						<!--  
-						<div class="col-lg-4">
-							<div class="panel panel-default panel-info">
-								<div class="panel-heading">
-									<strong>Other Links</strong> <em class="text-muted"></em>
-								</div>
-								<div class="panel-body">
-
-									<a href="#" class="btn btn-primary btn-xs btn-line btn-rect btn-block">Age Analysis by Divison</a> <a href="#"
-										class="btn btn-danger btn-xs btn-line btn-rect btn-block">Request Audit Trail</a> <a href="#"
-										class="btn btn-success btn-xs btn-line btn-rect btn-block">Request Stage Audit Trail</a> <a href="#"
-										class="btn btn-info btn-xs btn-line btn-rect btn-block">All Requests</a> <a href="#"
-										class="btn btn-warning btn-xs btn-line btn-rect btn-block">warning</a>
-								</div>
-							</div>
-						</div>
--->
-					</div>
-				</div>
-				<!-- END START AGING BY MONTH BLOCK SECTION -->
-				<hr />
-
 
 			</div>
 
@@ -398,6 +317,7 @@
 		<!--END PAGE CONTENT -->
 
 		<!-- RIGHT STRIP  SECTION -->
+
 		<div id="right">
 			<div class="well well-small">
 				<label> Logged In </label>
@@ -468,8 +388,6 @@
 
 	<!-- PAGE LEVEL SCRIPTS -->
 
-
-
 	<script src="<c:url value="/resources/plugins/morris/raphael-2.1.0.min.js"/>"></script>
 	<script src="<c:url value="/resources/plugins/morris/morris.js"/>"></script>
 	<script src="<c:url value="/resources/plugins/morris/morris-demo.js"/>"></script>
@@ -477,88 +395,30 @@
 	<script src="<c:url value="/resources/plugins/fullcalendar-1.6.2/fullcalendar/fullcalendar.min.js"/>"></script>
 	<script src="<c:url value="/resources/js/calendarInit.js"/>"></script>
 	<script src="<c:url value="/resources/js/divsec_login.js" />"></script>
+	<script src="<c:url value="/resources/js/divsec_dashboard.js" />"></script>
+
 
 	<script type="text/javascript">
-	
-		var userId= "${user}";
-		var contextPath = "${pageContext.request.contextPath}";
-	
+		$("#date1").datepicker({
+			todayHighlight : true
+		});
 
-		$("#dtpTop").datepicker({});
+		$('#dpYear').datepicker({
+			format : " yyyy", // Notice the Extra space at the beginning
+			minViewMode : 2,
+			autoclose : true,
+			orientation: "bottom auto"
+		});
 
-		var date = new Date();
-		var d = date.getDate();
-		var m = date.getMonth();
-		var y = date.getFullYear();
-
-		var calendar = $('#calendar').fullCalendar({
-			selectable : true,
-			selectHelper : true,
-			select : function(start, end, allDay) {
-				var title = prompt('Event Title:');
-				if (title) {
-					calendar.fullCalendar('renderEvent', {
-						title : title,
-						start : start,
-						end : end,
-						allDay : allDay
-					}, true // make the event "stick"
-					);
-				}
-				calendar.fullCalendar('unselect');
-			},
-			editable : true,
-		//                    events: [
-		//                        {
-		//                            title: 'All Day Event',
-		//                            start: new Date(y, m, 1)
-		//                        },
-		//                        {
-		//                            title: 'Long Event',
-		//                            start: new Date(y, m, d - 5),
-		//                            end: new Date(y, m, d - 2)
-		//                        },
-		//                        {
-		//                            id: 999,
-		//                            title: 'Repeating Event',
-		//                            start: new Date(y, m, d - 3, 16, 0),
-		//                            allDay: false
-		//                        },
-		//                        {
-		//                            id: 999,
-		//                            title: 'Repeating Event',
-		//                            start: new Date(y, m, d + 4, 16, 0),
-		//                            allDay: false
-		//                        },
-		//                        {
-		//                            title: 'Meeting',
-		//                            start: new Date(y, m, d, 10, 30),
-		//                            allDay: false
-		//                        },
-		//                        {
-		//                            title: 'Lunch',
-		//                            start: new Date(y, m, d, 12, 0),
-		//                            end: new Date(y, m, d, 14, 0),
-		//                            allDay: false
-		//                        },
-		//                        {
-		//                            title: 'Birthday Party',
-		//                            start: new Date(y, m, d + 1, 19, 0),
-		//                            end: new Date(y, m, d + 1, 22, 30),
-		//                            allDay: false
-		//                        },
-		//                        {
-		//                            title: 'Click for Google',
-		//                            start: new Date(y, m, 28),
-		//                            end: new Date(y, m, 29),
-		//                            url: 'http://google.com/'
-		//                        }
-		//                    ]
+		$('#dpYear1').datepicker({
+			format : " yyyy", // Notice the Extra space at the beginning
+			minViewMode : 2,
+			autoclose : true,
+			orientation: "bottom auto"
 		});
 	</script>
 
 
-	<!-- END PAGE LEVEL SCRIPTS -->
 </body>
 
 <!-- END BODY -->

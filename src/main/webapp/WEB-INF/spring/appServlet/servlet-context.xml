@@ -11,22 +11,23 @@
 		infrastructure -->
 
 	<!-- Enables the Spring MVC @Controller programming model -->
+
+
 	<annotation-driven />
 
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving 
 		up static resources in the ${webappRoot}/resources directory -->
 	<resources mapping="/resources/**" location="/resources/" />
-	
-	<!-- webjars mapping
-	<resources mapping="/webjars/**" location="classpath:/META-INF/resources/webjars/"/>
-	 -->
-	
+
+	<!-- webjars mapping <resources mapping="/webjars/**" location="classpath:/META-INF/resources/webjars/"/> -->
+
 	<context:component-scan base-package="com.aymen.controller" />
 	<context:component-scan base-package="com.aymen.service" />
 	<context:component-scan base-package="com.aymen.dao" />
 	<context:component-scan base-package="com.aymen.entity" />
-	
+
 	<tx:annotation-driven transaction-manager="transactionManager" />
+
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources 
 		in the /WEB-INF/views directory -->
@@ -35,7 +36,16 @@
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
-	
-	
- 	
+
+	<!-- <annotation-driven conversion-service="conversionService" />
+
+	<beans:bean id="conversionService"
+		class="org.springframework.context.support.ConversionServiceFactoryBean">
+		<beans:property name="converters">
+			<beans:list>
+				<beans:bean class="com.aymen.service.ConvertServiceImpl" />
+			</beans:list>
+		</beans:property>
+	</beans:bean>
+ -->
 </beans:beans>

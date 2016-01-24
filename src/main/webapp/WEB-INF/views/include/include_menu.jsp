@@ -37,7 +37,9 @@
 						<li class=""><a href="${pageContext.request.contextPath}/rptpublic"><i class="icon-angle-right"></i> Public Info </a></li>
 						<li class=""><a href="${pageContext.request.contextPath}/rptrequest"><i class="icon-angle-right"></i> Request </a></li>
 						<li class=""><a href="${pageContext.request.contextPath}/rptrequeststage"><i class="icon-angle-right"></i> Request Stage </a></li>
-						<li class=""><a href="${pageContext.request.contextPath}/rptrequestoverdue"><i class="icon-angle-right"></i> Request Overdue
+						<li class=""><a href="${pageContext.request.contextPath}/rptrequestoverdue"><i class="icon-angle-right"></i> Request Overdue</a></li>
+						<li class=""><a href="${pageContext.request.contextPath}/divperstatus"><i class="icon-angle-right"></i> Division-Period-Status
+						
 						</a></li>
 					</ul></li>
 
@@ -97,7 +99,7 @@
 	</ul>
 
 	<div>
-		<div id="divIdDvsnId">${stfDivId}</div>
+			<div id="divIdDvsnId">${stfDivId}</div>
 	</div>
 
 </div>

@@ -16,7 +16,7 @@ jQuery(function() {
 
 		// Load table using JSON data by ajax
 		"ajax" : {
-			"url" : "subject/loadsubject",
+			"url" : "subject/loadactivesubject",
 			"dataSrc" : ""
 		},
 

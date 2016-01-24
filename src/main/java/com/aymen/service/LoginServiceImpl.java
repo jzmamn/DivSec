@@ -18,7 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.aymen.dao.UserCreationDAO;
 import com.aymen.entity.Staff;
-import com.aymen.entity.UserCategory;
+import com.aymen.entity.StaffRole;
 
 @Service("userDetailsService")
 
@@ -34,16 +34,16 @@ public class LoginServiceImpl implements UserDetailsService {
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException, DataAccessException {
 		String userName = username;
 		Staff staff = this.userCreationDAO.getStaffByUserId(userName);
-		List<GrantedAuthority> authorities = buildUserAuthority(staff.getUserCategories());
+		List<GrantedAuthority> authorities = buildUserAuthority(staff.getStaffRoles());
 		return buildUserForAuthentication(staff, authorities);
 	}
 
-	private List<GrantedAuthority> buildUserAuthority(Set<UserCategory> appUserRole) {
+	private List<GrantedAuthority> buildUserAuthority(Set<StaffRole> appUserRole) {
 		Set<GrantedAuthority> setAuths = new HashSet<GrantedAuthority>();
 		// Build user's authorities
-		for (UserCategory userRole : appUserRole) {
-			System.out.println("****" + userRole.getCatName());
-			setAuths.add(new SimpleGrantedAuthority(userRole.getCatName()));
+		for (StaffRole userRole : appUserRole) {
+			System.out.println("****" + userRole.getRoleName());
+			setAuths.add(new SimpleGrantedAuthority(userRole.getRoleName()));
 		}
 		List<GrantedAuthority> Result = new ArrayList<GrantedAuthority>(setAuths);
 		return Result;

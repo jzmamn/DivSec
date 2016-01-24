@@ -43,6 +43,12 @@ public class SubjectController {
 		return this.subjectSvc.listSvcSubject();
 	}
 
+	// This method sends JSON response to the client (REST)
+	@RequestMapping(value = "/loadactivesubject", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody List<Subject> getActiveSubject() {
+		return this.subjectSvc.listSvcActiveSubject();
+	}
+
 	// Create User or staff accounts - save and update
 	@RequestMapping(value = "/create", method = RequestMethod.POST)
 	public @ResponseBody String addSubject(@ModelAttribute("maSubject") Subject subject, BindingResult result,

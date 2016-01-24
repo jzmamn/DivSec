@@ -8,7 +8,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>DivSec | Request Trail Report</title>
+<title>DivSec | Request Report</title>
 
 
 <!-- GLOBAL STYLES -->
@@ -59,7 +59,7 @@
 			<div class="inner">
 				<div class="row">
 					<div class="col-lg-12">
-						<h3 class="text-info">Request Trail Report</h3>
+						<h3 class="text-info">Request Report</h3>
 					</div>
 				</div>
 				<hr />
@@ -85,34 +85,30 @@
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="panel panel-default">
+
 							<div class="panel-body">
 								<div class="table-responsive">
 									<table class="table table-striped table-bordered table-hover table-condensed" id="dtTable">
 										<thead>
 											<tr>
-												<th>Status</th>
-												<th>ReqId</th>
-												<th>DateEntered</th>
-												<th>Modified</th>
-												<th>Staff</th>
-												<th>StatusName</th>
-												<th>Status</th>
-												<th>Void</th>
-												<th>Note</th>
-												<th>Staff Id</th>
-												
+												<th>DivId</th>
+												<th>Division</th>
+												<th>MonthNum</th>
+												<th>Month</th>
+												<th>Year</th>
+												<th>New</th>
+												<th>Opened</th>
+												<th>Completed</th>
+												<th>Closed</th>
 											</tr>
 										</thead>
 									</table>
 								</div>
 							</div>
 						</div>
-						<jsp:include page="../../include/include_report_fileter.jsp" />
 					</div>
 				</div>
-
-
-			
+				<jsp:include page="../../include/include_report_fileter.jsp" />
 			</div>
 			<!--End of Inner  -->
 		</div>
@@ -147,14 +143,20 @@
 	<script src="${pageContext.request.contextPath}/resources/plugins/dataTables/js/pdfmake.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/plugins/dataTables/js/vfs_fonts.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/plugins/dataTables/js/fnReloadAjax.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/js/divsec_rpt_request_trail.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/divsec_rpt_div_per_status.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/plugins/validator/validator.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/plugins/Sweetalert-master/lib/sweet-alert.js"></script>
-	
 	<script src="${pageContext.request.contextPath}/resources/plugins/datepicker/js/bootstrap-datepicker.min.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/js/divsec_rpt_filter.js"></script>
-	
 
+	<script src="${pageContext.request.contextPath}/resources/js/divsec_rpt_filter.js"></script>
+
+	<script>
+		$('.input-daterange input').each(function() {
+			$(this).datepicker({
+				format : "yyyy-mm-dd"
+			});
+		});
+	</script>
 
 	<!-- END PAGE LEVEL SCRIPTS -->
 </body>

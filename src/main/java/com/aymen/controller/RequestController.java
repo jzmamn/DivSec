@@ -61,8 +61,8 @@ public class RequestController {
 		model.addAttribute("stfId", staff.getStfId());
 		model.addAttribute("stfDivId", staff.getDivision().getDivId());
 		model.addAttribute("stfDivName", staff.getDivision().getDivName());
-
 		model.addAttribute("userName", getPrincipal());
+		model.addAttribute("role", getUserRole());
 
 		return "process/requestprocess";
 	}
@@ -91,9 +91,7 @@ public class RequestController {
 		model.addAttribute("reqIsVoid", req.getReqIsVoid());
 
 		if (req.getReqId() == null) {
-
 			this.reqSvc.createSvcRequest(req);
-
 		} else {
 			this.reqSvc.updateSvcRequest(req);
 		}
@@ -129,16 +127,13 @@ public class RequestController {
 			@PathVariable("statusId") int reqStatusId, @PathVariable("void") boolean isVoid,
 			@PathVariable("note") String note) {
 		try {
-
 			this.reqSvc.updateSvcRequestStatus(reqId, reqStatusId, isVoid, note);
-
 			return "1";
 		} catch (Exception e) {
 			System.out.println(e.toString());
 			e.printStackTrace();
 			return "Request Status Updated ! " + "\n" + e.toString();
 		}
-
 	}
 
 	// display the count in the batch
@@ -178,7 +173,6 @@ public class RequestController {
 			e.printStackTrace();
 			return "Request Status Updated ! " + "\n" + e.toString();
 		}
-
 	}
 
 	// Get Instruction by request id
@@ -198,6 +192,21 @@ public class RequestController {
 			userName = principal.toString();
 		}
 		return userName;
+	}
+
+	private String getUserRole() {
+		String userRole = null;
+		Object role = SecurityContextHolder.getContext().getAuthentication().getAuthorities();
+
+		if (role instanceof UserDetails) {
+			userRole = ((UserDetails) role).getAuthorities().toString();
+		} else {
+			userRole = role.toString();
+		}
+
+		userRole = userRole.replace("[", "");
+		userRole = userRole.replace("]", "");
+		return userRole;
 	}
 
 }

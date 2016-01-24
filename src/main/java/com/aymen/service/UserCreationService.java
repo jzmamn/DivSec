@@ -9,7 +9,9 @@ public interface UserCreationService {
 
 	public void updateSvcStaff(Staff staff);
 
-	public List<Staff> listSvcStaff();
+	public List<Object> listSvcStaff();
+
+	public List<Object> listStaffById(int stfId);
 
 	public Staff getSvcStaffById(int id);
 
@@ -18,5 +20,9 @@ public interface UserCreationService {
 	public List getSvcStaffByUserIdWithoutPwd(String userId);
 
 	public void deleteSvcStaff(int id);
+
+	public void saveSvcRole(Staff stf);
+
+	public void updateSvcRole(Staff stf);
 
 }

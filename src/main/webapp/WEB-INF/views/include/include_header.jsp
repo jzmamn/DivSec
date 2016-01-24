@@ -21,6 +21,7 @@
 		<!-- END LOGO SECTION -->
 		<ul class="nav navbar-top-links navbar-right">
 
+			<%-- ============================
 			<!-- MESSAGES SECTION -->
 			<li class="dropdown"><a class="dropdown-toggle"
 				data-toggle="dropdown" href="#"> <span
@@ -197,7 +198,9 @@
 								All Alerts</strong> <i class="icon-angle-right"></i>
 					</a></li>
 				</ul></li>
-			<!-- END ALERTS SECTION -->
+			<!-- END ALERTS SECTION --> 
+			===================================
+			--%>
 
 			<!--ADMIN SETTINGS SECTIONS -->
 
@@ -207,8 +210,8 @@
 			</a>
 
 				<ul class="dropdown-menu dropdown-user">
-					<li><a href="#"><i class="icon-user"></i> User Profile </a></li>
-					<li><a href="#"><i class="icon-gear"></i> Settings </a></li>
+					<li><a  href="${pageContext.request.contextPath}/mysetup"><i class="icon-user"></i> User Profile </a></li>
+					<li><a  href="#"><i class="icon-gear"></i> Settings </a></li>
 					<li class="divider"></li>
 					<li><a href="${pageContext.request.contextPath}/logout"><i class="icon-signout"></i>
 							Logout </a></li>

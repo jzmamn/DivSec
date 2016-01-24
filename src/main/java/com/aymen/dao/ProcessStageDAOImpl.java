@@ -196,7 +196,7 @@ public class ProcessStageDAOImpl implements ProcessStageDAO {
 		String strQuery = "";
 		String strQuery1 = "SELECT * FROM vw_req_stg_trail Where";
 		String strQuery2 = "";
-		String strQuery3 = "ORDER BY rst_id, rst_pr_id";
+		String strQuery3 = " ORDER BY rst_id, rst_pr_id";
 
 		if (reqId == 0 && fromDate.equals("0") && toDate.equals("0")) {
 			if (reqId > 0) {

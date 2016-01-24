@@ -18,14 +18,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.aymen.entity.Request;
 import com.aymen.entity.Staff;
 import com.aymen.entity.UserCategory;
 import com.aymen.service.UserCategoryService;
 import com.aymen.service.UserCreationService;
 
 @Controller
-@RequestMapping(value = "/usercreation")
-public class UserCreationController {
+@RequestMapping(value = "/mysetup")
+public class MySettingController {
+
+	private static final Logger logger = LoggerFactory.getLogger(MySettingController.class);
 
 	@Autowired
 	UserCreationService userCreationsSVC;
@@ -33,20 +36,17 @@ public class UserCreationController {
 	@Autowired
 	UserCategoryService ucs;
 
-	private static final Logger logger = LoggerFactory.getLogger(UserCreationController.class);
-
 	@RequestMapping(method = RequestMethod.GET)
 	public String init(@ModelAttribute("maStaff") Staff staff, ModelMap model) {
-		logger.info("Welcome home! The client locale is {}.", staff);
-		model.addAttribute("user", getPrincipal());
-		model.addAttribute("cmdUserCreation", new Staff());
-		return "setup/usercreation";
-	}
+		model.addAttribute("maRequest", new Request());
 
-	// This method sends JSON response to the client (REST)
-	@RequestMapping(value = "/loaduser", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody List<Object> getData() {
-		return this.userCreationsSVC.listSvcStaff();
+		Staff staff1 = userCreationsSVC.getSvcStaffByUserId(getPrincipal());
+		model.addAttribute("stfId", staff1.getStfId());
+		model.addAttribute("stfDivId", staff1.getDivision().getDivId());
+		model.addAttribute("stfDivName", staff1.getDivision().getDivName());
+
+		model.addAttribute("userName", getPrincipal());
+		return "setup/mysetting";
 	}
 
 	// Create User or staff accounts - save and update
@@ -78,7 +78,7 @@ public class UserCreationController {
 				return "1";
 			} else {
 				this.userCreationsSVC.updateSvcStaff(staff);
-				// this.userCreationsSVC.updateSvcRole(staff);
+				this.userCreationsSVC.updateSvcRole(staff);
 				return "1";
 			}
 
@@ -88,22 +88,6 @@ public class UserCreationController {
 			// return "Save Failed ! " + "\n" + e.toString();
 			logger.error(e.toString());
 			return "Save Failed ! " + "\n" + "User id already exists";
-		}
-
-	}
-
-	@RequestMapping("/delete/{id}")
-	public @ResponseBody String deleteStaff(@ModelAttribute("maStaff") Staff staff, BindingResult result,
-			@PathVariable("id") int id, Model model) {
-		try {
-			model.addAttribute("cmdDivision", new Staff());
-			this.userCreationsSVC.deleteSvcStaff(id);
-			return "1";
-		} catch (Exception e) {
-			System.out.println(e.toString());
-			e.printStackTrace();
-			logger.error(e.toString());
-			return "Delete Failed ! " + "\n" + "Staff could not be deleted";
 		}
 
 	}

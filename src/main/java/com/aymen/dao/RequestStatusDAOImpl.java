@@ -30,11 +30,20 @@ public class RequestStatusDAOImpl implements RequestStatusDAO {
 
 	}
 
+	@SuppressWarnings({ "unused", "unchecked" })
 	@Override
-	public List<RequestStatus> listRequestStatus() {
+	public List<RequestStatus> listRequestStatus(String role) {
 		Session session = this.sessionFactory.getCurrentSession();
-		@SuppressWarnings("unchecked")
-		List<RequestStatus> reqStatusList = session.createQuery(" from RequestStatus").list();
+		String qryRole = "";
+		if (role.equals("ROLE_ADMIN")) {
+			qryRole = " from RequestStatus";
+		} else if (role.equals("ROLE_HOD")) {
+			qryRole = " from RequestStatus";
+		} else {
+			qryRole = " from RequestStatus Where rs_Id NOT IN (6,7)";
+		}
+
+		List<RequestStatus> reqStatusList = session.createQuery(qryRole).list();
 		for (RequestStatus d : reqStatusList) {
 			logger.info("Person List::" + d);
 			// System.out.println(d);

@@ -46,4 +46,9 @@ public class DivsionServiceImpl implements DivisionService {
 		this.divisionDAO.deleteDivision(id);
 	}
 
+	@Override
+	public List<Division> listSvcActiveDivision() {
+		return this.divisionDAO.listActiveDivision();
+	}
+
 }

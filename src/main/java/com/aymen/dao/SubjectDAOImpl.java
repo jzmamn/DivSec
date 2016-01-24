@@ -76,4 +76,15 @@ public class SubjectDAOImpl implements SubjectDAO {
 
 	}
 
+	@Override
+	public List<Subject> listActiveSubject() {
+		Session session = this.sessionFactory.getCurrentSession();
+		@SuppressWarnings("unchecked")
+		List<Subject> subjectList = session.createQuery(" from Subject where sbj_active=true").list();
+		for (Subject s : subjectList) {
+			logger.info("Subject List::" + s);
+		}
+		return subjectList;
+	}
+
 }

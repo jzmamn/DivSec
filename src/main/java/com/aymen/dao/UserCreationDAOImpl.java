@@ -3,6 +3,7 @@ package com.aymen.dao;
 import java.util.Iterator;
 import java.util.List;
 
+import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
@@ -13,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.aymen.entity.Staff;
+import com.aymen.entity.StaffRole;
 
 @Repository
 public class UserCreationDAOImpl implements UserCreationDAO {
@@ -26,13 +28,6 @@ public class UserCreationDAOImpl implements UserCreationDAO {
 		try {
 			Session session = sessionFactory.getCurrentSession();
 			session.persist(staff);
-
-			SQLQuery insertQuery = session
-					.createSQLQuery("" + "INSERT INTO staff_role(`staff_id`,`role_id`) VALUES(?,?)");
-			insertQuery.setParameter(0, staff.getStfId());
-			insertQuery.setParameter(1, staff.getStfCategoryId());
-			insertQuery.executeUpdate();
-
 			logger.debug("Staff saved successfully, Staff Details=" + staff.getStfId());
 		} catch (Exception e) {
 			System.out.println("DAO" + e.toString());
@@ -45,13 +40,8 @@ public class UserCreationDAOImpl implements UserCreationDAO {
 		try {
 			Session session = sessionFactory.getCurrentSession();
 			session.update(staff);
-			SQLQuery insertQuery = session
-					.createSQLQuery("" + "UPDATE `staff_role` SET `role_id` = ? WHERE`staff_id` = ? ");
-			insertQuery.setParameter(0, staff.getStfId());
-			insertQuery.setParameter(1, staff.getStfCategoryId());
-			insertQuery.executeUpdate();
 
-			logger.debug("Staff saved successfully, Staff Details=" + staff.getStfId());
+			logger.info("Staff saved successfully, Staff Details=" + staff.getStfId());
 
 		} catch (Exception e) {
 			System.out.println(e.toString());
@@ -60,17 +50,22 @@ public class UserCreationDAOImpl implements UserCreationDAO {
 	}
 
 	@Override
-	public List<Staff> listStaff() {
-		Session session = this.sessionFactory.getCurrentSession();
-		@SuppressWarnings("unchecked")
-		List<Staff> staffList = session.createQuery(" from Staff").list();
-		for (Staff staff : staffList) {
+	public List<Object> listStaff() {
+		String strQuery = "SELECT `stf_id`,`stf_name`, `role_id`,`role_name`, `stf_user_id`,`stf_password`,`stf_dvision_id`,"
+				+ " `div_name`, `stf_email`, `stf_mobile`,`stf_note`,`stf_active` FROM `staff`s"
+				+ " inner join `division` d on s.`stf_dvision_id` = d.`div_id`"
+				+ " left join staff_role r on s.stf_id=r.staff_id";
 
-		}
-		return staffList;
+		System.out.println(strQuery);
+		Session session = this.sessionFactory.getCurrentSession();
+		SQLQuery query = session.createSQLQuery(strQuery);
+		query.setResultTransformer(Criteria.ALIAS_TO_ENTITY_MAP);
+		List<Object> results = query.list();
+		return results;
 
 	}
 
+	@SuppressWarnings("rawtypes")
 	@Override
 	public Staff getStaffById(int id) {
 		Session session = this.sessionFactory.getCurrentSession();
@@ -125,7 +120,7 @@ public class UserCreationDAOImpl implements UserCreationDAO {
 
 	}
 
-	@SuppressWarnings({ "unchecked", "rawtypes" })
+	@SuppressWarnings({ "unchecked" })
 	@Override
 	public List<Staff> getStaffByUserIdWithoutPwd(String userId) {
 		try {
@@ -147,28 +142,44 @@ public class UserCreationDAOImpl implements UserCreationDAO {
 		}
 	}
 
-	public void assigneUserRole(int stfId, int roleId) {
-		System.out.println(stfId);
-		Session session = sessionFactory.openSession();
-		session.beginTransaction();
-		SQLQuery insertQuery = session.createSQLQuery("" + "INSERT INTO staff_role(`staff_id`,`role_id`) VALUES(?,?)");
-		insertQuery.setParameter(0, stfId);
-		insertQuery.setParameter(1, roleId);
-		insertQuery.executeUpdate();
-		session.getTransaction().commit();
+	@Override
+	public void saveRole(StaffRole StaffRole) {
+		try {
+			Session session = sessionFactory.getCurrentSession();
+			session.persist(StaffRole);
+			logger.debug("Staff role saved successfully, Staff Details=" + StaffRole.getRoleName());
+		} catch (Exception e) {
+			System.out.println("DAO" + e.toString());
+		}
+	}
+
+	@Override
+	public void updateRole(StaffRole stfRole) {
+		try {
+			Session session = sessionFactory.getCurrentSession();
+			session.update(stfRole);
+			logger.info("Staff role update successfully, Staff Details=" + stfRole.getRoleName());
+
+		} catch (Exception e) {
+			System.out.println(e.toString());
+		}
 
 	}
 
-	public void updateUserRole(int stfId, int roleId) {
-		Session session = sessionFactory.openSession();
-		session.beginTransaction();
-		SQLQuery insertQuery = session
-				.createSQLQuery("" + "UPDATE `staff_role` SET `role_id` = ? WHERE`staff_id` = ? ");
-		insertQuery.setParameter(0, roleId);
-		insertQuery.setParameter(1, stfId);
-		insertQuery.executeUpdate();
-		session.getTransaction().commit();
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Object> listStaffById(int stfId) {
+		String strQuery = "SELECT `stf_id`,`stf_name`, `role_id`,`role_name`, `stf_user_id`,`stf_password`,`stf_dvision_id`,"
+				+ " `div_name`, `stf_email`, `stf_mobile`,`stf_note`,`stf_active` FROM `staff`s"
+				+ " inner join `division` d on s.`stf_dvision_id` = d.`div_id`"
+				+ " left join staff_role r on s.stf_id=r.staff_id" + " where stf_id=" + stfId;
 
+		System.out.println(strQuery);
+		Session session = this.sessionFactory.getCurrentSession();
+		SQLQuery query = session.createSQLQuery(strQuery);
+		query.setResultTransformer(Criteria.ALIAS_TO_ENTITY_MAP);
+		List<Object> results = query.list();
+		return results;
 	}
 
 }

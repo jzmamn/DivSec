@@ -146,4 +146,9 @@ public class RequestServiceImpl implements RequestService {
 		return this.reqDao.getOverDueRequests(reqId, fromDate, toDate);
 	}
 
+	@Override
+	public List<Object> getDivPeriodStatus(int divId, int month, int year) {
+		return this.reqDao.getDivPeriodStatus(divId, month, year);
+	}
+
 }

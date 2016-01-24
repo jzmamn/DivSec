@@ -199,7 +199,7 @@ jQuery(function() {
 
 		// Load table using JSON data by ajax
 		"ajax" : {
-			"url" : "division/create1",
+			"url" : "division/loadactivedivision",
 			"dataSrc" : ""
 		},
 
@@ -211,7 +211,11 @@ jQuery(function() {
 			"data" : "divActive"
 		}
 
-		]
+		],
+		"columnDefs" : [ {
+			"targets" : [ 2 ],
+			"visible" : false
+		} ]
 
 	});
 

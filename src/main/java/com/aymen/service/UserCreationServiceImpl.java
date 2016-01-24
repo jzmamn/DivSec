@@ -11,6 +11,8 @@ import org.springframework.transaction.annotation.Transactional;
 import com.aymen.dao.UserCategoryDAO;
 import com.aymen.dao.UserCreationDAO;
 import com.aymen.entity.Staff;
+import com.aymen.entity.StaffRole;
+import com.aymen.entity.UserCategory;
 
 @Service
 @Transactional
@@ -33,10 +35,11 @@ public class UserCreationServiceImpl implements UserCreationService {
 	public void updateSvcStaff(Staff staff) {
 		staff.setStfPassword(encrypPassword(staff.getStfPassword()));
 		this.userCreationDAO.updateStaff(staff);
+
 	}
 
 	@Override
-	public List<Staff> listSvcStaff() {
+	public List<Object> listSvcStaff() {
 		return this.userCreationDAO.listStaff();
 	}
 
@@ -67,6 +70,32 @@ public class UserCreationServiceImpl implements UserCreationService {
 		PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 		String hashedPassword = passwordEncoder.encode(pwd);
 		return hashedPassword;
+	}
+
+	@Override
+	public void saveSvcRole(Staff stf) {
+		StaffRole stfRole = new StaffRole();
+		UserCategory uc = userCatDao.getUserCatById(stf.getStfCategoryId());
+		stfRole.setStaff(stf);
+		stfRole.setRoleId(stf.getStfCategoryId());
+		stfRole.setRoleName(uc.getCatName());
+		userCreationDAO.saveRole(stfRole);
+	}
+
+	@Override
+	public void updateSvcRole(Staff stf) {
+		StaffRole stfRole = new StaffRole();
+		UserCategory uc = userCatDao.getUserCatById(stf.getStfCategoryId());
+		stfRole.setStaff(stf);
+		stfRole.setRoleId(stf.getStfCategoryId());
+		stfRole.setRoleName(uc.getCatName());
+		userCreationDAO.updateRole(stfRole);
+	}
+
+	@Override
+	public List<Object> listStaffById(int stfId) {
+		// TODO Auto-generated method stub
+		return this.userCreationDAO.listStaffById(stfId);
 	}
 
 }

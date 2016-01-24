@@ -11,6 +11,8 @@ public interface DivisionService {
 
 	public List<Division> listSvcDivision();
 
+	public List<Division> listSvcActiveDivision();
+
 	public Division getSvcDivisionById(int id);
 
 	public void deleteSvcDivision(int id);

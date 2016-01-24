@@ -57,7 +57,7 @@
 			<div class="inner">
 				<div class="row">
 					<div class="col-lg-12">
-						<h2>Request Form</h2>
+						<h3 class="text-info">Request Form</h3>
 					</div>
 				</div>
 				<hr />
@@ -116,10 +116,10 @@
 													<th style="width: 12%">Status</th>
 													<th>StatusName</th>
 													<th>SbjId</th>
-													<th style="width: 15%">Subject</th>
-													<th style="width: 12%">Date</th>
-													<th style="width: 12%">Pb Id</th>
-													<th style="width: 20%">Pb Name</th>
+													<th style="width: 68%">Subject</th>
+													<th style="width: 10%">Date</th>
+													<th>Pb Id</th>
+													<th>Pb Name</th>
 													<th>Div Id</th>
 													<th>Div Name</th>
 													<th>Note</th>
@@ -139,7 +139,7 @@
 											<div class="col-lg-8 col-md-8 col-sm-8">
 												<form data-toggle="validator" role="form" id="frmIdInstruction" method="POST">
 
-													<div class="form-group input-group">
+													<div id="idAddInst" class="form-group input-group">
 														<input type="text" class="form-control" id="txtIdInstruction" name="txtInstruction" /> <span class="input-group-btn">
 															<button class="btn btn-primary" type="button" id="btnIdAddInstruction">Add Instruction</button>
 														</span>
@@ -160,11 +160,12 @@
 														<textarea class="form-control" rows="3" id="txtIdAreaInstruction" name="txtAreaInst" ></textarea>
 													</div> -->
 
-													<div style="height: 200px; overflow-y: scroll;" class="panel panel-success">
+													<strong>Instructions from Admin</strong>
+													<div style="height: 150px; overflow-y: scroll;" class="panel panel-success">
 														<div id="idInst" class="panel-body"></div>
 													</div>
 
-													
+
 												</form>
 												<hr />
 
@@ -343,7 +344,7 @@
 														<i class="icon-search"></i>
 													</button>
 												</span>
-												<form:input path="publicIndividual.piId" type="text" class="form-control" id="txtIdPublicId" name="txtIdPublicId" />
+												<form:input path="publicIndividual.piId" type="hidden" class="form-control" id="txtIdPublicId" name="txtIdPublicId" />
 											</div>
 										</div>
 
@@ -356,12 +357,12 @@
 														<i class="icon-search"></i>
 													</button>
 												</span>
-												<form:input path="subject.sbjId" type="text" class="form-control" id="txtIdSubjectId" name="txtSearch" />
+												<form:input path="subject.sbjId" type="hidden" class="form-control" id="txtIdSubjectId" name="txtSearch" />
 											</div>
 										</div>
 
 										<div class="form-group">
-											<form:input path="division.divId" type="text" id="txtIdDivisionId" name="txtDivisionId" class="form-control"
+											<form:input path="division.divId" type="hidden" id="txtIdDivisionId" name="txtDivisionId" class="form-control"
 												placeholder="Division ID" />
 										</div>
 
@@ -371,43 +372,43 @@
 										</div>
 
 										<div class="input-group">
-											<form:input path="reqEntDate" type="text" id="dp1" data-validation="date" data-validation-format="yyyy-mm-dd" name="txtDp1"
+											<form:input path="reqEntDate" type="hidden" id="dp1" data-validation="date" data-validation-format="yyyy-mm-dd" name="txtDp1"
 												class="form-control" />
 										</div>
 
 										<div class="form-group">
-											<div>
-												<form:input path="reqNote" type="text" id="txtIdNote" name="txtNote" class="form-control" placeholder="Note" />
-											</div>
+											<label for="txtIdSubjectId" class="control-label">Note</label>
+											<form:input path="reqNote" type="text" id="txtIdNote" name="txtNote" class="form-control" placeholder="Note" />
 										</div>
+
 										<div class="form-group">
 											<div>
-												<form:input path="reqFees" type="text" id="txtIdReqFee" name="txtReqFee" class="form-control" placeholder="Request Fee in Rs" />
+												<form:input path="reqFees" type="hidden" id="txtIdReqFee" name="txtReqFee" class="form-control" placeholder="Request Fee in Rs" />
 											</div>
 										</div>
 
 										<div class="form-group">
 											<div>
-												<form:input path="reqDurartion" type="text" id="txtIdDuration" name="txtDuration" class="form-control" placeholder="Duration" />
+												<form:input path="reqDurartion" type="hidden" id="txtIdDuration" name="txtDuration" class="form-control" placeholder="Duration" />
 											</div>
 										</div>
 
 										<div class="form-group">
 											<div>
-												<form:input path="staff.stfId" type="text" id="txtIdStaff" name="txtStaff" class="form-control" placeholder="staff Id"
+												<form:input path="staff.stfId" type="hidden" id="txtIdStaff" name="txtStaff" class="form-control" placeholder="staff Id"
 													value="${stfId}" />
 											</div>
 										</div>
 
 										<div class="form-group">
 											<div>
-												<form:input path="requestStatus.rsId" type="text" id="txtIdReqid" name="txtReqId" class="form-control" value="1" />
+												<form:input path="requestStatus.rsId" type="hidden" id="txtIdReqid" name="txtReqId" class="form-control" value="1" />
 											</div>
 										</div>
 
 										<div class="form-group">
 											<div>
-												<form:input path="reqIsVoid" type="text" id="txtIdVoid" name="txtVoid" class="form-control" value="0" />
+												<form:input path="reqIsVoid" type="hidden" id="txtIdVoid" name="txtVoid" class="form-control" value="0" />
 											</div>
 										</div>
 
@@ -446,28 +447,26 @@
 
 										<div class="form-group">
 											<div>
-												<input type="text" id="txtIdReqStgId" name="txtReqStgId" class="form-control" placeholder="Request Stage Id" />
+												<input type="hidden" id="txtIdReqStgId" name="txtReqStgId" class="form-control" placeholder="Request Stage Id" />
 											</div>
 										</div>
 
 
 										<div class="form-group">
 											<div>
-												<input type="text" id="txtIdUserId" name="txtUserId" class="form-control" placeholder="User Id" />
+												<input type="hidden" id="txtIdUserId" name="txtUserId" class="form-control" placeholder="User Id" />
 											</div>
 										</div>
 
 										<div class="form-group">
-											<select class="form-control" id="idCmbReqStgSts">
-											</select> <input type="text" id="idTxtReqStgSts" name="txtReqStgSts" class="form-control" placeholder="Stage status id" />
+											<label for="txtIdSubjectId" class="control-label">Stage Status</label> <select class="form-control" id="idCmbReqStgSts">
+											</select> <input type="hidden" id="idTxtReqStgSts" name="txtReqStgSts" class="form-control" placeholder="Stage status id" />
 										</div>
 
-
-
 										<div class="form-group">
-											<div>
-												<input type="text" id="txtIdStgNote" name="txtStgNote" class="form-control" placeholder="Note" />
-											</div>
+											<label for="txtIdSubjectId" class="control-label">Stage Note</label> <input type="text" id="txtIdStgNote" name="txtStgNote"
+												class="form-control" placeholder="Note" />
+
 										</div>
 
 									</form>
@@ -590,6 +589,13 @@
 	<script src="${pageContext.request.contextPath}/resources/plugins/datepicker/js/bootstrap-datepicker.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/divsec_request.js"></script>
 	<script>
+		var contextPath = "${pageContext.request.contextPath}"
+		var userName = "${userName}";
+		var role = "${role}"
+		var stfId = "${stfId}"
+		var divId = "${stfDivId}"
+		var divName = "${stfDivName}"
+
 		$('#dp1').datepicker({
 			format : "yyyy-mm-dd"
 		});
@@ -597,11 +603,6 @@
 		$('#idTxtInstDate').datepicker({
 			format : "yyyy-mm-dd"
 		});
-
-		var contextPath = "${pageContext.request.contextPath}"
-		var userName = "${userName}";
-		var divId = "${stfDivId}"
-		var divName = "${stfDivName}"
 
 		$('#frmIdPublic').validator();
 	</script>

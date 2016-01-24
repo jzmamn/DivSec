@@ -75,6 +75,11 @@ public class DivisionController {
 		return this.divisionSvc.listSvcDivision();
 	}
 
+	@RequestMapping(value = "/loadactivedivision", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody List<Division> getActiveDivision() {
+		return this.divisionSvc.listSvcActiveDivision();
+	}
+
 	// Delete a division using division id
 	@RequestMapping("/delete/{id}")
 	public @ResponseBody String deleteDivision(@ModelAttribute("maDivision") Division division, BindingResult result,

@@ -8,7 +8,7 @@
 		http://www.springframework.org/schema/tx  http://www.springframework.org/schema/tx/spring-tx.xsd">
 	<!-- Root Context: defines shared resources visible to all other web components -->
 
-	<context:property-placeholder location="resources/db.properties" />
+	 <context:property-placeholder location="resources/db.properties" /> 
 
 	<bean id="dataSource" class="org.apache.commons.dbcp2.BasicDataSource">
 		<property name="driverClassName" value="${jdbc.driverClassName}" />
@@ -36,22 +36,22 @@
 
 	<!--Java Mail -->
 	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
-        <property name="host" value="smtp.gmail.com" />
-        <property name="port" value="587" />
-        <property name="username" value="radgroup02@gmail.com" />
-        <property name="password" value="rad@group02" />
-        <property name="javaMailProperties">
-            <props>
-                <prop key="mail.transport.protocol">smtp</prop>
-                <prop key="mail.smtp.auth">true</prop>
-                <prop key="mail.smtp.starttls.enable">true</prop>
-            </props>
-        </property>
-    </bean>
+		<property name="host" value="smtp.gmail.com" />
+		<property name="port" value="587" />
+		<property name="username" value="radgroup02@gmail.com" />
+		<property name="password" value="rad@group02" />
+		<property name="javaMailProperties">
+			<props>
+				<prop key="mail.transport.protocol">smtp</prop>
+				<prop key="mail.smtp.auth">true</prop>
+				<prop key="mail.smtp.starttls.enable">true</prop>
+			</props>
+		</property>
+	</bean>
 	<!--End Java Mail -->
-	
-	
-	
+
+
+
 	<bean id="transactionManager"
 		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
 		<property name="sessionFactory" ref="sessionFactory" />

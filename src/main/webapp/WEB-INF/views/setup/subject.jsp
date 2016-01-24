@@ -57,7 +57,7 @@
 			<div class="inner">
 				<div class="row">
 					<div class="col-lg-12">
-						<h2>Manage Subject</h2>
+						<h3 class="text-info">Manage Subject</h3>
 					</div>
 				</div>
 				<hr />
@@ -88,9 +88,9 @@
 									<i class="icon-plus icon-white"></i> Add
 								</button>
 
-								<button id="btn" class="btn btn-primary">
+								<!-- <button id="btn" class="btn btn-primary">
 									<i class="icon-plus icon-white"></i> test
-								</button>
+								</button> -->
 							</div>
 							<div class="panel-body">
 								<div class="table-responsive">
@@ -174,7 +174,7 @@
 														<i class="icon-search"></i>
 													</button>
 												</span>
-												<form:input path="division.divId" type="text" class="form-control" id="txtIdDivisionId" name="txtDivisionId" readonly="true"
+												<form:input path="division.divId" type="hidden" class="form-control" id="txtIdDivisionId" name="txtDivisionId" readonly="true"
 													required="true" />
 											</div>
 										</div>
@@ -227,12 +227,12 @@
 								<div class="modal-body">
 									<div class="panel-body">
 										<div class="table-responsive">
-											<table class="table table-striped table-bordered table-hover" id="dtDivision">
+											<table class="table table-striped table-bordered table-hover table-condensed" id="dtDivision">
 												<thead>
 													<tr>
-														<th>DivId</th>
-														<th>Name</th>
-														<th>Active</th>
+														<th style="width: 20%">DivId</th>
+														<th style="width: 80%">Name</th>
+														<th style="width: 68%">Active</th>
 													</tr>
 												</thead>
 

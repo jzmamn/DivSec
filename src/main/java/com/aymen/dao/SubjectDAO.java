@@ -12,6 +12,8 @@ public interface SubjectDAO {
 
 	public List<Subject> listSubject();
 
+	public List<Subject> listActiveSubject();
+
 	public Subject getSubjectById(int id);
 
 	public void deleteSubject(int id);

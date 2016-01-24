@@ -1,5 +1,6 @@
 package com.aymen.controller;
 
+import java.util.List;
 import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
@@ -8,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -15,9 +17,14 @@ import org.springframework.security.web.authentication.logout.SecurityContextLog
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.aymen.entity.Request;
+import com.aymen.entity.Staff;
+import com.aymen.service.DashboardService;
 import com.aymen.service.UserCreationService;
 
 @Controller
@@ -25,7 +32,10 @@ import com.aymen.service.UserCreationService;
 public class HomeController {
 
 	@Autowired
-	UserCreationService userCreationService;
+	UserCreationService ucs;
+
+	@Autowired
+	DashboardService dbs;
 
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 
@@ -52,20 +62,39 @@ public class HomeController {
 
 	@RequestMapping(value = "/admin", method = RequestMethod.GET)
 	public String adminPage(ModelMap model) {
+		model.addAttribute("maRequest", new Request());
+
+		Staff staff = ucs.getSvcStaffByUserId(getPrincipal());
+		model.addAttribute("stfId", staff.getStfId());
+		model.addAttribute("stfDivId", staff.getDivision().getDivId());
+		model.addAttribute("stfDivName", staff.getDivision().getDivName());
 		model.addAttribute("userName", getPrincipal());
-		System.out.println(getUserRole().toString());
+		model.addAttribute("role", getUserRole());
 		return "dashboard_admin";
 	}
 
 	@RequestMapping(value = "/hod", method = RequestMethod.GET)
 	public String hodPage(ModelMap model) {
-		model.addAttribute("user", getPrincipal());
+		model.addAttribute("maRequest", new Request());
+		Staff staff = ucs.getSvcStaffByUserId(getPrincipal());
+		model.addAttribute("stfId", staff.getStfId());
+		model.addAttribute("stfDivId", staff.getDivision().getDivId());
+		model.addAttribute("stfDivName", staff.getDivision().getDivName());
+		model.addAttribute("userName", getPrincipal());
+		model.addAttribute("role", getUserRole());
 		return "dashboard_hod";
 	}
 
 	@RequestMapping(value = "/staff", method = RequestMethod.GET)
 	public String staffPage(ModelMap model) {
-		model.addAttribute("user", getPrincipal());
+		model.addAttribute("maRequest", new Request());
+
+		Staff staff = ucs.getSvcStaffByUserId(getPrincipal());
+		model.addAttribute("stfId", staff.getStfId());
+		model.addAttribute("stfDivId", staff.getDivision().getDivId());
+		model.addAttribute("stfDivName", staff.getDivision().getDivName());
+		model.addAttribute("userName", getPrincipal());
+		model.addAttribute("role", getUserRole());
 		return "dashboard_staff";
 	}
 
@@ -87,6 +116,33 @@ public class HomeController {
 			new SecurityContextLogoutHandler().logout(request, response, auth);
 		}
 		return "redirect:/home?logout";
+	}
+
+	// Graphs and Dashboard
+	// Populate Donut by Division
+	@RequestMapping(value = "dboard/donut-by-division/{divId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody List<Object> donutByDivision(@PathVariable("divId") int divId) {
+		return this.dbs.populateSvcDonutByDivision(divId);
+	}
+
+	@RequestMapping(value = "dboard/barchart-current-year", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody List<Object> barchartCurrentYear() {
+		return this.dbs.plotSvcBarChartCurrentYear();
+	}
+
+	@RequestMapping(value = "dboard/table-summary-by-division", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody List<Object> tableSummaryByDivision() {
+		return this.dbs.populateSvcTableDivisionSummary();
+	}
+
+	@RequestMapping(value = "dboard/table-summary-by-monthly/{year}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody List<Object> tableSummaryByMonthly(@PathVariable("year") int year) {
+		return this.dbs.populateSvcTableMonthly(year);
+	}
+
+	@RequestMapping(value = "dboard/table-summary-by-annually", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody List<Object> tableSummaryByMonthly() {
+		return this.dbs.populateSvcTableAnnually();
 	}
 
 	private String getPrincipal() {

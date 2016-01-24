@@ -82,4 +82,16 @@ public class DvisionDaoImpl implements DivisionDAO {
 
 	}
 
+	@Override
+	public List<Division> listActiveDivision() {
+		Session session = this.sessionFactory.getCurrentSession();
+		@SuppressWarnings("unchecked")
+		List<Division> divisionList = session.createQuery(" from Division where div_active=true").list();
+		for (Division d : divisionList) {
+			logger.info("Person List::" + d);
+			// System.out.println(d);
+		}
+		return divisionList;
+	}
+
 }

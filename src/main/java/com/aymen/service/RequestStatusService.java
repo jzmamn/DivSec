@@ -9,7 +9,7 @@ public interface RequestStatusService {
 
 	public void updateSvcRequestStatus(RequestStatus reqStatus);
 
-	public List<RequestStatus> listSvcRequestStatus();
+	public List<RequestStatus> listSvcRequestStatus(String role);
 
 	public RequestStatus getSvcRequestStatus(int id);
 

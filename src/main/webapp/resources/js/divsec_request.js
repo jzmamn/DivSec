@@ -4,6 +4,11 @@ jQuery(function() {
 
 	// batch numbers load
 
+	if (role === "ROLE_STAFF") {
+		$("#idAddInst").hide();
+
+	}
+
 	$.ajax({
 		type : 'GET',
 		url : 'reqprocess/batchcount',
@@ -130,6 +135,12 @@ jQuery(function() {
 										}
 									}
 								}, {
+									"targets" : [ 6 ],
+									"visible" : false
+								}, {
+									"targets" : [ 7 ],
+									"visible" : false
+								}, {
 									"targets" : [ 8 ],
 									"visible" : false
 								}, {
@@ -149,6 +160,9 @@ jQuery(function() {
 									"visible" : false
 								}, {
 									"targets" : [ 14 ],
+									"visible" : false
+								}, {
+									"targets" : [ 15 ],
 									"visible" : false
 								} ]
 
@@ -186,7 +200,7 @@ jQuery(function() {
 
 		// Load table using JSON data by ajax
 		"ajax" : {
-			"url" : "subject/loadsubject",
+			"url" : "subject/loadactivesubject",
 			"dataSrc" : ""
 		},
 
@@ -488,9 +502,10 @@ jQuery(function() {
 	// }).trigger("change");
 
 	var $select1 = $('#cmdIdReqStatus');
+
 	// request the JSON data and parse into the select element
 	$.ajax({
-		url : 'requestStatus/loadStatus',
+		url : 'requestStatus/loadStatus/' + role,
 		dataType : 'JSON',
 		success : function(data) {
 			// clear the current content of the select
@@ -571,8 +586,16 @@ jQuery(function() {
 					c = false;
 				}
 
-				var url1 = 'reqprocess/requestid/' + a + '/statusid/' + b
-						+ '/void/' + c + '/note/' + d;
+				var url1 = '';
+				if (d === "") {
+					url1 = 'reqprocess/requestid/' + a + '/statusid/' + b
+							+ '/void/' + c + '/note/new';
+				} else {
+					url1 = 'reqprocess/requestid/' + a + '/statusid/' + b
+							+ '/void/' + c + '/note/' + d;
+				}
+
+				alert(url1);
 
 				$.ajax({
 					type : 'GET',

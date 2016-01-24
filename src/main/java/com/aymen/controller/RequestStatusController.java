@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -20,8 +21,15 @@ public class RequestStatusController {
 	RequestStatusService rss;
 
 	// This method sends JSON response to the client (REST)
-	@RequestMapping(value = "/loadStatus", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody List<RequestStatus> getData() {
-		return this.rss.listSvcRequestStatus();
+	// @RequestMapping(value = "/loadStatus", method = RequestMethod.GET,
+	// produces = MediaType.APPLICATION_JSON_VALUE)
+	// public @ResponseBody List<RequestStatus> getData() {
+	// return this.rss.listSvcRequestStatus();
+	// }
+
+	// This method sends JSON response to the client (REST)
+	@RequestMapping(value = "/loadStatus/{role}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody List<RequestStatus> getDataByRole(@PathVariable("role") String role) {
+		return this.rss.listSvcRequestStatus(role);
 	}
 }

@@ -29,8 +29,8 @@ public class RequestStatusServiceImpl implements RequestStatusService {
 	}
 
 	@Override
-	public List<RequestStatus> listSvcRequestStatus() {
-		return this.reqDao.listRequestStatus();
+	public List<RequestStatus> listSvcRequestStatus(String role) {
+		return this.reqDao.listRequestStatus(role);
 	}
 
 	@Override

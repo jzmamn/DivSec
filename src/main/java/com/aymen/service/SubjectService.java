@@ -12,6 +12,8 @@ public interface SubjectService {
 
 	public List<Subject> listSvcSubject();
 
+	public List<Subject> listSvcActiveSubject();
+
 	public Subject getSvcSubjectById(int id);
 
 	public void deleteSvcSubject(int id);

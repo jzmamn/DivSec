@@ -50,6 +50,7 @@ public class RequestDAOImpl implements RequestDAO {
 
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Request> listSvcRequest() {
 		Session session = this.sessionFactory.getCurrentSession();
@@ -306,6 +307,18 @@ public class RequestDAOImpl implements RequestDAO {
 		}
 
 		System.out.println(strQuery);
+		Session session = this.sessionFactory.getCurrentSession();
+
+		SQLQuery query = session.createSQLQuery(strQuery);
+		query.setResultTransformer(Criteria.ALIAS_TO_ENTITY_MAP);
+		List<Object> results = query.list();
+		return results;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Object> getDivPeriodStatus(int divId, int month, int year) {
+		String strQuery = "SELECT * FROM vw_div_period_status";
 		Session session = this.sessionFactory.getCurrentSession();
 
 		SQLQuery query = session.createSQLQuery(strQuery);

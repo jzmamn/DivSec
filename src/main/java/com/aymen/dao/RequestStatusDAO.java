@@ -9,7 +9,7 @@ public interface RequestStatusDAO {
 
 	public void updateRequestStatus(RequestStatus reqStatus);
 
-	public List<RequestStatus> listRequestStatus();
+	public List<RequestStatus> listRequestStatus(String role);
 
 	public RequestStatus getRequestStatusById(int id);
 

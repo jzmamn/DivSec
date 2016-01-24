@@ -23,7 +23,7 @@
 <!-- PAGE LEVEL STYLES -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/plugins/dataTables/css/dataTables.bootstrap.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/plugins/Sweetalert-master/lib/sweet-alert.css" />
-
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/plugins/form-validator/theme-default.min.css" />
 
 
 <!-- END PAGE LEVEL  STYLES -->
@@ -56,7 +56,7 @@
 			<div class="inner">
 				<div class="row">
 					<div class="col-lg-12">
-						<h3 class="text-info">Manage Users</h3>
+						<h3 class="text-info">Manage My Account</h3>
 					</div>
 				</div>
 				<hr />
@@ -82,10 +82,10 @@
 					<div class="col-lg-12">
 						<div class="panel panel-default">
 							<div class="panel-heading">
-								<button id="btnAddUser" data-toggle="modal" data-target="#modalUser" class="btn btn-primary">
+								<!-- <button id="btnAddUser" data-toggle="modal" data-target="#modalUser" class="btn btn-primary">
 									<i class="icon-plus icon-white"></i> Add
 								</button>
-
+ -->
 								<!-- <button id="btn" class="btn btn-primary">
 									<i class="icon-plus icon-white"></i> test
 								</button> -->
@@ -142,7 +142,7 @@
 												placeholder="Enter User or Staff Name" required="true" maxlength="30" />
 										</div>
 
-										<div class="form-group input-group">
+										<div style="display: none;" class="form-group input-group">
 											<input type="text" class="form-control" id="txtIdDivision" name="txtDivision" readonly="true" required="true"
 												placeholder="select a division" /> <span class="input-group-btn">
 												<button id="btnIdShowDiv" name="btnShoeDiv" class="btn btn-warning" type="button" data-toggle="modal"
@@ -154,9 +154,10 @@
 												required="true" />
 										</div>
 
-										<div class="form-group input-group">
+										<div style="display: none;" class="form-group input-group">
 											<form:input path="stfRole" type="text" class="form-control" id="txtIdCatName" name="txtCatName" readonly="true" required="true"
-												placeholder="select user category" /> <span class="input-group-btn">
+												placeholder="select user category" />
+											<span class="input-group-btn">
 												<button id="btnIdUserCat" name="btnUserCat" class="btn btn-warning" type="button" data-toggle="modal"
 													data-target="#modalCategory">
 													<i class="icon-search"></i>
@@ -173,10 +174,18 @@
 												maxlength="8" placeholder="Enter Division Name" />
 										</div>
 
-										<div class="form-group input-group">
-											<span class="input-group-addon ">Password</span>
-											<form:input path="stfPassword" type="password" id="txtIdPwd" name="txtPwd" class="clsString form-control" required="true"
-												maxlength="8" placeholder="Enter User Password" />
+										<div class="form-group ">
+											<div class="input-group ">
+												<span class="input-group-addon ">Password</span>
+												<form:input path="stfPassword" type="password" id="txtIdPwd" name="txtPwd" class="clsString form-control" required="true"
+													maxlength="8" placeholder="Enter User Password" data-validation="strength" data-validation-strength="2" />
+											</div>
+										</div>
+
+										<div class="form-group ">
+											<input type="password" class="form-control" id="inputPasswordConfirm" data-match="#txtIdPwd"
+												data-match-error="Passswords don't match" maxlength="8" placeholder="Re enter the Password" required>
+											<div class="help-block with-errors"></div>
 										</div>
 
 										<div class="form-group input-group">
@@ -192,7 +201,7 @@
 												placeholder="Enter Email address. e.g. divsec@gmail.com" maxlength="100" />
 										</div>
 
-										<div class="form-group input-group">
+										<div style="display: none;" class="form-group input-group">
 											<span class="input-group-addon ">Note</span>
 											<form:input path="stfNote" type="text" id="txtIdNote" name="txtNote" class="clsString form-control" maxlength="80"
 												placeholder="Note" />
@@ -202,8 +211,6 @@
 											Is Active
 											<form:checkbox path="stfActive" id="chkUserIsActive" />
 										</div>
-										
-										
 									</div>
 
 									<div class="modal-footer">
@@ -338,11 +345,38 @@
 	<script src="${pageContext.request.contextPath}/resources/plugins/dataTables/js/jquery.dataTables.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/plugins/dataTables/js/dataTables.bootstrap.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/plugins/dataTables/js/fnReloadAjax.js"></script>
-	<script src="${pageContext.request.contextPath}/resources/js/divsec_usercreation.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/js/divsec_mysetting.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/plugins/validator/validator.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/plugins/Sweetalert-master/lib/sweet-alert.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/plugins/form-validator/jquery.form-validator.js"></script>
+
+	<script>
+		$.validate({
+			modules : 'security',
+			onModulesLoaded : function() {
+				var optionalConfig = {
+					fontSize : '12pt',
+					padding : '4px',
+					bad : 'Very bad',
+					weak : 'Weak',
+					good : 'Good',
+					strong : 'Strong'
+				};
+
+				$('input[name="txtPwd"]').displayPasswordStrength(
+						optionalConfig);
+			}
+		});
+	</script>
 
 
+	<script>
+		var staffId = "${stfId}";
+		var contextPath = "${pageContext.request.contextPath}";
+		var userName = "${userName}";
+		var divId = "${stfDivId}";
+		var divName = "${stfDivName}";
+	</script>
 
 
 	<!-- END PAGE LEVEL SCRIPTS -->

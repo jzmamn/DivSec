@@ -15,25 +15,29 @@ jQuery(function() {
 		},
 
 		"columns" : [ {
-			"data" : "stfId"
+			"data" : "stf_id"
 		}, {
-			"data" : "stfName"
+			"data" : "stf_name"
 		}, {
-			"data" : "division.divId"
+			"data" : "stf_dvision_id"
 		}, {
-			"data" : "division.divName"
+			"data" : "div_name"
 		}, {
-			"data" : "stfUserId"
+			"data" : "role_id"
 		}, {
-			"data" : "stfPassword"
+			"data" : "role_name"
 		}, {
-			"data" : "stfEmail"
+			"data" : "stf_user_id"
 		}, {
-			"data" : "stfMobile"
+			"data" : "stf_password"
 		}, {
-			"data" : "stfNote"
+			"data" : "stf_email"
 		}, {
-			"data" : "stfActive"
+			"data" : "stf_mobile"
+		}, {
+			"data" : "stf_note"
+		}, {
+			"data" : "stf_active"
 		}
 
 		],
@@ -42,14 +46,49 @@ jQuery(function() {
 			"targets" : [ 2 ],
 			"visible" : false
 		}, {
-			"targets" : [ 5 ],
+			"targets" : [ 4 ],
 			"visible" : false
 		}, {
-			"targets" : [ 9 ],
+			"targets" : [ 7 ],
 			"visible" : false
+		} ]
+
+	});
+
+	// GET VALUE ON TABLE ROW CLICK From Staff table
+
+	$('#dtUser tbody').on('click', 'tr', function(e) {
+
+		var aPos = dtUser.fnGetPosition(this);
+		// alert(aPos);
+		$('#txtIdUCId').val(dtUser.fnGetData(aPos, 0));
+		$('#txtIdName').val(dtUser.fnGetData(aPos, 1));
+		$('#txtIdDivisionId').val(dtUser.fnGetData(aPos, 2));
+		$('#txtIdDivision').val(dtUser.fnGetData(aPos, 3));
+
+		$('#txtIdCatId').val(dtUser.fnGetData(aPos, 4));
+		$('#txtIdCatName').val(dtUser.fnGetData(aPos, 5));
+
+		$('#txtIdUserId').val(dtUser.fnGetData(aPos, 6));
+		$('#txtIdPwd').val(dtUser.fnGetData(aPos, 7));
+		$('#txtIdEmail').val(dtUser.fnGetData(aPos, 8));
+		$('#txtIdMobile').val(dtUser.fnGetData(aPos, 9));
+		$('#txtIdNote').val(dtUser.fnGetData(aPos, 10));
+
+		var varChkActive = dtUser.fnGetData(aPos, 11);
+
+		if (varChkActive == true) {
+			blnIsDivActive = true;
+		} else {
+			blnIsDivActive = false;
 		}
 
-		]
+		$('#chkUserIsActive').prop('checked', blnIsDivActive);
+
+		// $('#txtIdCatId').val(dtUser.fnGetData(aPos, 10));
+		// $('#txtCatName').val(dtUser.fnGetData(aPos, 11));
+
+		$("#modalUser").modal("show");
 
 	});
 
@@ -91,6 +130,7 @@ jQuery(function() {
 				$("#modalUser").modal("hide");
 				swal("Save Failed !", res, "error");
 			}
+
 		});
 
 		// avoid to execute the actual submit of the form.
@@ -106,36 +146,6 @@ jQuery(function() {
 		// }).done(function(json) {
 		// alert("Success: " + json);
 		// });
-
-	});
-
-	// GET VALUE ON TABLE ROW CLICK From Staff table
-
-	$('#dtUser tbody').on('click', 'tr', function(e) {
-
-		var aPos = dtUser.fnGetPosition(this);
-		// alert(aPos);
-		$('#txtIdUCId').val(dtUser.fnGetData(aPos, 0));
-		$('#txtIdName').val(dtUser.fnGetData(aPos, 1));
-		$('#txtIdDivisionId').val(dtUser.fnGetData(aPos, 2));
-		$('#txtIdDivision').val(dtUser.fnGetData(aPos, 3));
-		$('#txtIdUserId').val(dtUser.fnGetData(aPos, 4));
-		$('#txtIdPwd').val(dtUser.fnGetData(aPos, 5));
-		$('#txtIdEmail').val(dtUser.fnGetData(aPos, 6));
-		$('#txtIdMobile').val(dtUser.fnGetData(aPos, 7));
-		$('#txtIdNote').val(dtUser.fnGetData(aPos, 8));
-
-		var varChkActive = dtUser.fnGetData(aPos, 9);
-
-		if (varChkActive == true) {
-			blnIsDivActive = true;
-		} else {
-			blnIsDivActive = false;
-		}
-
-		$('#chkUserIsActive').prop('checked', blnIsDivActive);
-
-		$("#modalUser").modal("show");
 
 	});
 
@@ -276,5 +286,22 @@ jQuery(function() {
 	});
 
 	// =======================END USER CATEGORY MODAL=========================
+
+	// Function save role
+
+	function saveRole(staffId, roleId, roleName) {
+		$.ajax({
+			type : 'GET',
+			url : url1,
+			success : function() {
+				$("#idModalReqStage").modal("hide");
+				dtStage.fnReloadAjax('processstg/loadreqstage/' + reqId);
+			},
+			error : function(data) {
+				alert('fail ' + data);
+			}
+		});
+
+	}
 
 });

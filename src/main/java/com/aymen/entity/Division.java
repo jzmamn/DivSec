@@ -72,7 +72,7 @@ public class Division implements java.io.Serializable {
 		this.divActive = divActive;
 	}
 
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "division")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "division")
 	@JsonIgnore
 	public Set<Subject> getSubjects() {
 		return this.subjects;
@@ -82,7 +82,7 @@ public class Division implements java.io.Serializable {
 		this.subjects = subjects;
 	}
 
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "division")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "division")
 	@JsonIgnore
 	public Set<Staff> getStaffs() {
 		return this.staffs;

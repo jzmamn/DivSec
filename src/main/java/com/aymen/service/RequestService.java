@@ -33,4 +33,6 @@ public interface RequestService {
 
 	public List<Object> getSvcOverDueRequests(int reqId, String fromDate, String toDate);
 
+	public List<Object> getDivPeriodStatus(int divId, int month, int year);
+
 }

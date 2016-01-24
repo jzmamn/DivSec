@@ -44,4 +44,9 @@ public class SubjectServiceImpl implements SubjectService {
 
 	}
 
+	@Override
+	public List<Subject> listSvcActiveSubject() {
+		return this.subjectDAO.listActiveSubject();
+	}
+
 }
