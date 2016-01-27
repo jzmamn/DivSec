@@ -30,10 +30,7 @@
 <!-- PAGE LEVEL STYLES -->
 <link rel="stylesheet" href="<c:url value="/resources/css/layout2.css" />" />
 <link rel="stylesheet" href="<c:url value="/resources/plugins/morris/morris-0.4.3.min.css" />" />
-<link rel="stylesheet" href="<c:url value="/resources/plugins/datepicker/css/datepicker.css" />" />
-<link rel="stylesheet" href="<c:url value="/resources/plugins/fullcalendar-1.6.2/fullcalendar/fullcalendar.css" />" />
-
-
+<link rel="stylesheet" href="<c:url value="/resources/plugins/datepicker/css/bootstrap-datepicker.css" />" />
 
 
 <!-- END PAGE LEVEL  STYLES -->
@@ -62,264 +59,180 @@
 		<!--END MENU SECTION -->
 
 
-            <!--PAGE CONTENT -->
-            <div id="content">
+		<!--PAGE CONTENT -->
+		<div id="content">
 
-                <div class="inner" style="min-height: 700px;">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <h3> Dashboard - Head Of Division</h3>
-                        </div>
-                    </div>
+			<div class="inner" style="min-height: 700px;">
+				<div class="row">
+					<div class="col-lg-12">
+						<h3 class="text-info">Dashboard Head Of Division :: ${stfDivName}</h3>
+					</div>
+				</div>
 
-                    <hr />
+				<hr />
+				<!-- CALENDER +  WIDGETS  SECTION   -->
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="col-lg-4">
+							<div class="row">
+								<div class="col-lg-12">
+									<div style="text-align: center;">
+										<a class="quick-btn" href="#"> <i class="icon-check icon-2x"></i> <span>For Approval</span> <span class="label label-danger">2</span>
+										</a> <a class="quick-btn" href="#"> <i class="icon-envelope-alt icon-2x"></i> <span>New</span> <span class="label label-danger">2</span>
+										</a> <a class="quick-btn" href="#"> <i class="icon-folder-open-alt icon-2x"></i> <span>Opened</span> <span
+											class="label label-success">456</span>
+										</a>
+									</div>
+								</div>
+							</div>
+						</div>
 
+						<div class="col-lg-4" style="border-right: solid; border-left: solid;">
+							<div id="morris-donut-chart1" style="width: 240px; height: 240px;"></div>
+						</div>
+						<!--REQUEST BLOCK SECTION -->
+						<div class="col-lg-4">
+							<div style="width: 220px;" class="panel panel-primary" id="date1"></div>
+						</div>
+					</div>
+				</div>
+				<!-- CALENDER +  WIDGETS  SECTION   -->
+				<hr />
+				<!--START AGING BY MONTH BLOCK SECTION -->
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="col-lg-6">
+							<div class="panel  panel-info">
+								<div class="panel-heading">
+									<strong>Analysis </strong> - <em class="text-muted">(by Month)</em> <span class="pull-right"><small> <input
+											id="dpYear" class="form-control datepicker dpYear" style="width: 60px; height: 20px;">
+									</small></span>
+								</div>
+								<div class="panel-body">
+									<div class="table-responsive">
+										<div style="height: 170px; overflow: scroll;">
+											<table id="tblSummaryByMonth" class="table table-striped table-bordered table-hover table-condensed">
+												<thead class="alert alert-success">
+													<tr>
+														<th>Month</th>
+														<th>New</th>
+														<th>Opened</th>
+														<th>Completed</th>
+														<th>Closed</th>
+													</tr>
+												</thead>
+												<tbody>
+												</tbody>
+											</table>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-lg-6">
+							<div class="panel  panel-info">
+								<div class="panel-heading">
+									<strong>Analysis </strong> - <em class="text-muted">(by Annual)</em>
+									<!-- <span class="pull-right"><small> <input
+											id="dpYear1" class="datepicker dpYear" style="width: 60px; height: 20px;">
+									</small></span> -->
+								</div>
+								<div class="panel-body">
+									<div class="table-responsive">
+										<div style="height: 170px; overflow: scroll;">
+											<table id="tblByAnnual" class="table table-striped table-bordered table-hover table-condensed">
+												<thead class="alert alert-success">
+													<tr>
+														<th>Year</th>
+														<th>New</th>
+														<th>Opened</th>
+														<th>Completed</th>
+														<th>Closed</th>
+													</tr>
+												</thead>
+												<tbody>
+												</tbody>
+											</table>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
 
-                    <!-- CALENDER +  WIDGETS  SECTION   -->
+				<hr />
 
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="col-lg-8">
-                                <div id="calendar" class="col-lg-12 col-sm-12 col-xs-12" ></div>
-                            </div>
-                            <!--START INSTRUCTION SECTION  -->
-                            <div class="col-lg-4">
-                                <div class="chat-panel panel panel-success">
-                                    <div class="panel-heading">
-                                        <i class="icon-comments"></i>
-                                        Instructions
-                                    </div>
-                                    <div class="panel-body">
-                                        <ul class="chat">
-                                            <li >
-                                                <div class="chat-body clearfix">
-                                                    <div class="header">
-                                                        <p class="text-left"><strong>Division </strong></p>
-                                                    </div>
-                                                    <p>
-                                                        Lorem ipsum dolor sit amet, consectetur a dolor, quis ullamcorper ligula sodales.
-                                                    </p>
+				<!--START AGING BY LAST 6 MONTH BLOCK SECTION -->
+				<div class="row">
+					<div class="col-lg-12 col-sm-12">
+						<div class="panel panel-default panel-success">
+							<div class="panel-heading">
+								<strong>Analysis</strong> - <em>(this Year)</em>
+								<span class="pull-right"><small> <input
+											id="dpYearBar" class="form-control datepicker dpYear" style="width: 60px; height: 20px;">
+									</small></span>
+							</div>
+							<div class="panel-body">
+								<div id="barChartContent" class="table-responsive">
+									<div id="morris-bar-chart"></div>
+								</div>
+							</div>
+						</div>
+					</div>
 
-                                                    <p class="text-primary pull-right"> <i class="icon-time"></i><em> 13 mins ago</em></p>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="chat-body clearfix">
-                                                    <div class="header">
-                                                        <p class="text-right"><strong>Division </strong></p>
-                                                    </div>
-                                                    <p>
-                                                        Lorem ipsum dolor sit amet, consectetur a dolor, quis ullamcorper ligula sodales.
-                                                    </p>
+				</div>
+				<!-- END AGING BY LAST 6 MONTH BLOCK SECTION -->
+				<hr />
 
-                                                    <p class="text-primary pull-left"> <i class="icon-time"></i><em> 13 mins ago</em></p>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="chat-body clearfix">
-                                                    <div class="header">
-                                                        <p class="text-left"><strong>Division </strong></p>
-                                                    </div>
-                                                    <p>
-                                                        Lorem ipsum dolor sit amet, consectetur a dolor, quis ullamcorper ligula sodales.
-                                                    </p>
+			</div>
+		</div>
+		<!--END PAGE CONTENT -->
 
-                                                    <p class="text-primary pull-right"> <i class="icon-time"></i><em> 13 mins ago</em></p>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="chat-body clearfix">
-                                                    <div class="header">
-                                                        <p class="text-right"><strong>Division </strong></p>
-                                                    </div>
-                                                    <p>
-                                                        Lorem ipsum dolor sit amet, consectetur a dolor, quis ullamcorper ligula sodales.
-                                                    </p>
-                                                    <p class="text-primary pull-left"> <i class="icon-time"></i><em> 13 mins ago</em></p>
-                                                </div>
-                                            </li>
-                                        </ul>
-                                    </div>
+		<!-- RIGHT STRIP  SECTION -->
+		<div id="right">
+			<div class="well well-small">
+				<label> Logged In </label>
+				<ul class="list-unstyled">
+					<li>Aymen</li>
+					<li>Users &nbsp; - <span>Accounts</span></li>
+					<li>Registrations</li>
+					<li>Aymen</li>
+					<li>Users &nbsp; - <span>Accounts</span></li>
+					<li>Registrations</li>
+					<li>Aymen</li>
+					<li>Users &nbsp; - <span>Accounts</span></li>
+					<li>Registrations</li>
+				</ul>
+			</div>
 
-                                    <div class="panel-footer">
-                                        <button class="btn btn-success btn-sm btn-block" >
-                                            Show All Instructions
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                            <!--END INSTRUCTION SECTION  -->
-                        </div>
-                    </div>
+			<div class="well well-small">
+				<span>Total Request</span><span class="pull-right"><small>20%</small></span>
 
-                    <!-- CALENDER +  WIDGETS  SECTION   -->
-                    <hr/>
+				<div class="progress mini">
+					<div class="progress-bar progress-bar-info" style="width: 20%"></div>
+				</div>
+				<span>Completed</span><span class="pull-right"><small>40%</small></span>
 
-                    <div class="row">
-                        <div class="col-lg-12 col-md-12">
-                            <!-- DIVISION DONUT BLOCK SECTION -->
-                            <div class="col-lg-4 col-md-4">
-                                <div class="panel panel-warning" >
-                                    <a href="#" class="btn btn-warning btn-xs btn-block">Admin</a>
-                                    <div class="col-lg-4" id="morris-donut-chart1" style="width:250px;height:250px;"></div>
-                                </div>
-                            </div>
-                            <!--END DIVISION DONUT BLOCK SECTION -->
+				<div class="progress mini">
+					<div class="progress-bar progress-bar-success" style="width: 40%"></div>
+				</div>
+				<span>Pending</span><span class="pull-right"><small>60%</small></span>
 
-                            <!--REQUEST BLOCK SECTION -->
-                            <div class="col-lg-4">
-                                 <!-- <p> <strong>My Task </strong> - <em class="text-muted">()</em></p>-->
+				<div class="progress mini">
+					<div class="progress-bar progress-bar-warning" style="width: 60%"></div>
+				</div>
+				<span>Closed</span><span class="pull-right"><small>80%</small></span>
 
-                                <div style="text-align: center;">
+				<div class="progress mini">
+					<div class="progress-bar progress-bar-danger" style="width: 80%"></div>
+				</div>
+			</div>
 
-                                    <a class="quick-btn" href="#">
-                                        <i class="icon-envelope-alt icon-2x"></i>
-                                        <span>New</span>
-                                        <span class="label label-danger">2</span>
-                                    </a>
-
-                                    <a class="quick-btn" href="#">
-                                        <i class="icon-folder-open-alt icon-2x"></i>
-                                        <span>Opened</span>
-                                        <span class="label label-success">456</span>
-                                    </a>
-
-                                    <a class="quick-btn" href="#">
-                                        <i class="icon-question-sign icon-2x"></i>
-                                        <span>Pending</span>
-                                        <span class="label label-danger">2</span>
-                                    </a>
-
-                                    <a class="quick-btn" href="#">
-                                        <i class="icon-signal icon-2x"></i>
-                                        <span>In-Progress</span>
-                                        <span class="label label-success">456</span>
-                                    </a>
-
-                                    <a class="quick-btn" href="#">
-                                        <i class="icon-thumbs-up-alt icon-2x"></i>
-                                        <span>Completed</span>
-                                        <span class="label label-success">456</span>
-                                    </a>
-
-                                    <a class="quick-btn" href="#">
-                                        <i class="icon-hand-right icon-2x"></i>
-                                        <span>Handed Over</span>
-                                        <span class="label label-success">456</span>
-                                    </a>
-
-                                </div>
-
-                            </div>
-                            <!--END REQUEST BLOCK SECTION -->
-
-
-                            <div class="col-lg-4">
-
-
-                                <div class="panel-body">
-                                    <div class="list-group">
-                                        <a href="#" class="list-group-item">
-                                            <i class=" icon-comment"></i>  Pending  
-                                            <span class="pull-right text-muted "><span class="label label-warning">12</span>
-                                            </span>
-                                        </a>
-                                        <a href="#" class="list-group-item">
-                                            <i class="icon-twitter"></i> In-Progress
-                                            <span class="pull-right text-muted"><span class="label label-success">10</span>
-                                            </span>
-                                        </a>
-                                        <a href="#" class="list-group-item">
-                                            <i class="icon-envelope"></i> Completed
-                                            <span class="pull-right text-muted"><span class="label label-info">10</span>
-                                            </span>
-                                        </a>
-                                        <a href="#" class="list-group-item">
-                                            <i class="icon-tasks"></i> Closed 
-                                            <span class="pull-right text-muted "><span class="label label-danger">12</span>
-                                            </span>
-                                        </a>
-                                        <a href="#" class="list-group-item">
-                                            <i class="icon-upload"></i> Handed Over
-                                            <span class="pull-right text-muted "><span class="label label-primary">12</span>
-                                            </span>
-                                        </a>
-                                    </div>
-                                </div>
-
-                            </div>
-
-
-
-
-                        </div>
-                    </div>
-
-                    <hr />
-
-                    <!--START AGING BY MONTH BLOCK SECTION -->
-                    <div class="row">
-                        <div class="col-lg-12">
-
-
-
-                        </div>
-                    </div>
-                    <!-- END START AGING BY MONTH BLOCK SECTION -->
-                    <hr/>
-
-
-                </div>
-            </div>
-            <!--END PAGE CONTENT -->
-
-            <!-- RIGHT STRIP  SECTION -->
-            <div id="right">
-                <div class="well well-small">
-                    <label> Logged In </label>
-                    <ul class="list-unstyled">
-                        <li>Aymen</li>
-                        <li>Users &nbsp; - <span>Accounts</span></li>
-                        <li>Registrations</li>
-                        <li>Aymen</li>
-                        <li>Users &nbsp; - <span>Accounts</span></li>
-                        <li>Registrations</li>
-                        <li>Aymen</li>
-                        <li>Users &nbsp; - <span>Accounts</span></li>
-                        <li>Registrations</li>
-                    </ul>
-                </div>
-
-                <div class="well well-small">
-                    <span>Total Request</span><span class="pull-right"><small>20%</small></span>
-
-                    <div class="progress mini">
-                        <div class="progress-bar progress-bar-info" style="width: 20%"></div>
-                    </div>
-                    <span>Completed</span><span class="pull-right"><small>40%</small></span>
-
-                    <div class="progress mini">
-                        <div class="progress-bar progress-bar-success" style="width: 40%"></div>
-                    </div>
-                    <span>Pending</span><span class="pull-right"><small>60%</small></span>
-
-                    <div class="progress mini">
-                        <div class="progress-bar progress-bar-warning" style="width: 60%"></div>
-                    </div>
-                    <span>Closed</span><span class="pull-right"><small>80%</small></span>
-
-                    <div class="progress mini">
-                        <div class="progress-bar progress-bar-danger" style="width: 80%"></div>
-                    </div>
-                </div>
-
-            </div>
-            <!-- END RIGHT STRIP  SECTION -->
+		</div>
+		<!-- END RIGHT STRIP  SECTION -->
 
 	</div>
-
-
-
 
 	<!--END MAIN WRAPPER -->
 
@@ -338,8 +251,6 @@
 
 	<!-- PAGE LEVEL SCRIPTS -->
 
-
-
 	<script src="<c:url value="/resources/plugins/morris/raphael-2.1.0.min.js"/>"></script>
 	<script src="<c:url value="/resources/plugins/morris/morris.js"/>"></script>
 	<script src="<c:url value="/resources/plugins/morris/morris-demo.js"/>"></script>
@@ -347,79 +258,38 @@
 	<script src="<c:url value="/resources/plugins/fullcalendar-1.6.2/fullcalendar/fullcalendar.min.js"/>"></script>
 	<script src="<c:url value="/resources/js/calendarInit.js"/>"></script>
 	<script src="<c:url value="/resources/js/divsec_login.js" />"></script>
+	<script src="<c:url value="/resources/js/divsec_dashboard_hod.js" />"></script>
 
 	<script type="text/javascript">
-		$("#dtpTop").datepicker({});
+		var contextPath = "${pageContext.request.contextPath}"
+		var userName = "${userName}";
+		var role = "${role}"
+		var stfId = "${stfId}"
+		var divId = "${stfDivId}"
+		var divName = "${stfDivName}"
 
-		var date = new Date();
-		var d = date.getDate();
-		var m = date.getMonth();
-		var y = date.getFullYear();
-
-		var calendar = $('#calendar').fullCalendar({
-			selectable : true,
-			selectHelper : true,
-			select : function(start, end, allDay) {
-				var title = prompt('Event Title:');
-				if (title) {
-					calendar.fullCalendar('renderEvent', {
-						title : title,
-						start : start,
-						end : end,
-						allDay : allDay
-					}, true // make the event "stick"
-					);
-				}
-				calendar.fullCalendar('unselect');
-			},
-			editable : true,
-		//                    events: [
-		//                        {
-		//                            title: 'All Day Event',
-		//                            start: new Date(y, m, 1)
-		//                        },
-		//                        {
-		//                            title: 'Long Event',
-		//                            start: new Date(y, m, d - 5),
-		//                            end: new Date(y, m, d - 2)
-		//                        },
-		//                        {
-		//                            id: 999,
-		//                            title: 'Repeating Event',
-		//                            start: new Date(y, m, d - 3, 16, 0),
-		//                            allDay: false
-		//                        },
-		//                        {
-		//                            id: 999,
-		//                            title: 'Repeating Event',
-		//                            start: new Date(y, m, d + 4, 16, 0),
-		//                            allDay: false
-		//                        },
-		//                        {
-		//                            title: 'Meeting',
-		//                            start: new Date(y, m, d, 10, 30),
-		//                            allDay: false
-		//                        },
-		//                        {
-		//                            title: 'Lunch',
-		//                            start: new Date(y, m, d, 12, 0),
-		//                            end: new Date(y, m, d, 14, 0),
-		//                            allDay: false
-		//                        },
-		//                        {
-		//                            title: 'Birthday Party',
-		//                            start: new Date(y, m, d + 1, 19, 0),
-		//                            end: new Date(y, m, d + 1, 22, 30),
-		//                            allDay: false
-		//                        },
-		//                        {
-		//                            title: 'Click for Google',
-		//                            start: new Date(y, m, 28),
-		//                            end: new Date(y, m, 29),
-		//                            url: 'http://google.com/'
-		//                        }
-		//                    ]
+		$("#date1").datepicker({
+			todayHighlight : true
 		});
+
+		$('#dpYear').datepicker({
+			format : " yyyy", // Notice the Extra space at the beginning
+			minViewMode : 2,
+			autoclose : true
+		});
+
+		$('#dpYear1').datepicker({
+			format : " yyyy", // Notice the Extra space at the beginning
+			minViewMode : 2,
+			autoclose : true
+		});
+		
+		$('#dpYearBar').datepicker({
+			format : " yyyy", // Notice the Extra space at the beginning
+			minViewMode : 2,
+			autoclose : true
+		});
+		
 	</script>
 
 

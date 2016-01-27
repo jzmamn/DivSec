@@ -22,6 +22,10 @@ public interface RequestService {
 
 	public List<Request> getSvcReqByStatus(int statusId);
 
+	// SMS Area
+
+	public List<Object> getSvcSMSContent(int reqId);
+
 	// For Request Report
 
 	public List<Request> filterRequest(int rqId, int sbId, int pbId, int dvId, int stsId, String fromDate,

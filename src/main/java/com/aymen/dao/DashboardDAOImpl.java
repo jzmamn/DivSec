@@ -73,8 +73,8 @@ public class DashboardDAOImpl implements DashboardDAO {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Object> plotBarChartAnnual(int year) {
-		String sql = "SELECT * FROM vw_current_year_status  `EntYear` = " + year;
-
+		String sql = "SELECT * FROM vw_bar_by_all_division WHERE `EntYear` = " + year;
+		System.out.println(sql);
 		Session session = sessionFactory.getCurrentSession();
 		SQLQuery query = session.createSQLQuery(sql);
 		query.setResultTransformer(Criteria.ALIAS_TO_ENTITY_MAP);
@@ -85,8 +85,7 @@ public class DashboardDAOImpl implements DashboardDAO {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Object> plotBarChartCurrentYear() {
-		String sql = "SELECT * FROM vw_current_year_status  where `EntYear` = date_format(now(),'%Y');";
-
+		String sql = "SELECT * FROM vw_bar_by_all_division  where `EntYear` = date_format(now(),'%Y');";
 		Session session = sessionFactory.getCurrentSession();
 		SQLQuery query = session.createSQLQuery(sql);
 		query.setResultTransformer(Criteria.ALIAS_TO_ENTITY_MAP);
@@ -104,5 +103,57 @@ public class DashboardDAOImpl implements DashboardDAO {
 		List<Object> results = query.list();
 		return results;
 	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Object> populateTableLastModified() {
+		String sql = " SELECT rl_pr_id,DateEnt,Modified,stf_name,rl_note  FROM vw_last_modified ";
+		Session session = sessionFactory.getCurrentSession();
+		SQLQuery query = session.createSQLQuery(sql);
+		query.setResultTransformer(Criteria.ALIAS_TO_ENTITY_MAP);
+		List<Object> results = query.list();
+		return results;
+	}
+
+	// --------------- Start Hod area ---------------
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Object> populateTableMonthlyDivision(int year, int divId) {
+
+		String sql = " select * from vw_div_period_status WHERE EntYear=" + year + " and div_id=" + divId;
+
+		Session session = sessionFactory.getCurrentSession();
+		SQLQuery query = session.createSQLQuery(sql);
+		query.setResultTransformer(Criteria.ALIAS_TO_ENTITY_MAP);
+		List<Object> results = query.list();
+		return results;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Object> populateTableAnnuallyDivision(int year, int divId) {
+		// String sql = " select * from vw_division_by_year WHERE EntYear=" +
+		// year + " and div_id=" + divId;
+		String sql = " select * from vw_division_by_year  WHERE  div_id=" + divId;
+		Session session = sessionFactory.getCurrentSession();
+		SQLQuery query = session.createSQLQuery(sql);
+		query.setResultTransformer(Criteria.ALIAS_TO_ENTITY_MAP);
+		List<Object> results = query.list();
+		return results;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Object> plotBarChartDivsionAnnual(int year, int divId) {
+		String sql = " select * from vw_bar_by_division  WHERE EntYear=" + year + " and req_division_id=" + divId;
+		Session session = sessionFactory.getCurrentSession();
+		SQLQuery query = session.createSQLQuery(sql);
+		query.setResultTransformer(Criteria.ALIAS_TO_ENTITY_MAP);
+		List<Object> results = query.list();
+		return results;
+	}
+
+	// --------------- End Hod area ---------------
 
 }

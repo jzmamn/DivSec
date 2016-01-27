@@ -740,4 +740,96 @@ jQuery(function() {
 
 	}
 
+	$("#btnIdSendSMS").click(
+			function(e) {
+
+				var reqId1 = $("#txtIdInstReqId").val();
+				var status = '';
+				var subject = '';
+				var mobileNo = '';
+				var isMobileExists = false;
+				var a1 = parseInt(reqId1);
+				var url1 = 'reqprocess/send-sms/' + a1;
+				// alert(url1);
+
+				$.ajax({
+					type : 'GET',
+					url : url1,
+					dataType : 'JSON',
+					success : function(data) {
+						$.each(data, function(key, val) {
+							if (val.pi_mobile_phone != "") {
+								isMobileExists = true;
+								alert('Mobile number is not blank');
+								reqId1 = val.req_id;
+								status = val.rs_name;
+								subject = val.sbj_name;
+								mobileNo = val.pi_mobile_phone;
+								return;
+							}
+						});
+
+						if (isMobileExists == false) {
+							alert('Mobile number is not exist');
+						} else {
+
+							alert(reqId1);
+							alert(status);
+							alert(subject);
+							alert(mobileNo);
+
+							var msg1 = "your  \nRequest id= " + reqId1
+									+ "\nSubject = " + subject + "\nStatus = "
+									+ status
+
+							alert(msg1);
+							var msg = "hi";
+							sendSMS(msg, mobileNo);
+
+						}
+
+					},
+					error : function(data) {
+						alert('fail ' + data);
+					}
+				});
+
+			});
+
+	function sendSMS(msg, to) {
+		var url1 = 'http://api.clickatell.com/http/sendmsg?user=jzmamn&password=QLOWTWTDbHbVGA&api_id=3583362&to=94'
+				+ to + '&text=' + msg;
+		alert(url1);
+
+		$.getJSON(url1, function(jd) {
+			alert(jd.id.toString());
+		});
+	}
+
+	// Send Email
+
+	$("#btnIdSendEmail").click(function(e) {
+		var reqId = $("#txtIdReqId").val();
+		var a = parseInt(reqId);
+
+		var url1 = "mail/sendmail/" + a;
+
+		// $.getJSON(url1, function(jd) {
+		// alert('Email has been sent to ' + jd);
+		// });
+
+		$.ajax({
+			type : 'GET',
+			url : url1,
+			dataType : 'JSON',
+			success : function(res) {
+				alert('success ' + res);
+			},
+			error : function(res) {
+				alert('fail ' + res);
+			}
+		});
+		e.preventDefault();
+	});
+
 });

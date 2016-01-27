@@ -54,8 +54,7 @@ public class DashboardServiceImpl implements DashboardService {
 
 	@Override
 	public List<Object> plotSvcBarChartAnnual(int year) {
-		// TODO Auto-generated method stub
-		return null;
+		return this.dshBoardDao.plotBarChartAnnual(year);
 	}
 
 	@Override
@@ -67,5 +66,28 @@ public class DashboardServiceImpl implements DashboardService {
 	public List<Object> populateSvcTableDivisionSummary() {
 		return this.dshBoardDao.populateTableDivisionSummary();
 	}
+
+	@Override
+	public List<Object> populateSvcTableLastModified() {
+		return this.dshBoardDao.populateTableLastModified();
+	}
+
+	// --------------- Start Hod area ---------------
+	@Override
+	public List<Object> populateSvcTableMonthlyDivision(int year, int divId) {
+		return this.dshBoardDao.populateTableMonthlyDivision(year, divId);
+	}
+
+	@Override
+	public List<Object> populateSvcTableAnnuallyDivision(int year, int divId) {
+		return this.dshBoardDao.populateTableAnnuallyDivision(year, divId);
+	}
+
+	@Override
+	public List<Object> plotSvcBarChartDivsionAnnual(int year, int divId) {
+		return this.dshBoardDao.plotBarChartDivsionAnnual(year, divId);
+	}
+
+	// --------------- End Hod area ---------------
 
 }

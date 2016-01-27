@@ -30,7 +30,7 @@
 <!-- PAGE LEVEL STYLES -->
 <link rel="stylesheet" href="<c:url value="/resources/css/layout2.css" />" />
 <link rel="stylesheet" href="<c:url value="/resources/plugins/morris/morris-0.4.3.min.css" />" />
-<link rel="stylesheet" href="<c:url value="/resources/plugins/datepicker/css/datepicker.css" />" />
+<link rel="stylesheet" href="<c:url value="/resources/plugins/datepicker/css/bootstrap-datepicker.css" />" />
 
 
 
@@ -162,10 +162,10 @@
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="col-lg-6">
-							<div class="panel panel-default panel-danger">
+							<div class="panel  panel-info">
 								<div class="panel-heading">
 									<strong> Request Summary </strong> - <em class="text-muted">(by Month)</em> <span class="pull-right"><small> <input
-											id="dpYear" class="form-control datepicker dpYear" style="width: 100px; height: 20px;">
+											id="dpYear" class="form-control datepicker dpYear" style="width: 60px; height: 20px;">
 									</small></span>
 								</div>
 								<div class="panel-body">
@@ -191,11 +191,11 @@
 							</div>
 						</div>
 						<div class="col-lg-6">
-							<div class="panel panel-default panel-danger">
+							<div class="panel panel-info">
 								<div class="panel-heading">
-									<strong> Request Summary  </strong> - <em class="text-muted">(by Year)</em> <span class="pull-right"><small> <input
+									<strong> Request Summary </strong> - <em class="text-muted">(by Year)</em><!--  <span class="pull-right"><small> <input
 											id="dpYear1" class="form-control  datepicker dpYear" style="width: 60px; height: 20px;">
-									</small></span>
+									</small></span> -->
 
 								</div>
 								<div class="panel-body">
@@ -225,8 +225,8 @@
 				<hr />
 				<div class="row">
 					<div class="col-lg-12">
-					<div class="col-lg-6">
-							<div class="panel panel-default panel-danger">
+						<div class="col-lg-6">
+							<div class="panel  panel-info">
 								<div class="panel-heading">
 									<strong> Request Summary </strong> - <em class="text-muted">(By Division)</em>
 									<!-- <span class="pull-right"><small> <input
@@ -254,11 +254,11 @@
 								</div>
 							</div>
 						</div>
-					
+
 						<div class="col-lg-6">
-							<div class="panel panel-default panel-danger">
+							<div class="panel  panel-info">
 								<div class="panel-heading">
-									<strong>Age Analysis </strong> - <em class="text-muted">(by Division)</em>
+									<strong>Last Modified </strong> - <em class="text-muted">(last 25)</em>
 									<!-- <span class="pull-right"><small> <input
 											id="dpYear2" class="form-control  datepicker dpYear" style="width: 60px; height: 20px;">
 									</small></span> -->
@@ -266,14 +266,14 @@
 								<div class="panel-body">
 									<div class="table-responsive">
 										<div style="height: 170px; overflow: scroll;">
-											<table id="tblByDivision" class="table table-striped table-bordered table-hover table-condensed">
+											<table id="tblLastModified" class="table table-striped table-bordered table-hover table-condensed">
 												<thead class="alert alert-success">
 													<tr>
-														<th>Div</th>
-														<th>New</th>
-														<th>Opened</th>
-														<th>Completed</th>
-														<th>Closed</th>
+														<th>Req Id</th>
+														<th>Entered</th>
+														<th>Modified</th>
+														<th>Staff</th>
+
 													</tr>
 												</thead>
 												<tbody>
@@ -285,7 +285,7 @@
 							</div>
 						</div>
 
-						
+
 
 					</div>
 				</div>
@@ -297,10 +297,13 @@
 					<div class="col-lg-12 col-sm-12">
 						<div class="panel panel-default panel-success">
 							<div class="panel-heading">
-								<strong>Analysis</strong> - <em>Year</em>
+								<strong>Analysis</strong> - <em>Year</em> <span class="pull-right"><small> <input id="dpYearBar"
+										class="form-control  datepicker dpYear" style="width: 60px; height: 20px;">
+								</small></span>
+
 							</div>
 							<div class="panel-body">
-								<div class="table-responsive">
+								<div id="barChartContent" class="table-responsive">
 									<div id="morris-bar-chart"></div>
 								</div>
 							</div>
@@ -399,22 +402,33 @@
 
 
 	<script type="text/javascript">
+		var contextPath = "${pageContext.request.contextPath}"
+		var userName = "${userName}";
+		var role = "${role}"
+		var stfId = "${stfId}"
+		var divId = "${stfDivId}"
+		var divName = "${stfDivName}"
+
 		$("#date1").datepicker({
 			todayHighlight : true
 		});
 
 		$('#dpYear').datepicker({
-			format : " yyyy", // Notice the Extra space at the beginning
+			format : " yyyy",
 			minViewMode : 2,
-			autoclose : true,
-			orientation: "bottom auto"
+			autoclose : true
 		});
 
 		$('#dpYear1').datepicker({
-			format : " yyyy", // Notice the Extra space at the beginning
+			format : " yyyy",
 			minViewMode : 2,
-			autoclose : true,
-			orientation: "bottom auto"
+			autoclose : true
+		});
+		
+		$('#dpYearBar').datepicker({
+			format : "yyyy", 
+			minViewMode : 2,
+			autoclose : true
 		});
 	</script>
 

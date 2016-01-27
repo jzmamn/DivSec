@@ -151,4 +151,9 @@ public class RequestServiceImpl implements RequestService {
 		return this.reqDao.getDivPeriodStatus(divId, month, year);
 	}
 
+	@Override
+	public List<Object> getSvcSMSContent(int reqId) {
+		return this.reqDao.getSMSContent(reqId);
+	}
+
 }

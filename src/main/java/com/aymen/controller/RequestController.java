@@ -182,6 +182,14 @@ public class RequestController {
 		return this.instSvc.listSvcInstByRequest(id);
 	}
 
+	// This gets the SMS message
+	@RequestMapping(value = "/send-sms/{reqId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody List<Object> sendSMS(@PathVariable("reqId") int reqId) {
+		return this.reqSvc.getSvcSMSContent(reqId);
+	}
+
+	// This gets the Email message
+
 	private String getPrincipal() {
 		String userName = null;
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();

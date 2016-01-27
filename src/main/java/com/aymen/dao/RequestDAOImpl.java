@@ -327,4 +327,16 @@ public class RequestDAOImpl implements RequestDAO {
 		return results;
 	}
 
+	// SMS
+	@Override
+	public List<Object> getSMSContent(int reqId) {
+		String strQuery = "select  req_id, sbj_name, rs_name,pi_mobile_phone,pi_email from vw_request_list where req_id="
+				+ reqId;
+		Session session = this.sessionFactory.getCurrentSession();
+		SQLQuery query = session.createSQLQuery(strQuery);
+		query.setResultTransformer(Criteria.ALIAS_TO_ENTITY_MAP);
+		List<Object> results = query.list();
+		return results;
+	}
+
 }

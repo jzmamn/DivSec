@@ -24,6 +24,9 @@ public interface RequestDAO {
 
 	public List<Request> getReqByStatus(int statusId);
 
+	// SMS Area
+	public List<Object> getSMSContent(int reqId);
+
 	// For Request Reports
 	public List<Request> filterAllRequest();
 

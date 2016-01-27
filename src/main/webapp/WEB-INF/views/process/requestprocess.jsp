@@ -288,13 +288,13 @@
 																</div>
 
 																<div class="list-group-item">
-																	<button id="btnIdSendEmail" class="btn  btn-block btn-primary">
+																	<button type="button" id="btnIdSendEmail" class="btn  btn-block btn-primary">
 																		<span class="icon-envelope-alt"></span> Send Email
 																	</button>
 																</div>
 
 																<div class="list-group-item">
-																	<button id="btnIdSendSMS" class="btn  btn-block btn-primary">
+																	<button type="button" id="btnIdSendSMS" class="btn  btn-block btn-primary">
 																		<span class="icon-mobile-phone"></span> Send SMS
 																	</button>
 																</div>

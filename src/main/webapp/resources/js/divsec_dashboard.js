@@ -1,4 +1,10 @@
 jQuery(function() {
+	var intDivId = parseInt(divId);
+
+	var dateObj = new Date();
+	var month = dateObj.getUTCMonth() + 1; // months from 1-12
+	var day = dateObj.getUTCDate();
+	var year = dateObj.getUTCFullYear();
 
 	// Morris chart
 	createDonut("dboard/donut-by-division/1", "morris-donut-chart1");
@@ -10,6 +16,28 @@ jQuery(function() {
 	createDonut("dboard/donut-by-division/7", "morris-donut-chart7");
 	createDonut("dboard/donut-by-division/8", "morris-donut-chart8");
 	createDonut("dboard/donut-by-division/9", "morris-donut-chart9");
+
+	createSummaryByMonth(year);
+	$("#dpYear").change(function() {
+
+		var filterYear = $("#dpYear").val();
+		createSummaryByMonth(filterYear);
+	});
+
+	createBar("dboard/barchart-current-year/" + year, "morris-bar-chart");
+	$("#dpYearBar")
+			.change(
+					function() {
+
+						$("#barChartContent").html('');
+						$("#barChartContent").html(
+								'<div id="morris-bar-chart"></div>');
+
+						var filterYear = $("#dpYearBar").val();
+
+						createBar("dboard/barchart-current-year/" + filterYear,
+								"morris-bar-chart");
+					});
 
 	function createDonut(url, element) {
 		$.getJSON(url, function(ab) {
@@ -30,7 +58,7 @@ jQuery(function() {
 	}
 
 	// Plot barchart current year
-	createBar("dboard/barchart-current-year", "morris-bar-chart");
+	// createBar("dboard/barchart-current-year", "morris-bar-chart");
 
 	function createBar(url, element) {
 		$.getJSON(url, function(ab) {
@@ -50,23 +78,22 @@ jQuery(function() {
 
 	// Summary by division
 	$.ajax({
-		url : 'statusbydivision.json',
+		url : 'dboard/table-last-modified',
 		dataType : 'JSON',
 		success : function(data) {
 
-			var table = $("#tblByDivision tbody");
+			var table = $("#tblLastModified tbody");
 			// $select.html('');
 			// iterate over the data and append a select option
 			$.each(data, function(key, val) {
 				// alert(val);
 				table.append('<tr>' + '<td style="text-align: center;" >'
-						+ val.div_name + '</td>'
-						+ '<td style="text-align: center;">' + val.New
+						+ val.rl_pr_id + '</td>'
+						+ '<td style="text-align: center;">' + val.DateEnt
 						+ '</td>' + '<td style="text-align: center;">'
-						+ val.Opend + '</td>'
-						+ '<td style="text-align: center;">' + val.Completed
-						+ '</td>' + '<td style="text-align: center;">'
-						+ val.Closed + '</td>' + '</tr>');
+						+ val.Modified + '</td>'
+						+ '<td style="text-align: center;">' + val.stf_name
+						+ '</td>' + '</tr>');
 			})
 		},
 		error : function() {
@@ -103,31 +130,35 @@ jQuery(function() {
 	});
 
 	// Summary by month
-	$.ajax({
-		url : 'dboard/table-summary-by-monthly/2016',
-		dataType : 'JSON',
-		success : function(data) {
 
-			var table = $("#tblSummaryByMonth tbody");
-			// $select.html('');
-			// iterate over the data and append a select option
-			$.each(data, function(key, val) {
-				// alert(val);
-				table.append('<tr>' + '<td style="text-align: center;" >'
-						+ val.EntMonth + '</td>'
-						+ '<td style="text-align: center;">' + val.New
-						+ '</td>' + '<td style="text-align: center;">'
-						+ val.Opend + '</td>'
-						+ '<td style="text-align: center;">' + val.Completed
-						+ '</td>' + '<td style="text-align: center;">'
-						+ val.Closed + '</td>' + '</tr>');
-			})
-		},
-		error : function() {
-			// if there is an error append a 'none available' option
-			$select.html('<option id="-1">none available</option>');
-		}
-	});
+	function createSummaryByMonth(y) {
+		$.ajax({
+			url : 'dboard/table-summary-by-monthly/' + y,
+			dataType : 'JSON',
+			success : function(data) {
+
+				var table = $("#tblSummaryByMonth tbody");
+				table.html('');
+				// iterate over the data and append a select option
+				$.each(data, function(key, val) {
+					// alert(val);
+					table.append('<tr>' + '<td style="text-align: center;" >'
+							+ val.EntMonth + '</td>'
+							+ '<td style="text-align: center;">' + val.New
+							+ '</td>' + '<td style="text-align: center;">'
+							+ val.Opend + '</td>'
+							+ '<td style="text-align: center;">'
+							+ val.Completed + '</td>'
+							+ '<td style="text-align: center;">' + val.Closed
+							+ '</td>' + '</tr>');
+				})
+			},
+			error : function() {
+				// if there is an error append a 'none available' option
+				$select.html('<option id="-1">none available</option>');
+			}
+		});
+	}
 
 	// Summary by month
 	$.ajax({

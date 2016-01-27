@@ -11,6 +11,8 @@ public interface DashboardService {
 
 	public List<Object> populateSvcTableMonthly(int year);
 
+	public List<Object> populateSvcTableLastModified();
+
 	public List<Object> populateSvcTableDivisionSummary();
 
 	public List<Object> populateSvcTableAnnually();
@@ -20,4 +22,12 @@ public interface DashboardService {
 	public List<Object> plotSvcBarChartCurrentYear();
 
 	public List<Object> plotSvcBarChartAnnual(int year);
+
+	// --------------- End Hod area ---------------
+	public List<Object> populateSvcTableMonthlyDivision(int year, int divId);
+
+	public List<Object> populateSvcTableAnnuallyDivision(int year, int divId);
+
+	public List<Object> plotSvcBarChartDivsionAnnual(int year, int divId);
+	// --------------- End Hod area ---------------
 }

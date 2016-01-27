@@ -51,6 +51,13 @@ public class HomeController {
 
 		String role = getUserRole();
 
+		Staff staff = ucs.getSvcStaffByUserId(getPrincipal());
+		model.addAttribute("stfId", staff.getStfId());
+		model.addAttribute("stfDivId", staff.getDivision().getDivId());
+		model.addAttribute("stfDivName", staff.getDivision().getDivName());
+		model.addAttribute("userName", getPrincipal());
+		model.addAttribute("role", getUserRole());
+
 		if (role.equals("ROLE_ADMIN")) {
 			return "dashboard_admin";
 		} else if (role.equals("ROLE_HOD")) {
@@ -118,8 +125,7 @@ public class HomeController {
 		return "redirect:/home?logout";
 	}
 
-	// Graphs and Dashboard
-	// Populate Donut by Division
+	// ===================== START OF ADMIN DASHBOARD ==========================
 	@RequestMapping(value = "dboard/donut-by-division/{divId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody List<Object> donutByDivision(@PathVariable("divId") int divId) {
 		return this.dbs.populateSvcDonutByDivision(divId);
@@ -128,6 +134,11 @@ public class HomeController {
 	@RequestMapping(value = "dboard/barchart-current-year", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody List<Object> barchartCurrentYear() {
 		return this.dbs.plotSvcBarChartCurrentYear();
+	}
+
+	@RequestMapping(value = "dboard/barchart-current-year/{year}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody List<Object> barchartCurrentYear(@PathVariable("year") int year) {
+		return this.dbs.plotSvcBarChartAnnual(year);
 	}
 
 	@RequestMapping(value = "dboard/table-summary-by-division", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -144,6 +155,34 @@ public class HomeController {
 	public @ResponseBody List<Object> tableSummaryByMonthly() {
 		return this.dbs.populateSvcTableAnnually();
 	}
+
+	@RequestMapping(value = "dboard/table-last-modified", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody List<Object> tableLastModified() {
+		return this.dbs.populateSvcTableLastModified();
+	}
+
+	// ===================== END OF ADMIN DASHBOARD ==========================
+
+	// ===================== START OF HOD DASHBOARD ==========================
+	@RequestMapping(value = "dboard/table-summary-by-month/{year}/{divId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody List<Object> tableSummaryByMonthlyDivision(@PathVariable("year") int year,
+			@PathVariable("divId") int divId) {
+		return this.dbs.populateSvcTableMonthlyDivision(year, divId);
+	}
+
+	@RequestMapping(value = "dboard/table-summary-by-year/{year}/{divId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody List<Object> tableSummaryByYearDivision(@PathVariable("year") int year,
+			@PathVariable("divId") int divId) {
+		return this.dbs.populateSvcTableAnnuallyDivision(year, divId);
+	}
+
+	@RequestMapping(value = "dboard/barchart_division/{year}/{divId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody List<Object> getBarchartByDivision(@PathVariable("year") int year,
+			@PathVariable("divId") int divId) {
+		return this.dbs.plotSvcBarChartDivsionAnnual(year, divId);
+	}
+
+	// ===================== END OF HOD DASHBOARD ============================
 
 	private String getPrincipal() {
 		String userName = null;
