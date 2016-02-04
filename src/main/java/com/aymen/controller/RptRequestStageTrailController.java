@@ -35,10 +35,11 @@ public class RptRequestStageTrailController {
 		return "reports/trail/rpt_request_stage_trail";
 	}
 
-	@RequestMapping(value = "/loadTrail/{reqId}/{fromDate}/{toDate}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/loadTrail/{reqId}/{staffId}/{fromDate}/{toDate}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody List<Object> filterReport(@PathVariable("reqId") int reqId,
-			@PathVariable("fromDate") String fromDate, @PathVariable("toDate") String toDate) {
-		return this.psSvc.getSvcRequestStageTrail(reqId, fromDate, toDate);
+			@PathVariable("staffId") int staffId, @PathVariable("fromDate") String fromDate,
+			@PathVariable("toDate") String toDate) {
+		return this.psSvc.getSvcRequestStageTrail(reqId, staffId, fromDate, toDate);
 	}
 
 	private String getPrincipal() {

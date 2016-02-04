@@ -12,6 +12,8 @@ public interface RequestDAO {
 
 	public List<Request> listSvcRequest();
 
+	public List<Request> listSvcRequestByDivision(int divId);
+
 	public Request getRequestById(int id);
 
 	public void deleteRequest(int id);
@@ -22,7 +24,11 @@ public interface RequestDAO {
 
 	public List<Object> listBatchCount();
 
+	public List<Object> listBatchCountByDivision(int divId);
+
 	public List<Request> getReqByStatus(int statusId);
+
+	public List<Request> getReqByStatusByDivision(int statusId, int divId);
 
 	// SMS Area
 	public List<Object> getSMSContent(int reqId);
@@ -30,10 +36,11 @@ public interface RequestDAO {
 	// For Request Reports
 	public List<Request> filterAllRequest();
 
-	public List<Request> filterRequest(int reqId, int sbjId, int pubId, int divId, int statusId, String fromDate,
-			String toDate);
+	public List<Request> filterRequest(int reqId, int sbjId, int pubId, int divId, int statusId, int staffId,
+			String fromDate, String toDate);
 
-	public List<Object> getRequestTrail(int reqId, String fromDate, String toDate);
+	public List<Object> getRequestTrail(int reqId, int sbjId, int pubId, int divId, int statusId, int staffId,
+			String fromDate, String toDate);
 
 	public List<Object> getOverDueRequests(int reqId, String fromDate, String toDate);
 

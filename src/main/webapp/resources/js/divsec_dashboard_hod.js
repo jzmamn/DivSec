@@ -143,7 +143,53 @@ jQuery(function() {
 				$select.html('<option id="-1">none available</option>');
 			}
 		});
-
 	}
+
+	// Loads batch count in the status icons
+	$.ajax({
+		type : 'GET',
+		url : 'reqprocess/batchcount/' + intDivId,
+		dataType : 'json',
+		success : function(data) {
+			var newReq = 0;
+			var opened = 0;
+
+			$.each(data, function(index, element) {
+				newReq += element.count;
+			});
+
+			$.each(data, function(index, element) {
+
+				switch (element.rs_name) {
+				case "New":
+					// All pills batch number
+					$("#spnIdNew").text(element.count);
+					break;
+				case "Opened":
+					$("#spnIdOpened").text(element.count);
+					break;
+				case "Completed":
+					$("#spnIdCompleted").text(element.count);
+					break;
+				case "Closed":
+					$("#spnIdClosed").text(element.count);
+					break;
+				// case "Rejected":
+				// break;
+				case "Approved":
+					$("#spnIdApprove").text(element.count);
+					break;
+				case "ToBeApp":
+					$("#spnIdApproval").text(element.count);
+					break;
+				}
+
+				// alert(element.rs_name + ':' + index);
+			});
+		},
+		error : function(data) {
+			alert('1. aymen2 fail' + data);
+		}
+	});
 
 })

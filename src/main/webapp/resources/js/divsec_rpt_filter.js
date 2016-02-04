@@ -117,41 +117,48 @@ jQuery(function() {
 
 	// ------------------ Filter for Request Status ------------------
 
-	var $select1 = $('#cmdIdReqStatus');
 	// request the JSON data and parse into the select element
 	$.ajax({
-		url : 'requestStatus/loadStatus',
+		url : 'requestStatus/load-req-status',
 		dataType : 'JSON',
-		success : function(data) {
-
-			$select1.html('');
-
-			var blankOption = '<option id="' + 0
-					+ '"> -- Select Status -- </option>';
-			$select1.append(blankOption);
-			$.each(data, function(key, val) {
-
-				$select1.append('<option id="' + val.rsId + '">' + val.rsName
-						+ '</option>');
-			})
+		success : function(res) {
+			$("#cmdIdReqStatus").select2({
+				placeholder : "Select a staff",
+				allowClear : true,
+				data : res
+			});
 		},
-		error : function() {
-			$select1.html('<option id="-1">none available</option>');
+		error : function(err) {
+			alert(err);
 		}
 	});
 
-	$select1.change(function() {
-		var str1 = "";
-		var str2 = "";
-		str1 = $(this).children(":selected").attr("id");
+	$("#cmdIdReqStatus").change(function() {
+		var theID = $("#cmdIdReqStatus").val();
+		$("#idCmbReqStausId").val(theID);
+	});
 
-		$("select option:selected").each(function() {
-			str2 = $(this).text() + " ";
-			$("#idCmbReqStausId").val(str1);
-			$("#idCmbReqStausName").text(str2);
-		});
+	var selStaff = ""
 
-	}).trigger("change");
+	$.ajax({
+		url : 'usercreation/load-staff-dropdown',
+		dataType : 'JSON',
+		success : function(res) {
+			$("#selStaff").select2({
+				placeholder : "Select a staff",
+				allowClear : true,
+				data : res
+			});
+		},
+		error : function(err) {
+			alert("Load Staff \n" + err);
+		}
+	});
+
+	$("#selStaff").change(function() {
+		var theID = $("#selStaff").val();
+		$("#idStaff").val(theID);
+	});
 
 	// ------------------ END Filter for Request Status ------------------
 

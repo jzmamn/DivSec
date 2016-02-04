@@ -72,27 +72,29 @@
 				<hr />
 				<!-- CALENDER +  WIDGETS  SECTION   -->
 				<div class="row">
+					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+						<div style="text-align: center;">
+							<a class="quick-btn" href="${pageContext.request.contextPath}/reqprocess"> <i class="icon-check icon-2x"></i> <span>For
+									Approval</span> <span id="spnIdApproval" class="label label-danger"></span>
+							</a> <a class="quick-btn" href="${pageContext.request.contextPath}/reqprocess"> <i class="icon-envelope-alt icon-2x"></i> <span>New</span>
+								<span id="spnIdNew" class="label label-danger"></span>
+							</a> <a class="quick-btn" href="${pageContext.request.contextPath}/reqprocess"> <i class="icon-folder-open-alt icon-2x"></i> <span>Opened</span>
+								<span id="spnIdOpened" class="label label-success"></span>
+							</a>
+						</div>
+					</div>
+				</div>
+
+				<hr />
+
+				<div class="row">
 					<div class="col-lg-12">
-						<div class="col-lg-4">
-							<div class="row">
-								<div class="col-lg-12">
-									<div style="text-align: center;">
-										<a class="quick-btn" href="#"> <i class="icon-check icon-2x"></i> <span>For Approval</span> <span class="label label-danger">2</span>
-										</a> <a class="quick-btn" href="#"> <i class="icon-envelope-alt icon-2x"></i> <span>New</span> <span class="label label-danger">2</span>
-										</a> <a class="quick-btn" href="#"> <i class="icon-folder-open-alt icon-2x"></i> <span>Opened</span> <span
-											class="label label-success">456</span>
-										</a>
-									</div>
-								</div>
-							</div>
+						<div class="col-lg-6">
+							<div style="width: 220px;" class="panel panel-primary" id="date1"></div>
 						</div>
 
-						<div class="col-lg-4" style="border-right: solid; border-left: solid;">
+						<div class="col-lg-6">
 							<div id="morris-donut-chart1" style="width: 240px; height: 240px;"></div>
-						</div>
-						<!--REQUEST BLOCK SECTION -->
-						<div class="col-lg-4">
-							<div style="width: 220px;" class="panel panel-primary" id="date1"></div>
 						</div>
 					</div>
 				</div>
@@ -168,10 +170,9 @@
 					<div class="col-lg-12 col-sm-12">
 						<div class="panel panel-default panel-success">
 							<div class="panel-heading">
-								<strong>Analysis</strong> - <em>(this Year)</em>
-								<span class="pull-right"><small> <input
-											id="dpYearBar" class="form-control datepicker dpYear" style="width: 60px; height: 20px;">
-									</small></span>
+								<strong>Analysis</strong> - <em>(this Year)</em> <span class="pull-right"><small> <input id="dpYearBar"
+										class="form-control datepicker dpYear" style="width: 60px; height: 20px;">
+								</small></span>
 							</div>
 							<div class="panel-body">
 								<div id="barChartContent" class="table-responsive">
@@ -283,13 +284,12 @@
 			minViewMode : 2,
 			autoclose : true
 		});
-		
+
 		$('#dpYearBar').datepicker({
 			format : " yyyy", // Notice the Extra space at the beginning
 			minViewMode : 2,
 			autoclose : true
 		});
-		
 	</script>
 
 

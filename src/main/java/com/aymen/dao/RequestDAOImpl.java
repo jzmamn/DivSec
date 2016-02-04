@@ -30,7 +30,6 @@ public class RequestDAOImpl implements RequestDAO {
 		try {
 			Session session = sessionFactory.getCurrentSession();
 			session.persist(req);
-
 			logger.info("Request saved successfully, Person Details=" + req.getReqId());
 
 		} catch (Exception e) {
@@ -50,12 +49,25 @@ public class RequestDAOImpl implements RequestDAO {
 
 	}
 
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unchecked", "unused" })
 	@Override
 	public List<Request> listSvcRequest() {
 		Session session = this.sessionFactory.getCurrentSession();
 		@SuppressWarnings("unchecked")
 		List<Request> reqList = session.createQuery(" from Request").list();
+		for (Request d : reqList) {
+			// logger.info("Person List::" + d);
+			// System.out.println(d);
+		}
+		return reqList;
+	}
+
+	@SuppressWarnings("unused")
+	@Override
+	public List<Request> listSvcRequestByDivision(int divId) {
+		Session session = this.sessionFactory.getCurrentSession();
+		@SuppressWarnings("unchecked")
+		List<Request> reqList = session.createQuery(" from Request where req_division_id = " + divId).list();
 		for (Request d : reqList) {
 			// logger.info("Person List::" + d);
 			// System.out.println(d);
@@ -180,8 +192,27 @@ public class RequestDAOImpl implements RequestDAO {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Request> filterRequest(int reqId, int sbjId, int pubId, int divId, int statusId, String fromDate,
-			String toDate) {
+	public List<Request> getReqByStatusByDivision(int statusId, int divId) {
+		String sql = "SELECT * FROM request WHERE req_status_id = :Id AND req_division_id = :divId ";
+		Session session = sessionFactory.getCurrentSession();
+		try {
+			SQLQuery query = session.createSQLQuery(sql);
+			query.addEntity(Request.class);
+			query.setParameter("Id", statusId);
+			query.setParameter("divId", divId);
+			List<Request> lst = query.list();
+			return lst;
+		} catch (Exception e) {
+			System.out.println(e.toString());
+			logger.error(e.toString());
+			return null;
+		}
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Request> filterRequest(int reqId, int sbjId, int pubId, int divId, int statusId, int staffId,
+			String fromDate, String toDate) {
 
 		String strQuery = "";
 		String strQuery1 = "SELECT *  FROM  request Where ";
@@ -205,6 +236,10 @@ public class RequestDAOImpl implements RequestDAO {
 
 		if (statusId > 0) {
 			strQuery2 = " req_status_id= " + statusId + " AND";
+		}
+
+		if (staffId > 0) {
+			strQuery2 = " req_user_id= " + staffId + " AND";
 		}
 
 		if (!fromDate.equals("0") && !toDate.equals("0")) {
@@ -248,21 +283,39 @@ public class RequestDAOImpl implements RequestDAO {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Object> getRequestTrail(int reqId, String fromDate, String toDate) {
+	public List<Object> getRequestTrail(int reqId, int sbjId, int pubId, int divId, int statusId, int staffId,
+			String fromDate, String toDate) {
 
 		String strQuery = "";
 		String strQuery1 = "SELECT * FROM vw_request_trail Where";
 		String strQuery2 = "";
 
-		if (reqId == 0 && fromDate.equals("0") && toDate.equals("0")) {
-			if (reqId > 0) {
-				strQuery2 = " req_id= " + reqId + " AND";
-			}
+		if (reqId > 0) {
+			strQuery2 = " req_id= " + reqId + " AND";
+		}
 
-			if (!fromDate.equals("0") && !toDate.equals("0")) {
-				strQuery2 = " DATE_FORMAT(req_ent_date, '%Y-%m-%d') BETWEEN  '" + fromDate + "' AND '" + toDate
-						+ "' AND";
-			}
+		if (sbjId > 0) {
+			strQuery2 = " req_subject_id= " + sbjId + " AND";
+		}
+
+		if (pubId > 0) {
+			strQuery2 = " req_public_id= " + pubId + " AND";
+		}
+
+		if (divId > 0) {
+			strQuery2 = " req_division_id= " + divId + " AND";
+		}
+
+		if (statusId > 0) {
+			strQuery2 = " req_status_id= " + statusId + " AND";
+		}
+
+		if (staffId > 0) {
+			strQuery2 = " req_user_id= " + staffId + " AND";
+		}
+
+		if (!fromDate.equals("0") && !toDate.equals("0")) {
+			strQuery2 = " DATE_FORMAT(req_ent_date, '%Y-%m-%d') BETWEEN  '" + fromDate + "' AND '" + toDate + "' AND";
 		}
 
 		if (strQuery2.length() > 0) {
@@ -336,6 +389,23 @@ public class RequestDAOImpl implements RequestDAO {
 		SQLQuery query = session.createSQLQuery(strQuery);
 		query.setResultTransformer(Criteria.ALIAS_TO_ENTITY_MAP);
 		List<Object> results = query.list();
+		return results;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Object> listBatchCountByDivision(int divId) {
+		String strQry = "select  rs.rs_id id,req_division_id, rs_name,count(req_id) `count` from `request` r "
+				+ " right outer join  `request_status` rs on r.req_status_id= rs.rs_id" + " where req_division_id="
+				+ divId + " group by rs.rs_id ,req_division_id, rs_name";
+
+		System.out.println(strQry);
+		Session session = this.sessionFactory.getCurrentSession();
+
+		SQLQuery query = session.createSQLQuery(strQry);
+		query.setResultTransformer(Criteria.ALIAS_TO_ENTITY_MAP);
+		List<Object> results = query.list();
+
 		return results;
 	}
 

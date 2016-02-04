@@ -107,8 +107,8 @@ public class ProcessStageDAOImpl implements ProcessStageDAO {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Object> filterRequestStages(int reqId, int sbjId, int pubId, int divId, int statusId, String fromDate,
-			String toDate) {
+	public List<Object> filterRequestStages(int reqId, int sbjId, int pubId, int divId, int statusId, int staffId,
+			String fromDate, String toDate) {
 
 		String strQuery = "";
 		String strQuery1 = "SELECT *  FROM  request r";
@@ -144,6 +144,10 @@ public class ProcessStageDAOImpl implements ProcessStageDAO {
 
 		if (statusId > 0) {
 			strQuery2 = " req_status_id= " + statusId + " AND";
+		}
+
+		if (staffId > 0) {
+			strQuery2 = " rst_user_id= " + staffId + " AND";
 		}
 
 		if (!fromDate.equals("0") && !toDate.equals("0")) {
@@ -192,21 +196,18 @@ public class ProcessStageDAOImpl implements ProcessStageDAO {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Object> getRequestStageTrail(int reqId, String fromDate, String toDate) {
+	public List<Object> getRequestStageTrail(int reqId, int staffId, String fromDate, String toDate) {
 		String strQuery = "";
 		String strQuery1 = "SELECT * FROM vw_req_stg_trail Where";
 		String strQuery2 = "";
 		String strQuery3 = " ORDER BY rst_id, rst_pr_id";
 
-		if (reqId == 0 && fromDate.equals("0") && toDate.equals("0")) {
-			if (reqId > 0) {
-				strQuery2 = " rst_pr_id= " + reqId + " AND";
-			}
+		if (reqId > 0) {
+			strQuery2 = " rst_pr_id= " + reqId + " AND";
+		}
 
-			if (!fromDate.equals("0") && !toDate.equals("0")) {
-				strQuery2 = " DATE_FORMAT(rst_txn_date, '%Y-%m-%d') BETWEEN  '" + fromDate + "' AND '" + toDate
-						+ "' AND";
-			}
+		if (!fromDate.equals("0") && !toDate.equals("0")) {
+			strQuery2 = " DATE_FORMAT(rst_txn_date, '%Y-%m-%d') BETWEEN  '" + fromDate + "' AND '" + toDate + "' AND";
 		}
 
 		if (strQuery2.length() > 0) {

@@ -14,6 +14,7 @@
 <!-- GLOBAL STYLES -->
 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/plugins/bootstrap/css/bootstrap.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/plugins/bootstrap/css/colourpack.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/main.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/theme.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/MoneAdmin.css" />
@@ -81,22 +82,22 @@
 								<div class="col-lg-12">
 									<ul class="nav nav-pills" style="max-width: 300%;">
 
-										<li class="active" id="idAll"><a href="#" data-toggle="tab"> <span id="spnIdNew" class="badge pull-right"> </span> All
+										<li class="active" id="idAll"><a href="#" data-toggle="tab"> <span id="spnIdNew" class="badge badge-purple pull-right"> </span> All
 										</a></li>
 
-										<li id="idApprove"><a href="#" data-toggle="tab"> <span id="spnIdApprove" class="badge pull-right"></span> Approval
+										<li id="idApprove"><a href="#" data-toggle="tab"> <span id="spnIdApprove" class="badge badge-purple pull-right"></span> Approved
 										</a></li>
 
-										<li id="idOpened"><a href="#" data-toggle="tab"> <span id="spnIdOpened" class="badge pull-right"></span> Opened
+										<li id="idOpened"><a href="#" data-toggle="tab"> <span id="spnIdOpened" class="badge badge-purple pull-right"></span> Opened
 										</a></li>
 
-										<li id="idApproval"><a href="#" data-toggle="tab"> <span id="spnIdApproval" class="badge pull-right"></span> Approval
+										<li id="idApproval"><a href="#" data-toggle="tab"> <span id="spnIdApproval" class="badge badge-purple pull-right"></span> Approval
 										</a></li>
 
-										<li id="idCompleted"><a href="#" data-toggle="tab"> <span id="spnIdCompleted" class="badge pull-right"></span> Completed
+										<li id="idCompleted"><a href="#" data-toggle="tab"> <span id="spnIdCompleted" class="badge badge-purple pull-right"></span> Completed
 										</a></li>
 
-										<li id="idClosed"><a href="#" data-toggle="tab"> <span id="spnIdClosed" class="badge pull-right"></span> Closed
+										<li id="idClosed"><a href="#" data-toggle="tab"> <span id="spnIdClosed" class="badge badge-purple pull-right"></span> Closed
 										</a></li>
 									</ul>
 								</div>

@@ -32,4 +32,10 @@ public class RequestStatusController {
 	public @ResponseBody List<RequestStatus> getDataByRole(@PathVariable("role") String role) {
 		return this.rss.listSvcRequestStatus(role);
 	}
+
+	// Load Request status at filter
+	@RequestMapping(value = "/load-req-status", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody String loadReqStatus() {
+		return this.rss.loadSvcReqStatus();
+	}
 }

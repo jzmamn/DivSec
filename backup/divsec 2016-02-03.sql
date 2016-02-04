@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 24, 2016 at 07:53 AM
+-- Generation Time: Feb 03, 2016 at 07:12 PM
 -- Server version: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -59,7 +59,7 @@ INSERT INTO `division` (`div_id`, `div_name`, `div_active`) VALUES
 (2, 'Planning', b'1'),
 (3, 'Registrar', b'1'),
 (4, 'Agriculture', b'1'),
-(5, 'this', b'1'),
+(5, 'Accounts', b'1'),
 (6, 'ABC', b'1');
 
 -- --------------------------------------------------------
@@ -216,7 +216,7 @@ CREATE TABLE IF NOT EXISTS `process_stage` (
   KEY `fk_rst_user_id_idx` (`rst_user_id`),
   KEY `fk_stg_pr_id_idx` (`rst_pr_id`),
   KEY `fk_rst_stg_id_idx` (`rst_stg_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=26 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=29 ;
 
 --
 -- Dumping data for table `process_stage`
@@ -237,7 +237,10 @@ INSERT INTO `process_stage` (`rst_id`, `rst_pr_id`, `rst_stg_id`, `rst_stage_sta
 (22, 13, 2, 2, 1, '2016-01-13 10:02:51', 'stage', 23),
 (23, 14, 1, 3, 0, '2016-01-14 10:50:00', 'Given to cleark', 23),
 (24, 14, 2, 3, 1, '2016-01-14 10:50:00', 'stage', 23),
-(25, 15, 3, 3, 0, '2016-01-24 00:03:38', 'stage', 23);
+(25, 15, 3, 3, 0, '2016-01-24 00:03:38', 'stage', 23),
+(26, 16, 4, 1, 0, '2016-01-24 05:53:14', '', 21),
+(27, 17, 4, 1, 0, '2016-01-03 09:07:29', '', 23),
+(28, 18, 4, 1, 0, '2016-01-03 09:08:27', '', 23);
 
 --
 -- Triggers `process_stage`
@@ -291,7 +294,7 @@ CREATE TABLE IF NOT EXISTS `public_individual` (
 --
 
 INSERT INTO `public_individual` (`pi_id`, `pi_name`, `pi_address1`, `pi_address2`, `pi_address3`, `pi_land_phone`, `pi_mobile_phone`, `pi_email`, `pi_ind_user_id`, `pi_user_pwd`, `pi_nic`, `pi_dob`, `pi_gender`, `pi_note`, `pi_user_id`, `pi_notfication_type_id`, `pi_active`) VALUES
-(1, 'N.J.Aymen', '105, Gall Road,', 'Colombo', '6', '123123', '777123123', 'jzmamn@gmail.com', 821491169, '123', '821491169v', '1980-10-01 00:00:00', 'Male', 'This a test', 1, 1, b'1'),
+(1, 'N.J.Aymen', '105, Gall Road,', 'Colombo', '6', '123123', '773166010', 'jzmamn@gmail.com', 821491169, '123', '821491169v', '1980-10-01 00:00:00', 'Male', 'This a test', 1, 1, b'1'),
 (2, 'Rafatha J Aymen', 'adsf1', '3', 'Nintavur', '1234232323', '1223232321', 'jzmamn@gmail.com', NULL, NULL, '232323232v', '2016-01-07 00:00:00', 'Female', 'adfs', 23, 2, b'1'),
 (3, 'Rafatha', 'adsf1', 'adsf2', 'adf3', '1234232323', '1223232321', 'jzmamn@gmail.com', NULL, NULL, '232323232v', '2015-09-12 00:00:00', 'Male', 'adfs', 23, 2, b'1'),
 (4, 'Fathima Rafatha', 'qewr', 'qer', 'qewr', '11', '11', 'jzmamn@gmail.com', NULL, NULL, '2322323232', '2015-12-14 00:00:00', 'Male', '233232', 23, 1, b'1');
@@ -322,21 +325,24 @@ CREATE TABLE IF NOT EXISTS `request` (
   KEY `fk_req_user_id_idx` (`req_user_id`),
   KEY `fk_req_subject_id_idx` (`req_subject_id`),
   KEY `fk_req_status_id_idx` (`req_status_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='details about the request submitted by the public individual' AUTO_INCREMENT=16 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='details about the request submitted by the public individual' AUTO_INCREMENT=19 ;
 
 --
 -- Dumping data for table `request`
 --
 
 INSERT INTO `request` (`req_id`, `req_subject_id`, `req_division_id`, `req_public_id`, `req_ent_date`, `req_note`, `req_fees`, `req_user_id`, `req_durartion`, `req_status_id`, `req_is_read`, `req_processed`, `req_is_void`) VALUES
-(7, 4, 2, 1, '2016-01-04 00:00:00', 'Aymen', '1200.00', 23, 1, 2, b'0', b'0', b'1'),
-(8, 4, 2, 1, '2016-01-05 00:00:00', 'new', '1200.00', 23, 1, 1, b'0', b'0', b'0'),
-(10, 4, 2, 1, '2016-01-06 00:00:00', '', '1200.00', 23, 1, 1, b'0', b'0', b'1'),
+(7, 4, 2, 1, '2016-01-04 00:00:00', 'Aymen', '1200.00', 23, 1, 3, b'0', b'0', b'1'),
+(8, 4, 2, 1, '2016-02-05 00:00:00', 'new', '1200.00', 23, 1, 7, b'0', b'0', b'0'),
+(10, 4, 2, 1, '2016-02-06 00:00:00', '', '1200.00', 23, 1, 4, b'0', b'0', b'1'),
 (11, 4, 2, 1, '2016-01-07 00:00:00', '12', '1200.00', 23, 1, 5, b'0', b'0', b'1'),
 (12, 4, 2, 4, '2016-01-13 00:00:00', 'New', '1200.00', 23, 1, 3, b'0', b'0', b'0'),
 (13, 4, 2, 1, '2016-01-13 00:00:00', 'jezeem', '1200.00', 23, 1, 1, b'0', b'0', b'0'),
 (14, 4, 2, 1, '2016-01-14 00:00:00', 'Birth Certificate', '1200.00', 23, 1, 3, b'0', b'0', b'0'),
-(15, 5, 2, 1, '2016-01-24 00:00:00', '', '2.00', 23, 2, 1, b'0', b'0', b'0');
+(15, 5, 2, 1, '2016-02-24 00:00:00', '', '2.00', 23, 2, 2, b'0', b'0', b'0'),
+(16, 11, 1, 1, '2016-02-24 00:00:00', '', '1000.00', 21, 1, 1, b'0', b'0', b'0'),
+(17, 11, 1, 1, '2016-02-03 00:00:00', 'Test', '1000.00', 23, 1, 5, b'0', b'0', b'0'),
+(18, 11, 1, 1, '2016-02-03 00:00:00', 'a', '1000.00', 23, 1, 6, b'0', b'0', b'0');
 
 --
 -- Triggers `request`
@@ -373,7 +379,7 @@ CREATE TABLE IF NOT EXISTS `request_log` (
   `rl_void` bit(1) DEFAULT NULL,
   PRIMARY KEY (`rl_id`),
   KEY `fk_req_id_idx` (`rl_pr_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=36 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=51 ;
 
 --
 -- Dumping data for table `request_log`
@@ -387,7 +393,22 @@ INSERT INTO `request_log` (`rl_id`, `rl_pr_id`, `rl_txn_date`, `rl_status_id`, `
 (32, 14, '2016-01-14 23:00:22', 2, 23, 'Birth Certificate', '2016-01-14 00:00:00', b'0'),
 (33, 12, '2016-01-21 23:22:47', 1, 23, 'New', '2016-01-13 00:00:00', b'0'),
 (34, 11, '2016-01-24 10:54:55', 1, 23, '', '2016-01-07 00:00:00', b'1'),
-(35, 8, '2016-01-24 11:38:45', 1, 23, '', '2016-01-05 00:00:00', b'0');
+(35, 8, '2016-01-24 11:38:45', 1, 23, '', '2016-01-05 00:00:00', b'0'),
+(36, 8, '2016-01-24 17:43:24', 1, 23, 'new', '2016-01-05 00:00:00', b'0'),
+(37, 8, '2016-01-24 18:57:32', 1, 23, 'new', '2016-02-05 00:00:00', b'0'),
+(38, 10, '2016-01-24 18:59:06', 1, 23, '', '2016-01-06 00:00:00', b'1'),
+(39, 14, '2016-01-24 18:59:57', 3, 23, 'Birth Certificate', '2016-01-14 00:00:00', b'0'),
+(40, 14, '2016-01-24 19:00:47', 3, 23, 'Birth Certificate', '2016-03-14 00:00:00', b'0'),
+(41, 15, '2016-01-24 19:00:47', 1, 23, '', '2016-01-24 00:00:00', b'0'),
+(42, 16, '2016-01-24 19:02:00', 1, 21, '', '2016-01-24 00:00:00', b'0'),
+(43, 10, '2016-01-24 19:02:53', 1, 23, '', '2016-02-06 00:00:00', b'1'),
+(44, 16, '2016-01-28 22:39:24', 1, 21, '', '2016-02-24 00:00:00', b'0'),
+(45, 16, '2016-01-28 22:46:31', 1, 21, '', '2016-02-24 00:00:00', b'0'),
+(46, 17, '2016-02-03 21:07:43', 1, 23, 'Test', '2016-02-03 00:00:00', b'0'),
+(47, 18, '2016-02-03 21:08:38', 1, 23, 'a', '2016-02-03 00:00:00', b'0'),
+(48, 18, '2016-02-03 21:09:31', 5, 23, 'a', '2016-02-03 00:00:00', b'0'),
+(49, 8, '2016-02-03 21:11:54', 4, 23, 'new', '2016-02-05 00:00:00', b'0'),
+(50, 7, '2016-02-03 21:40:50', 2, 23, 'Aymen', '2016-01-04 00:00:00', b'1');
 
 -- --------------------------------------------------------
 
@@ -457,10 +478,10 @@ CREATE TABLE IF NOT EXISTS `staff` (
 
 INSERT INTO `staff` (`stf_id`, `stf_name`, `stf_category_id`, `stf_user_id`, `stf_password`, `stf_dvision_id`, `stf_email`, `stf_mobile`, `stf_note`, `stf_active`, `stf_role`) VALUES
 (21, 'Admin', 1, 'admin', '$2a$10$LOqePml/koRGsk2YAIOFI.1YNKZg7EsQ5BAIuYP1nWOyYRl21dlne', 1, '', '', '', b'0', 'ROLE_ADMIN'),
-(22, 'HOD', 2, 'hod', '$2a$10$LOqePml/koRGsk2YAIOFI.1YNKZg7EsQ5BAIuYP1nWOyYRl21dlne', 1, '', '', '', b'0', 'ROLE_HOD'),
+(22, 'HOD', 2, 'hod', '$2a$10$LOqePml/koRGsk2YAIOFI.1YNKZg7EsQ5BAIuYP1nWOyYRl21dlne', 2, '', '', '', b'0', 'ROLE_HOD'),
 (23, 'Staff', 3, 'staff', '$2a$10$LOqePml/koRGsk2YAIOFI.1YNKZg7EsQ5BAIuYP1nWOyYRl21dlne', 2, '', '', '', b'1', 'ROLE_STAFF'),
-(29, 'this', 3, 'aaaa', '$2a$10$clVqB7CyxPi08mdFxPtnBOF0edeEsUtt.lAdiVNQOjMsYuGhzgpP.', 2, '', '', '', b'0', NULL),
-(36, 'aaa', 1, '11', '$2a$10$wcXQqaHoYV.xbIC1MK7ghuqEjiGjcNxLHP4MAaoVEBiyXuz7AVYvy', 1, '', '', '', b'1', NULL),
+(29, 'HodAdmin', 2, 'hodadmin', '$2a$10$LOqePml/koRGsk2YAIOFI.1YNKZg7EsQ5BAIuYP1nWOyYRl21dlne', 1, '', '', '', b'0', 'ROLE_HOD'),
+(36, 'staffadmin', 3, 'staffadmin', '$2a$10$LOqePml/koRGsk2YAIOFI.1YNKZg7EsQ5BAIuYP1nWOyYRl21dlne', 1, '', '', '', b'1', NULL),
 (37, 'abc', 1, 'auah', '12344', 1, 'jzmamn@gmail.com', '12343214', 'this si', b'1', NULL),
 (38, 'asdf', 3, 'adf', 'aaaa', 1, '', '', '', b'1', NULL),
 (40, 'Shameer', 1, 'wererere', '1234', 1, '', '', '', b'1', NULL),
@@ -509,7 +530,7 @@ CREATE TABLE IF NOT EXISTS `staff_role` (
   PRIMARY KEY (`id`),
   KEY `fk_role_role_id_idx` (`role_id`),
   KEY `fk_role_stfid_idx` (`staff_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
 -- Dumping data for table `staff_role`
@@ -518,7 +539,9 @@ CREATE TABLE IF NOT EXISTS `staff_role` (
 INSERT INTO `staff_role` (`id`, `staff_id`, `role_id`, `role_name`) VALUES
 (1, 23, 3, 'ROLE_STAFF'),
 (2, 21, 1, 'ROLE_ADMIN'),
-(3, 22, 2, 'ROLE_HOD');
+(3, 22, 2, 'ROLE_HOD'),
+(4, 29, 2, 'ROLE_HOD'),
+(5, 36, 3, 'ROLE_STAFF');
 
 -- --------------------------------------------------------
 
@@ -648,7 +671,7 @@ INSERT INTO `subjec_stage` (`stg_id`, `stg_subject_id`, `stg_name`, `stg_active`
 (1, 4, 'Submitted to cleark', b'1', '100.00'),
 (2, 4, 'Registrar Signature', b'1', '100.00'),
 (3, 5, 'Aymen', b'1', NULL),
-(4, 11, 'Stage', b'1', '100.00');
+(4, 11, 'Stage 1', b'1', '100.00');
 
 -- --------------------------------------------------------
 
@@ -740,6 +763,61 @@ INSERT INTO `user_category` (`cat_id`, `cat_name`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Stand-in structure for view `vw_annual_status`
+--
+CREATE TABLE IF NOT EXISTS `vw_annual_status` (
+`EntYear` varchar(4)
+,`New` bigint(21)
+,`Opend` bigint(21)
+,`Completed` bigint(21)
+,`Closed` bigint(21)
+);
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `vw_bar_by_all_division`
+--
+CREATE TABLE IF NOT EXISTS `vw_bar_by_all_division` (
+`EntMonth` varchar(64)
+,`EntMonth1` varchar(2)
+,`EntYear` varchar(4)
+,`New` bigint(21)
+,`Opend` bigint(21)
+,`Completed` bigint(21)
+,`Closed` bigint(21)
+);
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `vw_bar_by_division`
+--
+CREATE TABLE IF NOT EXISTS `vw_bar_by_division` (
+`req_division_id` int(11)
+,`EntMonth` varchar(32)
+,`EntMonth1` varchar(2)
+,`EntYear` varchar(4)
+,`New` bigint(21)
+,`Opend` bigint(21)
+,`Completed` bigint(21)
+,`Closed` bigint(21)
+);
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `vw_division_by_year`
+--
+CREATE TABLE IF NOT EXISTS `vw_division_by_year` (
+`div_id` int(11)
+,`div_name` varchar(50)
+,`EntYear` varchar(4)
+,`New` bigint(21)
+,`Opend` bigint(21)
+,`Completed` bigint(21)
+,`Closed` bigint(21)
+);
+-- --------------------------------------------------------
+
+--
 -- Stand-in structure for view `vw_division_status`
 --
 CREATE TABLE IF NOT EXISTS `vw_division_status` (
@@ -757,7 +835,7 @@ CREATE TABLE IF NOT EXISTS `vw_division_status` (
 CREATE TABLE IF NOT EXISTS `vw_div_period_status` (
 `div_id` int(11)
 ,`div_name` varchar(50)
-,`EntMonth` varchar(64)
+,`EntMonth` varchar(32)
 ,`EntMonth1` varchar(2)
 ,`EntYear` varchar(4)
 ,`New` bigint(21)
@@ -793,6 +871,33 @@ CREATE TABLE IF NOT EXISTS `vw_donut_division_period` (
 -- --------------------------------------------------------
 
 --
+-- Stand-in structure for view `vw_last_modified`
+--
+CREATE TABLE IF NOT EXISTS `vw_last_modified` (
+`rl_pr_id` int(11)
+,`DateEnt` varchar(10)
+,`Modified` varchar(10)
+,`rl_note` varchar(100)
+,`rl_user_id` int(11)
+,`stf_name` varchar(50)
+);
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `vw_monthly_status`
+--
+CREATE TABLE IF NOT EXISTS `vw_monthly_status` (
+`EntMonth` varchar(32)
+,`EntMonth1` varchar(2)
+,`EntYear` varchar(4)
+,`New` bigint(21)
+,`Opend` bigint(21)
+,`Completed` bigint(21)
+,`Closed` bigint(21)
+);
+-- --------------------------------------------------------
+
+--
 -- Stand-in structure for view `vw_request_list`
 --
 CREATE TABLE IF NOT EXISTS `vw_request_list` (
@@ -804,6 +909,8 @@ CREATE TABLE IF NOT EXISTS `vw_request_list` (
 ,`div_name` varchar(50)
 ,`req_public_id` int(11)
 ,`pi_name` varchar(100)
+,`pi_mobile_phone` varchar(10)
+,`pi_email` varchar(100)
 ,`req_ent_date` datetime
 ,`req_note` varchar(100)
 ,`req_fees` decimal(10,2)
@@ -882,7 +989,18 @@ CREATE TABLE IF NOT EXISTS `vw_req_overdue` (
 ,`today` varchar(10)
 ,`EntDate` varchar(10)
 ,`sbj_duration` int(11)
-,`Overdue` double(17,0)
+,`Overdue` bigint(12)
+);
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `vw_req_status_summary`
+--
+CREATE TABLE IF NOT EXISTS `vw_req_status_summary` (
+`label` varchar(50)
+,`value` bigint(21)
+,`req_division_id` int(11)
+,`req_ent_date` datetime
 );
 -- --------------------------------------------------------
 
@@ -907,6 +1025,15 @@ CREATE TABLE IF NOT EXISTS `vw_req_stg_trail` (
 -- --------------------------------------------------------
 
 --
+-- Stand-in structure for view `vw_staff_list`
+--
+CREATE TABLE IF NOT EXISTS `vw_staff_list` (
+`id` int(11)
+,`text` varchar(50)
+);
+-- --------------------------------------------------------
+
+--
 -- Stand-in structure for view `vw_test`
 --
 CREATE TABLE IF NOT EXISTS `vw_test` (
@@ -914,6 +1041,42 @@ CREATE TABLE IF NOT EXISTS `vw_test` (
 ,`div_name` varchar(50)
 ,`div_active` bit(1)
 );
+-- --------------------------------------------------------
+
+--
+-- Structure for view `vw_annual_status`
+--
+DROP TABLE IF EXISTS `vw_annual_status`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_annual_status` AS select date_format(`r`.`req_ent_date`,_utf8'%Y') AS `EntYear`,count((case when (`r`.`req_status_id` = 1) then `r`.`req_id` else NULL end)) AS `New`,count((case when (`r`.`req_status_id` = 2) then `r`.`req_id` else NULL end)) AS `Opend`,count((case when (`r`.`req_status_id` = 3) then `r`.`req_id` else NULL end)) AS `Completed`,count((case when (`r`.`req_status_id` = 4) then `r`.`req_id` else NULL end)) AS `Closed` from (`request` `r` join `division` `d` on((`r`.`req_division_id` = `d`.`div_id`))) group by date_format(`r`.`req_ent_date`,_utf8'%Y') order by `r`.`req_ent_date`;
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `vw_bar_by_all_division`
+--
+DROP TABLE IF EXISTS `vw_bar_by_all_division`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_bar_by_all_division` AS select date_format(`r`.`req_ent_date`,_utf8'%M') AS `EntMonth`,date_format(`r`.`req_ent_date`,_utf8'%m') AS `EntMonth1`,date_format(`r`.`req_ent_date`,_utf8'%Y') AS `EntYear`,count((case when (`r`.`req_status_id` = 1) then `r`.`req_id` else NULL end)) AS `New`,count((case when (`r`.`req_status_id` = 2) then `r`.`req_id` else NULL end)) AS `Opend`,count((case when (`r`.`req_status_id` = 3) then `r`.`req_id` else NULL end)) AS `Completed`,count((case when (`r`.`req_status_id` = 4) then `r`.`req_id` else NULL end)) AS `Closed` from (`request` `r` join `division` `d` on((`r`.`req_division_id` = `d`.`div_id`))) group by date_format(`r`.`req_ent_date`,_utf8'%M'),date_format(`r`.`req_ent_date`,_utf8'%Y') order by `r`.`req_ent_date`;
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `vw_bar_by_division`
+--
+DROP TABLE IF EXISTS `vw_bar_by_division`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_bar_by_division` AS select `r`.`req_division_id` AS `req_division_id`,date_format(`r`.`req_ent_date`,_utf8'%b') AS `EntMonth`,date_format(`r`.`req_ent_date`,_utf8'%m') AS `EntMonth1`,date_format(`r`.`req_ent_date`,_utf8'%Y') AS `EntYear`,count((case when (`r`.`req_status_id` = 1) then `r`.`req_id` else NULL end)) AS `New`,count((case when (`r`.`req_status_id` = 2) then `r`.`req_id` else NULL end)) AS `Opend`,count((case when (`r`.`req_status_id` = 3) then `r`.`req_id` else NULL end)) AS `Completed`,count((case when (`r`.`req_status_id` = 4) then `r`.`req_id` else NULL end)) AS `Closed` from (`request` `r` join `division` `d` on((`r`.`req_division_id` = `d`.`div_id`))) group by `r`.`req_division_id`,date_format(`r`.`req_ent_date`,_utf8'%M'),date_format(`r`.`req_ent_date`,_utf8'%Y') order by `r`.`req_ent_date`;
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `vw_division_by_year`
+--
+DROP TABLE IF EXISTS `vw_division_by_year`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_division_by_year` AS select `r`.`req_division_id` AS `div_id`,`d`.`div_name` AS `div_name`,date_format(`r`.`req_ent_date`,_utf8'%Y') AS `EntYear`,count((case when (`r`.`req_status_id` = 1) then `r`.`req_id` else NULL end)) AS `New`,count((case when (`r`.`req_status_id` = 2) then `r`.`req_id` else NULL end)) AS `Opend`,count((case when (`r`.`req_status_id` = 3) then `r`.`req_id` else NULL end)) AS `Completed`,count((case when (`r`.`req_status_id` = 4) then `r`.`req_id` else NULL end)) AS `Closed` from (`request` `r` join `division` `d` on((`r`.`req_division_id` = `d`.`div_id`))) group by date_format(`r`.`req_ent_date`,_utf8'%Y'),`r`.`req_division_id` order by `r`.`req_ent_date`;
+
 -- --------------------------------------------------------
 
 --
@@ -930,7 +1093,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `vw_div_period_status`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_div_period_status` AS select `r`.`req_division_id` AS `div_id`,`d`.`div_name` AS `div_name`,date_format(`r`.`req_ent_date`,_utf8'%M') AS `EntMonth`,date_format(`r`.`req_ent_date`,_utf8'%m') AS `EntMonth1`,date_format(`r`.`req_ent_date`,_utf8'%Y') AS `EntYear`,count((case when (`r`.`req_status_id` = 1) then `r`.`req_id` else NULL end)) AS `New`,count((case when (`r`.`req_status_id` = 2) then `r`.`req_id` else NULL end)) AS `Opend`,count((case when (`r`.`req_status_id` = 3) then `r`.`req_id` else NULL end)) AS `Completed`,count((case when (`r`.`req_status_id` = 4) then `r`.`req_id` else NULL end)) AS `Closed` from (`request` `r` join `division` `d` on((`r`.`req_division_id` = `d`.`div_id`))) group by date_format(`r`.`req_ent_date`,_utf8'%M'),date_format(`r`.`req_ent_date`,_utf8'%Y'),`d`.`div_name` order by `r`.`req_ent_date`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_div_period_status` AS select `r`.`req_division_id` AS `div_id`,`d`.`div_name` AS `div_name`,date_format(`r`.`req_ent_date`,_utf8'%b') AS `EntMonth`,date_format(`r`.`req_ent_date`,_utf8'%m') AS `EntMonth1`,date_format(`r`.`req_ent_date`,_utf8'%Y') AS `EntYear`,count((case when (`r`.`req_status_id` = 1) then `r`.`req_id` else NULL end)) AS `New`,count((case when (`r`.`req_status_id` = 2) then `r`.`req_id` else NULL end)) AS `Opend`,count((case when (`r`.`req_status_id` = 3) then `r`.`req_id` else NULL end)) AS `Completed`,count((case when (`r`.`req_status_id` = 4) then `r`.`req_id` else NULL end)) AS `Closed` from (`request` `r` join `division` `d` on((`r`.`req_division_id` = `d`.`div_id`))) group by date_format(`r`.`req_ent_date`,_utf8'%M'),date_format(`r`.`req_ent_date`,_utf8'%Y'),`d`.`div_name` order by `r`.`req_ent_date`;
 
 -- --------------------------------------------------------
 
@@ -953,11 +1116,29 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 -- --------------------------------------------------------
 
 --
+-- Structure for view `vw_last_modified`
+--
+DROP TABLE IF EXISTS `vw_last_modified`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_last_modified` AS select `rl`.`rl_pr_id` AS `rl_pr_id`,date_format(`rl`.`rl_ent_date`,'%Y-%m-%d') AS `DateEnt`,date_format(`rl`.`rl_txn_date`,'%Y-%m-%d') AS `Modified`,`rl`.`rl_note` AS `rl_note`,`rl`.`rl_user_id` AS `rl_user_id`,`s`.`stf_name` AS `stf_name` from ((`request_log` `rl` join `request` `r` on((`rl`.`rl_pr_id` = `r`.`req_id`))) join `staff` `s` on((`rl`.`rl_user_id` = `s`.`stf_id`))) order by `rl`.`rl_txn_date` desc limit 25;
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `vw_monthly_status`
+--
+DROP TABLE IF EXISTS `vw_monthly_status`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_monthly_status` AS select date_format(`r`.`req_ent_date`,_utf8'%b') AS `EntMonth`,date_format(`r`.`req_ent_date`,_utf8'%m') AS `EntMonth1`,date_format(`r`.`req_ent_date`,_utf8'%Y') AS `EntYear`,count((case when (`r`.`req_status_id` = 1) then `r`.`req_id` else NULL end)) AS `New`,count((case when (`r`.`req_status_id` = 2) then `r`.`req_id` else NULL end)) AS `Opend`,count((case when (`r`.`req_status_id` = 3) then `r`.`req_id` else NULL end)) AS `Completed`,count((case when (`r`.`req_status_id` = 4) then `r`.`req_id` else NULL end)) AS `Closed` from (`request` `r` join `division` `d` on((`r`.`req_division_id` = `d`.`div_id`))) group by date_format(`r`.`req_ent_date`,_utf8'%M'),date_format(`r`.`req_ent_date`,_utf8'%Y') order by `r`.`req_ent_date`;
+
+-- --------------------------------------------------------
+
+--
 -- Structure for view `vw_request_list`
 --
 DROP TABLE IF EXISTS `vw_request_list`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_request_list` AS select `r`.`req_id` AS `req_id`,`r`.`req_subject_id` AS `req_subject_id`,`s`.`sbj_code` AS `sbj_code`,`s`.`sbj_name` AS `sbj_name`,`r`.`req_division_id` AS `req_division_id`,`d`.`div_name` AS `div_name`,`r`.`req_public_id` AS `req_public_id`,`p`.`pi_name` AS `pi_name`,`r`.`req_ent_date` AS `req_ent_date`,`r`.`req_note` AS `req_note`,`r`.`req_fees` AS `req_fees`,`r`.`req_user_id` AS `req_user_id`,`st`.`stf_name` AS `stf_name`,`r`.`req_durartion` AS `req_durartion`,`r`.`req_status_id` AS `req_status_id`,`rs`.`rs_name` AS `rs_name`,`r`.`req_is_read` AS `req_is_read`,`r`.`req_processed` AS `req_processed`,`r`.`req_is_void` AS `req_is_void` from (((((`request` `r` join `division` `d` on((`r`.`req_division_id` = `d`.`div_id`))) join `public_individual` `p` on((`r`.`req_public_id` = `p`.`pi_id`))) join `subject` `s` on((`r`.`req_subject_id` = `s`.`sbj_id`))) join `staff` `st` on((`r`.`req_user_id` = `st`.`stf_id`))) join `request_status` `rs` on((`r`.`req_status_id` = `rs`.`rs_id`)));
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_request_list` AS select `r`.`req_id` AS `req_id`,`r`.`req_subject_id` AS `req_subject_id`,`s`.`sbj_code` AS `sbj_code`,`s`.`sbj_name` AS `sbj_name`,`r`.`req_division_id` AS `req_division_id`,`d`.`div_name` AS `div_name`,`r`.`req_public_id` AS `req_public_id`,`p`.`pi_name` AS `pi_name`,`p`.`pi_mobile_phone` AS `pi_mobile_phone`,`p`.`pi_email` AS `pi_email`,`r`.`req_ent_date` AS `req_ent_date`,`r`.`req_note` AS `req_note`,`r`.`req_fees` AS `req_fees`,`r`.`req_user_id` AS `req_user_id`,`st`.`stf_name` AS `stf_name`,`r`.`req_durartion` AS `req_durartion`,`r`.`req_status_id` AS `req_status_id`,`rs`.`rs_name` AS `rs_name`,`r`.`req_is_read` AS `req_is_read`,`r`.`req_processed` AS `req_processed`,`r`.`req_is_void` AS `req_is_void` from (((((`request` `r` join `division` `d` on((`r`.`req_division_id` = `d`.`div_id`))) join `public_individual` `p` on((`r`.`req_public_id` = `p`.`pi_id`))) join `subject` `s` on((`r`.`req_subject_id` = `s`.`sbj_id`))) join `staff` `st` on((`r`.`req_user_id` = `st`.`stf_id`))) join `request_status` `rs` on((`r`.`req_status_id` = `rs`.`rs_id`)));
 
 -- --------------------------------------------------------
 
@@ -993,7 +1174,16 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `vw_req_overdue`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_req_overdue` AS select `r`.`req_id` AS `req_id`,`r`.`req_subject_id` AS `req_subject_id`,`sb`.`sbj_code` AS `sbj_code`,`r`.`req_division_id` AS `req_division_id`,`d`.`div_name` AS `div_name`,`r`.`req_public_id` AS `req_public_id`,`p`.`pi_name` AS `pi_name`,`r`.`req_status_id` AS `req_status_id`,`rs`.`rs_name` AS `rs_name`,date_format(now(),'%Y-%m-%d') AS `today`,date_format(`r`.`req_ent_date`,'%Y-%m-%d') AS `EntDate`,`sb`.`sbj_duration` AS `sbj_duration`,((date_format(now(),'%Y%m%d') - date_format(`r`.`req_ent_date`,'%Y%m%d')) - `sb`.`sbj_duration`) AS `Overdue` from ((((`request` `r` join `subject` `sb` on((`r`.`req_subject_id` = `sb`.`sbj_id`))) join `division` `d` on((`r`.`req_division_id` = `d`.`div_id`))) join `public_individual` `p` on((`r`.`req_public_id` = `p`.`pi_id`))) join `request_status` `rs` on((`r`.`req_status_id` = `rs`.`rs_id`))) where (`r`.`req_status_id` not in (3,4));
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_req_overdue` AS select `r`.`req_id` AS `req_id`,`r`.`req_subject_id` AS `req_subject_id`,`sb`.`sbj_code` AS `sbj_code`,`r`.`req_division_id` AS `req_division_id`,`d`.`div_name` AS `div_name`,`r`.`req_public_id` AS `req_public_id`,`p`.`pi_name` AS `pi_name`,`r`.`req_status_id` AS `req_status_id`,`rs`.`rs_name` AS `rs_name`,date_format(now(),'%Y-%m-%d') AS `today`,date_format(`r`.`req_ent_date`,'%Y-%m-%d') AS `EntDate`,`sb`.`sbj_duration` AS `sbj_duration`,((to_days(date_format(now(),'%Y%m%d')) - to_days(date_format(`r`.`req_ent_date`,'%Y%m%d'))) - `sb`.`sbj_duration`) AS `Overdue` from ((((`request` `r` join `subject` `sb` on((`r`.`req_subject_id` = `sb`.`sbj_id`))) join `division` `d` on((`r`.`req_division_id` = `d`.`div_id`))) join `public_individual` `p` on((`r`.`req_public_id` = `p`.`pi_id`))) join `request_status` `rs` on((`r`.`req_status_id` = `rs`.`rs_id`))) where (`r`.`req_status_id` not in (3,4));
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `vw_req_status_summary`
+--
+DROP TABLE IF EXISTS `vw_req_status_summary`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_req_status_summary` AS select `rs`.`rs_name` AS `label`,count(`r`.`req_id`) AS `value`,`r`.`req_division_id` AS `req_division_id`,`r`.`req_ent_date` AS `req_ent_date` from (`request` `r` join `request_status` `rs` on((`r`.`req_status_id` = `rs`.`rs_id`))) where (`r`.`req_status_id` in (1,2,3,4)) group by `r`.`req_status_id`,`rs`.`rs_name`;
 
 -- --------------------------------------------------------
 
@@ -1003,6 +1193,15 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 DROP TABLE IF EXISTS `vw_req_stg_trail`;
 
 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_req_stg_trail` AS select 'Original' AS `Status`,0 AS `TrailId`,`ps`.`rst_id` AS `rst_id`,`ps`.`rst_pr_id` AS `rst_pr_id`,`ps`.`rst_stg_id` AS `rst_stg_id`,`sg`.`stg_name` AS `stg_name`,`ps`.`rst_stage_status_id` AS `rst_stage_status_id`,`ss`.`ss_name` AS `ss_name`,date_format(`ps`.`rst_txn_date`,'%Y-%m-%d') AS `rst_txn_date`,NULL AS `Modified`,`ps`.`rst_note` AS `rst_note`,`ps`.`rst_user_id` AS `rst_user_id`,`stf`.`stf_name` AS `stf_name` from ((((`process_stage` `ps` join `request` `r` on((`ps`.`rst_pr_id` = `r`.`req_id`))) join `subjec_stage` `sg` on((`ps`.`rst_stg_id` = `sg`.`stg_id`))) join `staff` `stf` on((`stf`.`stf_id` = `ps`.`rst_user_id`))) join `stage_status` `ss` on((`ss`.`ss_id` = `ps`.`rst_stage_status_id`))) union all select 'Modified' AS `Staus`,`sl`.`ps_id` AS `ps_id`,`sl`.`ps_rst_id` AS `ps_rst_id`,`ps`.`rst_pr_id` AS `rst_pr_id`,`sl`.`ps_stage_id` AS `ps_stage_id`,`sg`.`stg_name` AS `stg_name`,`sl`.`ps_status_id` AS `ps_status_id`,`ss`.`ss_name` AS `ss_name`,NULL AS `NULL`,date_format(`sl`.`ps_txn_date`,'%Y-%m-%d') AS `ps_txn_date`,`sl`.`ps_note` AS `ps_note`,`sl`.`ps_user_id` AS `ps_user_id`,`stf`.`stf_name` AS `stf_name` from ((((`stage_log` `sl` join `process_stage` `ps` on((`sl`.`ps_rst_id` = `ps`.`rst_id`))) join `subjec_stage` `sg` on((`sl`.`ps_stage_id` = `sg`.`stg_id`))) join `staff` `stf` on((`stf`.`stf_id` = `sl`.`ps_user_id`))) join `stage_status` `ss` on((`ss`.`ss_id` = `sl`.`ps_status_id`))) order by `rst_id`,`rst_pr_id`;
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `vw_staff_list`
+--
+DROP TABLE IF EXISTS `vw_staff_list`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_staff_list` AS select `staff`.`stf_id` AS `id`,`staff`.`stf_name` AS `text` from `staff`;
 
 -- --------------------------------------------------------
 

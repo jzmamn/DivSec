@@ -30,10 +30,7 @@
 <!-- PAGE LEVEL STYLES -->
 <link rel="stylesheet" href="<c:url value="/resources/css/layout2.css" />" />
 <link rel="stylesheet" href="<c:url value="/resources/plugins/morris/morris-0.4.3.min.css" />" />
-<link rel="stylesheet" href="<c:url value="/resources/plugins/datepicker/css/datepicker.css" />" />
-<link rel="stylesheet" href="<c:url value="/resources/plugins/fullcalendar-1.6.2/fullcalendar/fullcalendar.css" />" />
-
-
+<link rel="stylesheet" href="<c:url value="/resources/plugins/datepicker/css/bootstrap-datepicker.css" />" />
 
 
 <!-- END PAGE LEVEL  STYLES -->
@@ -68,50 +65,45 @@
 			<div class="inner" style="min-height: 700px;">
 				<div class="row">
 					<div class="col-lg-12">
-						<h3>Dashboard - Staff</h3>
+						<h3 class="text-info">Dashboard Staff :: ${stfDivName}</h3>
 					</div>
 				</div>
 
 				<hr />
+				<!-- CALENDER +  WIDGETS  SECTION   -->
+				<div class="row">
+					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+						<div style="text-align: center;">
+							<a class="quick-btn" href="${pageContext.request.contextPath}/reqprocess"> <i class="icon-check icon-2x"></i> <span>For
+									Approval</span> <span id="spnIdApproval" class="label label-danger"></span>
+							</a> <a class="quick-btn" href="${pageContext.request.contextPath}/reqprocess"> <i class="icon-envelope-alt icon-2x"></i> <span>New</span>
+								<span id="spnIdNew" class="label label-danger"></span>
+							</a> <a class="quick-btn" href="${pageContext.request.contextPath}/reqprocess"> <i class="icon-folder-open-alt icon-2x"></i> <span>Opened</span>
+								<span id="spnIdOpened" class="label label-success"></span>
+							</a>
+						</div>
+					</div>
+				</div>
 
-				<!-- WIDGETS  SECTION   -->
+				<hr />
 
 				<div class="row">
 					<div class="col-lg-12">
-
-						<!--REQUEST BLOCK SECTION -->
-
-						<div class="col-lg-12">
-							<!-- <p> <strong>My Task </strong> - <em class="text-muted">()</em></p>-->
-
-							<div style="text-align: center;">
-
-								<a class="quick-btn" href="#"> <i class="icon-envelope-alt icon-2x"></i> <span>New</span> <span class="label label-danger">2</span>
-								</a> <a class="quick-btn" href="#"> <i class="icon-folder-open-alt icon-2x"></i> <span>Opened</span> <span
-									class="label label-success">456</span>
-								</a> <a class="quick-btn" href="#"> <i class="icon-question-sign icon-2x"></i> <span>Pending</span> <span class="label label-danger">2</span>
-								</a> <a class="quick-btn" href="#"> <i class="icon-signal icon-2x"></i> <span>In-Progress</span> <span class="label label-success">456</span>
-								</a> <a class="quick-btn" href="#"> <i class="icon-thumbs-up-alt icon-2x"></i> <span>Completed</span> <span
-									class="label label-success">456</span>
-								</a> <a class="quick-btn" href="#"> <i class="icon-hand-right icon-2x"></i> <span>Handed Over</span> <span
-									class="label label-success">456</span>
-								</a> <a class="quick-btn" href="#"> <i class="icon-thumbs-down-alt icon-2x"></i> <span>Closed</span> <span
-									class="label label-success">456</span>
-								</a>
-
-							</div>
-
+						<div class="col-lg-6">
+							<div style="width: 220px;" class="panel panel-primary" id="date1"></div>
 						</div>
 
-						<!--END REQUEST BLOCK SECTION -->
+						<div class="col-lg-6">
+							<div id="morris-donut-chart1" style="width: 240px; height: 240px;"></div>
+						</div>
 					</div>
 				</div>
+				<!-- CALENDER +  WIDGETS  SECTION   -->
+				
 
 				<hr />
 
-				<!-- END WIDGETS  SECTION   -->
-
-
+			
 			</div>
 		</div>
 		<!--END PAGE CONTENT -->
@@ -161,9 +153,6 @@
 
 	</div>
 
-
-
-
 	<!--END MAIN WRAPPER -->
 
 	<!-- FOOTER -->
@@ -181,8 +170,6 @@
 
 	<!-- PAGE LEVEL SCRIPTS -->
 
-
-
 	<script src="<c:url value="/resources/plugins/morris/raphael-2.1.0.min.js"/>"></script>
 	<script src="<c:url value="/resources/plugins/morris/morris.js"/>"></script>
 	<script src="<c:url value="/resources/plugins/morris/morris-demo.js"/>"></script>
@@ -190,78 +177,36 @@
 	<script src="<c:url value="/resources/plugins/fullcalendar-1.6.2/fullcalendar/fullcalendar.min.js"/>"></script>
 	<script src="<c:url value="/resources/js/calendarInit.js"/>"></script>
 	<script src="<c:url value="/resources/js/divsec_login.js" />"></script>
+	<script src="<c:url value="/resources/js/divsec_dashboard_hod.js" />"></script>
 
 	<script type="text/javascript">
-		$("#dtpTop").datepicker({});
+		var contextPath = "${pageContext.request.contextPath}"
+		var userName = "${userName}";
+		var role = "${role}"
+		var stfId = "${stfId}"
+		var divId = "${stfDivId}"
+		var divName = "${stfDivName}"
 
-		var date = new Date();
-		var d = date.getDate();
-		var m = date.getMonth();
-		var y = date.getFullYear();
+		$("#date1").datepicker({
+			todayHighlight : true
+		});
 
-		var calendar = $('#calendar').fullCalendar({
-			selectable : true,
-			selectHelper : true,
-			select : function(start, end, allDay) {
-				var title = prompt('Event Title:');
-				if (title) {
-					calendar.fullCalendar('renderEvent', {
-						title : title,
-						start : start,
-						end : end,
-						allDay : allDay
-					}, true // make the event "stick"
-					);
-				}
-				calendar.fullCalendar('unselect');
-			},
-			editable : true,
-		//                    events: [
-		//                        {
-		//                            title: 'All Day Event',
-		//                            start: new Date(y, m, 1)
-		//                        },
-		//                        {
-		//                            title: 'Long Event',
-		//                            start: new Date(y, m, d - 5),
-		//                            end: new Date(y, m, d - 2)
-		//                        },
-		//                        {
-		//                            id: 999,
-		//                            title: 'Repeating Event',
-		//                            start: new Date(y, m, d - 3, 16, 0),
-		//                            allDay: false
-		//                        },
-		//                        {
-		//                            id: 999,
-		//                            title: 'Repeating Event',
-		//                            start: new Date(y, m, d + 4, 16, 0),
-		//                            allDay: false
-		//                        },
-		//                        {
-		//                            title: 'Meeting',
-		//                            start: new Date(y, m, d, 10, 30),
-		//                            allDay: false
-		//                        },
-		//                        {
-		//                            title: 'Lunch',
-		//                            start: new Date(y, m, d, 12, 0),
-		//                            end: new Date(y, m, d, 14, 0),
-		//                            allDay: false
-		//                        },
-		//                        {
-		//                            title: 'Birthday Party',
-		//                            start: new Date(y, m, d + 1, 19, 0),
-		//                            end: new Date(y, m, d + 1, 22, 30),
-		//                            allDay: false
-		//                        },
-		//                        {
-		//                            title: 'Click for Google',
-		//                            start: new Date(y, m, 28),
-		//                            end: new Date(y, m, 29),
-		//                            url: 'http://google.com/'
-		//                        }
-		//                    ]
+		$('#dpYear').datepicker({
+			format : " yyyy", // Notice the Extra space at the beginning
+			minViewMode : 2,
+			autoclose : true
+		});
+
+		$('#dpYear1').datepicker({
+			format : " yyyy", // Notice the Extra space at the beginning
+			minViewMode : 2,
+			autoclose : true
+		});
+
+		$('#dpYearBar').datepicker({
+			format : " yyyy", // Notice the Extra space at the beginning
+			minViewMode : 2,
+			autoclose : true
 		});
 	</script>
 

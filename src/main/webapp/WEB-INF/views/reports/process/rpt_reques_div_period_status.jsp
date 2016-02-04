@@ -8,12 +8,13 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>DivSec | Request Report</title>
+<title>DivSec | Request Status-Division-Period</title>
 
 
 <!-- GLOBAL STYLES -->
 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/plugins/bootstrap/css/bootstrap.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/plugins/bootstrap/css/colourpack.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/main.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/theme.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/MoneAdmin.css" />
@@ -59,7 +60,7 @@
 			<div class="inner">
 				<div class="row">
 					<div class="col-lg-12">
-						<h3 class="text-info">Request Report</h3>
+						<h3 class="text-info">Request Status-Division-Period</h3>
 					</div>
 				</div>
 				<hr />

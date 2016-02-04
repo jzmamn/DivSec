@@ -105,6 +105,12 @@ public class RequestController {
 		return this.reqSvc.listSvcRequest();
 	}
 
+	// This method sends JSON response to the client (REST)
+	@RequestMapping(value = "/loadrequest/{divId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody List<Request> getData(@PathVariable("divId") int divId) {
+		return this.reqSvc.listSvcRequestByDivision(divId);
+	}
+
 	// Delete a division using division id
 	@RequestMapping("/delete/{id}")
 	public @ResponseBody String deleteDivision(@ModelAttribute("maRequest") Request req, BindingResult result,
@@ -142,10 +148,22 @@ public class RequestController {
 		return this.reqSvc.listSvcBatchCount();
 	}
 
+	@RequestMapping(value = "/batchcount/{divId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody List<Object> getBatchCountByDivision(@PathVariable("divId") int divId) {
+		return this.reqSvc.listSvcBatchCountByDivision(divId);
+	}
+
 	// display request by status
 	@RequestMapping(value = "/status/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody List<Request> loadRequestByStaus(@PathVariable("id") int id) {
 		return this.reqSvc.getSvcReqByStatus(id);
+	}
+
+	// display request by status
+	@RequestMapping(value = "/status/{id}/{divId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody List<Request> loadRequestByStausByDivision(@PathVariable("id") int id,
+			@PathVariable("divId") int divId) {
+		return this.reqSvc.getSvcReqByStatusByDivision(id, divId);
 	}
 
 	// Add Instruction

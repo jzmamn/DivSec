@@ -24,9 +24,9 @@ public interface ProcessStageDAO {
 
 	public List<Object> filterAllRequestStages();
 
-	public List<Object> filterRequestStages(int reqId, int sbjId, int pubId, int divId, int statusId, String fromDate,
-			String toDate);
+	public List<Object> filterRequestStages(int reqId, int sbjId, int pubId, int divId, int statusId, int staffId,
+			String fromDate, String toDate);
 
-	public List<Object> getRequestStageTrail(int reqId, String fromDate, String toDate);
+	public List<Object> getRequestStageTrail(int reqId, int staffId, String fromDate, String toDate);
 
 }

@@ -227,35 +227,49 @@ jQuery(function() {
 				var pubId = $("#txtIdPublicId").val();
 				var divId = $("#txtIdDivisionId").val();
 				var statusId = $("#idCmbReqStausId").val();
+
+				var idStaff = $("#idStaff").val();
 				var fromDate = $("#dpFrom").val();
 				var toDate = $("#dpTo").val();
 
 				if (reqId === "") {
 					reqId = "0";
+
 				}
 
 				if (sbjId === "") {
 					sbjId = "0";
+
 				}
 
 				if (pubId === "") {
 					pubId = "0";
+
 				}
 
 				if (divId === "") {
 					divId = "0";
+
 				}
 
 				if (statusId === "") {
 					statusId = "0";
+
+				}
+
+				if (idStaff === "") {
+					idStaff = "0";
+
 				}
 
 				if (fromDate === "") {
 					fromDate = "0";
+
 				}
 
 				if (toDate === "") {
 					toDate = "0";
+
 				}
 
 				var intReqId = parseInt(reqId);
@@ -263,18 +277,20 @@ jQuery(function() {
 				var intPubId = parseInt(pubId);
 				var intDivId = parseInt(divId);
 				var intStausId = parseInt(statusId);
+				var intStaffId = parseInt(idStaff);
 
 				if (intReqId == 0 && intSbjId == 0 && intPubId == 0
-						&& intDivId == 0 && intStausId == 0 && fromDate === "0"
-						&& toDate === "0") {
+						&& intDivId == 0 && intStausId == 0 && intStaffId == 0
+						&& fromDate === "0" && toDate === "0") {
 
 					$("#mdlReqFilter").modal("hide")
-					dtRequest.fnReloadAjax('rptrequeststage/loadrequestStage');
+					dtRequest.fnReloadAjax('rptrequest/loadrequest');
 
 				} else {
 					url1 = 'rptrequeststage/filterby/' + intReqId + '/'
 							+ intSbjId + '/' + intPubId + '/' + intDivId + '/'
-							+ intStausId + '/' + fromDate + '/' + toDate;
+							+ intStausId + '/' + intStaffId + '/' + fromDate
+							+ '/' + toDate;
 
 					alert(url1);
 

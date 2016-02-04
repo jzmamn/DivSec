@@ -14,10 +14,13 @@
 <!-- GLOBAL STYLES -->
 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/plugins/bootstrap/css/bootstrap.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/plugins/bootstrap/css/colourpack.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/main.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/theme.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/MoneAdmin.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/plugins/Font-Awesome/css/font-awesome.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/plugins/select2/css/select2.css" />
+
 <!--END GLOBAL STYLES -->
 
 <!-- PAGE LEVEL STYLES -->
@@ -154,7 +157,7 @@
 	<script src="${pageContext.request.contextPath}/resources/plugins/validator/validator.min.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/plugins/Sweetalert-master/lib/sweet-alert.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/plugins/datepicker/js/bootstrap-datepicker.min.js"></script>
-
+	<script src="${pageContext.request.contextPath}/resources/plugins/select2/js/select2.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/js/divsec_rpt_filter.js"></script>
 
 	<script>

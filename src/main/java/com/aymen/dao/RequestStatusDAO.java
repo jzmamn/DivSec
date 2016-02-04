@@ -14,4 +14,6 @@ public interface RequestStatusDAO {
 	public RequestStatus getRequestStatusById(int id);
 
 	public void deleteRequestStatus(int id);
+
+	public String loadReqStatus();
 }

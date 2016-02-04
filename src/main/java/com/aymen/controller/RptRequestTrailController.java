@@ -35,11 +35,13 @@ public class RptRequestTrailController {
 		return "reports/trail/rpt_request_trail";
 	}
 
-	@RequestMapping(value = "/loadTrail/{reqId}/{fromDate}/{toDate}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody List<Object> filterReport(@PathVariable("reqId") int reqId,
-			@PathVariable("fromDate") String fromDate, @PathVariable("toDate") String toDate) {
+	@RequestMapping(value = "/loadTrail/{reqId}/{sbjId}/{pubId}/{divId}/{statusId}/{staffId}/{fromDate}/{toDate}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody List<Object> filterReport(@PathVariable("reqId") int reqId, @PathVariable("sbjId") int sbjId,
+			@PathVariable("pubId") int pubId, @PathVariable("divId") int divId, @PathVariable("statusId") int statusId,
+			@PathVariable("staffId") int staffId, @PathVariable("fromDate") String fromDate,
+			@PathVariable("toDate") String toDate) {
 
-		return this.reqSvc.getSvcRequestTrail(reqId, fromDate, toDate);
+		return this.reqSvc.getSvcRequestTrail(reqId, sbjId, pubId, divId, statusId, staffId, fromDate, toDate);
 
 	}
 

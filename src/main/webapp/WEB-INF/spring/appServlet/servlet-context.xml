@@ -37,15 +37,5 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 
-	<!-- <annotation-driven conversion-service="conversionService" />
-
-	<beans:bean id="conversionService"
-		class="org.springframework.context.support.ConversionServiceFactoryBean">
-		<beans:property name="converters">
-			<beans:list>
-				<beans:bean class="com.aymen.service.ConvertServiceImpl" />
-			</beans:list>
-		</beans:property>
-	</beans:bean>
- -->
+	
 </beans:beans>

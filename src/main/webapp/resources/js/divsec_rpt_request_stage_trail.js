@@ -7,7 +7,7 @@ jQuery(function() {
 
 						// Load table using JSON data by ajax
 						"ajax" : {
-							"url" : "rptrequeststagetrail/loadTrail/0/0/0",
+							"url" : "rptrequeststagetrail/loadTrail/0/0/0/0",
 							"dataSrc" : ""
 						},
 
@@ -78,6 +78,7 @@ jQuery(function() {
 								{
 									text : 'Filter',
 									action : function(e, dt, node, config) {
+
 										$("#mdlReqFilter").modal("show");
 									}
 
@@ -94,55 +95,60 @@ jQuery(function() {
 									text : 'Refresh',
 									action : function(e, dt, node, config) {
 										dtRequest
-												.fnReloadAjax('rptrequest/loadrequest');
+												.fnReloadAjax('rptrequeststagetrail/loadTrail/0/0/0/0');
 									}
 								} ]
 
 					});
 
 	// ------------------ Apply Filter------------------
-	$("#btnIdApplyFilter").click(
-			function(e) {
-				var url1 = "";
-				var reqId = $("#idTxtRequest").val();
-				var fromDate = $("#dpFrom").val();
-				var toDate = $("#dpTo").val();
+	$("#btnIdApplyFilter")
+			.click(
+					function(e) {
+						var url1 = "";
+						var reqId = $("#idTxtRequest").val();
+						var idStaff = $("#idStaff").val();
+						var fromDate = $("#dpFrom").val();
+						var toDate = $("#dpTo").val();
 
-				if (reqId === "") {
-					reqId = "0";
+						if (reqId === "") {
+							reqId = "0";
 
-				}
+						}
 
-				if (fromDate === "") {
-					fromDate = "0";
+						if (idStaff === "") {
+							idStaff = "0";
 
-				}
+						}
 
-				if (toDate === "") {
-					toDate = "0";
+						if (fromDate === "") {
+							fromDate = "0";
 
-				}
+						}
 
-				var intReqId = parseInt(reqId);
+						if (toDate === "") {
+							toDate = "0";
 
-				if (intReqId == 0 && intSbjId == 0 && intPubId == 0
-						&& intDivId == 0 && intStausId == 0 && fromDate === "0"
-						&& toDate === "0") {
+						}
 
-					$("#mdlReqFilter").modal("hide")
-					dtRequest.fnReloadAjax('rptrequest/loadrequest');
+						var intReqId = parseInt(reqId);
+						var idStaff = parseInt(idStaff);
 
-				} else {
-					url1 = 'rptrequest/filterby/' + intReqId + '/' + intSbjId
-							+ '/' + intPubId + '/' + intDivId + '/'
-							+ intStausId + '/' + fromDate + '/' + toDate;
+						if (intReqId == 0 && idStaff == 0 && fromDate === "0"
+								&& toDate === "0") {
+							$("#mdlReqFilter").modal("hide")
+							dtRequest
+									.fnReloadAjax('rptrequeststagetrail/loadTrail/0/0/0/0');
 
-					alert(url1);
+						} else {
+							url1 = 'rptrequeststagetrail/loadTrail/' + intReqId
+									+ '/' + +idStaff + '/' + fromDate + '/'
+									+ toDate;
+							alert(url1);
+							$("#mdlReqFilter").modal("hide")
+							dtRequest.fnReloadAjax(url1);
+						}
 
-					$("#mdlReqFilter").modal("hide")
-					dtRequest.fnReloadAjax(url1);
-				}
-
-			});
+					});
 });
 // ------------------ END Apply Filter------------------

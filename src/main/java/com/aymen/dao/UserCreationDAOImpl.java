@@ -182,4 +182,19 @@ public class UserCreationDAOImpl implements UserCreationDAO {
 		return results;
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Object> listStaffForDropdown() {
+		String strQry = "select * from vw_staff_list";
+
+		System.out.println(strQry);
+		Session session = this.sessionFactory.getCurrentSession();
+
+		SQLQuery query = session.createSQLQuery(strQry);
+		query.setResultTransformer(Criteria.ALIAS_TO_ENTITY_MAP);
+		List<Object> results = query.list();
+
+		return results;
+	}
+
 }

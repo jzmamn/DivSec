@@ -10,7 +10,7 @@
 <!-- BEGIN HEAD -->
 <head>
 <meta charset="UTF-8" />
-<title>BCORE Admin Dashboard Template | Dashboard</title>
+<title>DivSec |Admin Dashboard</title>
 <meta content="width=device-width, initial-scale=1.0" name="viewport" />
 <meta content="" name="description" />
 <meta content="" name="author" />
@@ -76,88 +76,96 @@
 				<jsp:include page="include/include_user_setting.jsp" />
 				<div class="row">
 					<div class="col-lg-12">
+
+						<div class="col-lg-4">
+							<div style="width: 220px;" class="panel panel-primary" id="date1"></div>
+						</div>
 						<div class="col-lg-8">
 							<div class="row">
 								<div class="col-lg-12">
 									<div style="text-align: center;">
-										<a class="quick-btn" href="#"> <i class="icon-check icon-2x"></i> <span>For Approval</span> <span class="label label-danger">2</span>
-										</a> <a class="quick-btn" href="#"> <i class="icon-envelope-alt icon-2x"></i> <span>New</span> <span class="label label-danger">2</span>
-										</a> <a class="quick-btn" href="#"> <i class="icon-folder-open-alt icon-2x"></i> <span>Opened</span> <span
-											class="label label-success">456</span>
+										<a class="quick-btn" href="${pageContext.request.contextPath}/reqprocess"> <i class="icon-check icon-2x"></i> <span>For
+												Approval</span> <span id="spnIdApproval" class="label label-danger"></span>
+										</a> <a class="quick-btn" href="${pageContext.request.contextPath}/rptrequest"> <i class="icon-envelope-alt icon-2x"></i> <span>New</span>
+											<span id="spnIdNew" class="label label-info"></span>
+										</a> <a class="quick-btn" href="${pageContext.request.contextPath}/rptrequest"> <i class="icon-folder-open-alt icon-2x"></i> <span>Opened</span>
+											<span id="spnIdOpened" class="label label-warning"></span>
 										</a>
 									</div>
 								</div>
 								<hr />
 								<div class="row">
-									<div class="col-lg-12">
-										<div class="col-lg-4 col-md-4 panel panel-warning" style="width: 130px;">
-											<a href="#" class="btn btn-warning btn-xs btn-block">Admin</a>
+									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+										<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 panel panel-warning" style="width: 130px;">
+											<a href="${pageContext.request.contextPath}/admin-to-hod/1" class="btn btn-warning btn-xs btn-block">Admin</a>
 											<div id="morris-donut-chart1" style="width: 120px; height: 120px;"></div>
 										</div>
 
-										<div class="col-lg-4 col-md-4 panel panel-warning" style="width: 130px;">
-											<a href="#" class="btn btn-info btn-xs btn-block">Accounts</a>
-											<div id="morris-donut-chart2" style="width: 120px; height: 120px;"></div>
-										</div>
-
-										<div class="col-lg-4 col-md-4 panel panel-warning" style="width: 130px;">
-											<a href="#" class="btn btn-success btn-xs btn-block">Planning</a>
+										<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 panel panel-warning" style="width: 130px;">
+											<a href="${pageContext.request.contextPath}/admin-to-hod/2" class="btn btn-success btn-xs btn-block">Planning</a>
 											<div id="morris-donut-chart3" style="width: 120px; height: 120px;"></div>
 										</div>
 
-										<div class="col-lg-4 col-md-4 panel panel-warning" style="width: 130px;">
-											<a href="#" class="btn btn-danger btn-xs btn-block">Registrar</a>
+										<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 panel panel-warning" style="width: 130px;">
+											<a href="${pageContext.request.contextPath}/admin-to-hod/3" class="btn btn-danger btn-xs btn-block">Registrar</a>
 											<div id="morris-donut-chart4" style="width: 120px; height: 120px;"></div>
 										</div>
 
+										<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 panel panel-warning" style="width: 130px;">
+											<a href="${pageContext.request.contextPath}/admin-to-hod/4" class="btn btn-success btn-xs btn-block"> Agriculture</a>
+											<div id="morris-donut-chart7" style="width: 120px; height: 120px;"></div>
+										</div>
+										
 									</div>
 								</div>
 							</div>
 						</div>
-						<!--REQUEST BLOCK SECTION -->
-						<div class="col-lg-4">
-							<div style="width: 220px;" class="panel panel-primary" id="date1"></div>
-						</div>
+
+
 					</div>
 				</div>
-
-				<!-- CALENDER +  WIDGETS  SECTION   -->
 
 				<hr />
 
 				<div class="row">
-					<div class="col-lg-12 col-md-12">
-						<div class="col-lg-4 col-md-4 panel panel-warning" style="width: 130px;">
+					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+						<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 panel panel-warning" style="width: 130px;">
+							<a href="${pageContext.request.contextPath}/admin-to-hod/5" class="btn btn-info btn-xs btn-block">Accounts</a>
+							<div id="morris-donut-chart2" style="width: 120px; height: 120px;"></div>
+						</div>
+
+						<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 panel panel-warning" style="width: 130px;">
 							<a href="#" class="btn btn-primary btn-xs btn-block">Samurdhi</a>
 							<div id="morris-donut-chart5" style="width: 120px; height: 120px;"></div>
 						</div>
 
-						<div class="col-lg-4 col-md-4 panel panel-warning" style="width: 130px;">
+						<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 panel panel-warning" style="width: 130px;">
 							<a href="#" class="btn btn-warning btn-xs btn-block"> Social Welfare</a>
 							<div id="morris-donut-chart6" style="width: 120px; height: 120px;"></div>
 						</div>
 
-						<div class="col-lg-4 col-md-4 panel panel-warning" style="width: 130px;">
-							<a href="#" class="btn btn-success btn-xs btn-block"> Agriculture</a>
-							<div id="morris-donut-chart7" style="width: 120px; height: 120px;"></div>
-						</div>
 
-						<div class="col-lg-4 col-md-4 panel panel-warning" style="width: 130px;">
+						<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 panel panel-warning" style="width: 130px;">
 							<a href="#" class="btn btn-info btn-xs btn-block"> Social Welfare</a>
 							<div id="morris-donut-chart8" style="width: 120px; height: 120px;"></div>
 						</div>
 
-						<div class="col-lg-4 col-md-4 panel panel-warning" style="width: 130px;">
+						<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 panel panel-warning" style="width: 130px;">
 							<a href="#" class="btn btn-danger btn-xs btn-block"> Social Welfare</a>
 							<div id="morris-donut-chart9" style="width: 120px; height: 120px;"></div>
 						</div>
-						<!--END DIVISION DONUT BLOCK SECTION -->
-					</div>
 
+						<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 panel panel-warning" style="width: 130px;">
+							<a href="${pageContext.request.contextPath}/admin-to-hod/5" class="btn btn-info btn-xs btn-block">Accounts</a>
+							<div id="morris-donut-chart2" style="width: 120px; height: 120px;"></div>
+						</div>
+
+
+					</div>
 				</div>
 
-				<hr />
-
+			
 				<!--START AGING BY MONTH BLOCK SECTION -->
 				<div class="row">
 					<div class="col-lg-12">
@@ -193,7 +201,8 @@
 						<div class="col-lg-6">
 							<div class="panel panel-info">
 								<div class="panel-heading">
-									<strong> Request Summary </strong> - <em class="text-muted">(by Year)</em><!--  <span class="pull-right"><small> <input
+									<strong> Request Summary </strong> - <em class="text-muted">(by Year)</em>
+									<!--  <span class="pull-right"><small> <input
 											id="dpYear1" class="form-control  datepicker dpYear" style="width: 60px; height: 20px;">
 									</small></span> -->
 
@@ -266,7 +275,7 @@
 								<div class="panel-body">
 									<div class="table-responsive">
 										<div style="height: 170px; overflow: scroll;">
-											<table id="tblLastModified" class="table table-striped table-bordered table-hover table-condensed">
+											<table id="tblLastModified"  class="table table-striped table-bordered table-hover table-condensed">
 												<thead class="alert alert-success">
 													<tr>
 														<th>Req Id</th>
@@ -366,13 +375,9 @@
 				<button class="btn btn-info btn-block">Find Request</button>
 			</div>
 
-
 		</div>
 		<!-- END RIGHT STRIP  SECTION -->
 	</div>
-
-
-
 
 	<!--END MAIN WRAPPER -->
 
@@ -390,7 +395,6 @@
 	<!-- END GLOBAL SCRIPTS -->
 
 	<!-- PAGE LEVEL SCRIPTS -->
-
 	<script src="<c:url value="/resources/plugins/morris/raphael-2.1.0.min.js"/>"></script>
 	<script src="<c:url value="/resources/plugins/morris/morris.js"/>"></script>
 	<script src="<c:url value="/resources/plugins/morris/morris-demo.js"/>"></script>
@@ -424,14 +428,13 @@
 			minViewMode : 2,
 			autoclose : true
 		});
-		
+
 		$('#dpYearBar').datepicker({
-			format : "yyyy", 
+			format : "yyyy",
 			minViewMode : 2,
 			autoclose : true
 		});
 	</script>
-
 
 </body>
 

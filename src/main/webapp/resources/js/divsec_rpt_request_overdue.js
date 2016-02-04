@@ -72,6 +72,12 @@ jQuery(function() {
 										case 5:
 											return '<span class="label label-danger">For Approval</span>';
 											break;
+										case 6:
+											return '<span class="label label-yellow">Approved</span>';
+											break;
+										case 7:
+											return '<span class="label label-maroon">Rejected</span>';
+											break;
 										}
 									}
 								}, {
@@ -118,7 +124,7 @@ jQuery(function() {
 									text : 'Refresh',
 									action : function(e, dt, node, config) {
 										dtRequest
-												.fnReloadAjax('rptrequest/loadrequest');
+												.fnReloadAjax('rptrequestoverdue/loadTrail/0/0/0');
 									}
 								} ]
 

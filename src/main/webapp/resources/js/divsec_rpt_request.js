@@ -76,6 +76,12 @@ jQuery(function() {
 										case 5:
 											return '<span class="label label-danger">For Approval</span>';
 											break;
+										case 6:
+											return '<span class="label label-yellow">Approved</span>';
+											break;
+										case 7:
+											return '<span class="label label-maroon">Rejected</span>';
+											break;
 										}
 									}
 								}, {
@@ -155,6 +161,8 @@ jQuery(function() {
 				var pubId = $("#txtIdPublicId").val();
 				var divId = $("#txtIdDivisionId").val();
 				var statusId = $("#idCmbReqStausId").val();
+
+				var idStaff = $("#idStaff").val();
 				var fromDate = $("#dpFrom").val();
 				var toDate = $("#dpTo").val();
 
@@ -183,6 +191,11 @@ jQuery(function() {
 
 				}
 
+				if (idStaff === "") {
+					idStaff = "0";
+
+				}
+
 				if (fromDate === "") {
 					fromDate = "0";
 
@@ -198,10 +211,11 @@ jQuery(function() {
 				var intPubId = parseInt(pubId);
 				var intDivId = parseInt(divId);
 				var intStausId = parseInt(statusId);
+				var intStaffId = parseInt(idStaff);
 
 				if (intReqId == 0 && intSbjId == 0 && intPubId == 0
-						&& intDivId == 0 && intStausId == 0 && fromDate === "0"
-						&& toDate === "0") {
+						&& intDivId == 0 && intStausId == 0 && intStaffId == 0
+						&& fromDate === "0" && toDate === "0") {
 
 					$("#mdlReqFilter").modal("hide")
 					dtRequest.fnReloadAjax('rptrequest/loadrequest');
@@ -209,7 +223,8 @@ jQuery(function() {
 				} else {
 					url1 = 'rptrequest/filterby/' + intReqId + '/' + intSbjId
 							+ '/' + intPubId + '/' + intDivId + '/'
-							+ intStausId + '/' + fromDate + '/' + toDate;
+							+ intStausId + '/' + intStaffId + '/' + fromDate
+							+ '/' + toDate;
 
 					alert(url1);
 

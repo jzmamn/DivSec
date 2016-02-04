@@ -1,5 +1,7 @@
 package com.aymen.controller;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -22,6 +24,9 @@ import com.aymen.entity.Staff;
 import com.aymen.entity.UserCategory;
 import com.aymen.service.UserCategoryService;
 import com.aymen.service.UserCreationService;
+import com.fasterxml.jackson.core.JsonGenerationException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Controller
 @RequestMapping(value = "/usercreation")
@@ -113,9 +118,16 @@ public class UserCreationController {
 		return this.userCreationsSVC.getSvcStaffByUserId(userName);
 	}
 
-	@RequestMapping(value = "/loadbystfId/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody List<Object> getUserByStfId(@PathVariable("id") int stfId, Model model) {
-		return this.userCreationsSVC.listStaffById(stfId);
+	@RequestMapping(value = "/load-staff-dropdown", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody String getStaffDropdown(Model model)
+			throws JsonGenerationException, JsonMappingException, IOException {
+
+		List<Object> lst = this.userCreationsSVC.listStaffForDropdown();
+		ByteArrayOutputStream out = new ByteArrayOutputStream();
+		ObjectMapper mapper = new ObjectMapper();
+		mapper.writeValue(out, lst);
+		System.out.println(out.toString());
+		return out.toString();
 	}
 
 	@ModelAttribute("roles")

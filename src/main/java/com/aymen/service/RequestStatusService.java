@@ -14,4 +14,7 @@ public interface RequestStatusService {
 	public RequestStatus getSvcRequestStatus(int id);
 
 	public void deleteSvcRequestStatus(int id);
+
+	// Load request status in the report filter
+	public String loadSvcReqStatus();
 }

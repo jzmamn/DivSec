@@ -26,4 +26,6 @@ public interface UserCreationDAO {
 
 	public void updateRole(StaffRole stfRole);
 
+	public List<Object> listStaffForDropdown(); // this is for select2
+
 }

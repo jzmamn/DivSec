@@ -98,4 +98,10 @@ public class UserCreationServiceImpl implements UserCreationService {
 		return this.userCreationDAO.listStaffById(stfId);
 	}
 
+	@Override
+	public List<Object> listStaffForDropdown() {
+		// TODO Auto-generated method stub
+		return this.userCreationDAO.listStaffForDropdown();
+	}
+
 }

@@ -41,8 +41,12 @@ public class RequestStatusServiceImpl implements RequestStatusService {
 
 	@Override
 	public void deleteSvcRequestStatus(int id) {
-		// TODO Auto-generated method stub
 
+	}
+
+	@Override
+	public String loadSvcReqStatus() {
+		return reqDao.loadReqStatus();
 	}
 
 }

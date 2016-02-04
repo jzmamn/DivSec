@@ -21,11 +21,11 @@ public interface ProcessStageService {
 
 	// For Request Report
 
-	public List<Object> filterSvcRequestStage(int rqId, int sbId, int pbId, int dvId, int stsId, String fromDate,
-			String toDate);
+	public List<Object> filterSvcRequestStage(int rqId, int sbId, int pbId, int dvId, int stsId, int staffid,
+			String fromDate, String toDate);
 
 	public List<Object> filterSvcAllRequestStage();
 
-	public List<Object> getSvcRequestStageTrail(int reqId, String fromDate, String toDate);
+	public List<Object> getSvcRequestStageTrail(int reqId, int staffId, String fromDate, String toDate);
 
 }

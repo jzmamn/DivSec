@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.aymen.entity.Request;
 import com.aymen.entity.Staff;
@@ -38,6 +39,8 @@ public class HomeController {
 	DashboardService dbs;
 
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+
+	private int divIdToHod = 0;
 
 	@RequestMapping(value = { "/", "/home" }, method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
@@ -85,7 +88,14 @@ public class HomeController {
 		model.addAttribute("maRequest", new Request());
 		Staff staff = ucs.getSvcStaffByUserId(getPrincipal());
 		model.addAttribute("stfId", staff.getStfId());
-		model.addAttribute("stfDivId", staff.getDivision().getDivId());
+
+		if (divIdToHod == 0) {
+			model.addAttribute("stfDivId", staff.getDivision().getDivId());
+		} else {
+			model.addAttribute("stfDivId", divIdToHod);
+		}
+
+		// model.addAttribute("stfDivId", staff.getDivision().getDivId());
 		model.addAttribute("stfDivName", staff.getDivision().getDivName());
 		model.addAttribute("userName", getPrincipal());
 		model.addAttribute("role", getUserRole());
@@ -103,6 +113,14 @@ public class HomeController {
 		model.addAttribute("userName", getPrincipal());
 		model.addAttribute("role", getUserRole());
 		return "dashboard_staff";
+	}
+
+	@RequestMapping(value = "/admin-to-hod/{divId}", method = RequestMethod.GET)
+	public ModelAndView staffPage(ModelMap model, @PathVariable("divId") String divId) {
+		model.addAttribute("maRequest", new Request());
+		divIdToHod = Integer.parseInt(divId);
+		return new ModelAndView("redirect:/hod");
+
 	}
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)

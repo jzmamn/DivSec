@@ -12,6 +12,8 @@ public interface RequestService {
 
 	public List<Request> listSvcRequest();
 
+	public List<Request> listSvcRequestByDivision(int divId);
+
 	public Request getSvcRequestById(int id);
 
 	public void updateSvcRequestStatus(int reqId, int statusId, boolean isVoid, String note);
@@ -22,21 +24,26 @@ public interface RequestService {
 
 	public List<Request> getSvcReqByStatus(int statusId);
 
+	public List<Request> getSvcReqByStatusByDivision(int statusId, int divId);
+
 	// SMS Area
 
 	public List<Object> getSvcSMSContent(int reqId);
 
 	// For Request Report
 
-	public List<Request> filterRequest(int rqId, int sbId, int pbId, int dvId, int stsId, String fromDate,
+	public List<Request> filterRequest(int rqId, int sbId, int pbId, int dvId, int stsId, int staffId, String fromDate,
 			String toDate);
 
 	public List<Request> filterSvcAllRequest();
 
-	public List<Object> getSvcRequestTrail(int reqId, String fromDate, String toDate);
+	public List<Object> getSvcRequestTrail(int rqId, int sbId, int pbId, int dvId, int stsId, int staffId,
+			String fromDate, String toDate);
 
 	public List<Object> getSvcOverDueRequests(int reqId, String fromDate, String toDate);
 
 	public List<Object> getDivPeriodStatus(int divId, int month, int year);
+
+	public List<Object> listSvcBatchCountByDivision(int divId);
 
 }

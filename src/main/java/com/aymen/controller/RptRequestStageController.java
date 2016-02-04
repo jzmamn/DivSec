@@ -59,12 +59,13 @@ public class RptRequestStageController {
 	}
 
 	// display the count in the batch
-	@RequestMapping(value = "/filterby/{reqId}/{sbjId}/{pubId}/{divId}/{statusId}/{fromDate}/{toDate}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(value = "/filterby/{reqId}/{sbjId}/{pubId}/{divId}/{statusId}/{staffId}/{fromDate}/{toDate}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody List<Object> filterReport(@PathVariable("reqId") int reqId, @PathVariable("sbjId") int sbjId,
 			@PathVariable("pubId") int pubId, @PathVariable("divId") int divId, @PathVariable("statusId") int statusId,
-			@PathVariable("fromDate") String fromDate, @PathVariable("toDate") String toDate) {
+			@PathVariable("staffId") int staffId, @PathVariable("fromDate") String fromDate,
+			@PathVariable("toDate") String toDate) {
 
-		return this.prcStgSvc.filterSvcRequestStage(reqId, sbjId, pubId, divId, statusId, fromDate, toDate);
+		return this.prcStgSvc.filterSvcRequestStage(reqId, sbjId, pubId, divId, statusId, staffId, fromDate, toDate);
 	}
 
 	private String getPrincipal() {

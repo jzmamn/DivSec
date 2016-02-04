@@ -87,6 +87,11 @@ public class RequestServiceImpl implements RequestService {
 	}
 
 	@Override
+	public List<Request> listSvcRequestByDivision(int divId) {
+		return this.reqDao.listSvcRequestByDivision(divId);
+	}
+
+	@Override
 	public Request getSvcRequestById(int id) {
 		return this.reqDao.getRequestById(id);
 	}
@@ -126,9 +131,14 @@ public class RequestServiceImpl implements RequestService {
 	}
 
 	@Override
-	public List<Request> filterRequest(int rqId, int sbId, int pbId, int dvId, int stsId, String fromDate,
+	public List<Request> getSvcReqByStatusByDivision(int statusId, int divId) {
+		return this.reqDao.getReqByStatusByDivision(statusId, divId);
+	}
+
+	@Override
+	public List<Request> filterRequest(int rqId, int sbId, int pbId, int dvId, int stsId, int staffId, String fromDate,
 			String toDate) {
-		return this.reqDao.filterRequest(rqId, sbId, pbId, dvId, stsId, fromDate, toDate);
+		return this.reqDao.filterRequest(rqId, sbId, pbId, dvId, stsId, staffId, fromDate, toDate);
 	}
 
 	@Override
@@ -137,8 +147,9 @@ public class RequestServiceImpl implements RequestService {
 	}
 
 	@Override
-	public List<Object> getSvcRequestTrail(int reqId, String fromDate, String toDate) {
-		return this.reqDao.getRequestTrail(reqId, fromDate, toDate);
+	public List<Object> getSvcRequestTrail(int rqId, int sbId, int pbId, int dvId, int stsId, int staffId,
+			String fromDate, String toDate) {
+		return this.reqDao.getRequestTrail(rqId, sbId, pbId, dvId, stsId, staffId, fromDate, toDate);
 	}
 
 	@Override
@@ -154,6 +165,11 @@ public class RequestServiceImpl implements RequestService {
 	@Override
 	public List<Object> getSvcSMSContent(int reqId) {
 		return this.reqDao.getSMSContent(reqId);
+	}
+
+	@Override
+	public List<Object> listSvcBatchCountByDivision(int divId) {
+		return this.reqDao.listBatchCountByDivision(divId);
 	}
 
 }

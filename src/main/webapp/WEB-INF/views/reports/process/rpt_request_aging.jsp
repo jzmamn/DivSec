@@ -14,6 +14,7 @@
 <!-- GLOBAL STYLES -->
 
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/plugins/bootstrap/css/bootstrap.css" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/plugins/bootstrap/css/colourpack.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/main.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/theme.css" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/MoneAdmin.css" />

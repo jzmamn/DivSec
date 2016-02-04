@@ -9,51 +9,84 @@ jQuery(function() {
 
 	}
 
-	$.ajax({
-		type : 'GET',
-		url : 'reqprocess/batchcount',
-		dataType : 'json',
-		success : function(data) {
-			var newReq = 0;
-			var opened = 0;
+	loadBatchCount(divId);
 
-			$.each(data, function(index, element) {
-				newReq += element.count;
-			});
+	function loadBatchCount(divId) {
+		var urlBadge = '';
+		if (role === "ROLE_STAFF" || role === "ROLE_HOD") {
+			urlBadge = 'reqprocess/batchcount/' + divId;
 
-			$.each(data, function(index, element) {
-
-				switch (element.rs_name) {
-				case "New":
-					// All pills batch number
-					$("#spnIdNew").text(newReq);
-					break;
-				case "Opened":
-					$("#spnIdOpened").text(element.count);
-					break;
-				case "Completed":
-					$("#spnIdCompleted").text(element.count);
-					break;
-				case "Closed":
-					$("#spnIdClosed").text(element.count);
-					break;
-				// case "Rejected":
-				// break;
-				case "Approved":
-					$("#spnIdApprove").text(element.count);
-					break;
-				case "ToBeApp":
-					$("#spnIdApproval").text(element.count);
-					break;
-				}
-
-				// alert(element.rs_name + ':' + index);
-			});
-		},
-		error : function(data) {
-			alert('1. aymen2 fail' + data);
+		} else {
+			urlBadge = 'reqprocess/batchcount';
 		}
-	});
+
+		$.ajax({
+			type : 'GET',
+			url : urlBadge,
+			dataType : 'json',
+			success : function(data) {
+				var newReq = 0;
+				var opened = 0;
+
+				$.each(data, function(index, element) {
+					newReq += element.count;
+				});
+
+				$.each(data, function(index, element) {
+
+					switch (element.rs_name) {
+					case "New":
+						// All pills batch number
+						$("#spnIdNew").text(newReq);
+						break;
+					case "Opened":
+						$("#spnIdOpened").text(element.count);
+						break;
+					case "Completed":
+						$("#spnIdCompleted").text(element.count);
+						break;
+					case "Closed":
+						$("#spnIdClosed").text(element.count);
+						break;
+					// case "Rejected":
+					// break;
+					case "Approved":
+						$("#spnIdApprove").text(element.count);
+						break;
+					case "ToBeApp":
+						$("#spnIdApproval").text(element.count);
+						break;
+					}
+
+					// alert(element.rs_name + ':' + index);
+				});
+			},
+			error : function(data) {
+				alert('1. aymen2 fail' + data);
+			}
+		});
+	}
+
+	function filterReqByStatus(statusId, divisionId) {
+		var url = '';
+		if (role === "ROLE_STAFF" || role === "ROLE_HOD") {
+			url = 'reqprocess/status/' + statusId + '/' + divId;
+			dtRequest.fnReloadAjax(url)
+
+		} else {
+			url = 'reqprocess/status/' + statusId;
+			dtRequest.fnReloadAjax(url)
+		}
+
+	}
+
+	var urlReq = '';
+	if (role === "ROLE_STAFF" || role === "ROLE_HOD") {
+		urlReq = 'reqprocess/loadrequest/' + divId;
+
+	} else {
+		urlReq = 'reqprocess/loadrequest';
+	}
 
 	var dtRequest = $('#dtTable')
 			.dataTable(
@@ -63,7 +96,7 @@ jQuery(function() {
 
 						// Load table using JSON data by ajax
 						"ajax" : {
-							"url" : "reqprocess/loadrequest",
+							"url" : urlReq,
 							"dataSrc" : ""
 						},
 
@@ -131,6 +164,12 @@ jQuery(function() {
 											break;
 										case 5:
 											return '<span class="label label-danger">For Approval</span>';
+											break;
+										case 6:
+											return '<span class="label label-yellow">Approved</span>';
+											break;
+										case 7:
+											return '<span class="label label-maroon">Rejected</span>';
 											break;
 										}
 									}
@@ -367,17 +406,39 @@ jQuery(function() {
 	// PublicId,Status and void can be updated manually
 
 	$('#dtTable tbody').on('click', 'tr', function(e) {
-		$("#frmProcessRequest").show({});
-		$('#tblProcessRequest').hide({});
+		// /*$("#frmProcessRequest").show({});
+		// $('#tblProcessRequest').hide({});*/
+
+		// inactivate the status dropdown for staffs when the status is
+		// "Rejected"
 
 		var aPos = dtRequest.fnGetPosition(this);
 		var reqId = dtRequest.fnGetData(aPos, 0);
+
+		if (role === "ROLE_STAFF" && dtRequest.fnGetData(aPos, 1) == 7) {
+			$('#cmdIdReqStatus').hide();
+			alert('The Status is Rejected. This can be seen by admin');
+		} else {
+			$('#cmdIdReqStatus').show();
+			$("#frmProcessRequest").show({});
+			$('#tblProcessRequest').hide({});
+		}
 
 		$('#spnReqId').text(dtRequest.fnGetData(aPos, 0));
 		$('#txtIdReqId').val(dtRequest.fnGetData(aPos, 0));
 
 		$('#idCmbReqStausId').val(dtRequest.fnGetData(aPos, 1));
 		$('#cmdIdReqStatus').val(dtRequest.fnGetData(aPos, 2));
+
+		// // inactivate the status dropdown for staffs when the status is
+		// // "Rejected"
+		//
+		// if (role === "ROLE_STAFF" && dtRequest.fnGetData(aPos, 1) == 7) {
+		// $('#cmdIdReqStatus').hide();
+		// alert('hidden');
+		// } else {
+		// $('#cmdIdReqStatus').show();
+		// }
 
 		$('#spnSbjId').text(dtRequest.fnGetData(aPos, 3));
 		$('#spnSbj').text(dtRequest.fnGetData(aPos, 4));
@@ -434,72 +495,45 @@ jQuery(function() {
 	$("#idAll").click(function() {
 		$("#frmProcessRequest").hide({});
 		$('#tblProcessRequest').show({});
-		dtRequest.fnReloadAjax('reqprocess/loadrequest');
+		dtRequest.fnReloadAjax(urlReq);
+		loadBatchCount(divId);
 	});
 
 	$("#idApprove").click(function() {
 		$("#frmProcessRequest").hide({});
 		$('#tblProcessRequest').show({});
-		dtRequest.fnReloadAjax('reqprocess/status/6');
+		filterReqByStatus(6, divId)
+		loadBatchCount(divId);
 	});
 
 	$("#idOpened").click(function() {
 		$("#frmProcessRequest").hide({});
 		$('#tblProcessRequest').show({});
-		dtRequest.fnReloadAjax('reqprocess/status/2');
+		filterReqByStatus(2, divId)
+		loadBatchCount(divId);
 	});
 
 	$("#idApproval").click(function() {
 		$("#frmProcessRequest").hide({});
 		$('#tblProcessRequest').show({});
-		dtRequest.fnReloadAjax('reqprocess/status/5');
+		filterReqByStatus(5, divId)
+		loadBatchCount(divId);
 	});
 
 	$("#idCompleted").click(function() {
 		$("#frmProcessRequest").hide({});
 		$('#tblProcessRequest').show({});
-		dtRequest.fnReloadAjax('reqprocess/status/3');
+		filterReqByStatus(3, divId)
+		loadBatchCount(divId);
 	});
 
 	$("#idClosed").click(function() {
 		$("#frmProcessRequest").hide({});
 		$('#tblProcessRequest').show({});
-		dtRequest.fnReloadAjax('reqprocess/status/4');
+		filterReqByStatus(4, divId)
+		loadBatchCount(divId);
 
 	});
-
-	// var $select = $('#people');
-	// // request the JSON data and parse into the select element
-	// $.ajax({
-	// url : 'request_status_stages.JSON',
-	// dataType : 'JSON',
-	// success : function(data) {
-	// // clear the current content of the select
-	// $select.html('');
-	// // iterate over the data and append a select option
-	// $.each(data, function(key, val) {
-	// $select.append('<option id="' + val.id + '">' + val.name
-	// + '</option>');
-	// })
-	// },
-	// error : function() {
-	// // if there is an error append a 'none available' option
-	// $select.html('<option id="-1">none available</option>');
-	// }
-	// });
-
-	// $select.change(function() {
-	// var str1 = "";
-	// var str2 = "";
-	// str1 = $(this).children(":selected").attr("id");
-	//
-	// $("select option:selected").each(function() {
-	// str2 = $(this).text() + " ";
-	// $("#id").text(str1);
-	// $("#name").text(str2);
-	// });
-	//
-	// }).trigger("change");
 
 	var $select1 = $('#cmdIdReqStatus');
 
@@ -604,6 +638,7 @@ jQuery(function() {
 						dtRequest.fnReloadAjax('reqprocess/loadrequest');
 						$("#frmProcessRequest").hide({});
 						$('#tblProcessRequest').show({});
+						loadBatchCount();
 					},
 					error : function(data) {
 						alert('2. aymen2 fail' + data);
@@ -638,6 +673,7 @@ jQuery(function() {
 						dtStage
 								.fnReloadAjax('processstg/loadreqstage/'
 										+ reqId);
+						loadBatchCount();
 					},
 					error : function(data) {
 						alert('fail ' + data);

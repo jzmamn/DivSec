@@ -1,7 +1,11 @@
 package com.aymen.dao;
 
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.util.List;
 
+import org.hibernate.Criteria;
+import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
@@ -10,6 +14,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.aymen.entity.RequestStatus;
+import com.fasterxml.jackson.core.JsonGenerationException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Repository
 public class RequestStatusDAOImpl implements RequestStatusDAO {
@@ -60,6 +67,38 @@ public class RequestStatusDAOImpl implements RequestStatusDAO {
 	@Override
 	public void deleteRequestStatus(int id) {
 		// TODO Auto-generated method stub
+
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public String loadReqStatus() {
+		String strQry = "select rs_id id, rs_name `text` from request_status";
+		Session session = this.sessionFactory.getCurrentSession();
+
+		SQLQuery query = session.createSQLQuery(strQry);
+		query.setResultTransformer(Criteria.ALIAS_TO_ENTITY_MAP);
+
+		List<Object> lst = query.list();
+		ByteArrayOutputStream out = new ByteArrayOutputStream();
+		ObjectMapper mapper = new ObjectMapper();
+		try {
+			mapper.writeValue(out, lst);
+			System.out.println(out.toString());
+			return out.toString();
+		} catch (JsonGenerationException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return "JsonGenerationException" + e.toString();
+		} catch (JsonMappingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return "JsonMappingException" + e.toString();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return "IOException" + e.toString();
+		}
 
 	}
 

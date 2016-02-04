@@ -1,7 +1,7 @@
 
 <!-- MENU SECTION -->
 <div id="left">
-	<div class="media user-media well-small">
+	<%-- <div class="media user-media well-small">
 		<a class="user-link" href="#"> <img class="media-object img-thumbnail user-img" alt="User Picture" src="assets/img/user.gif" />
 		</a> <br />
 		<div class="media-body">
@@ -13,6 +13,12 @@
 			</ul> -->
 		</div>
 		<br />
+	</div> --%>
+
+	<div id="divIdUserName" class="media-heading">
+		<div>
+			<h4 class="text-info">${userName}</h4>
+		</div>
 	</div>
 	<ul id="menu" class="collapse">
 		<!-- Dashboard -->
@@ -38,9 +44,8 @@
 						<li class=""><a href="${pageContext.request.contextPath}/rptrequest"><i class="icon-angle-right"></i> Request </a></li>
 						<li class=""><a href="${pageContext.request.contextPath}/rptrequeststage"><i class="icon-angle-right"></i> Request Stage </a></li>
 						<li class=""><a href="${pageContext.request.contextPath}/rptrequestoverdue"><i class="icon-angle-right"></i> Request Overdue</a></li>
-						<li class=""><a href="${pageContext.request.contextPath}/divperstatus"><i class="icon-angle-right"></i> Division-Period-Status
-						
-						</a></li>
+						<li class=""><a href="${pageContext.request.contextPath}/divperstatus"><i class="icon-angle-right"></i>
+								Division-Period-Status </a></li>
 					</ul></li>
 
 				<li><a href="#" data-parent="#DDL-nav" data-toggle="collapse" class="accordion-toggle" data-target="#DDL2-nav"> <i
@@ -75,7 +80,7 @@
 			<ul class="collapse" id="process-nav">
 				<li class=""><a href="${pageContext.request.contextPath}/public"><i class="icon-angle-right"></i> Public Details </a></li>
 				<li class=""><a href="${pageContext.request.contextPath}/reqprocess"><i class="icon-angle-right"></i> Request Processing </a></li>
-				<li class=""><a href="${pageContext.request.contextPath}/ticket"><i class="icon-angle-right"></i> Ticket </a></li>
+				<%-- <li class=""><a href="${pageContext.request.contextPath}/ticket"><i class="icon-angle-right"></i> Ticket </a></li> --%>
 			</ul></li>
 		<!-- Process -->
 
@@ -99,7 +104,7 @@
 	</ul>
 
 	<div>
-			<div id="divIdDvsnId">${stfDivId}</div>
+		<div id="divIdDvsnId">${stfDivId}</div>
 	</div>
 
 </div>
