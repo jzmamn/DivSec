@@ -66,9 +66,10 @@
 				<div class="row">
 					<div class="col-lg-12">
 						<ol class="breadcrumb">
-							<li><a href="#">Home</a></li>
-							<li><a href="#">Library</a></li>
-							<li class="active">Data</li>
+							<li><a href="${pageContext.request.contextPath}/getDashboard">Home</a></li>
+							<li class="active">Report</li>
+							<li class="active">List</li>
+							<li class="active">Public Report</li>
 						</ol>
 					</div>
 				</div>
@@ -83,7 +84,7 @@
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="panel panel-default">
-							
+
 							<div class="panel-body">
 								<div class="table-responsive">
 									<table class="table table-striped table-bordered table-hover table-condensed" id="dtDivision">
@@ -103,7 +104,7 @@
 				</div>
 
 
-			
+
 			</div>
 			<!--End of Inner  -->
 		</div>

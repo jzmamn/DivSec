@@ -8,7 +8,7 @@
 <!-- BEGIN HEAD -->
 <head>
 <meta charset="UTF-8" />
-<title>BCORE Admin Dashboard Template | Error 403</title>
+<title>DivSec | Error 403</title>
 <meta content="width=device-width, initial-scale=1.0" name="viewport" />
 <meta content="" name="description" />
 <meta content="" name="author" />
@@ -55,8 +55,8 @@
 			<br />
 			<div class="col-lg-6  col-lg-offset-3">
 				<div class="btn-group btn-group-justified">
-					<a href="index.html" class="btn btn-primary">Return Dashboard</a> <a
-						href="index.html" class="btn btn-success">Return Website</a>
+					<%-- <a href="${pageContext.request.contextPath}/getDashboard">"class="btn btn-primary">Return Dashboard</a> <a
+						href="index.html" class="btn btn-success">Return Website</a> --%>
 				</div>
 
 			</div>

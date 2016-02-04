@@ -66,8 +66,8 @@
 				<div class="row">
 					<div class="col-lg-12">
 						<ol class="breadcrumb">
-							<li><a href="#">Home</a></li>
-							<li><a href="#">Process</a></li>
+							<li><a href="${pageContext.request.contextPath}/getDashboard">Home</a></li>
+							<li>Process</li>
 							<li class="active">Public Detail</li>
 						</ol>
 					</div>

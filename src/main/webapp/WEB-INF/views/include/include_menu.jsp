@@ -49,7 +49,7 @@
 					</ul></li>
 
 				<li><a href="#" data-parent="#DDL-nav" data-toggle="collapse" class="accordion-toggle" data-target="#DDL2-nav"> <i
-						class="icon-sitemap"></i>&nbsp; Trail <span class="pull-right" style="margin-right: 20px;"> <i class="icon-angle-left"></i>
+						class="icon-sitemap"></i>&nbsp; Audit Trail <span class="pull-right" style="margin-right: 20px;"> <i class="icon-angle-left"></i>
 					</span>
 				</a>
 					<ul class="collapse" id="DDL2-nav">

@@ -23,9 +23,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.aymen.entity.Division;
 import com.aymen.entity.Request;
 import com.aymen.entity.Staff;
 import com.aymen.service.DashboardService;
+import com.aymen.service.DivisionService;
 import com.aymen.service.UserCreationService;
 
 @Controller
@@ -38,9 +40,13 @@ public class HomeController {
 	@Autowired
 	DashboardService dbs;
 
+	@Autowired
+	DivisionService divSvc;
+
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 
 	private int divIdToHod = 0;
+	private String adminToHodDivision;
 
 	@RequestMapping(value = { "/", "/home" }, method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
@@ -85,6 +91,8 @@ public class HomeController {
 
 	@RequestMapping(value = "/hod", method = RequestMethod.GET)
 	public String hodPage(ModelMap model) {
+		String role = getUserRole();
+
 		model.addAttribute("maRequest", new Request());
 		Staff staff = ucs.getSvcStaffByUserId(getPrincipal());
 		model.addAttribute("stfId", staff.getStfId());
@@ -97,6 +105,11 @@ public class HomeController {
 
 		// model.addAttribute("stfDivId", staff.getDivision().getDivId());
 		model.addAttribute("stfDivName", staff.getDivision().getDivName());
+
+		if (role.equals("ROLE_ADMIN")) {
+			model.addAttribute("stfDivName", adminToHodDivision);
+
+		}
 		model.addAttribute("userName", getPrincipal());
 		model.addAttribute("role", getUserRole());
 		return "dashboard_hod";
@@ -118,7 +131,10 @@ public class HomeController {
 	@RequestMapping(value = "/admin-to-hod/{divId}", method = RequestMethod.GET)
 	public ModelAndView staffPage(ModelMap model, @PathVariable("divId") String divId) {
 		model.addAttribute("maRequest", new Request());
+		Division div = divSvc.getSvcDivisionById(Integer.parseInt(divId));
 		divIdToHod = Integer.parseInt(divId);
+		adminToHodDivision = div.getDivName();
+		model.addAttribute("stfDivId", divId);
 		return new ModelAndView("redirect:/hod");
 
 	}
