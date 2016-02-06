@@ -159,7 +159,7 @@
 																		<label for="idGender" class="control-label">Gender</label> <select class="form-control" id="idGender">
 																		</select>
 																		<div id="genderId"></div>
-																		<form:input path="piGender" type="text" id="genderName" name="txtGenderName" class="form-control" placeholder="gender"
+																		<form:input path="piGender" type="hidden" id="genderName" name="txtGenderName" class="form-control" placeholder="gender"
 																			required="true" />
 																	</div>
 																</div>
@@ -178,9 +178,9 @@
 																	<div class="form-group">
 																		<label for="notificationId" class="control-label">Notification</label> <select class="form-control" id="idNotification">
 																		</select>
-																		<form:input path="notification.ntnId" type="text" id="notificationId" name="txtNtnId" class="form-control"
+																		<form:input path="notification.ntnId" type="hidden" id="notificationId" name="txtNtnId" class="form-control"
 																			placeholder="nfnId" required="true" />
-																		<input type="text" id="notificationName" type="text" name="txtNtnName" class="form-control" placeholder="nfnName" />
+																		<input type="hidden" id="notificationName"  name="txtNtnName" class="form-control" placeholder="nfnName" />
 																	</div>
 																</div>
 															</div>
@@ -266,7 +266,7 @@
 																<div class="col-lg-3"></div>
 																<div class="col-lg-3">
 																	<div class="form-group ">
-																		<form:input path="piUserId" value="${stfId}" id="txtIdUid" name="txtUid" class="form-control" placeholder="UserId" />
+																		<form:input type="hidden" path="piUserId" value="${stfId}" id="txtIdUid" name="txtUid" class="form-control" placeholder="UserId" />
 																	</div>
 																</div>
 															</div>

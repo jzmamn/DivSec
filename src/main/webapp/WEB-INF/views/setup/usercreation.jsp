@@ -151,7 +151,7 @@
 													<i class="icon-search"></i>
 												</button>
 											</span>
-											<form:input path="division.divId" type="text" class="form-control" id="txtIdDivisionId" name="txtDivisionId" readonly="true"
+											<form:input path="division.divId" type="hidden" class="form-control" id="txtIdDivisionId" name="txtDivisionId" readonly="true"
 												required="true" />
 										</div>
 
@@ -163,7 +163,7 @@
 													<i class="icon-search"></i>
 												</button>
 											</span>
-											<form:input path="stfCategoryId" type="text" class="form-control" id="txtIdCatId" name="txtCatId" readonly="true" required="true" />
+											<form:input path="stfCategoryId" type="hidden" class="form-control" id="txtIdCatId" name="txtCatId" readonly="true" required="true" />
 
 											<%-- <form:select path="userCategories" items="${roles}" multiple="true" itemValue="catId" itemLabel="catName" class="form-control input-sm" /> --%>
 										</div>

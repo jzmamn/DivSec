@@ -1,8 +1,8 @@
 
 <!-- MENU SECTION -->
 <div id="left">
-	<%-- <div class="media user-media well-small">
-		<a class="user-link" href="#"> <img class="media-object img-thumbnail user-img" alt="User Picture" src="assets/img/user.gif" />
+	 <div class="media user-media well-small">
+		<%-- <a class="user-link" href="#"> <img class="media-object img-thumbnail user-img" alt="User Picture" src="assets/img/user.gif" />
 		</a> <br />
 		<div class="media-body">
 			<div id="divIdUserName" class="media-heading">${userName}</div>
@@ -13,24 +13,34 @@
 			</ul> -->
 		</div>
 		<br />
-	</div> --%>
+		 --%>
+	</div>
 
 	<div id="divIdUserName" class="media-heading">
-		<div>
-			<h4 class="text-info">${userName}</h4>
-		</div>
+		<div></div>
+
 	</div>
 	<ul id="menu" class="collapse">
 		<!-- Dashboard -->
-		<li class="panel active"><a href="${pageContext.request.contextPath}/getDashboard" id="index"> <i class="icon-table"></i>
+		<li class="panel active"><a href="${pageContext.request.contextPath}/getDashboard" id="index"> <i class="icon-dashboard"></i>
 				Dashboard
 		</a></li>
 		<!-- Dashboard -->
 
+		<!-- Process -->
+		<li class="panel "><a href="#" data-parent="#menu" data-toggle="collapse" class="accordion-toggle collapsed"
+			data-target="#process-nav"> <i class="icon-cog"></i> Process <span class="pull-right"> <i class="icon-angle-left"></i> <!-- 			</span> &nbsp; <span class="label label-success">5</span>&nbsp; --></a>
+			<ul class="collapse" id="process-nav">
+				<li class=""><a href="${pageContext.request.contextPath}/public"><i class="icon-angle-right"></i> Public Details </a></li>
+				<li class=""><a href="${pageContext.request.contextPath}/reqprocess"><i class="icon-angle-right"></i> Request Processing </a></li>
+				<%-- <li class=""><a href="${pageContext.request.contextPath}/ticket"><i class="icon-angle-right"></i> Ticket </a></li> --%>
+			</ul></li>
+		<!-- Process -->
+
 
 		<!-- Quick View -->
 		<li class="panel"><a href="#" data-parent="#menu" data-toggle="collapse" class="accordion-toggle" data-target="#DDL-nav"> <i
-				class=" icon-sitemap"></i> Reports <span class="pull-right"> <i class="icon-angle-left"></i>
+				class=" icon-bar-chart"></i> Reports <span class="pull-right"> <i class="icon-angle-left"></i>
 			</span>
 		</a>
 
@@ -58,7 +68,6 @@
 								Trail </a></li>
 					</ul></li>
 
-
 				<li><a href="#" data-parent="#DDL-nav" data-toggle="collapse" class="accordion-toggle" data-target="#DDL3-nav"> <i
 						class="icon-sitemap"></i>&nbsp; Setup <span class="pull-right" style="margin-right: 20px;"> <i class="icon-angle-left"></i>
 					</span>
@@ -74,20 +83,11 @@
 			</ul></li>
 		<!-- Quick View -->
 
-		<!-- Process -->
-		<li class="panel "><a href="#" data-parent="#menu" data-toggle="collapse" class="accordion-toggle collapsed"
-			data-target="#process-nav"> <i class="icon-pencil"></i> Process <span class="pull-right"> <i class="icon-angle-left"></i> <!-- 			</span> &nbsp; <span class="label label-success">5</span>&nbsp; --></a>
-			<ul class="collapse" id="process-nav">
-				<li class=""><a href="${pageContext.request.contextPath}/public"><i class="icon-angle-right"></i> Public Details </a></li>
-				<li class=""><a href="${pageContext.request.contextPath}/reqprocess"><i class="icon-angle-right"></i> Request Processing </a></li>
-				<%-- <li class=""><a href="${pageContext.request.contextPath}/ticket"><i class="icon-angle-right"></i> Ticket </a></li> --%>
-			</ul></li>
-		<!-- Process -->
 
 
 		<!-- Charts -->
 		<li class="panel"><a href="#" data-parent="#menu" data-toggle="collapse" class="accordion-toggle" data-target="#admin-nav"> <i
-				class="icon-table"></i> Setup <span class="pull-right"> <i class="icon-angle-left"></i> <!-- 			</span> &nbsp; <span class="label label-info">6</span>&nbsp; --></a>
+				class="icon-wrench"></i> Setup <span class="pull-right"> <i class="icon-angle-left"></i> <!-- 			</span> &nbsp; <span class="label label-info">6</span>&nbsp; --></a>
 			<ul class="collapse" id="admin-nav">
 				<%-- 			<li><a href="${pageContext.request.contextPath}/mainmenu/main/50"><i class="icon-angle-right"></i> Preference </a></li> --%>
 				<li><a href="${pageContext.request.contextPath}/usercreation"><i class="icon-angle-right"></i> User Creation </a></li>
@@ -102,10 +102,6 @@
 			</ul></li>
 
 	</ul>
-
-	<div>
-		<div id="divIdDvsnId">${stfDivId}</div>
-	</div>
 
 </div>
 <!--END MENU SECTION -->

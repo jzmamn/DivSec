@@ -62,6 +62,7 @@ public class HomeController {
 
 		Staff staff = ucs.getSvcStaffByUserId(getPrincipal());
 		model.addAttribute("stfId", staff.getStfId());
+		model.addAttribute("stfName", staff.getStfName());
 		model.addAttribute("stfDivId", staff.getDivision().getDivId());
 		model.addAttribute("stfDivName", staff.getDivision().getDivName());
 		model.addAttribute("userName", getPrincipal());
@@ -82,6 +83,7 @@ public class HomeController {
 
 		Staff staff = ucs.getSvcStaffByUserId(getPrincipal());
 		model.addAttribute("stfId", staff.getStfId());
+		model.addAttribute("stfName", staff.getStfName());
 		model.addAttribute("stfDivId", staff.getDivision().getDivId());
 		model.addAttribute("stfDivName", staff.getDivision().getDivName());
 		model.addAttribute("userName", getPrincipal());
@@ -96,7 +98,7 @@ public class HomeController {
 		model.addAttribute("maRequest", new Request());
 		Staff staff = ucs.getSvcStaffByUserId(getPrincipal());
 		model.addAttribute("stfId", staff.getStfId());
-
+		model.addAttribute("stfName", staff.getStfName());
 		if (divIdToHod == 0) {
 			model.addAttribute("stfDivId", staff.getDivision().getDivId());
 		} else {
@@ -121,6 +123,7 @@ public class HomeController {
 
 		Staff staff = ucs.getSvcStaffByUserId(getPrincipal());
 		model.addAttribute("stfId", staff.getStfId());
+		model.addAttribute("stfName", staff.getStfName());
 		model.addAttribute("stfDivId", staff.getDivision().getDivId());
 		model.addAttribute("stfDivName", staff.getDivision().getDivName());
 		model.addAttribute("userName", getPrincipal());

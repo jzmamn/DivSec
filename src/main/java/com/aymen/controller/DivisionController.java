@@ -19,7 +19,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.aymen.entity.Division;
+import com.aymen.entity.Staff;
 import com.aymen.service.DivisionService;
+import com.aymen.service.UserCreationService;
 
 @Controller
 @RequestMapping(value = "/division")
@@ -30,12 +32,21 @@ public class DivisionController {
 	@Autowired
 	DivisionService divisionSvc;
 
+	@Autowired
+	UserCreationService ucs;
+
 	// This method is called just before the division.jsp file is loading on the
 	// browser.
 	@RequestMapping(method = RequestMethod.GET)
 	public String home(@ModelAttribute("maDivision") Division division, ModelMap model) {
 		logger.info("Welcome home! The client locale is {}.", division);
-		model.addAttribute("user", getPrincipal());
+		Staff staff = ucs.getSvcStaffByUserId(getPrincipal());
+		model.addAttribute("stfId", staff.getStfId());
+		model.addAttribute("stfName", staff.getStfName());
+		model.addAttribute("stfDivId", staff.getDivision().getDivId());
+		model.addAttribute("stfDivName", staff.getDivision().getDivName());
+		model.addAttribute("userName", getPrincipal());
+		model.addAttribute("role", getUserRole());
 		model.addAttribute("cmdDivision", new Division());
 		return "setup/division";
 	}
@@ -106,6 +117,21 @@ public class DivisionController {
 			userName = principal.toString();
 		}
 		return userName;
+	}
+
+	private String getUserRole() {
+		String userRole = null;
+		Object role = SecurityContextHolder.getContext().getAuthentication().getAuthorities();
+
+		if (role instanceof UserDetails) {
+			userRole = ((UserDetails) role).getAuthorities().toString();
+		} else {
+			userRole = role.toString();
+		}
+
+		userRole = userRole.replace("[", "");
+		userRole = userRole.replace("]", "");
+		return userRole;
 	}
 
 }

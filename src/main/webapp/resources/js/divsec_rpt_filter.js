@@ -123,7 +123,7 @@ jQuery(function() {
 		dataType : 'JSON',
 		success : function(res) {
 			$("#cmdIdReqStatus").select2({
-				placeholder : "Select a staff",
+				placeholder : "Select a Stauts",
 				allowClear : true,
 				data : res
 			});

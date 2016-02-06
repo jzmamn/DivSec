@@ -36,14 +36,19 @@ public class UserCreationController {
 	UserCreationService userCreationsSVC;
 
 	@Autowired
-	UserCategoryService ucs;
+	UserCategoryService ucats;
 
 	private static final Logger logger = LoggerFactory.getLogger(UserCreationController.class);
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String init(@ModelAttribute("maStaff") Staff staff, ModelMap model) {
 		logger.info("Welcome home! The client locale is {}.", staff);
-		model.addAttribute("user", getPrincipal());
+		Staff stf = userCreationsSVC.getSvcStaffByUserId(getPrincipal());
+		model.addAttribute("stfId", stf.getStfId());
+		model.addAttribute("stfDivId", stf.getDivision().getDivId());
+		model.addAttribute("stfDivName", stf.getDivision().getDivName());
+		model.addAttribute("userName", getPrincipal());
+		model.addAttribute("role", getUserRole());
 		model.addAttribute("cmdUserCreation", new Staff());
 		return "setup/usercreation";
 	}
@@ -132,7 +137,7 @@ public class UserCreationController {
 
 	@ModelAttribute("roles")
 	public List<UserCategory> initializeProfiles() {
-		return ucs.listSvcUserCat();
+		return ucats.listSvcUserCat();
 	}
 
 	private String getPrincipal() {
@@ -147,4 +152,18 @@ public class UserCreationController {
 		return userName;
 	}
 
+	private String getUserRole() {
+		String userRole = null;
+		Object role = SecurityContextHolder.getContext().getAuthentication().getAuthorities();
+
+		if (role instanceof UserDetails) {
+			userRole = ((UserDetails) role).getAuthorities().toString();
+		} else {
+			userRole = role.toString();
+		}
+
+		userRole = userRole.replace("[", "");
+		userRole = userRole.replace("]", "");
+		return userRole;
+	}
 }

@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.aymen.entity.Staff;
 import com.aymen.service.RequestService;
+import com.aymen.service.UserCreationService;
 
 @Controller
 @RequestMapping(value = "/rptrequesttrail")
@@ -26,12 +28,20 @@ public class RptRequestTrailController {
 	@Autowired
 	RequestService reqSvc;
 
+	@Autowired
+	UserCreationService ucs;
+
 	// This method is called just before the division.jsp file is loading on the
 	// browser.
 	@RequestMapping(method = RequestMethod.GET)
 	public String home(ModelMap model) {
 		logger.info("Welcome home! The client locale is {}.");
-		model.addAttribute("user", getPrincipal());
+		Staff staff = ucs.getSvcStaffByUserId(getPrincipal());
+		model.addAttribute("stfId", staff.getStfId());
+		model.addAttribute("stfDivId", staff.getDivision().getDivId());
+		model.addAttribute("stfDivName", staff.getDivision().getDivName());
+		model.addAttribute("userName", getPrincipal());
+		model.addAttribute("role", getUserRole());
 		return "reports/trail/rpt_request_trail";
 	}
 
@@ -55,6 +65,21 @@ public class RptRequestTrailController {
 			userName = principal.toString();
 		}
 		return userName;
+	}
+
+	private String getUserRole() {
+		String userRole = null;
+		Object role = SecurityContextHolder.getContext().getAuthentication().getAuthorities();
+
+		if (role instanceof UserDetails) {
+			userRole = ((UserDetails) role).getAuthorities().toString();
+		} else {
+			userRole = role.toString();
+		}
+
+		userRole = userRole.replace("[", "");
+		userRole = userRole.replace("]", "");
+		return userRole;
 	}
 
 }

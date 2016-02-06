@@ -11,23 +11,23 @@ var dt = $('#dtStaff').dataTable({
 	},
 
 	"columns" : [ {
-		"data" : "stfId"
+		"data" : "stf_id"
 	}, {
-		"data" : "stfName"
+		"data" : "stf_name"
 	}, {
-		"data" : "division.divId"
+		"data" : "stf_dvision_id"
 	}, {
-		"data" : "division.divName"
+		"data" : "div_name"
 	}, {
-		"data" : "stfUserId"
+		"data" : "stf_user_id"
 	}, {
-		"data" : "stfEmail"
+		"data" : "stf_email"
 	}, {
-		"data" : "stfMobile"
+		"data" : "stf_mobile"
 	}, {
-		"data" : "stfNote"
+		"data" : "stf_note"
 	}, {
-		"data" : "stfActive"
+		"data" : "stf_active"
 	}
 
 	],

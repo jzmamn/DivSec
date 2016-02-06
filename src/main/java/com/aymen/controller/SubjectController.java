@@ -18,8 +18,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.aymen.entity.Staff;
 import com.aymen.entity.Subject;
 import com.aymen.service.SubjectService;
+import com.aymen.service.UserCreationService;
 
 @Controller
 @RequestMapping(value = "/subject")
@@ -29,10 +31,17 @@ public class SubjectController {
 	@Autowired
 	SubjectService subjectSvc;
 
+	@Autowired
+	UserCreationService ucs;
+
 	@RequestMapping(method = RequestMethod.GET)
 	public String home(@ModelAttribute("maSubject") Subject subject, ModelMap model) {
-		logger.info("Welcome home! The client locale is {}.", subject);
-		model.addAttribute("user", getPrincipal());
+		Staff staff = ucs.getSvcStaffByUserId(getPrincipal());
+		model.addAttribute("stfId", staff.getStfId());
+		model.addAttribute("stfDivId", staff.getDivision().getDivId());
+		model.addAttribute("stfDivName", staff.getDivision().getDivName());
+		model.addAttribute("userName", getPrincipal());
+		model.addAttribute("role", getUserRole());
 		model.addAttribute("cmdSubject", new Subject());
 		return "setup/subject";
 	}
@@ -113,6 +122,21 @@ public class SubjectController {
 			userName = principal.toString();
 		}
 		return userName;
+	}
+
+	private String getUserRole() {
+		String userRole = null;
+		Object role = SecurityContextHolder.getContext().getAuthentication().getAuthorities();
+
+		if (role instanceof UserDetails) {
+			userRole = ((UserDetails) role).getAuthorities().toString();
+		} else {
+			userRole = role.toString();
+		}
+
+		userRole = userRole.replace("[", "");
+		userRole = userRole.replace("]", "");
+		return userRole;
 	}
 
 }

@@ -1,7 +1,7 @@
 
 <!--Report Filter Modal -->
 <div class="col-lg-12">
-	<div class="modal fade" id="mdlReqFilter"  role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">
+	<div class="modal fade" id="mdlReqFilter" role="dialog" aria-labelledby="myModalLabel" aria-hidden="false">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -17,7 +17,7 @@
 									<input type="text" id="idTxtRequest" name="txtRequest" class="form-control" placeholder="Request Id" />
 								</div>
 								<div class="col-lg-6">
-									<input type="text" id="txtIdSbjId" name="txtSbjId" />
+									<input type="hidden" id="txtIdSbjId" name="txtSbjId" />
 									<div class="form-group input-group">
 										<input type="text" id="txtIdSbjName" name="txtSbjName" class="form-control" placeholder="Subject Code" /> <span
 											class="input-group-btn">
@@ -26,7 +26,6 @@
 											</button>
 										</span>
 									</div>
-
 								</div>
 							</div>
 						</div>
@@ -35,7 +34,7 @@
 						<div class="row">
 							<div class="col-lg-12">
 								<div class="col-lg-6">
-									<input type="text" id="txtIdPublicId" name="txtPublicId" />
+									<input type="hidden" id="txtIdPublicId" name="txtPublicId" />
 									<div class="form-group input-group">
 										<input type="text" class="form-control" id="txtIdPublicName" name="txtPublicName" placeholder="Public Id" /> <span
 											class="input-group-btn">
@@ -47,7 +46,7 @@
 								</div>
 
 								<div class="col-lg-6">
-									<input type="text" id="txtIdDivisionId" name="txtDivisionId" />
+									<input type="hidden" id="txtIdDivisionId" name="txtDivisionId" />
 									<div class="form-group input-group">
 										<input type="text" class="form-control" id="txtIdDivision" name="txtDivision" placeholder="Division" /> <span
 											class="input-group-btn">
@@ -64,18 +63,19 @@
 							<div class="col-lg-12">
 								<div class="col-lg-6">
 									<div>
-									<select id="cmdIdReqStatus" class="form-control" style="width: 250px;">
-										</select> <input type="text" id="idCmbReqStausId" name="txtStatusId" />
+										<select id="cmdIdReqStatus" class="form-control" style="width: 250px;">
+										</select> <input type="hidden" id="idCmbReqStausId" name="txtStatusId" />
 									</div>
 								</div>
 								<div class="col-lg-6">
 									<select id="selStaff" class="form-control" style="width: 250px;">
-									</select> <input id="idStaff" type="text" />
+									</select> <input id="idStaff" type="hidden" />
 
 								</div>
 							</div>
 						</div>
 
+						<br />
 						<div class="row">
 							<div class="col-lg-12">
 								<div class="col-lg-12">
@@ -89,13 +89,16 @@
 						<div class="modal-footer">
 							<div class="col-lg-4">
 								<button type="button" id="btnIdApplyFilter" class="btn btn-success btn-block">
-
 									<i class="icon-filter icon-white"></i> Apply Filter
 								</button>
 							</div>
-							<div class="col-lg-4"></div>
 							<div class="col-lg-4">
-								<button id="btnClose" class="btn btn-block" data-dismiss="modal">
+							<button type="reset" id="btnIdReset" class="btn btn-warning btn-block">
+									<i class="icon-refresh icon-white"></i> Reset Filter
+								</button>
+							</div>
+							<div class="col-lg-4">
+								<button id="btnClose" class="btn btn-default btn-block" data-dismiss="modal">
 									<i class="icon- icon-white"></i> Close
 								</button>
 							</div>

@@ -52,10 +52,12 @@ public class PublicDetailController {
 
 		Staff staff = ucs.getSvcStaffByUserId(getPrincipal());
 		model.addAttribute("stfId", staff.getStfId());
+		model.addAttribute("stfName", staff.getStfName());
 		model.addAttribute("stfDivId", staff.getDivision().getDivId());
 		model.addAttribute("stfDivName", staff.getDivision().getDivName());
-
 		model.addAttribute("userName", getPrincipal());
+		model.addAttribute("role", getUserRole());
+
 		model.addAttribute("cmdPublic", new PublicIndividual());
 		return "process/public";
 	}
@@ -144,5 +146,20 @@ public class PublicDetailController {
 			userName = principal.toString();
 		}
 		return userName;
+	}
+
+	private String getUserRole() {
+		String userRole = null;
+		Object role = SecurityContextHolder.getContext().getAuthentication().getAuthorities();
+
+		if (role instanceof UserDetails) {
+			userRole = ((UserDetails) role).getAuthorities().toString();
+		} else {
+			userRole = role.toString();
+		}
+
+		userRole = userRole.replace("[", "");
+		userRole = userRole.replace("]", "");
+		return userRole;
 	}
 }
