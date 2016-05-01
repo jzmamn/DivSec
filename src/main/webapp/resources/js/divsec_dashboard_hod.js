@@ -34,10 +34,11 @@ jQuery(function() {
 				formatter : function(x) {
 					return x;
 				}
-			}).on('click', function(i, row) {
-				// console.log(i, row[1]);
-				alert(i, row[1]);
-			});
+			})
+//                                .on('click', function(i, row) {
+//				// console.log(i, row[1]);
+//				alert(i, row[1]);
+//			});
 		});
 	}
 

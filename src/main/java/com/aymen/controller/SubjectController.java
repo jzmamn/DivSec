@@ -36,6 +36,12 @@ public class SubjectController {
 
 	@RequestMapping(method = RequestMethod.GET)
 	public String home(@ModelAttribute("maSubject") Subject subject, ModelMap model) {
+
+		if (getPrincipal().equals("anonymousUser")) {
+			logger.info("anonymousUser");
+			return "errors_403";
+		}
+
 		Staff staff = ucs.getSvcStaffByUserId(getPrincipal());
 		model.addAttribute("stfId", staff.getStfId());
 		model.addAttribute("stfDivId", staff.getDivision().getDivId());

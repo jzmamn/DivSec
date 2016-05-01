@@ -104,20 +104,16 @@
 							</div>
 							<div class="panel-body">
 								<ul class="nav nav-tabs stacked">
-									<li class="active" id="idTabOpened"><a href="#Opened" data-toggle="tab"> <span class="badge pull-right">25</span>Opened
-											&nbsp;&nbsp;
-									</a></li>
+									<li class="active" id="idTabOpened"><a href="#Opened" data-toggle="tab">Public Detail &nbsp;&nbsp; </a></li>
 								</ul>
 
 								<div class="tab-content">
 									<div class="tab-pane fade in active" id="Opened">
-										<h4>Opened Request</h4>
-										<hr />
 										<div id="divFrmOpened">
 											<div class="row">
 												<div class="col-lg-12">
 													<!--Public Form  -->
-													<form:form  data-toggle="validator" role="form" id="frmIdPublic" method="POST" modelAttribute="maPublic">
+													<form:form data-toggle="validator" role="form" id="frmIdPublic" method="POST" modelAttribute="maPublic">
 														<div class="row">
 															<div class="col-lg-12">
 																<div class="col-lg-3">
@@ -180,7 +176,7 @@
 																		</select>
 																		<form:input path="notification.ntnId" type="hidden" id="notificationId" name="txtNtnId" class="form-control"
 																			placeholder="nfnId" required="true" />
-																		<input type="hidden" id="notificationName"  name="txtNtnName" class="form-control" placeholder="nfnName" />
+																		<input type="hidden" id="notificationName" name="txtNtnName" class="form-control" placeholder="nfnName" />
 																	</div>
 																</div>
 															</div>
@@ -266,7 +262,8 @@
 																<div class="col-lg-3"></div>
 																<div class="col-lg-3">
 																	<div class="form-group ">
-																		<form:input type="hidden" path="piUserId" value="${stfId}" id="txtIdUid" name="txtUid" class="form-control" placeholder="UserId" />
+																		<form:input type="hidden" path="piUserId" value="${stfId}" id="txtIdUid" name="txtUid" class="form-control"
+																			placeholder="UserId" />
 																	</div>
 																</div>
 															</div>

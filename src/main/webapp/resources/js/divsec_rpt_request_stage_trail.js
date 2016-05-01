@@ -142,7 +142,7 @@ jQuery(function() {
 
 						} else {
 							url1 = 'rptrequeststagetrail/loadTrail/' + intReqId
-									+ '/' + +idStaff + '/' + fromDate + '/'
+									+ '/' + idStaff + '/' + fromDate + '/'
 									+ toDate;
 							alert(url1);
 							$("#mdlReqFilter").modal("hide")

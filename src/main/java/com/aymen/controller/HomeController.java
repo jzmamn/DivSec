@@ -58,6 +58,11 @@ public class HomeController {
 	@RequestMapping(value = "/getDashboard", method = RequestMethod.GET)
 	public String getDashboard(ModelMap model) {
 
+		if (getPrincipal().equals("anonymousUser")) {
+			logger.info("anonymousUser");
+			return "errors_403";
+		}
+
 		String role = getUserRole();
 
 		Staff staff = ucs.getSvcStaffByUserId(getPrincipal());

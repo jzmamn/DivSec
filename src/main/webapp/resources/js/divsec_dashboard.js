@@ -7,13 +7,13 @@ jQuery(function() {
 	var year = dateObj.getUTCFullYear();
 
 	// Morris chart
-	createDonut("dboard/donut-by-division/1", "morris-donut-chart1");
-	createDonut("dboard/donut-by-division/3", "morris-donut-chart2");
-	createDonut("dboard/donut-by-division/2", "morris-donut-chart3");
-	createDonut("dboard/donut-by-division/4", "morris-donut-chart4");
-	createDonut("dboard/donut-by-division/5", "morris-donut-chart5");
-	createDonut("dboard/donut-by-division/6", "morris-donut-chart6");
-	createDonut("dboard/donut-by-division/7", "morris-donut-chart7");
+	createDonut("dboard/donut-by-division/1", "morris-donut-admin");
+	createDonut("dboard/donut-by-division/2", "morris-donut-palaning");
+	createDonut("dboard/donut-by-division/3", "morris-donut-registrar");
+	createDonut("dboard/donut-by-division/4", "morris-donut-agri");
+	createDonut("dboard/donut-by-division/5", "morris-donut-accounts");
+	createDonut("dboard/donut-by-division/6", "morris-donut-samurdhi");
+	createDonut("dboard/donut-by-division/7", "morris-donut-disaster");
 	createDonut("dboard/donut-by-division/8", "morris-donut-chart8");
 	createDonut("dboard/donut-by-division/9", "morris-donut-chart9");
 

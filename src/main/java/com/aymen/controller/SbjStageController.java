@@ -38,6 +38,11 @@ public class SbjStageController {
 	@RequestMapping(method = RequestMethod.GET)
 	public String home(@ModelAttribute("maSbjStg") SubjecStage sbjStg, ModelMap model) {
 		logger.info("Welcome home! The client locale is {}.", sbjStg);
+		if (getPrincipal().equals("anonymousUser")) {
+			logger.info("anonymousUser");
+			return "errors_403";
+		}
+
 		Staff staff = ucs.getSvcStaffByUserId(getPrincipal());
 		model.addAttribute("stfId", staff.getStfId());
 		model.addAttribute("stfDivId", staff.getDivision().getDivId());

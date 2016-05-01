@@ -31,6 +31,11 @@ public class RptRequestOverdueController {
 	@RequestMapping(method = RequestMethod.GET)
 	public String home(ModelMap model) {
 		logger.info("Welcome home! The client locale is {}.");
+		if (getPrincipal().equals("anonymousUser")) {
+			logger.info("anonymousUser");
+			return "errors_403";
+		}
+
 		model.addAttribute("user", getPrincipal());
 		return "reports/process/rpt_request_overdue";
 	}

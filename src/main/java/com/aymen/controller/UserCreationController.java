@@ -43,6 +43,11 @@ public class UserCreationController {
 	@RequestMapping(method = RequestMethod.GET)
 	public String init(@ModelAttribute("maStaff") Staff staff, ModelMap model) {
 		logger.info("Welcome home! The client locale is {}.", staff);
+		if (getPrincipal().equals("anonymousUser")) {
+			logger.info("anonymousUser");
+			return "errors_403";
+		}
+
 		Staff stf = userCreationsSVC.getSvcStaffByUserId(getPrincipal());
 		model.addAttribute("stfId", stf.getStfId());
 		model.addAttribute("stfDivId", stf.getDivision().getDivId());

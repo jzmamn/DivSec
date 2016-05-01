@@ -82,6 +82,8 @@ jQuery(function() {
 										case 7:
 											return '<span class="label label-maroon">Rejected</span>';
 											break;
+										default:
+											return 'N/A';
 										}
 									}
 								}, {
@@ -226,7 +228,7 @@ jQuery(function() {
 							+ intStausId + '/' + intStaffId + '/' + fromDate
 							+ '/' + toDate;
 
-					alert(url1);
+					// alert(url1);
 
 					$("#mdlReqFilter").modal("hide")
 					dtRequest.fnReloadAjax(url1);

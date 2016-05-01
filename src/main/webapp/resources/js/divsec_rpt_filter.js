@@ -129,7 +129,7 @@ jQuery(function() {
 			});
 		},
 		error : function(err) {
-			alert(err);
+			alert("divsec_rpt_filter, Load status  \n" + err);
 		}
 	});
 
@@ -151,7 +151,7 @@ jQuery(function() {
 			});
 		},
 		error : function(err) {
-			alert("Load Staff \n" + err);
+			alert("divsec_rpt_filter.load-staff-dropdown, \n" + err);
 		}
 	});
 

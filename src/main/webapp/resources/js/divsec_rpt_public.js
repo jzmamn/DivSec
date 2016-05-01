@@ -94,7 +94,7 @@ jQuery(function() {
 		{
 			text : 'Filter',
 			action : function(e, dt, node, config) {
-				alert('Button activated');
+				alert('Filter is not available');
 			}
 		}, {
 			extend : 'print',

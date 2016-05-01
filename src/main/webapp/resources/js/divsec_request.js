@@ -62,7 +62,7 @@ jQuery(function() {
 				});
 			},
 			error : function(data) {
-				alert('1. aymen2 fail' + data);
+				alert('1111. aymen2 fail' + data);
 			}
 		});
 	}
@@ -629,7 +629,7 @@ jQuery(function() {
 							+ '/void/' + c + '/note/' + d;
 				}
 
-				alert(url1);
+				// alert(url1);
 
 				$.ajax({
 					type : 'GET',
@@ -776,61 +776,75 @@ jQuery(function() {
 
 	}
 
-	$("#btnIdSendSMS").click(
-			function(e) {
+	$("#btnIdSendSMS")
+			.click(
+					function(e) {
 
-				var reqId1 = $("#txtIdInstReqId").val();
-				var status = '';
-				var subject = '';
-				var mobileNo = '';
-				var isMobileExists = false;
-				var a1 = parseInt(reqId1);
-				var url1 = 'reqprocess/send-sms/' + a1;
-				// alert(url1);
+						var reqId1 = $("#txtIdInstReqId").val();
+						var status = '';
+						var subject = '';
+						var mobileNo = '';
+						var isMobileExists = false;
+						var a1 = parseInt(reqId1);
+						var pubId = '';
+						var pubName = '';
+						var url1 = 'reqprocess/send-sms/' + a1;
+						// alert(url1);
 
-				$.ajax({
-					type : 'GET',
-					url : url1,
-					dataType : 'JSON',
-					success : function(data) {
-						$.each(data, function(key, val) {
-							if (val.pi_mobile_phone != "") {
-								isMobileExists = true;
-								alert('Mobile number is not blank');
-								reqId1 = val.req_id;
-								status = val.rs_name;
-								subject = val.sbj_name;
-								mobileNo = val.pi_mobile_phone;
-								return;
-							}
-						});
+						$
+								.ajax({
+									type : 'GET',
+									url : url1,
+									dataType : 'JSON',
+									success : function(data) {
+										$.each(data, function(key, val) {
+											if (val.pi_mobile_phone != "") {
+												isMobileExists = true;
+												// alert('Mobile number is not
+												// blank');
+												reqId1 = val.req_id;
+												status = val.rs_name;
+												subject = val.sbj_name;
+												mobileNo = val.pi_mobile_phone;
+												pubId = val.req_public_id;
+												pubName = val.pi_name;
+												return;
+											}
+										});
 
-						if (isMobileExists == false) {
-							alert('Mobile number is not exist');
-						} else {
+										if (isMobileExists == false) {
+											alert('Mobile number does not exist for public Id: '
+													+ pubId
+													+ ' Public Name: '
+													+ pubName);
+										} else {
 
-							alert(reqId1);
-							alert(status);
-							alert(subject);
-							alert(mobileNo);
+											// alert(reqId1);
+											// alert(status);
+											// alert(subject);
+											// alert(mobileNo);
 
-							var msg1 = "your  \nRequest id= " + reqId1
-									+ "\nSubject = " + subject + "\nStatus = "
-									+ status
+											var msg1 = "your  \nRequest id= "
+													+ reqId1 + "\nSubject = "
+													+ subject + "\nStatus = "
+													+ status
 
-							alert(msg1);
-							var msg = "hi";
-							sendSMS(msg, mobileNo);
+											alert(msg1);
+											// var msg = "hi";
+											sendSMS(msg1, mobileNo);
+											alert('SMS sent successfully ! to public Id: '
+													+ pubId
+													+ ' Public Name: '
+													+ pubName);
+										}
 
-						}
+									},
+									error : function(data) {
+										alert('fail ' + data);
+									}
+								});
 
-					},
-					error : function(data) {
-						alert('fail ' + data);
-					}
-				});
-
-			});
+					});
 
 	function sendSMS(msg, to) {
 		var url1 = 'http://api.clickatell.com/http/sendmsg?user=jzmamn&password=QLOWTWTDbHbVGA&api_id=3583362&to=94'
@@ -862,7 +876,7 @@ jQuery(function() {
 				alert('success ' + res);
 			},
 			error : function(res) {
-				alert('fail ' + res);
+				alert(res.responseText);
 			}
 		});
 		e.preventDefault();

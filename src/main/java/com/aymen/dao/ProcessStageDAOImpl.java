@@ -206,6 +206,10 @@ public class ProcessStageDAOImpl implements ProcessStageDAO {
 			strQuery2 = " rst_pr_id= " + reqId + " AND";
 		}
 
+		if (staffId > 0) {
+			strQuery2 = " rst_user_id= " + staffId + " AND";
+		}
+
 		if (!fromDate.equals("0") && !toDate.equals("0")) {
 			strQuery2 = " DATE_FORMAT(rst_txn_date, '%Y-%m-%d') BETWEEN  '" + fromDate + "' AND '" + toDate + "' AND";
 		}

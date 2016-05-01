@@ -40,6 +40,11 @@ public class DivisionController {
 	@RequestMapping(method = RequestMethod.GET)
 	public String home(@ModelAttribute("maDivision") Division division, ModelMap model) {
 		logger.info("Welcome home! The client locale is {}.", division);
+		if (getPrincipal().equals("anonymousUser")) {
+			logger.info("anonymousUser", division);
+			return "errors_403";
+		}
+
 		Staff staff = ucs.getSvcStaffByUserId(getPrincipal());
 		model.addAttribute("stfId", staff.getStfId());
 		model.addAttribute("stfName", staff.getStfName());
@@ -49,6 +54,7 @@ public class DivisionController {
 		model.addAttribute("role", getUserRole());
 		model.addAttribute("cmdDivision", new Division());
 		return "setup/division";
+
 	}
 
 	// Save or Update division

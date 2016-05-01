@@ -195,7 +195,7 @@ jQuery(function() {
 							+ '/' + intPubId + '/' + intDivId + '/'
 							+ intStausId + '/' + fromDate + '/' + toDate;
 
-					alert(url1);
+					// alert(url1);
 
 					$("#mdlReqFilter").modal("hide")
 					dtRequest.fnReloadAjax(url1);

@@ -98,22 +98,22 @@
 									<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 										<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 panel panel-warning" style="width: 130px;">
 											<a href="${pageContext.request.contextPath}/admin-to-hod/1" class="btn btn-warning btn-xs btn-block">Admin</a>
-											<div id="morris-donut-chart1" style="width: 120px; height: 120px;"></div>
+											<div id="morris-donut-admin" style="width: 120px; height: 120px;"></div>
 										</div>
 
 										<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 panel panel-warning" style="width: 130px;">
 											<a href="${pageContext.request.contextPath}/admin-to-hod/2" class="btn btn-success btn-xs btn-block">Planning</a>
-											<div id="morris-donut-chart3" style="width: 120px; height: 120px;"></div>
+											<div id="morris-donut-palaning" style="width: 120px; height: 120px;"></div>
 										</div>
 
 										<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 panel panel-warning" style="width: 130px;">
 											<a href="${pageContext.request.contextPath}/admin-to-hod/3" class="btn btn-danger btn-xs btn-block">Registrar</a>
-											<div id="morris-donut-chart4" style="width: 120px; height: 120px;"></div>
+											<div id="morris-donut-registrar" style="width: 120px; height: 120px;"></div>
 										</div>
 
 										<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 panel panel-warning" style="width: 130px;">
 											<a href="${pageContext.request.contextPath}/admin-to-hod/4" class="btn btn-success btn-xs btn-block"> Agriculture</a>
-											<div id="morris-donut-chart7" style="width: 120px; height: 120px;"></div>
+											<div id="morris-donut-agri" style="width: 120px; height: 120px;"></div>
 										</div>
 										
 									</div>
@@ -132,17 +132,17 @@
 
 						<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 panel panel-warning" style="width: 130px;">
 							<a href="${pageContext.request.contextPath}/admin-to-hod/5" class="btn btn-info btn-xs btn-block">Accounts</a>
-							<div id="morris-donut-chart2" style="width: 120px; height: 120px;"></div>
+							<div id="morris-donut-accounts" style="width: 120px; height: 120px;"></div>
 						</div>
 
 						<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 panel panel-warning" style="width: 130px;">
 							<a href="#" class="btn btn-primary btn-xs btn-block">Samurdhi</a>
-							<div id="morris-donut-chart5" style="width: 120px; height: 120px;"></div>
+							<div id="morris-donut-samurdhi" style="width: 120px; height: 120px;"></div>
 						</div>
 
 						<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 panel panel-warning" style="width: 130px;">
-							<a href="#" class="btn btn-warning btn-xs btn-block"> Social Welfare</a>
-							<div id="morris-donut-chart6" style="width: 120px; height: 120px;"></div>
+							<a href="#" class="btn btn-warning btn-xs btn-block"> Disaster Mgt</a>
+							<div id="morris-donut-disaster" style="width: 120px; height: 120px;"></div>
 						</div>
 
 
@@ -152,12 +152,12 @@
 						</div>
 
 						<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 panel panel-warning" style="width: 130px;">
-							<a href="#" class="btn btn-danger btn-xs btn-block"> Social Welfare</a>
+							<a href="#" class="btn btn-danger btn-xs btn-block"> xyz</a>
 							<div id="morris-donut-chart9" style="width: 120px; height: 120px;"></div>
 						</div>
 
 						<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 panel panel-warning" style="width: 130px;">
-							<a href="${pageContext.request.contextPath}/admin-to-hod/5" class="btn btn-info btn-xs btn-block">Accounts</a>
+							<a href="${pageContext.request.contextPath}/admin-to-hod/5" class="btn btn-info btn-xs btn-block">xyz</a>
 							<div id="morris-donut-chart2" style="width: 120px; height: 120px;"></div>
 						</div>
 

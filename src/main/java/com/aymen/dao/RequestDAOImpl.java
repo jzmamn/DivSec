@@ -53,7 +53,6 @@ public class RequestDAOImpl implements RequestDAO {
 	@Override
 	public List<Request> listSvcRequest() {
 		Session session = this.sessionFactory.getCurrentSession();
-		@SuppressWarnings("unchecked")
 		List<Request> reqList = session.createQuery(" from Request").list();
 		for (Request d : reqList) {
 			// logger.info("Person List::" + d);
@@ -381,9 +380,10 @@ public class RequestDAOImpl implements RequestDAO {
 	}
 
 	// SMS
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<Object> getSMSContent(int reqId) {
-		String strQuery = "select  req_id, sbj_name, rs_name,pi_mobile_phone,pi_email from vw_request_list where req_id="
+		String strQuery = "select  req_id, sbj_name, rs_name,pi_mobile_phone,req_public_id,pi_name,pi_email from vw_request_list where req_id="
 				+ reqId;
 		Session session = this.sessionFactory.getCurrentSession();
 		SQLQuery query = session.createSQLQuery(strQuery);

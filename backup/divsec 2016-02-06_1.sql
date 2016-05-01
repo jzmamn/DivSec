@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 02, 2016 at 07:37 PM
+-- Generation Time: Feb 06, 2016 at 05:31 PM
 -- Server version: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -116,7 +116,7 @@ CREATE TABLE IF NOT EXISTS `instructions` (
   `ins_stf_id` int(11) DEFAULT NULL,
   PRIMARY KEY (`ins_id`),
   KEY `fk_ins_pr_id_idx` (`ins_pr_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=28 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=30 ;
 
 --
 -- Dumping data for table `instructions`
@@ -149,7 +149,9 @@ INSERT INTO `instructions` (`ins_id`, `ins_pr_id`, `ins_instruction`, `ins_date`
 (24, 7, '121', '2016-01-19 08:18:28', b'0', 23),
 (25, 12, 'adf', '2016-01-19 08:20:34', b'0', 23),
 (26, 11, 'pleas do this immediately', '2016-01-19 08:24:48', b'0', 23),
-(27, 13, 'can be done', '2016-01-24 08:40:19', b'0', 23);
+(27, 13, 'can be done', '2016-01-24 08:40:19', b'0', 23),
+(28, 19, 'Please do this immediately', '2016-01-06 11:43:27', b'0', 21),
+(29, 20, 'do', '2016-01-06 09:40:14', b'0', 23);
 
 -- --------------------------------------------------------
 
@@ -216,7 +218,7 @@ CREATE TABLE IF NOT EXISTS `process_stage` (
   KEY `fk_rst_user_id_idx` (`rst_user_id`),
   KEY `fk_stg_pr_id_idx` (`rst_pr_id`),
   KEY `fk_rst_stg_id_idx` (`rst_stg_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=27 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=33 ;
 
 --
 -- Dumping data for table `process_stage`
@@ -238,7 +240,13 @@ INSERT INTO `process_stage` (`rst_id`, `rst_pr_id`, `rst_stg_id`, `rst_stage_sta
 (23, 14, 1, 3, 0, '2016-01-14 10:50:00', 'Given to cleark', 23),
 (24, 14, 2, 3, 1, '2016-01-14 10:50:00', 'stage', 23),
 (25, 15, 3, 3, 0, '2016-01-24 00:03:38', 'stage', 23),
-(26, 16, 4, 1, 0, '2016-01-24 05:53:14', '', 21);
+(26, 16, 4, 1, 0, '2016-01-24 05:53:14', '', 21),
+(27, 17, 4, 1, 0, '2016-01-03 09:07:29', '', 23),
+(28, 18, 4, 1, 0, '2016-01-03 09:08:27', '', 23),
+(29, 19, 4, 1, 0, '2016-01-06 11:42:58', '', 21),
+(30, 20, 6, 2, 0, '2016-01-06 09:23:50', 'stage', 23),
+(31, 20, 7, 1, 1, '2016-01-06 09:23:50', 'stage', 23),
+(32, 20, 8, 1, 2, '2016-01-06 09:23:51', '', 23);
 
 --
 -- Triggers `process_stage`
@@ -285,7 +293,7 @@ CREATE TABLE IF NOT EXISTS `public_individual` (
   `pi_active` bit(1) DEFAULT NULL,
   PRIMARY KEY (`pi_id`),
   KEY `pi_notfication_id_idx` (`pi_notfication_type_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=6 ;
 
 --
 -- Dumping data for table `public_individual`
@@ -295,7 +303,8 @@ INSERT INTO `public_individual` (`pi_id`, `pi_name`, `pi_address1`, `pi_address2
 (1, 'N.J.Aymen', '105, Gall Road,', 'Colombo', '6', '123123', '773166010', 'jzmamn@gmail.com', 821491169, '123', '821491169v', '1980-10-01 00:00:00', 'Male', 'This a test', 1, 1, b'1'),
 (2, 'Rafatha J Aymen', 'adsf1', '3', 'Nintavur', '1234232323', '1223232321', 'jzmamn@gmail.com', NULL, NULL, '232323232v', '2016-01-07 00:00:00', 'Female', 'adfs', 23, 2, b'1'),
 (3, 'Rafatha', 'adsf1', 'adsf2', 'adf3', '1234232323', '1223232321', 'jzmamn@gmail.com', NULL, NULL, '232323232v', '2015-09-12 00:00:00', 'Male', 'adfs', 23, 2, b'1'),
-(4, 'Fathima Rafatha', 'qewr', 'qer', 'qewr', '11', '11', 'jzmamn@gmail.com', NULL, NULL, '2322323232', '2015-12-14 00:00:00', 'Male', '233232', 23, 1, b'1');
+(4, 'Fathima Rafatha', 'qewr', 'qer', 'qewr', '11', '11', 'jzmamn@gmail.com', NULL, NULL, '2322323232', '2015-12-14 00:00:00', 'Male', '233232', 23, 1, b'1'),
+(5, 'dasf', 'adsf', 'dfas', 'daf', '123445', '122334', 'jamz@aho.com', NULL, NULL, '821411111', '2016-02-17 00:00:00', 'Male', '', 21, 3, b'0');
 
 -- --------------------------------------------------------
 
@@ -323,22 +332,26 @@ CREATE TABLE IF NOT EXISTS `request` (
   KEY `fk_req_user_id_idx` (`req_user_id`),
   KEY `fk_req_subject_id_idx` (`req_subject_id`),
   KEY `fk_req_status_id_idx` (`req_status_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='details about the request submitted by the public individual' AUTO_INCREMENT=17 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='details about the request submitted by the public individual' AUTO_INCREMENT=21 ;
 
 --
 -- Dumping data for table `request`
 --
 
 INSERT INTO `request` (`req_id`, `req_subject_id`, `req_division_id`, `req_public_id`, `req_ent_date`, `req_note`, `req_fees`, `req_user_id`, `req_durartion`, `req_status_id`, `req_is_read`, `req_processed`, `req_is_void`) VALUES
-(7, 4, 2, 1, '2016-01-04 00:00:00', 'Aymen', '1200.00', 23, 1, 2, b'0', b'0', b'1'),
-(8, 4, 2, 1, '2016-02-05 00:00:00', 'new', '1200.00', 23, 1, 4, b'0', b'0', b'0'),
+(7, 4, 2, 1, '2016-01-04 00:00:00', 'Aymen', '1200.00', 23, 1, 3, b'0', b'0', b'1'),
+(8, 4, 2, 1, '2016-02-05 00:00:00', 'new', '1200.00', 23, 1, 7, b'0', b'0', b'0'),
 (10, 4, 2, 1, '2016-02-06 00:00:00', '', '1200.00', 23, 1, 4, b'0', b'0', b'1'),
 (11, 4, 2, 1, '2016-01-07 00:00:00', '12', '1200.00', 23, 1, 5, b'0', b'0', b'1'),
 (12, 4, 2, 4, '2016-01-13 00:00:00', 'New', '1200.00', 23, 1, 3, b'0', b'0', b'0'),
 (13, 4, 2, 1, '2016-01-13 00:00:00', 'jezeem', '1200.00', 23, 1, 1, b'0', b'0', b'0'),
 (14, 4, 2, 1, '2016-01-14 00:00:00', 'Birth Certificate', '1200.00', 23, 1, 3, b'0', b'0', b'0'),
 (15, 5, 2, 1, '2016-02-24 00:00:00', '', '2.00', 23, 2, 2, b'0', b'0', b'0'),
-(16, 11, 1, 1, '2016-02-24 00:00:00', '', '1000.00', 21, 1, 1, b'0', b'0', b'0');
+(16, 11, 1, 1, '2016-02-24 00:00:00', '', '1000.00', 21, 1, 1, b'0', b'0', b'0'),
+(17, 11, 1, 1, '2016-02-03 00:00:00', 'Test', '1000.00', 23, 1, 5, b'0', b'0', b'0'),
+(18, 11, 1, 1, '2016-02-03 00:00:00', 'a', '1000.00', 23, 1, 6, b'0', b'0', b'0'),
+(19, 11, 1, 4, '2016-02-06 00:00:00', 'new', '1000.00', 21, 1, 1, b'0', b'0', b'0'),
+(20, 10, 3, 1, '2016-02-06 00:00:00', 'new', '1000.00', 23, 2, 2, b'0', b'0', b'0');
 
 --
 -- Triggers `request`
@@ -375,7 +388,7 @@ CREATE TABLE IF NOT EXISTS `request_log` (
   `rl_void` bit(1) DEFAULT NULL,
   PRIMARY KEY (`rl_id`),
   KEY `fk_req_id_idx` (`rl_pr_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=46 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=53 ;
 
 --
 -- Dumping data for table `request_log`
@@ -399,7 +412,14 @@ INSERT INTO `request_log` (`rl_id`, `rl_pr_id`, `rl_txn_date`, `rl_status_id`, `
 (42, 16, '2016-01-24 19:02:00', 1, 21, '', '2016-01-24 00:00:00', b'0'),
 (43, 10, '2016-01-24 19:02:53', 1, 23, '', '2016-02-06 00:00:00', b'1'),
 (44, 16, '2016-01-28 22:39:24', 1, 21, '', '2016-02-24 00:00:00', b'0'),
-(45, 16, '2016-01-28 22:46:31', 1, 21, '', '2016-02-24 00:00:00', b'0');
+(45, 16, '2016-01-28 22:46:31', 1, 21, '', '2016-02-24 00:00:00', b'0'),
+(46, 17, '2016-02-03 21:07:43', 1, 23, 'Test', '2016-02-03 00:00:00', b'0'),
+(47, 18, '2016-02-03 21:08:38', 1, 23, 'a', '2016-02-03 00:00:00', b'0'),
+(48, 18, '2016-02-03 21:09:31', 5, 23, 'a', '2016-02-03 00:00:00', b'0'),
+(49, 8, '2016-02-03 21:11:54', 4, 23, 'new', '2016-02-05 00:00:00', b'0'),
+(50, 7, '2016-02-03 21:40:50', 2, 23, 'Aymen', '2016-01-04 00:00:00', b'1'),
+(51, 19, '2016-02-06 11:43:43', 1, 21, '', '2016-02-06 00:00:00', b'0'),
+(52, 20, '2016-02-06 21:33:35', 1, 23, '', '2016-02-06 00:00:00', b'0');
 
 -- --------------------------------------------------------
 
@@ -471,8 +491,8 @@ INSERT INTO `staff` (`stf_id`, `stf_name`, `stf_category_id`, `stf_user_id`, `st
 (21, 'Admin', 1, 'admin', '$2a$10$LOqePml/koRGsk2YAIOFI.1YNKZg7EsQ5BAIuYP1nWOyYRl21dlne', 1, '', '', '', b'0', 'ROLE_ADMIN'),
 (22, 'HOD', 2, 'hod', '$2a$10$LOqePml/koRGsk2YAIOFI.1YNKZg7EsQ5BAIuYP1nWOyYRl21dlne', 2, '', '', '', b'0', 'ROLE_HOD'),
 (23, 'Staff', 3, 'staff', '$2a$10$LOqePml/koRGsk2YAIOFI.1YNKZg7EsQ5BAIuYP1nWOyYRl21dlne', 2, '', '', '', b'1', 'ROLE_STAFF'),
-(29, 'HodAdmin', 2, 'hodadmin', '$2a$10$7kOk6lnyBqNPJGNAXjaBwO7ITf/bl4iGMSQcUA1rQkCrc8ixYBg3y', 1, '', '', '', b'0', 'ROLE_HOD'),
-(36, 'aaa', 1, '11', '$2a$10$wcXQqaHoYV.xbIC1MK7ghuqEjiGjcNxLHP4MAaoVEBiyXuz7AVYvy', 1, '', '', '', b'1', NULL),
+(29, 'HodAdmin', 2, 'hodadmin', '$2a$10$LOqePml/koRGsk2YAIOFI.1YNKZg7EsQ5BAIuYP1nWOyYRl21dlne', 1, '', '', '', b'0', 'ROLE_HOD'),
+(36, 'staffadmin', 3, 'staffadmin', '$2a$10$LOqePml/koRGsk2YAIOFI.1YNKZg7EsQ5BAIuYP1nWOyYRl21dlne', 1, '', '', '', b'1', NULL),
 (37, 'abc', 1, 'auah', '12344', 1, 'jzmamn@gmail.com', '12343214', 'this si', b'1', NULL),
 (38, 'asdf', 3, 'adf', 'aaaa', 1, '', '', '', b'1', NULL),
 (40, 'Shameer', 1, 'wererere', '1234', 1, '', '', '', b'1', NULL),
@@ -521,7 +541,7 @@ CREATE TABLE IF NOT EXISTS `staff_role` (
   PRIMARY KEY (`id`),
   KEY `fk_role_role_id_idx` (`role_id`),
   KEY `fk_role_stfid_idx` (`staff_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=6 ;
 
 --
 -- Dumping data for table `staff_role`
@@ -531,7 +551,8 @@ INSERT INTO `staff_role` (`id`, `staff_id`, `role_id`, `role_name`) VALUES
 (1, 23, 3, 'ROLE_STAFF'),
 (2, 21, 1, 'ROLE_ADMIN'),
 (3, 22, 2, 'ROLE_HOD'),
-(4, 29, 2, 'ROLE_HOD');
+(4, 29, 2, 'ROLE_HOD'),
+(5, 36, 3, 'ROLE_STAFF');
 
 -- --------------------------------------------------------
 
@@ -550,7 +571,7 @@ CREATE TABLE IF NOT EXISTS `stage_log` (
   `ps_ent_date` datetime DEFAULT NULL,
   PRIMARY KEY (`ps_id`),
   KEY `fk_rst_id_idx` (`ps_rst_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=14 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=21 ;
 
 --
 -- Dumping data for table `stage_log`
@@ -569,7 +590,14 @@ INSERT INTO `stage_log` (`ps_id`, `ps_rst_id`, `ps_stage_id`, `ps_status_id`, `p
 (10, 14, 1, 1, '2016-01-14 22:55:29', 23, '', '2016-01-14 10:50:00'),
 (11, 14, 1, 2, '2016-01-14 22:58:47', 23, 'Given to cleark', '2016-01-14 10:50:00'),
 (12, 14, 2, 1, '2016-01-14 22:59:48', 23, '', '2016-01-14 10:50:00'),
-(13, 15, 3, 1, '2016-01-24 12:03:51', 23, '', '2016-01-24 00:03:38');
+(13, 15, 3, 1, '2016-01-24 12:03:51', 23, '', '2016-01-24 00:03:38'),
+(14, 20, 6, 1, '2016-02-06 21:24:29', 23, '', '2016-01-06 09:23:50'),
+(15, 20, 6, 3, '2016-02-06 21:24:43', 23, 'stage', '2016-01-06 09:23:50'),
+(16, 20, 7, 1, '2016-02-06 21:25:03', 23, '', '2016-01-06 09:23:50'),
+(17, 20, 7, 3, '2016-02-06 21:27:31', 23, 'stage', '2016-01-06 09:23:50'),
+(18, 20, 6, 2, '2016-02-06 21:31:07', 23, 'stage', '2016-01-06 09:23:50'),
+(19, 20, 7, 2, '2016-02-06 21:33:08', 23, 'stage', '2016-01-06 09:23:50'),
+(20, 20, 6, 1, '2016-02-06 21:33:27', 23, 'stage', '2016-01-06 09:23:50');
 
 -- --------------------------------------------------------
 
@@ -621,7 +649,7 @@ INSERT INTO `subject` (`sbj_id`, `sbj_code`, `sbj_name`, `sbj_active`, `sbj_div_
 (7, 'com', 'je', b'1', 5, 23, '2323.00'),
 (8, 'coma', 'je', b'1', 5, 23, '2323.00'),
 (9, 'com', 'je', b'1', 5, 23, '2323.00'),
-(10, 'af', 'aa', b'1', 3, 2, '123.00'),
+(10, 'Reg/Cert/Birth', 'aa', b'1', 3, 2, '1000.00'),
 (11, 'admin/2016/sand', 'Sand Permit', b'1', 1, 1, '1000.00');
 
 --
@@ -651,7 +679,7 @@ CREATE TABLE IF NOT EXISTS `subjec_stage` (
   `stg_cost` decimal(10,2) DEFAULT NULL,
   PRIMARY KEY (`stg_id`),
   KEY `fk_sbject_id_idx` (`stg_subject_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Stages for a subject that is to be completed.' AUTO_INCREMENT=5 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='Stages for a subject that is to be completed.' AUTO_INCREMENT=9 ;
 
 --
 -- Dumping data for table `subjec_stage`
@@ -661,7 +689,11 @@ INSERT INTO `subjec_stage` (`stg_id`, `stg_subject_id`, `stg_name`, `stg_active`
 (1, 4, 'Submitted to cleark', b'1', '100.00'),
 (2, 4, 'Registrar Signature', b'1', '100.00'),
 (3, 5, 'Aymen', b'1', NULL),
-(4, 11, 'Stage 1', b'1', '100.00');
+(4, 11, 'Stage 1', b'1', '100.00'),
+(5, 8, 'Step 1', b'1', NULL),
+(6, 10, 'Submit the form to cleark', b'1', NULL),
+(7, 10, 'Birth Certifiecate Collected', b'1', NULL),
+(8, 10, 'Registrar''s Signature', b'1', NULL);
 
 -- --------------------------------------------------------
 
@@ -979,7 +1011,7 @@ CREATE TABLE IF NOT EXISTS `vw_req_overdue` (
 ,`today` varchar(10)
 ,`EntDate` varchar(10)
 ,`sbj_duration` int(11)
-,`Overdue` double(17,0)
+,`Overdue` bigint(12)
 );
 -- --------------------------------------------------------
 
@@ -1137,7 +1169,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `vw_request_trail`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_request_trail` AS select 'Original' AS `Status`,1 AS `seq`,`r`.`req_id` AS `req_id`,`r`.`req_ent_date` AS `req_ent_date`,'' AS `Modified`,`r`.`req_note` AS `req_note`,`s`.`stf_name` AS `stf_name`,`r`.`req_user_id` AS `req_user_id`,`r`.`req_status_id` AS `req_status_id`,`rs`.`rs_name` AS `rs_name`,`r`.`req_is_void` AS `req_is_void` from ((`request` `r` join `request_status` `rs` on((`r`.`req_status_id` = `rs`.`rs_id`))) join `staff` `s` on((`r`.`req_user_id` = `s`.`stf_id`))) union all select 'Modified' AS `Status`,2 AS `seq`,`rl`.`rl_pr_id` AS `rl_pr_id`,'' AS ``,`rl`.`rl_txn_date` AS `rl_txn_date`,`rl`.`rl_note` AS `rl_note`,`s`.`stf_name` AS `stf_name`,`rl`.`rl_user_id` AS `rl_user_id`,`rl`.`rl_status_id` AS `rl_status_id`,`rs`.`rs_name` AS `rs_name`,`rl`.`rl_void` AS `rl_void` from ((`request_log` `rl` join `request_status` `rs` on((`rl`.`rl_status_id` = `rs`.`rs_id`))) join `staff` `s` on((`s`.`stf_id` = `rl`.`rl_user_id`)));
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_request_trail` AS select 'Original' AS `Status`,1 AS `seq`,`r`.`req_id` AS `req_id`,`r`.`req_ent_date` AS `req_ent_date`,'' AS `Modified`,`r`.`req_note` AS `req_note`,`s`.`stf_name` AS `stf_name`,`r`.`req_user_id` AS `req_user_id`,`r`.`req_status_id` AS `req_status_id`,`rs`.`rs_name` AS `rs_name`,`r`.`req_is_void` AS `req_is_void` from ((`request` `r` join `request_status` `rs` on((`r`.`req_status_id` = `rs`.`rs_id`))) join `staff` `s` on((`r`.`req_user_id` = `s`.`stf_id`))) union all select 'Modified' AS `Status`,2 AS `seq`,`rl`.`rl_pr_id` AS `rl_pr_id`,'' AS `req_ent_date`,`rl`.`rl_txn_date` AS `rl_txn_date`,`rl`.`rl_note` AS `rl_note`,`s`.`stf_name` AS `stf_name`,`rl`.`rl_user_id` AS `rl_user_id`,`rl`.`rl_status_id` AS `rl_status_id`,`rs`.`rs_name` AS `rs_name`,`rl`.`rl_void` AS `rl_void` from ((`request_log` `rl` join `request_status` `rs` on((`rl`.`rl_status_id` = `rs`.`rs_id`))) join `staff` `s` on((`s`.`stf_id` = `rl`.`rl_user_id`)));
 
 -- --------------------------------------------------------
 
@@ -1164,7 +1196,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `vw_req_overdue`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_req_overdue` AS select `r`.`req_id` AS `req_id`,`r`.`req_subject_id` AS `req_subject_id`,`sb`.`sbj_code` AS `sbj_code`,`r`.`req_division_id` AS `req_division_id`,`d`.`div_name` AS `div_name`,`r`.`req_public_id` AS `req_public_id`,`p`.`pi_name` AS `pi_name`,`r`.`req_status_id` AS `req_status_id`,`rs`.`rs_name` AS `rs_name`,date_format(now(),'%Y-%m-%d') AS `today`,date_format(`r`.`req_ent_date`,'%Y-%m-%d') AS `EntDate`,`sb`.`sbj_duration` AS `sbj_duration`,((date_format(now(),'%Y%m%d') - date_format(`r`.`req_ent_date`,'%Y%m%d')) - `sb`.`sbj_duration`) AS `Overdue` from ((((`request` `r` join `subject` `sb` on((`r`.`req_subject_id` = `sb`.`sbj_id`))) join `division` `d` on((`r`.`req_division_id` = `d`.`div_id`))) join `public_individual` `p` on((`r`.`req_public_id` = `p`.`pi_id`))) join `request_status` `rs` on((`r`.`req_status_id` = `rs`.`rs_id`))) where (`r`.`req_status_id` not in (3,4));
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_req_overdue` AS select `r`.`req_id` AS `req_id`,`r`.`req_subject_id` AS `req_subject_id`,`sb`.`sbj_code` AS `sbj_code`,`r`.`req_division_id` AS `req_division_id`,`d`.`div_name` AS `div_name`,`r`.`req_public_id` AS `req_public_id`,`p`.`pi_name` AS `pi_name`,`r`.`req_status_id` AS `req_status_id`,`rs`.`rs_name` AS `rs_name`,date_format(now(),'%Y-%m-%d') AS `today`,date_format(`r`.`req_ent_date`,'%Y-%m-%d') AS `EntDate`,`sb`.`sbj_duration` AS `sbj_duration`,((to_days(date_format(now(),'%Y%m%d')) - to_days(date_format(`r`.`req_ent_date`,'%Y%m%d'))) - `sb`.`sbj_duration`) AS `Overdue` from ((((`request` `r` join `subject` `sb` on((`r`.`req_subject_id` = `sb`.`sbj_id`))) join `division` `d` on((`r`.`req_division_id` = `d`.`div_id`))) join `public_individual` `p` on((`r`.`req_public_id` = `p`.`pi_id`))) join `request_status` `rs` on((`r`.`req_status_id` = `rs`.`rs_id`))) where (`r`.`req_status_id` not in (3,4));
 
 -- --------------------------------------------------------
 

@@ -55,6 +55,11 @@ public class RequestController {
 	public String home(@ModelAttribute("maRequest") Request req, ModelMap model) {
 		logger.info("Welcome home! The client locale is {}.", req);
 
+		if (getPrincipal().equals("anonymousUser")) {
+			logger.info("anonymousUser");
+			return "errors_403";
+		}
+
 		model.addAttribute("maRequest", new Request());
 
 		Staff staff = ucs.getSvcStaffByUserId(getPrincipal());
@@ -74,6 +79,11 @@ public class RequestController {
 			logger.error("addRequest", result.getAllErrors());
 			System.out.println("hi this is a good" + result.getAllErrors());
 			return "error/error";
+		}
+
+		if (getPrincipal().equals("anonymousUser")) {
+			logger.info("anonymousUser");
+			return "errors_403";
 		}
 
 		model.addAttribute("reqId", req.getReqId());
@@ -102,12 +112,19 @@ public class RequestController {
 	// This method sends JSON response to the client (REST)
 	@RequestMapping(value = "/loadrequest", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody List<Request> getData() {
+		if (getPrincipal().equals("anonymousUser")) {
+			logger.info("anonymousUser");
+			return null;
+		}
 		return this.reqSvc.listSvcRequest();
 	}
 
 	// This method sends JSON response to the client (REST)
 	@RequestMapping(value = "/loadrequest/{divId}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody List<Request> getData(@PathVariable("divId") int divId) {
+		if (getPrincipal().equals("anonymousUser")) {
+			logger.info("anonymousUser ");
+		}
 		return this.reqSvc.listSvcRequestByDivision(divId);
 	}
 

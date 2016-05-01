@@ -104,13 +104,12 @@ jQuery(function() {
 									text : 'Refresh',
 									action : function(e, dt, node, config) {
 										dtRequest
-												.fnReloadAjax('rptrequest/loadrequest');
+												.fnReloadAjax('rptrequesttrail/loadTrail/0/0/0/0/0/0/0/0');
 									}
 								} ]
 
 					});
 
-	// ------------------ Apply Filter------------------
 	// ------------------ Apply Filter------------------
 	$("#btnIdApplyFilter")
 			.click(
@@ -189,7 +188,7 @@ jQuery(function() {
 									+ intStaffId + '/' + fromDate + '/'
 									+ toDate;
 
-							alert(url1);
+							// alert(url1);
 
 							$("#mdlReqFilter").modal("hide")
 							dtRequest.fnReloadAjax(url1);
