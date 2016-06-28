@@ -26,5 +26,7 @@ public interface UserCreationService {
 	public void updateSvcRole(Staff stf);
 
 	public List<Object> listStaffForDropdown(); // this is for select2
+        
+        public List<Object> getStaffByUserRoleSvc(String stfRole);
 
 }

@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.aymen.dao.ProcessStageDAO;
 import com.aymen.entity.ProcessStage;
+import com.aymen.entity.Staff;
 
 @Service
 @Transactional
@@ -51,8 +52,8 @@ public class ProcessStageServiceImpl implements ProcessStageService {
 	}
 
 	@Override
-	public void updateSvcStageStatus(int reqStageId, int reqStgStsId, String note) {
-		prStgDao.updateStageStatus(reqStageId, reqStgStsId, note);
+	public void updateSvcStageStatus(int reqStageId, int reqStgStsId, String note, Staff staff) {
+		prStgDao.updateStageStatus(reqStageId, reqStgStsId, note,staff);
 
 	}
 

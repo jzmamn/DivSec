@@ -54,12 +54,13 @@ jQuery(function() {
 
 		}, 'colvis',
 
-		{
-			text : 'Filter',
-			action : function(e, dt, node, config) {
-				alert('Button activated');
-			}
-		}, {
+//		{
+//			text : 'Filter',
+//			action : function(e, dt, node, config) {
+//				alert('Button activated');
+//			}
+//		}, 
+                {
 			extend : 'print',
 			message : 'Request List',
 			exportOptions : {

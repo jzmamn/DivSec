@@ -17,4 +17,6 @@ public interface RequestStatusService {
 
 	// Load request status in the report filter
 	public String loadSvcReqStatus();
+        
+        public List<RequestStatus> listRequestStatusForApprovalSvc();
 }

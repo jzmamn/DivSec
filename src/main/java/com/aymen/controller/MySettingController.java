@@ -28,95 +28,114 @@ import com.aymen.service.UserCreationService;
 @RequestMapping(value = "/mysetup")
 public class MySettingController {
 
-	private static final Logger logger = LoggerFactory.getLogger(MySettingController.class);
+    private static final Logger logger = LoggerFactory.getLogger(MySettingController.class);
 
-	@Autowired
-	UserCreationService userCreationsSVC;
+    @Autowired
+    UserCreationService userCreationsSVC;
 
-	@Autowired
-	UserCategoryService ucs;
+    @Autowired
+    UserCategoryService ucs;
 
-	@RequestMapping(method = RequestMethod.GET)
-	public String init(@ModelAttribute("maStaff") Staff staff, ModelMap model) {
-		model.addAttribute("maRequest", new Request());
+    @RequestMapping(method = RequestMethod.GET)
+    public String init(@ModelAttribute("maStaff") Staff staff, ModelMap model) {
+        model.addAttribute("maRequest", new Request());
 
-		Staff staff1 = userCreationsSVC.getSvcStaffByUserId(getPrincipal());
-		model.addAttribute("stfId", staff1.getStfId());
-		model.addAttribute("stfDivId", staff1.getDivision().getDivId());
-		model.addAttribute("stfDivName", staff1.getDivision().getDivName());
+        Staff staff1 = userCreationsSVC.getSvcStaffByUserId(getPrincipal());
+        model.addAttribute("stfId", staff1.getStfId());
+        model.addAttribute("stfDivId", staff1.getDivision().getDivId());
+        model.addAttribute("stfDivName", staff1.getDivision().getDivName());
+        model.addAttribute("userName", getPrincipal());
+        model.addAttribute("role", getUserRole());
 
-		model.addAttribute("userName", getPrincipal());
-		return "setup/mysetting";
-	}
+        return "setup/mysetting";
+    }
 
-	// Create User or staff accounts - save and update
-	@RequestMapping(value = "/create", method = RequestMethod.POST)
-	public @ResponseBody String addPerson(@ModelAttribute("maStaff") Staff staff, BindingResult result,
-			ModelMap model) {
-		if (result.hasErrors()) {
-			logger.error("addPerson", result.getAllErrors());
-			System.out.println("addPerson  " + result.getFieldError());
-			return "error/error";
-		}
+    // Create User or staff accounts - save and update
+    @RequestMapping(value = "/create", method = RequestMethod.POST)
+    public @ResponseBody
+    String addPerson(@ModelAttribute("maStaff") Staff staff, BindingResult result,
+            ModelMap model) {
+        if (result.hasErrors()) {
+            logger.error("addPerson", result.getAllErrors());
+            System.out.println("addPerson  " + result.getFieldError());
+            return "error/error";
+        }
 
-		model.addAttribute("stfId", staff.getStfId());
-		model.addAttribute("stfName", staff.getStfName());
-		model.addAttribute("stfUserId", staff.getStfUserId());
-		model.addAttribute("stfPassword", staff.getStfName());
-		model.addAttribute("stfEmail", staff.getStfEmail());
-		model.addAttribute("stfMobile", staff.getStfMobile());
-		model.addAttribute("stfNote", staff.getStfNote());
-		model.addAttribute("stfActive", staff.getStfActive());
-		model.addAttribute("stfRole", staff.getStfRole());
-		model.addAttribute("stfCategoryId", staff.getStfCategoryId());
-		model.addAttribute("division", staff.getDivision().getDivId());
+        model.addAttribute("stfId", staff.getStfId());
+        model.addAttribute("stfName", staff.getStfName());
+        model.addAttribute("stfUserId", staff.getStfUserId());
+        model.addAttribute("stfPassword", staff.getStfName());
+        model.addAttribute("stfEmail", staff.getStfEmail());
+        model.addAttribute("stfMobile", staff.getStfMobile());
+        model.addAttribute("stfNote", staff.getStfNote());
+        model.addAttribute("stfActive", staff.getStfActive());
+        model.addAttribute("stfRole", staff.getStfRole());
+        model.addAttribute("stfCategoryId", staff.getStfCategoryId());
+        model.addAttribute("division", staff.getDivision().getDivId());
 
-		try {
-			if (staff.getStfId() == null) {
-				this.userCreationsSVC.createSvcStaff(staff);
-				this.userCreationsSVC.saveSvcRole(staff);
-				return "1";
-			} else {
-				this.userCreationsSVC.updateSvcStaff(staff);
-				this.userCreationsSVC.updateSvcRole(staff);
-				return "1";
-			}
+        try {
+            if (staff.getStfId() == null) {
+                this.userCreationsSVC.createSvcStaff(staff);
+                this.userCreationsSVC.saveSvcRole(staff);
+                return "1";
+            } else {
+                this.userCreationsSVC.updateSvcStaff(staff);
+                this.userCreationsSVC.updateSvcRole(staff);
+                return "1";
+            }
 
-		} catch (Exception e) {
-			System.out.println(e);
-			e.printStackTrace();
-			// return "Save Failed ! " + "\n" + e.toString();
-			logger.error(e.toString());
-			return "Save Failed ! " + "\n" + "User id already exists";
-		}
+        } catch (Exception e) {
+            System.out.println(e);
+            e.printStackTrace();
+            // return "Save Failed ! " + "\n" + e.toString();
+            logger.error(e.toString());
+            return "Save Failed ! " + "\n" + "User id already exists";
+        }
 
-	}
+    }
 
-	@RequestMapping(value = "/loadbyuserid/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody Staff getUserByUserId(@PathVariable("id") String userName, Model model) {
-		return this.userCreationsSVC.getSvcStaffByUserId(userName);
-	}
+    @RequestMapping(value = "/loadbyuserid/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public @ResponseBody
+    Staff getUserByUserId(@PathVariable("id") String userName, Model model) {
+        return this.userCreationsSVC.getSvcStaffByUserId(userName);
+    }
 
-	@RequestMapping(value = "/loadbystfId/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody List<Object> getUserByStfId(@PathVariable("id") int stfId, Model model) {
-		return this.userCreationsSVC.listStaffById(stfId);
-	}
+    @RequestMapping(value = "/loadbystfId/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public @ResponseBody
+    List<Object> getUserByStfId(@PathVariable("id") int stfId, Model model) {
+        return this.userCreationsSVC.listStaffById(stfId);
+    }
 
-	@ModelAttribute("roles")
-	public List<UserCategory> initializeProfiles() {
-		return ucs.listSvcUserCat();
-	}
+    @ModelAttribute("roles")
+    public List<UserCategory> initializeProfiles() {
+        return ucs.listSvcUserCat();
+    }
 
-	private String getPrincipal() {
-		String userName = null;
-		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    private String getPrincipal() {
+        String userName = null;
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
-		if (principal instanceof UserDetails) {
-			userName = ((UserDetails) principal).getUsername();
-		} else {
-			userName = principal.toString();
-		}
-		return userName;
-	}
+        if (principal instanceof UserDetails) {
+            userName = ((UserDetails) principal).getUsername();
+        } else {
+            userName = principal.toString();
+        }
+        return userName;
+    }
+
+    private String getUserRole() {
+        String userRole = null;
+        Object role = SecurityContextHolder.getContext().getAuthentication().getAuthorities();
+
+        if (role instanceof UserDetails) {
+            userRole = ((UserDetails) role).getAuthorities().toString();
+        } else {
+            userRole = role.toString();
+        }
+
+        userRole = userRole.replace("[", "");
+        userRole = userRole.replace("]", "");
+        return userRole;
+    }
 
 }

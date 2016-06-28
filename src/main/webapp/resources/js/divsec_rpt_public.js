@@ -1,309 +1,392 @@
-jQuery(function() {
+jQuery(function () {
 
-	// Load datatable
-	var dtPublic = $('#dtOpened').dataTable({
+    //hide filter controles
+    $('#idTxtRequest').hide();
+    $('#divIdDivision').hide();
+    $('#divIdDateRange').hide();
+    $('#divIdSubject').hide();
+    $('#divIdStatus').hide();
+    $('#divIdUser').hide();
 
-		// No of records should be displayed
-		"lengthMenu" : [ 40 ],
 
-		// Load table using JSON data by ajax
-		"ajax" : {
-			"url" : "rptpublic/loadpi",
-			"dataSrc" : ""
-		},
+    // Load datatable
+    var dtPublic = $('#dtOpened').dataTable({
+        // No of records should be displayed
+        "lengthMenu": [40],
+        // Load table using JSON data by ajax
+        "ajax": {
+            "url": "rptpublic/loadpi",
+            "dataSrc": ""
+        },
+        "columns": [{
+                "data": "piId"
+            }, {
+                "data": "piName"
+            }, {
+                "data": "piAddress1"
+            }, {
+                "data": "piAddress2"
+            }, {
+                "data": "piAddress3"
+            }, {
+                "data": "piLandPhone"
+            }, {
+                "data": "piMobilePhone"
+            }, {
+                "data": "piEmail"
+            }, {
+                "data": "piNic"
+            }, {
+                "data": "piDob"
+            }, {
+                "data": "piGender"
+            }, {
+                "data": "piNote"
+            }, {
+                "data": "piUserId"
+            }, {
+                "data": "notification.ntnId"
+            }, {
+                "data": "notification.ntnType"
+            }, {
+                "data": "piActive"
+            }
 
-		"columns" : [ {
-			"data" : "piId"
-		}, {
-			"data" : "piName"
-		}, {
-			"data" : "piAddress1"
-		}, {
-			"data" : "piAddress2"
-		}, {
-			"data" : "piAddress3"
-		}, {
-			"data" : "piLandPhone"
-		}, {
-			"data" : "piMobilePhone"
-		}, {
-			"data" : "piEmail"
-		}, {
-			"data" : "piNic"
-		}, {
-			"data" : "piDob"
-		}, {
-			"data" : "piGender"
-		}, {
-			"data" : "piNote"
-		}, {
-			"data" : "piUserId"
-		}, {
-			"data" : "notification.ntnId"
-		}, {
-			"data" : "notification.ntnType"
-		}, {
-			"data" : "piActive"
-		}
+        ],
+        "columnDefs": [{
+                "targets": [7],
+                "visible": false
+            }, {
+                "targets": [8],
+                "visible": false
+            }, {
+                "targets": [9],
+                "visible": false
+            }, {
+                "targets": [10],
+                "visible": false
+            }, {
+                "targets": [11],
+                "visible": false
+            }, {
+                "targets": [12],
+                "visible": false
+            }, {
+                "targets": [13],
+                "visible": false
+            }, {
+                "targets": [14],
+                "visible": false
+            }],
+        dom: 'Bfrtip',
+        buttons: [{
+                extend: 'copyHtml5',
+                exportOptions: {
+                    columns: [0, ':visible']
+                }
+            }, {
+                extend: 'excelHtml5',
+                exportOptions: {
+                    columns: ':visible'
+                }
+            },
+            {
+                extend: 'pdfHtml5',
+            }, 'colvis',
+//            {
+//                text: 'Filter',
+//                action: function (e, dt, node, config) {
+//                    $("#mdlReqFilter").modal("show");
+//                }
+//            },
+            {
+                extend: 'print',
+                message: 'Request List',
+                exportOptions: {
+                    columns: ':visible'
+                }
 
-		],
+            }]
 
-		"columnDefs" : [ {
-			"targets" : [ 7 ],
-			"visible" : false
-		}, {
-			"targets" : [ 8 ],
-			"visible" : false
-		}, {
-			"targets" : [ 9 ],
-			"visible" : false
-		}, {
-			"targets" : [ 10 ],
-			"visible" : false
-		}, {
-			"targets" : [ 11 ],
-			"visible" : false
-		}, {
-			"targets" : [ 12 ],
-			"visible" : false
-		}, {
-			"targets" : [ 13 ],
-			"visible" : false
-		}, {
-			"targets" : [ 14 ],
-			"visible" : false
-		} ],
-		dom : 'Bfrtip',
-		buttons : [ {
-			extend : 'copyHtml5',
-			exportOptions : {
-				columns : [ 0, ':visible' ]
-			}
-		}, {
-			extend : 'excelHtml5',
-			exportOptions : {
-				columns : ':visible'
-			}
-		},
+    });
 
-		{
-			extend : 'pdfHtml5',
+//	$('#dp1').datepicker({
+//		format : 'yyyy-mm-dd',
+//		todayHighlight : true,
+//		todayBtn : 'true'
+//	});
 
-		}, 'colvis',
+    $('#dtTable').dataTable({
+        "lengthMenu": [5, 10, 20],
+    });
 
-		{
-			text : 'Filter',
-			action : function(e, dt, node, config) {
-				alert('Filter is not available');
-			}
-		}, {
-			extend : 'print',
-			message : 'Request List',
-			exportOptions : {
-				columns : ':visible'
-			}
+    // ----------- Opened Tab -------------
 
-		} ]
+    $('#dtOpened tbody').on('click', 'tr', function (e) {
 
-	});
+        var aPos = dtPublic.fnGetPosition(this);
+        // alert(aPos);
+        $('#txtIdPubId').val(dtPublic.fnGetData(aPos, 0));
+        $('#txtIdName').val(dtPublic.fnGetData(aPos, 1));
+        $('#txtIdAdd1').val(dtPublic.fnGetData(aPos, 2));
+        $('#txtIdAdd2').val(dtPublic.fnGetData(aPos, 3));
+        $('#txtIdAdd3').val(dtPublic.fnGetData(aPos, 4));
+        $('#txtIdTel').val(dtPublic.fnGetData(aPos, 5));
+        $('#txtIdMobile').val(dtPublic.fnGetData(aPos, 6));
+        $('#txtIdEmail').val(dtPublic.fnGetData(aPos, 7));
+        $('#txtIdNic').val(dtPublic.fnGetData(aPos, 8));
+        $('#dp1').val(dtPublic.fnGetData(aPos, 9));
+        $('#genderName').val(dtPublic.fnGetData(aPos, 10));
+        $('#txtIdNote').val(dtPublic.fnGetData(aPos, 11));
+        // $('#txtIdUid').val(dtPublic.fnGetData(aPos, 12));
+        $('#txtIdUid').val(stfId);
+        $('#notificationId').val(dtPublic.fnGetData(aPos, 13));
+        $('#notificationName').val(dtPublic.fnGetData(aPos, 14));
 
-	$('#dp1').datepicker({
-		format : 'yyyy-mm-dd',
-		todayHighlight : true,
-		todayBtn : 'true'
-	});
+        $('#idNotification').val(dtPublic.fnGetData(aPos, 14));
 
-	$('#dtTable').dataTable({
-		"lengthMenu" : [ 5, 10, 20 ],
-	});
+        var varChkActive = dtPublic.fnGetData(aPos, 15);
 
-	// ----------- Opened Tab -------------
+        if (varChkActive == true) {
+            blnIsDivActive = true;
+        } else {
+            blnIsDivActive = false;
+        }
 
-	$('#dtOpened tbody').on('click', 'tr', function(e) {
+        $('#chkIdPiActive').prop('checked', blnIsDivActive);
 
-		var aPos = dtPublic.fnGetPosition(this);
-		// alert(aPos);
-		$('#txtIdPubId').val(dtPublic.fnGetData(aPos, 0));
-		$('#txtIdName').val(dtPublic.fnGetData(aPos, 1));
-		$('#txtIdAdd1').val(dtPublic.fnGetData(aPos, 2));
-		$('#txtIdAdd2').val(dtPublic.fnGetData(aPos, 3));
-		$('#txtIdAdd3').val(dtPublic.fnGetData(aPos, 4));
-		$('#txtIdTel').val(dtPublic.fnGetData(aPos, 5));
-		$('#txtIdMobile').val(dtPublic.fnGetData(aPos, 6));
-		$('#txtIdEmail').val(dtPublic.fnGetData(aPos, 7));
-		$('#txtIdNic').val(dtPublic.fnGetData(aPos, 8));
-		$('#dp1').val(dtPublic.fnGetData(aPos, 9));
-		$('#genderName').val(dtPublic.fnGetData(aPos, 10));
-		$('#txtIdNote').val(dtPublic.fnGetData(aPos, 11));
-		// $('#txtIdUid').val(dtPublic.fnGetData(aPos, 12));
-		$('#txtIdUid').val(stfId);
-		$('#notificationId').val(dtPublic.fnGetData(aPos, 13));
-		$('#notificationName').val(dtPublic.fnGetData(aPos, 14));
+        $("#divFrmOpened").show({});
+        $('#divOpened').hide({});
+    });
 
-		$('#idNotification').val(dtPublic.fnGetData(aPos, 14));
+    // $("#idTabOpened").click(function() {
+    // $("#divFrmOpened").hide({});
+    // $('#divOpened').show({});
+    // });
 
-		var varChkActive = dtPublic.fnGetData(aPos, 15);
+    // -----------End Opened Tab -------------
 
-		if (varChkActive == true) {
-			blnIsDivActive = true;
-		} else {
-			blnIsDivActive = false;
-		}
+    $("#idBtnAddPublic").click(function () {
+        resetForm();
+        $("#divFrmOpened").show({});
+        $('#divOpened').hide({});
 
-		$('#chkIdPiActive').prop('checked', blnIsDivActive);
+    });
 
-		$("#divFrmOpened").show({});
-		$('#divOpened').hide({});
-	});
+    $("#idBtnViewPublic").click(function () {
+        dtPublic.fnReloadAjax('public/loadpi');
+        $("#divFrmOpened").hide({});
+        $('#divOpened').show({});
+    });
 
-	// $("#idTabOpened").click(function() {
-	// $("#divFrmOpened").hide({});
-	// $('#divOpened').show({});
-	// });
+    // ========== Load Gender Dropdown List============
+    var $gender = $('#idGender');
+    // request the JSON data and parse into the select element
 
-	// -----------End Opened Tab -------------
+    $.ajax({
+        // url : contextPath + '/gender/load',
+        url: 'gender/load',
+        dataType: 'JSON',
+        success: function (data) {
+            // clear the current content of the select
+            $gender.html('');
+            // iterate over the data and append a select option
+            $.each(data, function (key, val) {
+                // alert(val.id + " " + val.gender);
+                $gender.append('<option id="' + val.id + '">' + val.gender
+                        + '</option>');
+            })
+        },
+        error: function () {
+            // if there is an error append a 'none available' option
+            $gender.html('<option id="-1">none available</option>');
+        }
+    });
 
-	$("#idBtnAddPublic").click(function() {
-		resetForm();
-		$("#divFrmOpened").show({});
-		$('#divOpened').hide({});
+    // ========== End Load Gender Dropdown List============
 
-	});
+    // ========== Get Value From Gender Dropdown List ============
 
-	$("#idBtnViewPublic").click(function() {
-		dtPublic.fnReloadAjax('public/loadpi');
-		$("#divFrmOpened").hide({});
-		$('#divOpened').show({});
-	});
+    $gender.change(function () {
+        var str1 = "";
+        var str2 = "";
+        str1 = $('#idGender').children(":selected").attr("id");
+        str2 = $('#idGender').val();
+        $("select option:selected").each(function () {
+            $("#genderId").text(str1);
+            $("#genderName").val(str2);
+        });
 
-	// ========== Load Gender Dropdown List============
-	var $gender = $('#idGender');
-	// request the JSON data and parse into the select element
+    }).trigger("change");
 
-	$.ajax({
-		// url : contextPath + '/gender/load',
-		url : 'gender/load',
-		dataType : 'JSON',
-		success : function(data) {
-			// clear the current content of the select
-			$gender.html('');
-			// iterate over the data and append a select option
-			$.each(data, function(key, val) {
-				// alert(val.id + " " + val.gender);
-				$gender.append('<option id="' + val.id + '">' + val.gender
-						+ '</option>');
-			})
-		},
-		error : function() {
-			// if there is an error append a 'none available' option
-			$gender.html('<option id="-1">none available</option>');
-		}
-	});
+    // ========== Get Value From Gender Dropdown List============
 
-	// ========== End Load Gender Dropdown List============
+    // ========== Load Notification Dropdown List============
+    var $notification = $('#idNotification');
+    // request the JSON data and parse into the select element
+    $.ajax({
+        // url : contextPath + '/notification/load',
+        url: 'notification/load',
+        dataType: 'JSON',
+        success: function (data) {
+            // clear the current content of the select
+            $notification.html('');
+            // iterate over the data and append a select option
+            $.each(data, function (key, val) {
+                $notification.append('<option id="' + val.ntnId + '">'
+                        + val.ntnType + '</option>');
+            })
+        },
+        error: function () {
+            // if there is an error append a 'none available' option
+            $notification.html('<option id="-1">none available</option>');
+        }
+    });
 
-	// ========== Get Value From Gender Dropdown List ============
+    // ========== End Load Notification Dropdown List============
 
-	$gender.change(function() {
-		var str1 = "";
-		var str2 = "";
-		str1 = $('#idGender').children(":selected").attr("id");
-		str2 = $('#idGender').val();
-		$("select option:selected").each(function() {
-			$("#genderId").text(str1);
-			$("#genderName").val(str2);
-		});
+    // ========== Get Value From Notification Dropdown List============
 
-	}).trigger("change");
+    $notification.change(function () {
+        var str1 = "";
+        var str2 = "";
+        str1 = $('#idNotification').children(":selected").attr("id");
+        str2 = $('#idNotification').val();
 
-	// ========== Get Value From Gender Dropdown List============
+        $("select option:selected").each(function () {
+            $("#notificationId").val(str1);
+            $("#notificationName").val(str2);
+        });
 
-	// ========== Load Notification Dropdown List============
-	var $notification = $('#idNotification');
-	// request the JSON data and parse into the select element
-	$.ajax({
-		// url : contextPath + '/notification/load',
-		url : 'notification/load',
-		dataType : 'JSON',
-		success : function(data) {
-			// clear the current content of the select
-			$notification.html('');
-			// iterate over the data and append a select option
-			$.each(data, function(key, val) {
-				$notification.append('<option id="' + val.ntnId + '">'
-						+ val.ntnType + '</option>');
-			})
-		},
-		error : function() {
-			// if there is an error append a 'none available' option
-			$notification.html('<option id="-1">none available</option>');
-		}
-	});
+    }).trigger("change");
 
-	// ========== End Load Notification Dropdown List============
+    // ========== Get Value From Notification Dropdown List============
 
-	// ========== Get Value From Notification Dropdown List============
+    // ========== Reset entire form ============
 
-	$notification.change(function() {
-		var str1 = "";
-		var str2 = "";
-		str1 = $('#idNotification').children(":selected").attr("id");
-		str2 = $('#idNotification').val();
+    function resetForm() {
+        $('#txtIdPubId').val("");
+        $('#txtIdName').val("");
+        $('#txtIdAdd1').val("");
+        $('#txtIdAdd2').val("");
+        $('#txtIdAdd3').val("");
+        $('#txtIdTel').val("");
+        $('#txtIdMobile').val("");
+        $('#txtIdEmail').val("");
+        $('#txtIdNic').val("");
+        $('#dp1').val("");
+        $('#idGender').val("");
+        $('#genderName').val("");
+        $('#txtIdNote').val("");
+        // $('#txtIdUid').val(dtPublic.fnGetData(aPos, 12));
+        $('#txtIdUid').val(stfId);
+        $('#notificationId').val("");
+        $('#notificationName').val("");
+        $('#idNotification').val("");
+    }
+    // ==========End Reset entire form ============
 
-		$("select option:selected").each(function() {
-			$("#notificationId").val(str1);
-			$("#notificationName").val(str2);
-		});
+    // Form submission save and edit
+    $("#frmIdPublic").submit(function () {
+        // the Controller request mapping value as url.
+        var url = "public/create";
+        $.ajax({
+            type: "POST",
+            url: url,
+            data: $("#frmIdPublic").serialize(),
+            success: function () {
+                dtPublic.fnReloadAjax('public/loadpi');
+                swal("Saved Sucessfully !", "....", "success");
+            },
+            fail: function (data) {
 
-	}).trigger("change");
+                swal("Save Failed !", "....", data);
+            }
+        });
 
-	// ========== Get Value From Notification Dropdown List============
+        // avoid to execute the actual submit of the form.
+        return false;
+    });
+    
+    
+    
+    
+     // ------------------ Apply Filter------------------
+    $("#btnIdApplyFilter").click(function (e) {
+        var url1 = "";
+        var reqId = $("#idTxtRequest").val();
+        var sbjId = $("#txtIdSbjId").val();
+        var pubId = $("#txtIdPublicId").val();
+        var divId = $("#txtIdDivisionId").val();
+        var statusId = $("#idCmbReqStausId").val();
+        var idStaff = $("#idStaff").val();
+        var fromDate = $("#dpFrom").val();
+        var toDate = $("#dpTo").val();
 
-	// ========== Reset entire form ============
+        if (reqId === "") {
+            reqId = "0";
+        }
 
-	function resetForm() {
-		$('#txtIdPubId').val("");
-		$('#txtIdName').val("");
-		$('#txtIdAdd1').val("");
-		$('#txtIdAdd2').val("");
-		$('#txtIdAdd3').val("");
-		$('#txtIdTel').val("");
-		$('#txtIdMobile').val("");
-		$('#txtIdEmail').val("");
-		$('#txtIdNic').val("");
-		$('#dp1').val("");
-		$('#idGender').val("");
-		$('#genderName').val("");
-		$('#txtIdNote').val("");
-		// $('#txtIdUid').val(dtPublic.fnGetData(aPos, 12));
-		$('#txtIdUid').val(stfId);
-		$('#notificationId').val("");
-		$('#notificationName').val("");
-		$('#idNotification').val("");
-	}
-	// ==========End Reset entire form ============
+        if (sbjId === "") {
+            sbjId = "0";
+        }
 
-	// Form submission save and edit
-	$("#frmIdPublic").submit(function() {
-		// the Controller request mapping value as url.
-		var url = "public/create";
-		$.ajax({
-			type : "POST",
-			url : url,
-			data : $("#frmIdPublic").serialize(),
-			success : function() {
-				dtPublic.fnReloadAjax('public/loadpi');
-				swal("Saved Sucessfully !", "....", "success");
-			},
+        if (pubId === "") {
+            pubId = "0";
+        }
 
-			fail : function(data) {
+        if (divId === "") {
+            divId = "0";
+        }
 
-				swal("Save Failed !", "....", data);
-			}
-		});
+        if (statusId === "") {
+            statusId = "0";
+        }
 
-		// avoid to execute the actual submit of the form.
-		return false;
-	});
+        if (idStaff === "") {
+            idStaff = "0";
+        }
 
+        if (fromDate === "") {
+            fromDate = "0";
+        }
+
+        if (toDate === "") {
+            toDate = "0";
+        }
+
+        var intReqId = parseInt(reqId);
+        var intSbjId = parseInt(sbjId);
+        var intPubId = parseInt(pubId);
+        var intDivId = parseInt(divId);
+        var intStausId = parseInt(statusId);
+        var intStaffId = parseInt(idStaff);
+
+        if (intReqId == 0 && intSbjId == 0 && intPubId == 0
+                && intDivId == 0 && intStausId == 0
+                && intStaffId == 0 && fromDate === "0"
+                && toDate === "0") {
+
+            $("#mdlReqFilter").modal("hide")
+            dtRequest
+                    .fnReloadAjax('rptrequesttrail/loadTrail/0/0/0/0/0/0/0/0');
+
+        } else {
+            url1 = 'rptrequesttrail/loadTrail/' + intReqId
+                    + '/' + intSbjId + '/' + intPubId + '/'
+                    + intDivId + '/' + intStausId + '/'
+                    + intStaffId + '/' + fromDate + '/'
+                    + toDate;
+
+//                            alert(url1);
+            console.log(url1);
+
+            $("#mdlReqFilter").modal("hide")
+            dtRequest.fnReloadAjax(url1);
+        }
+
+    });
 });
+// ------------------ END Apply Filter------------------
+
+

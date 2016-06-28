@@ -94,8 +94,9 @@ jQuery(function () {
                                         case 7:
                                             return '<span class="label label-maroon">Rejected</span>';
                                             break;
-                                        default:
-                                            return 'N/A';
+                                        case 8:
+                                            return '<span class="label label-dark">Void</span>';
+                                            break;
 
                                     }
                                 }

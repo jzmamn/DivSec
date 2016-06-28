@@ -46,9 +46,9 @@
 					</div>
 
 					<div class="panel-body">
-						<div class="text-center">
+<!--						<div class="text-center">
 							<img src="assets/img/logo.png" id="logoimg" alt=" Logo" />
-						</div>
+						</div>-->
 						<div class="tab-content">
 
 							<div id="login" class="tab-pane active">
@@ -92,13 +92,13 @@
 
 
 
-						<div class="text-center">
+<!--						<div class="text-center">
 							<ul class="list-inline">
 								<li><a class="text-muted" href="${pageContext.request.contextPath}/home">home</a></li>
 								<li><a class="text-muted" href="#login" data-toggle="tab">Login</a></li>
 								<li><a class="text-muted" href="#forgot" data-toggle="tab">Forgot Password</a></li>
 							</ul>
-						</div>
+						</div>-->
 					</div>
 				</div>
 			</div>

@@ -1,5 +1,6 @@
 package com.aymen.service;
 
+import com.aymen.component.DateComponent;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -22,6 +23,9 @@ public class InstructionServiceImpl implements InstructionService {
 
 	@Autowired
 	private InstructionDAO instDao;
+        
+        @Autowired
+	private DateComponent dateComp;
 
 	@Autowired
 	UserCreationService ucs;
@@ -35,7 +39,7 @@ public class InstructionServiceImpl implements InstructionService {
 		// strInst = "<br>" + dateInString + "<br> <strong>" + stf.getStfName()
 		// + "</strong><br>" + strInst + "<hr/>";
 		inst.setInsInstruction(strInst);
-		inst.setInsDate(getCurrentDate());
+		inst.setInsDate(dateComp.getCurrentDate());
 		instDao.createInstructions(inst);
 
 	}
@@ -69,18 +73,18 @@ public class InstructionServiceImpl implements InstructionService {
 		return this.instDao.listInstByRequest(reqId);
 	}
 
-	public Date getCurrentDate() {
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
-		String dateInString = sdf.format(new Date());
-		Date txnDate;
-		try {
-			txnDate = sdf.parse(dateInString);
-			return txnDate;
-		} catch (ParseException e) {
-			e.printStackTrace();
-			return null;
-		}
-
-	}
+//	public Date getCurrentDate() {
+//		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd hh:mm:ss");
+//		String dateInString = sdf.format(new Date());
+//		Date txnDate;
+//		try {
+//			txnDate = sdf.parse(dateInString);
+//			return txnDate;
+//		} catch (ParseException e) {
+//			e.printStackTrace();
+//			return null;
+//		}
+//
+//	}
 
 }

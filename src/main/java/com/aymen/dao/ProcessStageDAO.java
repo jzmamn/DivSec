@@ -3,6 +3,7 @@ package com.aymen.dao;
 import java.util.List;
 
 import com.aymen.entity.ProcessStage;
+import com.aymen.entity.Staff;
 
 public interface ProcessStageDAO {
 
@@ -18,7 +19,7 @@ public interface ProcessStageDAO {
 
 	public List<ProcessStage> listReqStgByReqId(int reqId);
 
-	public void updateStageStatus(int reqStageId, int reqStgStsId, String note);
+	public void updateStageStatus(int reqStageId, int reqStgStsId, String note, Staff staff);
 
 	// For Request Stage Reports
 

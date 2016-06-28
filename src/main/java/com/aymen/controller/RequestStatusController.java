@@ -33,6 +33,13 @@ public class RequestStatusController {
 		return this.rss.listSvcRequestStatus(role);
 	}
 
+        //Request status for Approval
+        @RequestMapping(value = "/req_status_approval", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody List<RequestStatus> getReqStatusApproval() {
+		return this.rss.listRequestStatusForApprovalSvc();
+	}
+
+        
 	// Load Request status at filter
 	@RequestMapping(value = "/load-req-status", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public @ResponseBody String loadReqStatus() {

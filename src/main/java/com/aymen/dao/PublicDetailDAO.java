@@ -14,5 +14,7 @@ public interface PublicDetailDAO {
 	public PublicIndividual getPublicIndividualById(int id);
 
 	public void deletePublicIndividual(int id);
+        
+        public PublicIndividual getPublicByUserId(String publicUserId);
 
 }

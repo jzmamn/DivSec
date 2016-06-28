@@ -81,12 +81,13 @@ public class SubjectStageDAOImpl implements SubjectStageDAO {
 	@Override
 	@SuppressWarnings("unchecked")
 	public List<SubjecStage> listSbjStgBySbjId(int sbjId) {
-		String sql = "SELECT * FROM subjec_stage WHERE stg_subject_id = :Id ";
+		String sql = "SELECT * FROM subjec_stage WHERE stg_subject_id = :Id and stg_active= :active ";
 		Session session = sessionFactory.getCurrentSession();
 		try {
 			SQLQuery query = session.createSQLQuery(sql);
 			query.addEntity(SubjecStage.class);
 			query.setParameter("Id", sbjId);
+                        query.setParameter("active", true);
 			List<SubjecStage> lst = query.list();
 			return lst;
 		} catch (Exception e) {

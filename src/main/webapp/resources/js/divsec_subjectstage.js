@@ -1,204 +1,203 @@
-jQuery(function() {
+jQuery(function () {
 
-	// ==============Start Subject===================
-	$("#txtIdSbjId").val("");
-	$("#txtIdSbjName").val("");
-	$("#txtIdStgCost").val("");
+    // ==============Start Subject===================
+    $("#txtIdSbjId").val("");
+    $("#txtIdSbjName").val("");
+    $("#txtIdStgCost").val("");
 
-	$('#chkSbjStgIsActive').prop('checked', true); // check true when loading
+    $('#chkSbjStgIsActive').prop('checked', true); // check true when loading
 
-	// Intialize Subject Table
+    // Intialize Subject Table
 
-	var dtSubject = $('#dtSubject').dataTable({
+    var dtSubject = $('#dtSubject').dataTable({
+        // No of records should be displayed
+        "lengthMenu": [5, 10, 20],
+        // Load table using JSON data by ajax
+        "ajax": {
+            "url": "subject/loadactivesubject",
+            "dataSrc": ""
+        },
+        "columns": [{
+                "data": "sbjId"
+            }, {
+                "data": "sbjCode"
+            }, {
+                "data": "sbjActive"
+            }
 
-		// No of records should be displayed
-		"lengthMenu" : [ 5, 10, 20 ],
+        ]
+    });
 
-		// Load table using JSON data by ajax
-		"ajax" : {
-			"url" : "subject/loadactivesubject",
-			"dataSrc" : ""
-		},
+    // Intialize Subject Stage Table
+    var dtSbjStg = $('#dtSbjStg').dataTable({
+        // No of records should be displayed
+        "lengthMenu": [5, 10, 20],
+        // Load table using JSON data by ajax
+        "ajax": {
+            "url": "sbjstages/loadsbjstage/0",
+            "dataSrc": ""
+        },
+        "columns": [{
+                "data": "stgId"
+            }, {
+                "data": "subject.sbjId"
+            }, {
+                "data": "stgName"
+            }, {
+                "data": "stgCost"
+            }, {
+                "data": "stgActive"
+            }
 
-		"columns" : [ {
-			"data" : "sbjId"
-		}, {
-			"data" : "sbjCode"
-		}, {
-			"data" : "sbjActive"
-		}
+        ],
+        "columnDefs": [{
+                "targets": [0],
+                "visible": false
+            },{
+                "targets": [1],
+                "visible": false
+            }, {
+                "targets": [3],
+                "visible": false
+            }
 
-		]
-	});
+        ]
 
-	// Intialize Subject Stage Table
-	var dtSbjStg = $('#dtSbjStg').dataTable({
+    });
 
-		// No of records should be displayed
-		"lengthMenu" : [ 5, 10, 20 ],
+    // Form submission save and edit
+    $("#frmIdSbjStg").submit(function () {
 
-		// Load table using JSON data by ajax
-		"ajax" : {
-			"url" : "sbjstages/loadsbjstage/0",
-			"dataSrc" : ""
-		},
+        if ($('#txtIdSbjId').val() == "") {
+            alert('Select a Subject');
+            return;
+        }
 
-		"columns" : [ {
-			"data" : "stgId"
-		}, {
-			"data" : "subject.sbjId"
-		}, {
-			"data" : "stgName"
-		}, {
-			"data" : "stgCost"
-		}, {
-			"data" : "stgActive"
-		}
+        if ($('#txtIdStgName').val() == "") {
+            alert('Enter a Subject Stage');
+            return;
+        }
 
-		],
+        var sbjId1 = $("#txtIdSbjId").val();
 
-		"columnDefs" : [ {
-			"targets" : [ 1 ],
-			"visible" : false
-		}, {
-			"targets" : [ 3 ],
-			"visible" : false
-		}
+        // the Controller request mapping value as url.
+        var url = "sbjstages/create";
+        $.ajax({
+            type: "POST",
+            url: url,
+            data: $("#frmIdSbjStg").serialize(),
+            success: function (res) {
 
-		]
+                if (res == "1") {
+                    dtSbjStg.fnReloadAjax('sbjstages/loadsbjstage/' + sbjId1);
+                    swal("Saved Sucessfully !", "....", "success");
+                    $("#txtIdStgId").val("");
+                    $("#txtIdStgName").val("");
 
-	});
+                } else {
+                    swal("Oops", res, "error");
+                    $("#txtIdStgId").val("");
+                    $("#txtIdStgName").val("");
+                }
+            },
+            fail: function (res) {
+                $("#modalSubject").modal("hide");
+                swal("Save Failed !", res, "error");
+            }
+        });
 
-	// Form submission save and edit
-	$("#frmIdSbjStg").submit(function() {
+        // avoid to execute the actual submit of the form.
+        return false;
+    });
 
-		if ($('#txtIdSbjId').val() == "") {
-			alert('Select a Subject');
-			return;
-		}
+    $("#btn").click(function () {
+        dtSubject.fnReloadAjax('subject/loadsubject');
+        // alert('usercreation/loaduser');
+        // $.ajax({
+        // url : 'usercreation/loaduser',
+        // dataType : "json"
+        // }).done(function(json) {
+        // alert("Success: " + json);
+        // });
 
-		if ($('#txtIdStgName').val() == "") {
-			alert('Enter a Subject Stage');
-			return;
-		}
+    });
 
-		var sbjId1 = $("#txtIdSbjId").val();
+    // GET VALUE ON TABLE ROW CLICK From Subject table
 
-		// the Controller request mapping value as url.
-		var url = "sbjstages/create";
-		$.ajax({
-			type : "POST",
-			url : url,
-			data : $("#frmIdSbjStg").serialize(),
-			success : function(res) {
+    $('#dtSubject tbody').on('click', 'tr', function (e) {
+        var aPos = dtSubject.fnGetPosition(this);
+        var sbjId = dtSubject.fnGetData(aPos, 0)
+        $('#txtIdSbjId').val(dtSubject.fnGetData(aPos, 0));
+        $('#txtIdSbjName').val(dtSubject.fnGetData(aPos, 1));
+        $("#modalSubject").modal("hide");
+        dtSbjStg.fnReloadAjax('sbjstages/loadsbjstage/' + sbjId);
+    });
 
-				if (res == "1") {
-					dtSbjStg.fnReloadAjax('sbjstages/loadsbjstage/' + sbjId1);
-					swal("Saved Sucessfully !", "....", "success");
-				} else {
-					swal("Oops", res, "error");
-				}
-			},
+    // GET VALUE ON TABLE ROW CLICK From Subject Stage table
 
-			fail : function(res) {
-				$("#modalSubject").modal("hide");
-				swal("Save Failed !", res, "error");
-			}
-		});
+    $('#dtSbjStg tbody').on('click', 'tr', function (e) {
+        var aPos1 = dtSbjStg.fnGetPosition(this);
+        $('#txtIdStgId').val(dtSbjStg.fnGetData(aPos1, 0));
+        $('#txtIdSbjId').val(dtSbjStg.fnGetData(aPos1, 1));
+        $('#txtIdStgName').val(dtSbjStg.fnGetData(aPos1, 2));
+        $('#txtIdStgCost').val(dtSbjStg.fnGetData(aPos1, 3));
+        var varChkActive = dtSbjStg.fnGetData(aPos1, 4);
+        if (varChkActive == true) {
+            blnIsDivActive = true;
+        } else {
+            blnIsDivActive = false;
+        }
 
-		// avoid to execute the actual submit of the form.
-		return false;
-	});
+        $('#chkIdSbjActive').prop('checked', blnIsDivActive);
+    });
 
-	$("#btn").click(function() {
-		dtSubject.fnReloadAjax('subject/loadsubject');
-		// alert('usercreation/loaduser');
-		// $.ajax({
-		// url : 'usercreation/loaduser',
-		// dataType : "json"
-		// }).done(function(json) {
-		// alert("Success: " + json);
-		// });
+    // Delete function
+    $("#btnDelete").click(
+            function (e) {
+                e.preventDefault();
 
-	});
+                var sbjId = ('#txtIdSbjId').val();
 
-	// GET VALUE ON TABLE ROW CLICK From Subject table
+                if ($('#txtIdSbjId').val() == "") {
+                    swal("Oops", "Select a record to delete !", "error");
+                    $("#modalSubject").modal("hide");
+                    return;
+                }
 
-	$('#dtSubject tbody').on('click', 'tr', function(e) {
-		var aPos = dtSubject.fnGetPosition(this);
-		var sbjId = dtSubject.fnGetData(aPos, 0)
-		$('#txtIdSbjId').val(dtSubject.fnGetData(aPos, 0));
-		$('#txtIdSbjName').val(dtSubject.fnGetData(aPos, 1));
-		$("#modalSubject").modal("hide");
-		dtSbjStg.fnReloadAjax('sbjstages/loadsbjstage/' + sbjId);
-	});
+                var subjectId = $('#txtIdSbjId').val();
 
-	// GET VALUE ON TABLE ROW CLICK From Subject Stage table
-
-	$('#dtSbjStg tbody').on('click', 'tr', function(e) {
-		var aPos1 = dtSbjStg.fnGetPosition(this);
-		$('#txtIdStgId').val(dtSbjStg.fnGetData(aPos1, 0));
-		$('#txtIdSbjId').val(dtSbjStg.fnGetData(aPos1, 1));
-		$('#txtIdStgName').val(dtSbjStg.fnGetData(aPos1, 2));
-		$('#txtIdStgCost').val(dtSbjStg.fnGetData(aPos1, 3));
-		var varChkActive = dtSbjStg.fnGetData(aPos1, 4);
-		if (varChkActive == true) {
-			blnIsDivActive = true;
-		} else {
-			blnIsDivActive = false;
-		}
-
-		$('#chkIdSbjActive').prop('checked', blnIsDivActive);
-	});
-
-	// Delete function
-	$("#btnDelete").click(
-			function(e) {
-				e.preventDefault();
-
-				var sbjId = ('#txtIdSbjId').val();
-
-				if ($('#txtIdSbjId').val() == "") {
-					swal("Oops", "Select a record to delete !", "error");
-					$("#modalSubject").modal("hide");
-					return;
-				}
-
-				var subjectId = $('#txtIdSbjId').val();
-
-				var url = "subject/delete/" + subjectId;
-				// alert(url);
-				swal({
-					title : "Are you sure?",
-					text : "Are you sure that you want to delete this Staff?",
-					type : "warning",
-					showCancelButton : true,
-					closeOnConfirm : false,
-					confirmButtonText : "Yes, delete it!",
-					confirmButtonColor : "#ec6c62"
-				}, function() {
-					$.ajax({
-						url : url,
-						success : function(data) {
-							if (data == "1") {
-								dtSbjStage
-										.fnReloadAjax('sbjstages/loadsbjstage/'
-												+ sbjId);
-								swal("Deleted!",
-										"Stage has been Successfully Deleted!",
-										"success");
-							} else {
-								swal("Error", data, "error");
-							}
-						},
-
-						fail : function(data) {
-							alert(data);
-							swal("Error", "Could Not Connect to the server!",
-									"error");
-						}
-					});
-				});
-			});
+                var url = "subject/delete/" + subjectId;
+                // alert(url);
+                swal({
+                    title: "Are you sure?",
+                    text: "Are you sure that you want to delete this Staff?",
+                    type: "warning",
+                    showCancelButton: true,
+                    closeOnConfirm: false,
+                    confirmButtonText: "Yes, delete it!",
+                    confirmButtonColor: "#ec6c62"
+                }, function () {
+                    $.ajax({
+                        url: url,
+                        success: function (data) {
+                            if (data == "1") {
+                                dtSbjStage
+                                        .fnReloadAjax('sbjstages/loadsbjstage/'
+                                                + sbjId);
+                                swal("Deleted!",
+                                        "Stage has been Successfully Deleted!",
+                                        "success");
+                            } else {
+                                swal("Error", data, "error");
+                            }
+                        },
+                        fail: function (data) {
+                            alert(data);
+                            swal("Error", "Could Not Connect to the server!",
+                                    "error");
+                        }
+                    });
+                });
+            });
 
 });

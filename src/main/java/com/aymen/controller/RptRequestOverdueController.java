@@ -40,8 +40,8 @@ public class RptRequestOverdueController {
 		return "reports/process/rpt_request_overdue";
 	}
 
-	@RequestMapping(value = "/loadTrail/{reqId}/{fromDate}/{toDate}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody List<Object> loadRequesOverdue(@PathVariable("reqId") int reqId,
+	@RequestMapping(value = "/loadoverdue/{reqId}/{fromDate}/{toDate}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public @ResponseBody List<Object> loadRequestOverdue(@PathVariable("reqId") int reqId,
 			@PathVariable("fromDate") String fromDate, @PathVariable("toDate") String toDate) {
 		return this.reqSvc.getSvcOverDueRequests(reqId, fromDate, toDate);
 	}

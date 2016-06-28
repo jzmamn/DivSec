@@ -25,224 +25,236 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 
 @Entity
-@Table(name = "public_individual", catalog = "divsec", uniqueConstraints = @UniqueConstraint(columnNames = "pi_ind_user_id") )
+@Table(name = "public_individual", catalog = "divsec", uniqueConstraints = @UniqueConstraint(columnNames = "pi_ind_user_id"))
 @JsonIdentityInfo(generator = ObjectIdGenerators.None.class, property = "@piId")
 public class PublicIndividual implements java.io.Serializable {
-	private static final long serialVersionUID = 1L;
-	private Integer piId;
-	private Notification notification;
-	private String piName;
-	private String piAddress1;
-	private String piAddress2;
-	private String piAddress3;
-	private String piLandPhone;
-	private String piMobilePhone;
-	private String piEmail;
-	private Integer piIndUserId;
-	private String piUserPwd;
-	private String piNic;
-	private Date piDob;
-	private String piGender;
-	private String piNote;
-	private Integer piUserId;
-	private Boolean piActive;
-	private Set<Request> requests = new HashSet<Request>(0);
 
-	public PublicIndividual() {
-	}
+    private static final long serialVersionUID = 1L;
+    private Integer piId;
+    private Notification notification;
+    private String piName;
+    private String piAddress1;
+    private String piAddress2;
+    private String piAddress3;
+    private String piLandPhone;
+    private String piMobilePhone;
+    private String piEmail;
+    private String piIndUserId;
+    private String piUserPwd;
+    private String piNic;
+    private Date piDob;
+    private String piGender;
+    private String piNote;
+    private Integer piUserId;
+    private Boolean piActive;
+    private Set<Request> requests = new HashSet<Request>(0);
+    private Set<ClientRole> clientRoles = new HashSet<ClientRole>(0);
 
-	public PublicIndividual(Notification notification, String piName, String piAddress1, String piAddress2,
-			String piAddress3, String piLandPhone, String piMobilePhone, String piEmail, Integer piIndUserId,
-			String piUserPwd, String piNic, Date piDob, String piGender, String piNote, Integer piUserId,
-			Boolean piActive, Set<Request> requests) {
-		this.notification = notification;
-		this.piName = piName;
-		this.piAddress1 = piAddress1;
-		this.piAddress2 = piAddress2;
-		this.piAddress3 = piAddress3;
-		this.piLandPhone = piLandPhone;
-		this.piMobilePhone = piMobilePhone;
-		this.piEmail = piEmail;
-		this.piIndUserId = piIndUserId;
-		this.piUserPwd = piUserPwd;
-		this.piNic = piNic;
-		this.piDob = piDob;
-		this.piGender = piGender;
-		this.piNote = piNote;
-		this.piUserId = piUserId;
-		this.piActive = piActive;
-		this.requests = requests;
-	}
+    public PublicIndividual() {
+    }
 
-	@Id
-	@GeneratedValue(strategy = IDENTITY)
+    public PublicIndividual(Notification notification, String piName, String piAddress1, String piAddress2,
+            String piAddress3, String piLandPhone, String piMobilePhone, String piEmail, String piIndUserId,
+            String piUserPwd, String piNic, Date piDob, String piGender, String piNote, Integer piUserId,
+            Boolean piActive, Set<Request> requests, Set<ClientRole> clientRoles) {
+        this.notification = notification;
+        this.piName = piName;
+        this.piAddress1 = piAddress1;
+        this.piAddress2 = piAddress2;
+        this.piAddress3 = piAddress3;
+        this.piLandPhone = piLandPhone;
+        this.piMobilePhone = piMobilePhone;
+        this.piEmail = piEmail;
+        this.piIndUserId = piIndUserId;
+        this.piUserPwd = piUserPwd;
+        this.piNic = piNic;
+        this.piDob = piDob;
+        this.piGender = piGender;
+        this.piNote = piNote;
+        this.piUserId = piUserId;
+        this.piActive = piActive;
+        this.requests = requests;
+        this.clientRoles = clientRoles;
+    }
 
-	@Column(name = "pi_id", unique = true, nullable = false)
-	public Integer getPiId() {
-		return this.piId;
-	}
+    @Id
+    @GeneratedValue(strategy = IDENTITY)
 
-	public void setPiId(Integer piId) {
-		this.piId = piId;
-	}
+    @Column(name = "pi_id", unique = true, nullable = false)
+    public Integer getPiId() {
+        return this.piId;
+    }
 
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "pi_notfication_type_id")
+    public void setPiId(Integer piId) {
+        this.piId = piId;
+    }
 
-	public Notification getNotification() {
-		return this.notification;
-	}
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "pi_notfication_type_id")
 
-	public void setNotification(Notification notification) {
-		this.notification = notification;
-	}
+    public Notification getNotification() {
+        return this.notification;
+    }
 
-	@Column(name = "pi_name", length = 100)
-	public String getPiName() {
-		return this.piName;
-	}
+    public void setNotification(Notification notification) {
+        this.notification = notification;
+    }
 
-	public void setPiName(String piName) {
-		this.piName = piName;
-	}
+    @Column(name = "pi_name", length = 100)
+    public String getPiName() {
+        return this.piName;
+    }
 
-	@Column(name = "pi_address1", length = 50)
-	public String getPiAddress1() {
-		return this.piAddress1;
-	}
+    public void setPiName(String piName) {
+        this.piName = piName;
+    }
 
-	public void setPiAddress1(String piAddress1) {
-		this.piAddress1 = piAddress1;
-	}
+    @Column(name = "pi_address1", length = 50)
+    public String getPiAddress1() {
+        return this.piAddress1;
+    }
 
-	@Column(name = "pi_address2", length = 50)
-	public String getPiAddress2() {
-		return this.piAddress2;
-	}
+    public void setPiAddress1(String piAddress1) {
+        this.piAddress1 = piAddress1;
+    }
 
-	public void setPiAddress2(String piAddress2) {
-		this.piAddress2 = piAddress2;
-	}
+    @Column(name = "pi_address2", length = 50)
+    public String getPiAddress2() {
+        return this.piAddress2;
+    }
 
-	@Column(name = "pi_address3", length = 50)
-	public String getPiAddress3() {
-		return this.piAddress3;
-	}
+    public void setPiAddress2(String piAddress2) {
+        this.piAddress2 = piAddress2;
+    }
 
-	public void setPiAddress3(String piAddress3) {
-		this.piAddress3 = piAddress3;
-	}
+    @Column(name = "pi_address3", length = 50)
+    public String getPiAddress3() {
+        return this.piAddress3;
+    }
 
-	@Column(name = "pi_land_phone", length = 10)
-	public String getPiLandPhone() {
-		return this.piLandPhone;
-	}
+    public void setPiAddress3(String piAddress3) {
+        this.piAddress3 = piAddress3;
+    }
 
-	public void setPiLandPhone(String piLandPhone) {
-		this.piLandPhone = piLandPhone;
-	}
+    @Column(name = "pi_land_phone", length = 10)
+    public String getPiLandPhone() {
+        return this.piLandPhone;
+    }
 
-	@Column(name = "pi_mobile_phone", length = 10)
-	public String getPiMobilePhone() {
-		return this.piMobilePhone;
-	}
+    public void setPiLandPhone(String piLandPhone) {
+        this.piLandPhone = piLandPhone;
+    }
 
-	public void setPiMobilePhone(String piMobilePhone) {
-		this.piMobilePhone = piMobilePhone;
-	}
+    @Column(name = "pi_mobile_phone", length = 10)
+    public String getPiMobilePhone() {
+        return this.piMobilePhone;
+    }
 
-	@Column(name = "pi_email", length = 100)
-	public String getPiEmail() {
-		return this.piEmail;
-	}
+    public void setPiMobilePhone(String piMobilePhone) {
+        this.piMobilePhone = piMobilePhone;
+    }
 
-	public void setPiEmail(String piEmail) {
-		this.piEmail = piEmail;
-	}
+    @Column(name = "pi_email", length = 100)
+    public String getPiEmail() {
+        return this.piEmail;
+    }
 
-	@Column(name = "pi_ind_user_id", unique = true)
-	public Integer getPiIndUserId() {
-		return this.piIndUserId;
-	}
+    public void setPiEmail(String piEmail) {
+        this.piEmail = piEmail;
+    }
 
-	public void setPiIndUserId(Integer piIndUserId) {
-		this.piIndUserId = piIndUserId;
-	}
+    @Column(name = "pi_ind_user_id", unique = true)
+    public String getPiIndUserId() {
+        return this.piIndUserId;
+    }
 
-	@Column(name = "pi_user_pwd", length = 100)
-	public String getPiUserPwd() {
-		return this.piUserPwd;
-	}
+    public void setPiIndUserId(String piIndUserId) {
+        this.piIndUserId = piIndUserId;
+    }
 
-	public void setPiUserPwd(String piUserPwd) {
-		this.piUserPwd = piUserPwd;
-	}
+    @Column(name = "pi_user_pwd", length = 100)
+    public String getPiUserPwd() {
+        return this.piUserPwd;
+    }
 
-	@Column(name = "pi_nic", length = 10)
-	public String getPiNic() {
-		return this.piNic;
-	}
+    public void setPiUserPwd(String piUserPwd) {
+        this.piUserPwd = piUserPwd;
+    }
 
-	public void setPiNic(String piNic) {
-		this.piNic = piNic;
-	}
+    @Column(name = "pi_nic", length = 10)
+    public String getPiNic() {
+        return this.piNic;
+    }
 
-	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "pi_dob", length = 19)
-	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd", timezone = "Asia/Jayapura")
-	public Date getPiDob() {
+    public void setPiNic(String piNic) {
+        this.piNic = piNic;
+    }
 
-		return this.piDob;
-	}
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "pi_dob", length = 19)
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd", timezone = "Asia/Jayapura")
+    public Date getPiDob() {
 
-	public void setPiDob(Date piDob) {
-		this.piDob = piDob;
-	}
+        return this.piDob;
+    }
 
-	@Column(name = "pi_gender", length = 20)
-	public String getPiGender() {
-		return this.piGender;
-	}
+    public void setPiDob(Date piDob) {
+        this.piDob = piDob;
+    }
 
-	public void setPiGender(String piGender) {
-		this.piGender = piGender;
-	}
+    @Column(name = "pi_gender", length = 20)
+    public String getPiGender() {
+        return this.piGender;
+    }
 
-	@Column(name = "pi_note", length = 100)
-	public String getPiNote() {
-		return this.piNote;
-	}
+    public void setPiGender(String piGender) {
+        this.piGender = piGender;
+    }
 
-	public void setPiNote(String piNote) {
-		this.piNote = piNote;
-	}
+    @Column(name = "pi_note", length = 100)
+    public String getPiNote() {
+        return this.piNote;
+    }
 
-	@Column(name = "pi_user_id")
-	public Integer getPiUserId() {
-		return this.piUserId;
-	}
+    public void setPiNote(String piNote) {
+        this.piNote = piNote;
+    }
 
-	public void setPiUserId(Integer piUserId) {
-		this.piUserId = piUserId;
-	}
+    @Column(name = "pi_user_id")
+    public Integer getPiUserId() {
+        return this.piUserId;
+    }
 
-	@Column(name = "pi_active")
-	public Boolean getPiActive() {
-		return this.piActive;
-	}
+    public void setPiUserId(Integer piUserId) {
+        this.piUserId = piUserId;
+    }
 
-	public void setPiActive(Boolean piActive) {
-		this.piActive = piActive;
-	}
+    @Column(name = "pi_active")
+    public Boolean getPiActive() {
+        return this.piActive;
+    }
 
-	@JsonIgnore
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "publicIndividual")
-	public Set<Request> getRequests() {
-		return this.requests;
-	}
+    public void setPiActive(Boolean piActive) {
+        this.piActive = piActive;
+    }
 
-	public void setRequests(Set<Request> requests) {
-		this.requests = requests;
-	}
+    @JsonIgnore
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "publicIndividual")
+    public Set<Request> getRequests() {
+        return this.requests;
+    }
 
+    public void setRequests(Set<Request> requests) {
+        this.requests = requests;
+    }
+
+    @JsonIgnore
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "publicIndividual")
+    public Set<ClientRole> getClientRoles() {
+        return this.clientRoles;
+    }
+
+    public void setClientRoles(Set<ClientRole> clientRoles) {
+        this.clientRoles = clientRoles;
+    }
 }

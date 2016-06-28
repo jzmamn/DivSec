@@ -16,4 +16,6 @@ public interface RequestStatusDAO {
 	public void deleteRequestStatus(int id);
 
 	public String loadReqStatus();
+        
+        public List<RequestStatus> listRequestStatusForApproval();
 }

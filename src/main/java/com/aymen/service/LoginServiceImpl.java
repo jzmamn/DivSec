@@ -50,7 +50,8 @@ public class LoginServiceImpl implements UserDetailsService {
 	}
 
 	private User buildUserForAuthentication(Staff user, List<GrantedAuthority> authorities) {
-		return new User(user.getStfUserId(), user.getStfPassword(), true, true, true, true, authorities);
+		return new User(user.getStfUserId(), user.getStfPassword(), user.getStfActive(), true, true, true, authorities);
+                
 	}
 
 }

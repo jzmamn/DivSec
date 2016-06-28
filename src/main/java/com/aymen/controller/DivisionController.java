@@ -54,7 +54,6 @@ public class DivisionController {
 		model.addAttribute("role", getUserRole());
 		model.addAttribute("cmdDivision", new Division());
 		return "setup/division";
-
 	}
 
 	// Save or Update division

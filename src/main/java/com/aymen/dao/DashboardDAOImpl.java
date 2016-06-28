@@ -146,7 +146,7 @@ public class DashboardDAOImpl implements DashboardDAO {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Object> plotBarChartDivsionAnnual(int year, int divId) {
-		String sql = " select * from vw_bar_by_division  WHERE EntYear=" + year + " and req_division_id=" + divId;
+		String sql = " select * from vw_bar_by_division  WHERE EntYear=" + year + " and req_division_id=" + divId + " order by EntMonth1";
 		Session session = sessionFactory.getCurrentSession();
 		SQLQuery query = session.createSQLQuery(sql);
 		query.setResultTransformer(Criteria.ALIAS_TO_ENTITY_MAP);
