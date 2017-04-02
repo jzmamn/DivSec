@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE log4j:configuration PUBLIC "-//APACHE//DTD LOG4J 1.2//EN" "log4j.dtd">
+
 <log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
 
 	<!-- Appenders -->
@@ -10,20 +11,50 @@
 		</layout>
 	</appender>
 	
+	<appender name="logfile" class="org.apache.log4j.RollingFileAppender">
+	    <param name="append" value="false" />
+	    <param name="maxFileSize" value="10MB" />
+	    <param name="maxBackupIndex" value="10" />
+	    <param name="file" value="D:/logs/DivSecLog.log" />
+	    <layout class="org.apache.log4j.PatternLayout">
+		<param name="ConversionPattern" 
+			value="%d{yyyy-MM-dd HH:mm:ss} %-5p %c{1}:%L - %m%n" />
+	    </layout>
+	</appender>
+	
+<!-- 
+	<appender name="logfile" class="org.apache.log4j.FileAppender">
+		<param name="File" value="D:/Logs/DivSecLog.log" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%-7p %d [%t] %c %x - %m%n" />
+		</layout>
+	</appender>
+ -->
+	
+	
 	<!-- Application Loggers -->
 	<logger name="com.aymen.controller">
-		<level value="info" />
+		<level value="error" />
 	</logger>
-	
+
+	<logger name="com.aymen.dao">
+		<level value="error" />
+	</logger>
+
+	<logger name="com.aymen.service">
+		<level value="error" />
+	</logger>
+
+
 	<!-- 3rdparty Loggers -->
 	<logger name="org.springframework.core">
 		<level value="info" />
 	</logger>
-	
+
 	<logger name="org.springframework.beans">
 		<level value="info" />
 	</logger>
-	
+
 	<logger name="org.springframework.context">
 		<level value="info" />
 	</logger>
@@ -34,8 +65,13 @@
 
 	<!-- Root Logger -->
 	<root>
-		<priority value="warn" />
+	<!-- 
+		priority value can be changed to the following
+	info, error, warn, debug, trace
+	 -->
+		<priority value="ERROR" />
 		<appender-ref ref="console" />
+		<appender-ref ref="logfile" />
 	</root>
-	
+
 </log4j:configuration>

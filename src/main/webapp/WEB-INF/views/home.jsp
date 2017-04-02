@@ -18,11 +18,11 @@
 <!-- GLOBAL STYLES -->
 <!-- PAGE LEVEL STYLES -->
 
-<link rel="stylesheet"
-	href="<c:url value="/resources/plugins/bootstrap/css/bootstrap.css" />" />
+<link rel="stylesheet" href="<c:url value="/resources/plugins/bootstrap/css/bootstrap.css" />" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/plugins/Font-Awesome/css/font-awesome.css" />
+
 <link rel="stylesheet" href="<c:url value="/resources/css/login.css" />" />
-<link rel="stylesheet"
-	href="<c:url value="/resources/plugins/magic/magic.css" />" />
+<link rel="stylesheet" href="<c:url value="/resources/plugins/magic/magic.css" />" />
 
 <!-- END PAGE LEVEL STYLES -->
 <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -35,69 +35,65 @@
 <body>
 	<!-- PAGE CONTENT -->
 	<div class="container">
-		<div class="text-center">
-			<img src="<c:url value="/resources/img/logo.png " />" alt=" Logo" />
+		<div class="col-lg-12">
+			<div class="col-lg-4"></div>
+			<div class="col-lg-4">
+				<div class="panel panel-primary">
 
-		</div>
-		<div class="tab-content">
-			<div id="login" class="tab-pane active">
-				<form action="mainmenu/main/1" class="form-signin">
-					<p
-						class="text-muted text-center btn-block btn btn-primary btn-rect">
-						Enter your username and password</p>
-					<input type="text" placeholder="Username" class="form-control" />
-					<input type="password" placeholder="Password" class="form-control" />
-					<button class="btn text-muted text-center btn-danger" type="submit">Sign
-						in</button>
-				</form>
-			</div>
-			<div id="forgot" class="tab-pane">
-				<form action="home.html" class="form-signin">
-					<p
-						class="text-muted text-center btn-block btn btn-primary btn-rect">Enter
-						your valid e-mail</p>
-					<input type="email" required="required" placeholder="Your E-mail"
-						class="form-control" /> <br />
-					<button class="btn text-muted text-center btn-success"
-						type="submit">Recover Password</button>
-				</form>
-			</div>
-			<div id="signup" class="tab-pane">
-				<form action="index.html" class="form-signin">
-					<p
-						class="text-muted text-center btn-block btn btn-primary btn-rect">Please
-						Fill Details To Register</p>
-					<input type="text" placeholder="First Name" class="form-control" />
-					<input type="text" placeholder="Last Name" class="form-control" />
-					<input type="text" placeholder="Username" class="form-control" />
-					<input type="email" placeholder="Your E-mail" class="form-control" />
-					<input type="password" placeholder="password" class="form-control" />
-					<input type="password" placeholder="Re type password"
-						class="form-control" />
-					<button class="btn text-muted text-center btn-success"
-						type="submit">Register</button>
-				</form>
-			</div>
-		</div>
-		<div class="text-center">
-			<ul class="list-inline">
-				<li><a class="text-muted" href="#login" data-toggle="tab">Login</a></li>
-				<li><a class="text-muted" href="#forgot" data-toggle="tab">Forgot
-						Password</a></li>
-				<li><a class="text-muted" href="#signup" data-toggle="tab">Signup</a></li>
-			</ul>
-		</div>
+					<div class="panel-heading">
+						<i class="icon-user"></i> Select Your Role
+					</div>
 
+					<div class="text-center">
+						<img src="assets/img/logo.png" id="logoimg" alt=" Logo" />
+					</div>
+					<div class="tab-content">
+						<div id="login" class="form-signin">
 
+							<div class="row">
+								<div class="col-lg-12">
+									<div>
+										<c:if test="${param.logout != null}">
+											<h5 class="alert alert-success">You have been logged out.</h5>
+										</c:if>
+									</div>
+									<div>
+										<a class="btn btn-danger btn-block" href="<c:url value="/admin" />">Admin</a>
+									</div>
+									<hr />
+									<div>
+										<a class="btn btn-warning btn-block" href="<c:url value="/hod" />">Head Of Division</a>
+									</div>
+									<hr />
+									<div>
+										<a class="btn btn-success btn-block" href="<c:url value="/staff" />">Staff</a>
+									</div>
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="col-lg-12">
+									<c:if test="${param.error != null}">
+										<h5 class="alert alert-danger">Invalid username and password.</h5>
+									</c:if>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-lg-4"></div>
+		</div>
 	</div>
 
 	<!--END PAGE CONTENT -->
 
 	<!-- PAGE LEVEL SCRIPTS -->
-	<script src="<c:url value="/resources/plugins/jquery-2.0.3.min.js" />"></script>
-	<script
-		src="<c:url value="/resources/plugins/bootstrap/js/bootstrap.js" />"></script>
+	<script src="<c:url value="/resources/plugins/jquery-2.1.4.min.js" />"></script>
+	<script src="<c:url value="/resources/plugins/bootstrap/js/bootstrap.js" />"></script>
 	<script src="<c:url value="/resources/js/login.js" />"></script>
+
 
 	<!--END PAGE LEVEL SCRIPTS -->
 </body>

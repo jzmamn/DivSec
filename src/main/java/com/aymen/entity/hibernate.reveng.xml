@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd" >
+
+<hibernate-reverse-engineering>
+	<table-filter match-name="aproval" match-catalog="divsec"></table-filter>
+	<table-filter match-name="division" match-catalog="divsec"></table-filter>
+	<table-filter match-name="email_setup" match-catalog="divsec"></table-filter>
+	<table-filter match-name="instructions" match-catalog="divsec"></table-filter>
+	<table-filter match-name="notification" match-catalog="divsec"></table-filter>
+	<table-filter match-name="process_request" match-catalog="divsec"></table-filter>
+	<table-filter match-name="process_stage" match-catalog="divsec"></table-filter>
+	<table-filter match-name="public_individual"
+		match-catalog="divsec">
+	</table-filter>
+	<table-filter match-name="request" match-catalog="divsec"></table-filter>
+	<table-filter match-name="request_log" match-catalog="divsec"></table-filter>
+	<table-filter match-name="request_status" match-catalog="divsec"></table-filter>
+	<table-filter match-name="sms_setup" match-catalog="divsec"></table-filter>
+	<table-filter match-name="staff" match-catalog="divsec"></table-filter>
+	<table-filter match-name="staff_role" match-catalog="divsec"></table-filter>
+	<table-filter match-name="stage_log" match-catalog="divsec"></table-filter>
+	<table-filter match-name="stage_status" match-catalog="divsec"></table-filter>
+	<table-filter match-name="subjec_stage" match-catalog="divsec"></table-filter>
+	<table-filter match-name="subject" match-catalog="divsec"></table-filter>
+	<table-filter match-name="user_category" match-catalog="divsec"></table-filter>
+	<table-filter match-name="vw_req_batch_count"
+		match-catalog="divsec">
+	</table-filter>
+	<table-filter match-name="ticket" match-catalog="divsec"></table-filter>
+	<table-filter match-name="ticket_priority" match-catalog="divsec"></table-filter>
+	<table-filter match-name="ticket_status" match-catalog="divsec"></table-filter>
+</hibernate-reverse-engineering>

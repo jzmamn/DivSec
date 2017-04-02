@@ -1,0 +1,11 @@
+
+username - radgroup02@gmail.com
+password - rad@group02
+
+https://github.com/radgroup2/TMS.git
+
+
+GIT HUB
+----------------------------
+usernaem - radgroup2
+password - rad@group02

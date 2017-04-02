@@ -1,4 +1,4 @@
-﻿$(function () {
+(function () {
     
     $('.list-inline li > a').click(function () {
         var activeForm = $(this).attr('href') + ' > form';

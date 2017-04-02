@@ -1,0 +1,23 @@
+ [ 
+ 
+  {
+    "id": "",
+    "name": ""
+  },
+  {
+    "id": "1",
+    "name": "non"
+  },
+  {
+    "id": "2",
+    "name": "Email"
+  },
+  {
+    "id": "3",
+    "name": "SMS"
+  },
+  {
+    "id": "3",
+    "name": "Email/SMS"
+  }
+]

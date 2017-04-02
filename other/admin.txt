@@ -1,0 +1,18 @@
+admin User Name and password
+--------------------------------
+a
+123456
+$2a$10$LOqePml/koRGsk2YAIOFI.1YNKZg7EsQ5BAIuYP1nWOyYRl21dlne
+
+
+Email:
+----------------
+radgroup02@gmail.com
+rad@group02
+
+
+SMS
+-----------------
+Username: jzmamn	
+Password: QLOWTWTDbHbVGA	
+Client ID: AJNG20

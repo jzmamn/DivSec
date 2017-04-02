@@ -1,6 +1,8 @@
-]
+
 <!-- FOOTER -->
 <div id="footer">
-	<p>&copy; binarytheme &nbsp;2014 &nbsp;</p>
+<!--	<p>&copy; N.J.Aymen </p>
+        -->
+        <p> N.J.Aymen </p>
 </div>
 <!--END FOOTER -->

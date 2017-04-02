@@ -11,16 +11,24 @@
 		infrastructure -->
 
 	<!-- Enables the Spring MVC @Controller programming model -->
+
+
 	<annotation-driven />
 
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving 
 		up static resources in the ${webappRoot}/resources directory -->
 	<resources mapping="/resources/**" location="/resources/" />
-	
-	<!-- webjars mapping
-	<resources mapping="/webjars/**" location="classpath:/META-INF/resources/webjars/"/>
-	 -->
-	
+
+	<!-- webjars mapping <resources mapping="/webjars/**" location="classpath:/META-INF/resources/webjars/"/> -->
+
+	<context:component-scan base-package="com.aymen.controller" />
+	<context:component-scan base-package="com.aymen.service" />
+	<context:component-scan base-package="com.aymen.dao" />
+	<context:component-scan base-package="com.aymen.entity" />
+        <context:component-scan base-package="com.aymen.component" />
+
+	<tx:annotation-driven transaction-manager="transactionManager" />
+
 
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources 
 		in the /WEB-INF/views directory -->
@@ -30,9 +38,5 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 
-	<context:component-scan base-package="com.aymen" />
 
-	<tx:annotation-driven transaction-manager="transactionManager" />
-
-	
 </beans:beans>
