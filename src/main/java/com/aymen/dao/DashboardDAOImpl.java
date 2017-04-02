@@ -121,7 +121,7 @@ public class DashboardDAOImpl implements DashboardDAO {
 	@Override
 	public List<Object> populateTableMonthlyDivision(int year, int divId) {
 
-		String sql = " select * from vw_div_period_status WHERE EntYear=" + year + " and div_id=" + divId;
+		String sql = " select * from vw_div_period_status WHERE EntYear=" + year + " and div_id=" + divId + " order by EntMonth1";
 
 		Session session = sessionFactory.getCurrentSession();
 		SQLQuery query = session.createSQLQuery(sql);

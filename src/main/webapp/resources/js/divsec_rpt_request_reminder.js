@@ -124,9 +124,23 @@ jQuery(function () {
                                 text: 'Refresh',
                                 action: function (e, dt, node, config) {
                                     dtRequest
-                                            .fnReloadAjax('rptrequestoverdue/loadTrail/0/0/0');
+                                            .fnReloadAjax('rptrequestremider/loadreminder/0/0/0');
                                 }
-                            }]
+                            }],
+                        "drawCallback": function (settings) {
+                            var api = this.api();
+                            var rows = api.rows({page: 'current'}).nodes();
+                            var last = null;
+
+                            api.column(4, {page: 'current'}).data().each(function (group, i) {
+                                if (last !== group) {
+                                    $(rows).eq(i).before(
+                                            '<tr class="group" style="background-color: #deb"><td colspan="9">' + group + ' - Record(s)</td></tr>'
+                                            );
+                                    last = group;
+                                }
+                            });
+                        }
 
                     });
 

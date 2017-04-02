@@ -51,7 +51,10 @@ jQuery(function () {
                                 "data": "req_is_void"
                             }],
                         "order": [[0, "desc"]],
-                        "columnDefs": [
+                        "columnDefs": [{
+                                "targets": [0],
+                                "visible": false
+                            },
                             {
                                 "targets": [2],
                                 "visible": false
@@ -214,9 +217,34 @@ jQuery(function () {
                                             .fnReloadAjax('rptrequeststage/loadrequestStage');
                                 }
 
-                            }]
+                            }],
+                        "drawCallback": function (settings) {
+                            var api = this.api();
+                            var rows = api.rows({page: 'current'}).nodes();
+                            var last = null;
+
+                            api.column(0, {page: 'current'}).data().each(function (group, i) {
+                                if (last !== group) {
+                                    $(rows).eq(i).before(
+                                            '<tr class="group" style="background-color: #deb"><td colspan="9"> Request Id - ' + group + '</td></tr>'
+                                            );
+
+                                    last = group;
+                                }
+                            });
+                        }
 
                     });
+
+    // Order by the grouping
+    $('#example tbody').on('click', 'tr.group', function () {
+        var currentOrder = dtRequest.order()[0];
+        if (currentOrder[0] === 2 && currentOrder[1] === 'asc') {
+            dtRequest.order([0, 'desc']).draw();
+        } else {
+            dtRequest.order([0, 'asc']).draw();
+        }
+    });
 
     // ------------------ Apply Filter------------------
     $("#btnIdApplyFilter").click(

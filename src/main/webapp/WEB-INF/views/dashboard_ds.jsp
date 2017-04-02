@@ -67,7 +67,7 @@
                 <div class="inner" style="min-height: 700px;">
                     <div class="row">
                         <div class="col-lg-12">
-                            <h3 class="text-info">DS Dashboard</h3>
+                            <h3 class="text-info">Divisional Secretary Home Page</h3>
                         </div>
                     </div>
 
@@ -132,7 +132,7 @@
                     <div class="row">
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 
-                           
+
                             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4 panel panel-warning" style="width: 130px;">
                                 <a href="${pageContext.request.contextPath}/admin-to-hod/8" class="btn btn-primary btn-xs btn-block">Samurdhi</a>
                                 <div id="morris-donut-samurdhi" style="width: 120px; height: 120px;"></div>
@@ -165,7 +165,7 @@
                             <div class="col-lg-6">
                                 <div class="panel  panel-warning">
                                     <div class="panel-heading">
-                                        <strong> Request Reminder </strong> -  <a href="rptrequestremider">Go to Reminder Report</a>
+                                        <big> Request Reminder </big> -  <a href="rptrequestremider">Go to Reminder Report</a>
                                     </div>
                                     <div class="panel-body">
                                         <div class="table-responsive">
@@ -185,7 +185,7 @@
                                                             <th>Ent Date</th>
                                                             <th>Today</th>
                                                             <th>Duration(days)</th>
-                                                            <th>Reminder(days)</th>
+                                                            <th>Days Remaining</th>
                                                     </thead>
                                                     <tbody>
                                                     </tbody>
@@ -198,7 +198,7 @@
                             <div class="col-lg-6">
                                 <div class="panel panel-danger">
                                     <div class="panel-heading">
-                                        <strong> Request Overdue </strong> - <a href="rptrequestoverdue">Go to Overdue Report</a>
+                                        <big> Request Overdue </big> - <a href="rptrequestoverdue">Go to Overdue Report</a>
                                     </div>
                                     <div class="panel-body">
                                         <div class="table-responsive">
@@ -218,7 +218,7 @@
                                                             <th>Ent Date</th>
                                                             <th>Today</th>
                                                             <th>Duration(days)</th>
-                                                            <th>Overdue(days)</th>
+                                                            <th>Days Overdue</th>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -238,7 +238,7 @@
                             <div class="col-lg-6">
                                 <div class="panel  panel-info">
                                     <div class="panel-heading">
-                                        <strong> Request Summary </strong> - <em class="text-muted">(by Month)</em> <span class="pull-right"><small> <input
+                                        <big> Request Summary </big> - <em class="text-muted">(by Month)</em> <span class="pull-right"><small> <input
                                                     id="dpYear" class="form-control datepicker dpYear" style="width: 60px; height: 20px;">
                                             </small></span>
                                     </div>
@@ -266,7 +266,7 @@
                             <div class="col-lg-6">
                                 <div class="panel panel-info">
                                     <div class="panel-heading">
-                                        <strong> Request Summary </strong> - <em class="text-muted">(by Year)</em>
+                                        <big> Request Summary </big> - <em class="text-muted">(by Year)</em>
                                         <!--  <span class="pull-right"><small> <input
                                                         id="dpYear1" class="form-control  datepicker dpYear" style="width: 60px; height: 20px;">
                                         </small></span> -->
@@ -296,14 +296,14 @@
                         </div>
                     </div>
 
-                   
+
                     <hr />
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="col-lg-6">
                                 <div class="panel  panel-info">
                                     <div class="panel-heading">
-                                        <strong> Request Summary </strong> - <em class="text-muted">(By Division)</em>
+                                        <big> Request Summary </big> - <em class="text-muted">(By Division)</em>
                                         <!-- <span class="pull-right"><small> <input
                                                         id="dpYear3" class="form-control  datepicker dpYear" style="width: 60px; height: 20px;">
                                         </small></span> -->
@@ -333,7 +333,7 @@
                             <div class="col-lg-6">
                                 <div class="panel  panel-info">
                                     <div class="panel-heading">
-                                        <strong>Last Modified </strong> - <em class="text-muted">(last 25)</em>
+                                        <big>Last Modified </big> - <em class="text-muted">(last 25)</em>
                                         <!-- <span class="pull-right"><small> <input
                                                         id="dpYear2" class="form-control  datepicker dpYear" style="width: 60px; height: 20px;">
                                         </small></span> -->
@@ -348,7 +348,6 @@
                                                             <th>Entered Date</th>
                                                             <th>Modified Date</th>
                                                             <th>Staff</th>
-
                                                         </tr> 
                                                     </thead>
                                                     <tbody>
@@ -359,9 +358,6 @@
                                     </div>
                                 </div>
                             </div>
-
-
-
                         </div>
                     </div>
                     <!-- END START AGING BY MONTH BLOCK SECTION -->
@@ -372,7 +368,7 @@
                         <div class="col-lg-12 col-sm-12">
                             <div class="panel panel-default panel-success">
                                 <div class="panel-heading">
-                                    <strong>Analysis</strong> - <em>Year</em> <span class="pull-right"><small> <input id="dpYearBar"
+                                    <big>Analysis</big> - <em>by Year</em> <span class="pull-right"><small> <input id="dpYearBar"
                                         </small></span>
                                 </div>
                                 <div class="panel-body">

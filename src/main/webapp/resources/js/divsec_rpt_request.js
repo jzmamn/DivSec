@@ -104,6 +104,9 @@ jQuery(function () {
                             }, {
                                 "targets": [14],
                                 "visible": false
+                            }, {
+                                "targets": [15],
+                                "visible": false
                             }],
                         dom: 'Bfrtip',
                         buttons: [

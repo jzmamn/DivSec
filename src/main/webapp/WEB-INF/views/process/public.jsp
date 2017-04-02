@@ -57,7 +57,7 @@
                 <div class="inner">
                     <div class="row">
                         <div class="col-lg-12">
-                            <h3 class="text-info">Manage Public Information</h3>
+                            <h3 class="text-info">Manage Client Information</h3>
                         </div>
                     </div>
                     <hr />
@@ -68,7 +68,7 @@
                             <ol class="breadcrumb">
                                 <li><a href="${pageContext.request.contextPath}/getDashboard">Home</a></li>
                                 <li>Process</li>
-                                <li class="active">Public Detail</li>
+                                <li class="active">Client Detail</li>
                             </ol>
                         </div>
                     </div>
@@ -88,7 +88,7 @@
                                         <div class="col-lg-12">
                                             <div class="col-lg-2">
                                                 <button class="btn btn-primary btn-block" id="idBtnAddPublic">
-                                                    <i class="icon-plus icon-white"></i> Add Public
+                                                    <i class="icon-plus icon-white"></i> Add Client
                                                 </button>
                                             </div>
 
@@ -118,8 +118,8 @@
                                                                 <div class="col-lg-12">
                                                                     <div class="col-lg-3">
                                                                         <div class="form-group">
-                                                                            <label for="txtIdPubId" class="control-label">Public Id</label>
-                                                                            <form:input path="piId" type="text" id="txtIdPubId" name="txtPubId" class="form-control" placeholder="Public id"
+                                                                            <label for="txtIdPubId" class="control-label">Client Id</label>
+                                                                            <form:input path="piId" type="text" id="txtIdPubId" name="txtPubId" class="form-control" placeholder="Client id"
                                                                                         readonly="true" />
                                                                         </div>
                                                                     </div>

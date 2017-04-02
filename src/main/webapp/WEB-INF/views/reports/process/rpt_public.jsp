@@ -8,7 +8,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>DivSec | Public Report</title>
+        <title>DivSec | Client Report</title>
 
 
         <!-- GLOBAL STYLES -->
@@ -57,7 +57,7 @@
                 <div class="inner">
                     <div class="row">
                         <div class="col-lg-12">
-                            <h3 class="text-info">Public Report</h3>
+                            <h3 class="text-info">Client Report</h3>
                         </div>
                     </div>
                     <hr />
@@ -69,7 +69,7 @@
                                 <li><a href="${pageContext.request.contextPath}/getDashboard">Home</a></li>
                                 <li class="active">Report</li>
                                 <li class="active">Process</li>
-                                <li class="active">Public Report</li>
+                                <li class="active">Client Report</li>
                             </ol>
                         </div>
                     </div>

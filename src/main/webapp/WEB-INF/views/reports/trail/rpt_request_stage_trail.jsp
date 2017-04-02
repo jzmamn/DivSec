@@ -92,7 +92,7 @@
 
                                 <div class="panel-body">
                                     <div class="table-responsive">
-                                        <table class="table table-striped table-bordered table-hover table-condensed" id="dtTable">
+                                        <table class="table  table-bordered table-hover table-condensed" id="dtTable">
                                             <thead>
                                                 <tr>
                                                     <th></th>
@@ -104,7 +104,7 @@
                                                     <th>Stage Name</th>
                                                     <th>Status</th>
                                                     <th>Note</th>
-                                                    <th>UserId</th>
+                                                    <th>Staff Id</th>
                                                     <th>Staff</th>
                                                 </tr>
                                             </thead>

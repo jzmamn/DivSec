@@ -5,6 +5,7 @@
  */
 package com.aymen.service;
 
+import com.aymen.component.JsonFormatter;
 import com.aymen.dao.HolidayDAO;
 import com.aymen.entity.Holiday;
 import java.util.List;
@@ -18,6 +19,10 @@ public class HolidayServiceImpl implements HolidayService {
 
     @Autowired
     private HolidayDAO holidayDao;
+    
+    @Autowired
+    private JsonFormatter jsonFormatter;
+    
 
     @Override
     public void createHolidaySvc(Holiday holiday) {
@@ -42,6 +47,11 @@ public class HolidayServiceImpl implements HolidayService {
     @Override
     public Holiday getHolidayByIdSvc(int holId) {
         return this.holidayDao.getHolidayById(holId);
+    }
+
+    @Override
+    public String listHolidayForCalenderSvc() {
+        return jsonFormatter.formatToJSON(this.holidayDao.listHolidayForCalender());
     }
 
 }

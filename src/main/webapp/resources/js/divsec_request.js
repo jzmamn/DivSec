@@ -1,6 +1,13 @@
 jQuery(function () {
 
-
+    $.validate({
+        form: '#frmIdRequest',
+        modules: 'toggleDisabled',
+        disabledFormFilter: 'form.toggle-disabled',
+        onError: function ($form) {
+            event.preventDefault();
+        }
+    });
 
     //alert("hello" + divId);
     $("#frmProcessRequest").hide({});
@@ -9,6 +16,8 @@ jQuery(function () {
     if (role === "ROLE_STAFF") {
         $("#idAddInst").hide();
     }
+
+    var requestId;
 
     loadBatchCount(divId);
 
@@ -85,7 +94,6 @@ jQuery(function () {
             url = 'reqprocess/status/' + statusId;
             dtRequest.fnReloadAjax(url)
         }
-
     }
 
     var urlReq = '';
@@ -97,7 +105,7 @@ jQuery(function () {
 
     var dtRequest = $('#dtTable').dataTable({
         // No of records should be displayed
-        "lengthMenu": [10,20, 40],
+        "lengthMenu": [10, 20, 40],
         // Load table using JSON data by ajax
         "ajax": {
             "url": urlReq,
@@ -211,7 +219,7 @@ jQuery(function () {
                 "targets": [15],
                 "visible": false
             }]
-       
+
 
     });
 
@@ -219,9 +227,8 @@ jQuery(function () {
     /* Custom filtering function which will search data in column four between two values */
     $.fn.dataTable.ext.search.push(
             function (settings, data, dataIndex) {
-                var reqId = parseInt($('#idReqId').val(), 10);
+                var reqId = parseInt($('#idReqId').val());
                 var reqId1 = parseFloat(data[0]) || 0; // use data for the age column
-
                 if (isNaN(reqId) || (reqId1 === reqId))
                 {
                     return true;
@@ -231,7 +238,6 @@ jQuery(function () {
 
     $('#idReqId').keyup(function () {
         dtRequest.fnReloadAjax(urlReq);
-        loadBatchCount(divId);
     });
 
 
@@ -300,8 +306,9 @@ jQuery(function () {
     var dtStage = $('#dtStage')
             .dataTable(
                     {
-                        "lengthMenu": [5, 10, 20],
-                        // Load table using JSON data by ajax
+                        "lengthMenu": [30],
+                        "processing": true,
+                        "serverSide": false,
                         "ajax": {
                             "url": "processstg/loadreqstage/0",
                             "dataSrc": ""
@@ -324,6 +331,10 @@ jQuery(function () {
 
                         ],
                         "columnDefs": [
+                             {
+                                "targets": [0],
+                                "visible": false
+                            },
                             {
                                 "targets": [1],
                                 "visible": false
@@ -356,7 +367,9 @@ jQuery(function () {
                                             break;
                                     }
                                 }
-                            }]
+                            }],
+                        'searching': false,
+                        'paging': false,
                     });
     // GET VALUE ON TABLE ROW CLICK From Subject table
 
@@ -380,8 +393,30 @@ jQuery(function () {
         $('#txtIdReqFee').val(dtSubject.fnGetData(aPos, 6));
         $("#modalSubject").modal("hide");
     });
+
+    $("#btnIdNewRequest").click(function (e) {
+        $('#txtIdPublicId').val("");
+        $('#txtIdPublicName').val("");
+        $('#txtIdSubjectId').val("");
+        $('#txtIdSubject').val("");
+    });
+
     // New Request Form submission save and edit
     $("#frmIdRequest").submit(function () {
+
+        console.log($('#txtIdPublicId').val());
+        if ($('#txtIdPublicId').val() === "") {
+            alert('Please Select a Public');
+            false;
+        }
+
+        console.log($('#txtIdSubjectId').val());
+        if ($('#txtIdSubjectId').val() === "") {
+            alert('Please Select a Subject');
+            false;
+        }
+
+
 // the Controller request mapping value as url.
         var url = "reqprocess/create";
         $.ajax({
@@ -428,7 +463,6 @@ jQuery(function () {
 
         var aPos = dtRequest.fnGetPosition(this);
         var reqId = dtRequest.fnGetData(aPos, 0);
-
 
         if (dtRequest.fnGetData(aPos, 0).length === 0) {
             alert("No data in the row of the table");
@@ -488,7 +522,9 @@ jQuery(function () {
         }
 
         $('#chkIdPiActive').prop('checked', blnIsDivActive);
+
         dtStage.fnReloadAjax('processstg/loadreqstage/' + reqId);
+
         // Instruction
         $('#txtIdInsStfId').val(dtRequest.fnGetData(aPos, 11));
         $('#txtIdInsIsRead').val(0);
@@ -626,7 +662,7 @@ jQuery(function () {
         var url1 = '';
 
         url1 = 'reqprocess/requestid/' + a + '/statusid/' + b
-                + '/void/' + c + '/note/first seen';
+                + '/void/' + c + '/note/Opened';
 
         // alert(url1);
 
@@ -646,55 +682,55 @@ jQuery(function () {
     }
 
     // Update Request after changing status
-    $("#btnIdSaveChanges").click(
-            function (e) {
-                var reqId = $("#txtIdReqId").val();
-                var stausId = $("#idCmbReqStausId").val();
-                var statusText = $("#cmdIdReqStatus").val();
-                //alert(statusText);
-                var d = $("#txtIdNote").val();
-                var a = parseInt(reqId);
-                var b = parseInt(stausId);
-                var d = $("#txtIdNote").val();
+    $("#btnIdSaveChanges").click(function (e) {
+        var reqId = $("#txtIdReqId").val();
+        var stausId = $("#idCmbReqStausId").val();
+        var statusText = $("#cmdIdReqStatus").val();
+        //alert(statusText);
+        var d = $("#txtIdNote").val();
+        var a = parseInt(reqId);
+        var b = parseInt(stausId);
+        var d = $("#txtIdNote").val();
 
-                if (statusText === null) {
-                    alert('Please select a status');
-                    return;
-                }
+        if (statusText === null) {
+            alert('Please select a status');
+            return;
+        }
 
 
-                if ($('#chkIdPiActive').is(":checked")) {
-                    c = true;
-                } else {
-                    c = false;
-                }
+        if ($('#chkIdPiActive').is(":checked")) {
+            c = true;
+        } else {
+            c = false;
+        }
 
-                var url1 = '';
-                if (d === "") {
-                    url1 = 'reqprocess/requestid/' + a + '/statusid/' + b
-                            + '/void/' + c + '/note/new';
-                } else {
-                    url1 = 'reqprocess/requestid/' + a + '/statusid/' + b
-                            + '/void/' + c + '/note/' + d;
-                }
+        var url1 = '';
+        if (d === "") {
+            url1 = 'reqprocess/requestid/' + a + '/statusid/' + b
+                    + '/void/' + c + '/note/new';
+        } else {
+            url1 = 'reqprocess/requestid/' + a + '/statusid/' + b
+                    + '/void/' + c + '/note/' + d;
+        }
 
-                // alert(url1);
+        // alert(url1);
 
-                $.ajax({
-                    type: 'GET',
-                    url: url1,
-                    success: function () {
-                        dtRequest.fnReloadAjax('reqprocess/loadrequest');
-                        $("#frmProcessRequest").hide({});
-                        $('#tblProcessRequest').show({});
-                        dtRequest.fnReloadAjax(urlReq);
-                        loadBatchCount(divId);
-                    },
-                    error: function (data) {
-                        alert('2. aymen2 fail' + data);
-                    }
-                });
-            });
+        $.ajax({
+            type: 'GET',
+            url: url1,
+            success: function () {
+                dtRequest.fnReloadAjax('reqprocess/loadrequest');
+                $("#frmProcessRequest").hide({});
+                $('#tblProcessRequest').show({});
+                dtRequest.fnReloadAjax(urlReq);
+                loadBatchCount(divId);
+            },
+            error: function (data) {
+                alert('2. aymen2 fail' + data);
+            }
+        });
+    });
+
     $("#btnSaveStg").click(
             function (e) {
                 var reqId = $("#txtIdReqId").val();
@@ -763,6 +799,8 @@ jQuery(function () {
                     }
                 });
             });
+            
+            
     function getInstruction(reqId) {
 
         var list = '';

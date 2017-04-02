@@ -19,71 +19,102 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.aymen.entity.ProcessStage;
+import com.aymen.entity.Staff;
 import com.aymen.service.ProcessStageService;
 import com.aymen.service.RequestService;
+import com.aymen.service.UserCreationService;
 
 @Controller
 @RequestMapping(value = "/rptrequeststage")
 public class RptRequestStageController {
 
-	private static final Logger logger = LoggerFactory.getLogger(RptRequestStageController.class);
+    private static final Logger logger = LoggerFactory.getLogger(RptRequestStageController.class);
 
-	@Autowired
-	ProcessStageService prcStgSvc;
+    @Autowired
+    ProcessStageService prcStgSvc;
 
-	@Autowired
-	RequestService reqSvc;
+    @Autowired
+    RequestService reqSvc;
 
-	@RequestMapping(method = RequestMethod.GET)
-	public String home(ModelMap model) {
-		logger.info("Welcome home! The client locale is {}.");
+    @Autowired
+    UserCreationService ucs;
 
-		if (getPrincipal().equals("anonymousUser")) {
-			logger.info("anonymousUser");
-			return "errors_403";
-		}
+    @RequestMapping(method = RequestMethod.GET)
+    public String home(ModelMap model) {
+        logger.info("Welcome home! The client locale is {}.");
 
-		model.addAttribute("user", getPrincipal());
-		return "reports/process/rpt_request_stage";
-	}
+        if (getPrincipal().equals("anonymousUser")) {
+            logger.info("anonymousUser");
+            return "errors_403";
+        }
 
-	@RequestMapping(value = "/loadallreqstage", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody List<ProcessStage> getProcessStg(Model model) {
-		return this.prcStgSvc.listSvcReqStg();
-	}
+        Staff staff = ucs.getSvcStaffByUserId(getPrincipal());
+        model.addAttribute("stfId", staff.getStfId());
+        model.addAttribute("stfDivId", staff.getDivision().getDivId());
+        model.addAttribute("stfDivName", staff.getDivision().getDivName());
+        model.addAttribute("userName", getPrincipal());
+        model.addAttribute("role", getUserRole());
 
-	@RequestMapping(value = "/loadreqstage/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody List<ProcessStage> getData(@ModelAttribute("maReqStg") ProcessStage prcStg,
-			BindingResult result, @PathVariable("id") int reqId, Model model) {
-		return this.prcStgSvc.listSvcReqStgByReqId(reqId);
-	}
+        model.addAttribute("user", getPrincipal());
+        return "reports/process/rpt_request_stage";
+    }
 
-	// This method sends JSON response to the client (REST)
-	@RequestMapping(value = "/loadrequestStage", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody List<Object> getData() {
-		return this.prcStgSvc.filterSvcAllRequestStage();
-	}
+    @RequestMapping(value = "/loadallreqstage", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public @ResponseBody
+    List<ProcessStage> getProcessStg(Model model) {
+        return this.prcStgSvc.listSvcReqStg();
+    }
 
-	// display the count in the batch
-	@RequestMapping(value = "/filterby/{reqId}/{sbjId}/{pubId}/{divId}/{statusId}/{staffId}/{fromDate}/{toDate}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public @ResponseBody List<Object> filterReport(@PathVariable("reqId") int reqId, @PathVariable("sbjId") int sbjId,
-			@PathVariable("pubId") int pubId, @PathVariable("divId") int divId, @PathVariable("statusId") int statusId,
-			@PathVariable("staffId") int staffId, @PathVariable("fromDate") String fromDate,
-			@PathVariable("toDate") String toDate) {
+    @RequestMapping(value = "/loadreqstage/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public @ResponseBody
+    List<ProcessStage> getData(@ModelAttribute("maReqStg") ProcessStage prcStg,
+            BindingResult result, @PathVariable("id") int reqId, Model model) {
+        return this.prcStgSvc.listSvcReqStgByReqId(reqId);
+    }
 
-		return this.prcStgSvc.filterSvcRequestStage(reqId, sbjId, pubId, divId, statusId, staffId, fromDate, toDate);
-	}
+    // This method sends JSON response to the client (REST)
+    @RequestMapping(value = "/loadrequestStage", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public @ResponseBody
+    List<Object> getData() {
+        return this.prcStgSvc.filterSvcAllRequestStage();
+    }
 
-	private String getPrincipal() {
-		String userName = null;
-		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    // display the count in the batch
+    @RequestMapping(value = "/filterby/{reqId}/{sbjId}/{pubId}/{divId}/{statusId}/{staffId}/{fromDate}/{toDate}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public @ResponseBody
+    List<Object> filterReport(@PathVariable("reqId") int reqId, @PathVariable("sbjId") int sbjId,
+            @PathVariable("pubId") int pubId, @PathVariable("divId") int divId, @PathVariable("statusId") int statusId,
+            @PathVariable("staffId") int staffId, @PathVariable("fromDate") String fromDate,
+            @PathVariable("toDate") String toDate) {
 
-		if (principal instanceof UserDetails) {
-			userName = ((UserDetails) principal).getUsername();
-		} else {
-			userName = principal.toString();
-		}
-		return userName;
-	}
+        return this.prcStgSvc.filterSvcRequestStage(reqId, sbjId, pubId, divId, statusId, staffId, fromDate, toDate);
+    }
+
+    private String getPrincipal() {
+        String userName = null;
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        if (principal instanceof UserDetails) {
+            userName = ((UserDetails) principal).getUsername();
+        } else {
+            userName = principal.toString();
+        }
+        return userName;
+    }
+
+    private String getUserRole() {
+        String userRole = null;
+        Object role = SecurityContextHolder.getContext().getAuthentication().getAuthorities();
+
+        if (role instanceof UserDetails) {
+            userRole = ((UserDetails) role).getAuthorities().toString();
+        } else {
+            userRole = role.toString();
+        }
+
+        userRole = userRole.replace("[", "");
+        userRole = userRole.replace("]", "");
+        return userRole;
+    }
 
 }

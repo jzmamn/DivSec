@@ -65,7 +65,7 @@
                 <div class="inner" style="min-height: 700px;">
                     <div class="row">
                         <div class="col-lg-12">
-                            <h3 class="text-info">Dashboard ::  Head Of Division :: ${stfDivName}</h3>
+                            <h3 class="text-info">Home Page Head of Division - ( ${stfDivName} Division)</h3>
                         </div>
                     </div>
 
@@ -106,7 +106,7 @@
                             <div class="col-lg-6">
                                 <div class="panel  panel-info">
                                     <div class="panel-heading">
-                                        <strong>Analysis </strong> - <em class="text-muted">(by Month)</em> <span class="pull-right"><small> <input
+                                        <big>Analysis </big> - <em class="text-muted">(by Month)</em> <span class="pull-right"><small> <input
                                                     id="dpYear" class="form-control datepicker dpYear" style="width: 60px; height: 20px;">
                                             </small></span>
                                     </div>
@@ -117,7 +117,7 @@
                                                     <thead class="alert alert-success">
                                                         <tr>
                                                             <th>Month</th>
-                                                            <th>New</th>
+                                                            <th>UnAttended</th>
                                                             <th>Opened</th>
                                                             <th>Completed</th>
                                                             <th>Closed</th>
@@ -134,7 +134,7 @@
                             <div class="col-lg-6">
                                 <div class="panel  panel-info">
                                     <div class="panel-heading">
-                                        <strong>Analysis </strong> - <em class="text-muted">(by Annual)</em>
+                                        <big>Analysis </big> - <em class="text-muted">(by Year)</em>
                                         <!-- <span class="pull-right"><small> <input
                                                         id="dpYear1" class="datepicker dpYear" style="width: 60px; height: 20px;">
                                         </small></span> -->
@@ -146,7 +146,7 @@
                                                     <thead class="alert alert-success">
                                                         <tr>
                                                             <th>Year</th>
-                                                            <th>New</th>
+                                                            <th>UnAttended</th>
                                                             <th>Opened</th>
                                                             <th>Completed</th>
                                                             <th>Closed</th>
@@ -170,7 +170,7 @@
                         <div class="col-lg-12 col-sm-12">
                             <div class="panel panel-default panel-success">
                                 <div class="panel-heading">
-                                    <strong>Analysis</strong> - <em>(this Year)</em> <span class="pull-right"><small> <input id="dpYearBar"
+                                    <big>Analysis</big> - <em>(by Year)</em> <span class="pull-right"><small> <input id="dpYearBar"
                                                                                                                              class="form-control datepicker dpYear" style="width: 60px; height: 20px;">
                                         </small></span>
                                 </div>

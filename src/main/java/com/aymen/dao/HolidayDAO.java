@@ -14,6 +14,8 @@ public interface HolidayDAO {
 	public List<Holiday> listActiveHoliday();
 
 	public Holiday getHolidayById(int holId);
+        
+        public List<Object> listHolidayForCalender();
 
 	
 }

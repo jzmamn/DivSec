@@ -91,19 +91,19 @@
 
                                 <div class="panel-body">
                                     <div class="table-responsive">
-                                        <table class="table table-striped table-bordered table-hover table-condensed" id="dtTable">
+                                        <table class="table table-bordered table-hover table-condensed" id="dtTable">
                                             <thead>
                                                 <tr>
                                                     <th>ReqId</th>
-                                                    <th>Sbj Id</th>
-                                                    <th>Sbject</th>
+                                                    <th>Subject Id</th>
+                                                    <th>Subject</th>
                                                     <th>Div Id</th>
                                                     <th>Division</th>
-                                                    <th>Pub Id</th>
-                                                    <th>Public</th>
+                                                    <th>Client Id</th>
+                                                    <th>Client</th>
                                                     <th>Status</th>
                                                     <th>Status Name</th>
-                                                    <th>Ent Date</th>
+                                                    <th>Date Entered</th>
                                                     <th>Today</th>
                                                     <th>Duration(days)</th>
                                                     <th>Days More</th>

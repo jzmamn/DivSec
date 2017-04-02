@@ -1,11 +1,35 @@
 jQuery(function () {
 
-    $('#chkIdHolActive').prop('checked', true); // check true when loading
 
+
+    $('#calendar').fullCalendar({
+        header: {
+            left: 'prev,next today',
+            center: 'title',
+            //right: 'month,agendaWeek,agendaDay'
+            right: 'month'
+        },
+        defaultDate: moment(),
+        default: 1,
+        businessHours: true,
+        editable: false,
+        eventLimit: true, // allow "more" link when too many events
+        events: {
+            url: 'holiday/holidayforcal',
+            error: function () {
+                $('#script-warning').show();
+            }
+        },
+        loading: function (bool) {
+            $('#loading').toggle(bool);
+        }
+    });
+
+    $('#chkIdHolActive').prop('checked', true); // check true when loading
     // Intialize Division Data Table
     var dt = $('#dtHoliday').dataTable({
         // No of records should be displayed
-        "lengthMenu": [5, 10, 20],
+        "lengthMenu": [20, 40, 60],
         // Load table using JSON data by ajax
         "ajax": {
             "url": "holiday/loadholiday",
@@ -20,10 +44,32 @@ jQuery(function () {
             }, {
                 "data": "holIsActive"
             }
-        ]
+        ], dom: 'Bfrtip',
+        buttons: [{
+                extend: 'copyHtml5',
+                exportOptions: {
+                    columns: [0, ':visible']
+                }
+            }, {
+                extend: 'excelHtml5',
+                exportOptions: {
+                    columns: ':visible'
+                }
+            },
+            {
+                extend: 'pdfHtml5'
+            }, 'colvis',
+            {
+                extend: 'print',
+                message: 'Request List',
+                exportOptions: {
+                    columns: ':visible'
+                }
+
+            }]
     });
 
-       
+
 
     // Form submission save and edit
     $("#frmIdHoliday").submit(function () {
@@ -49,28 +95,7 @@ jQuery(function () {
         return false;
     });
 
-    // GET VALUE ON TABLE ROW CLICK
-    $('#dtHoliday tbody').on('click', 'tr', function (e) {
-        var data = $(this).children("td").map(function () {
-            return $(this).text();
-        }).get();
 
-        $('#txtIdHolId').val(data[0]);
-        $('#dp1').val(data[1]);
-        $('#txtIdHolName').val(data[2]);
-        // $('#chkDivIsActive').val(data[2]);
-
-        if (data[2] == "true") {
-            blnIsDivActive = true;
-        } else {
-            blnIsDivActive = false;
-        }
-
-        $('#chkIdHolActive').prop('checked', blnIsDivActive);
-
-        $("#modalHolidaySave").modal("show");
-
-    });
 
     // Test function for JSON response
     $("#btn").click(function () {

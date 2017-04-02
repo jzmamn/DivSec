@@ -95,6 +95,13 @@ public class HolidayController {
     List<Holiday> getData() {
         return this.holidaySvc.listHolidaySvc();
     }
+    
+    // This method sends JSON response to the client (REST)
+    @RequestMapping(value = "/holidayforcal", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public @ResponseBody
+    String getHolidayForFullCalender() {
+        return this.holidaySvc.listHolidayForCalenderSvc();
+    }
 
     private String getPrincipal() {
         String userName = null;

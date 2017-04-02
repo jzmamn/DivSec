@@ -35,7 +35,7 @@
                 <li class=""><a href="${pageContext.request.contextPath}/batch-approval"><i class="icon-angle-right"></i> Approval </a></li>
 
 <!--  <li class=""><a href="${pageContext.request.contextPath}/undoprinted"><i class="icon-angle-right"></i> Undo/Redo Printed </a></li>-->
-                <li class=""><a href="${pageContext.request.contextPath}/public"><i class="icon-angle-right"></i> Public Details </a></li>
+                <li class=""><a href="${pageContext.request.contextPath}/public"><i class="icon-angle-right"></i> Client Details </a></li>
                     <%-- <li class=""><a href="${pageContext.request.contextPath}/ticket"><i class="icon-angle-right"></i> Ticket </a></li> --%>
             </ul></li>
         <!-- Process -->
@@ -53,13 +53,13 @@
                         </span>
                     </a>
                     <ul class="collapse" id="DDL1-nav">
-                        <li class=""><a href="${pageContext.request.contextPath}/rptpublic"><i class="icon-angle-right"></i> Public Info </a></li>
                         <li class=""><a href="${pageContext.request.contextPath}/rptrequest"><i class="icon-angle-right"></i> Request </a></li>
                         <li class=""><a href="${pageContext.request.contextPath}/rptrequeststage"><i class="icon-angle-right"></i> Request Stage </a></li>
                         <li class=""><a href="${pageContext.request.contextPath}/rptrequestoverdue"><i class="icon-angle-right"></i> Request Overdue</a></li>
                         <li class=""><a href="${pageContext.request.contextPath}/rptrequestremider"><i class="icon-angle-right"></i> Request Reminder</a></li>
+                        <li class=""><a href="${pageContext.request.contextPath}/rptpublic"><i class="icon-angle-right"></i> Client Info </a></li>
 <!--                        <li class=""><a href="${pageContext.request.contextPath}/divperstatus"><i class="icon-angle-right"></i>
-                                Division-Period-Status </a></li>-->
+        Division-Period-Status </a></li>-->
                     </ul></li>
 
                 <li><a href="#" data-parent="#DDL-nav" data-toggle="collapse" class="accordion-toggle" data-target="#DDL2-nav"> <i
@@ -80,6 +80,7 @@
                         </span>
                     </a>
                     <ul class="collapse" id="DDL3-nav">
+                        <li class=""><a href="${pageContext.request.contextPath}/rpt_holiday"><i class="icon-angle-right"></i> Holiday List </a></li>
                         <li class=""><a href="${pageContext.request.contextPath}/rptdivision"><i class="icon-angle-right"></i> Division List </a></li>
                         <li class=""><a href="${pageContext.request.contextPath}/rptsubject"><i class="icon-angle-right"></i> Subject List </a></li>
                         <li class=""><a href="${pageContext.request.contextPath}/rptsubjectstage"><i class="icon-angle-right"></i> Subject Stage List

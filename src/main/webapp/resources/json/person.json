@@ -1,334 +1,56 @@
-[{
-        "rstId": 48,
-        "request": {
-            "reqId": 30,
-            "division": {
-                "divId": 2,
-                "divName": "Planning",
-                "divActive": true
-            },
-            "publicIndividual": {
-                "piId": 5,
-                "notification": {
-                    "ntnId": 3,
-                    "ntnType": "Email",
-                    "ntnActive": true
-                },
-                "piName": "M.S. Jayawardana",
-                "piAddress1": "56/8A, Park Road",
-                "piAddress2": "Oluvil",
-                "piAddress3": "05",
-                "piLandPhone": "123445",
-                "piMobilePhone": "122334",
-                "piEmail": "jamz@aho.com",
-                "piIndUserId": null,
-                "piUserPwd": null,
-                "piNic": "821411111",
-                "piDob": "2016-02-17",
-                "piGender": "Male",
-                "piNote": "",
-                "piUserId": 67,
-                "piActive": false
-            },
-            "requestStatus": {
-                "rsId": 2,
-                "rsName": "Opened",
-                "rsActive": true
-            },
-            "staff": {
-                "stfId": 67,
-                "stfName": "DS",
-                "stfCategoryId": 1,
-                "stfUserId": "ds",
-                "stfPassword": "$2a$10$dssGWeG8.VgWAVmMWrav3uv99jxvTR4dYbLlYRA2JGjVcIJfR4Y5m",
-                "stfEmail": "",
-                "stfMobile": "",
-                "stfNote": "",
-                "stfActive": true,
-                "stfRole": "ROLE_DS",
-                "stfPiId": 0
-            },
-            "subject": {
-                "sbjId": 4,
-                "division": {
-                    "divId": 2,
-                    "divName": "Planning",
-                    "divActive": true
-                },
-                "sbjCode": "plan/dev/2004",
-                "sbjName": "Housing Fund",
-                "sbjActive": true,
-                "sbjDuration": 1,
-                "sbjCost": 1200.0
-            },
-            "reqEntDate": "2016-06-18",
-            "reqNote": "first seen",
-            "reqFees": 1200.00,
-            "reqDurartion": 1,
-            "reqIsRead": false,
-            "reqProcessed": false,
-            "reqIsVoid": true
-        },
-        "staff": {
-            "stfId": 67,
-            "stfName": "DS",
-            "stfCategoryId": 1,
-            "stfUserId": "ds",
-            "stfPassword": "$2a$10$dssGWeG8.VgWAVmMWrav3uv99jxvTR4dYbLlYRA2JGjVcIJfR4Y5m",
-            "stfEmail": "",
-            "stfMobile": "",
-            "stfNote": "",
-            "stfActive": true,
-            "stfRole": "ROLE_DS",
-            "stfPiId": 0
-        },
-        "stageStatus": {
-            "ssId": 1,
-            "ssName": "Pending",
-            "ssActive": true
-        },
-        "subjecStage": {
-            "stgId": 1,
-            "subject": {
-                "sbjId": 4,
-                "division": {
-                    "divId": 2,
-                    "divName": "Planning",
-                    "divActive": true
-                },
-                "sbjCode": "plan/dev/2004",
-                "sbjName": "Housing Fund",
-                "sbjActive": true,
-                "sbjDuration": 1,
-                "sbjCost": 1200.0
-            },
-            "stgName": "Submitted to cleark",
-            "stgActive": true,
-            "stgCost": 100.00
-        },
-        "rsSequenceNo": 0,
-        "rstTxnDate": 1466208859000,
-        "rstNote": ""
-    }, {
-        "rstId": 49,
-        "request": {
-            "reqId": 30,
-            "division": {
-                "divId": 2,
-                "divName": "Planning",
-                "divActive": true
-            },
-            "publicIndividual": {
-                "piId": 5,
-                "notification": {
-                    "ntnId": 3,
-                    "ntnType": "Email",
-                    "ntnActive": true
-                },
-                "piName": "M.S. Jayawardana",
-                "piAddress1": "56/8A, Park Road",
-                "piAddress2": "Oluvil",
-                "piAddress3": "05",
-                "piLandPhone": "123445",
-                "piMobilePhone": "122334",
-                "piEmail": "jamz@aho.com",
-                "piIndUserId": null,
-                "piUserPwd": null,
-                "piNic": "821411111",
-                "piDob": "2016-02-17",
-                "piGender": "Male",
-                "piNote": "",
-                "piUserId": 67,
-                "piActive": false
-            },
-            "requestStatus": {
-                "rsId": 2,
-                "rsName": "Opened",
-                "rsActive": true
-            },
-            "staff": {
-                "stfId": 67,
-                "stfName": "DS",
-                "stfCategoryId": 1,
-                "stfUserId": "ds",
-                "stfPassword": "$2a$10$dssGWeG8.VgWAVmMWrav3uv99jxvTR4dYbLlYRA2JGjVcIJfR4Y5m",
-                "stfEmail": "",
-                "stfMobile": "",
-                "stfNote": "",
-                "stfActive": true,
-                "stfRole": "ROLE_DS",
-                "stfPiId": 0
-            },
-            "subject": {
-                "sbjId": 4,
-                "division": {
-                    "divId": 2,
-                    "divName": "Planning",
-                    "divActive": true
-                },
-                "sbjCode": "plan/dev/2004",
-                "sbjName": "Housing Fund",
-                "sbjActive": true,
-                "sbjDuration": 1,
-                "sbjCost": 1200.0
-            },
-            "reqEntDate": "2016-06-18",
-            "reqNote": "first seen",
-            "reqFees": 1200.00,
-            "reqDurartion": 1,
-            "reqIsRead": false,
-            "reqProcessed": false,
-            "reqIsVoid": true
-        },
-        "staff": {
-            "stfId": 67,
-            "stfName": "DS",
-            "stfCategoryId": 1,
-            "stfUserId": "ds",
-            "stfPassword": "$2a$10$dssGWeG8.VgWAVmMWrav3uv99jxvTR4dYbLlYRA2JGjVcIJfR4Y5m",
-            "stfEmail": "",
-            "stfMobile": "",
-            "stfNote": "",
-            "stfActive": true,
-            "stfRole": "ROLE_DS",
-            "stfPiId": 0
-        },
-        "stageStatus": {
-            "ssId": 1,
-            "ssName": "Pending",
-            "ssActive": true
-        },
-        "subjecStage": {
-            "stgId": 2,
-            "subject": {
-                "sbjId": 4,
-                "division": {
-                    "divId": 2,
-                    "divName": "Planning",
-                    "divActive": true
-                },
-                "sbjCode": "plan/dev/2004",
-                "sbjName": "Housing Fund",
-                "sbjActive": true,
-                "sbjDuration": 1,
-                "sbjCost": 1200.0
-            },
-            "stgName": "Registrar Signature",
-            "stgActive": true,
-            "stgCost": 100.00
-        },
-        "rsSequenceNo": 1,
-        "rstTxnDate": 1466208859000,
-        "rstNote": ""
-    }, {
-        "rstId": 50,
-        "request": {
-            "reqId": 30,
-            "division": {
-                "divId": 2,
-                "divName": "Planning",
-                "divActive": true
-            },
-            "publicIndividual": {
-                "piId": 5,
-                "notification": {
-                    "ntnId": 3,
-                    "ntnType": "Email",
-                    "ntnActive": true
-                },
-                "piName": "M.S. Jayawardana",
-                "piAddress1": "56/8A, Park Road",
-                "piAddress2": "Oluvil",
-                "piAddress3": "05",
-                "piLandPhone": "123445",
-                "piMobilePhone": "122334",
-                "piEmail": "jamz@aho.com",
-                "piIndUserId": null,
-                "piUserPwd": null,
-                "piNic": "821411111",
-                "piDob": "2016-02-17",
-                "piGender": "Male",
-                "piNote": "",
-                "piUserId": 67,
-                "piActive": false
-            },
-            "requestStatus": {
-                "rsId": 2,
-                "rsName": "Opened",
-                "rsActive": true
-            },
-            "staff": {
-                "stfId": 67,
-                "stfName": "DS",
-                "stfCategoryId": 1,
-                "stfUserId": "ds",
-                "stfPassword": "$2a$10$dssGWeG8.VgWAVmMWrav3uv99jxvTR4dYbLlYRA2JGjVcIJfR4Y5m",
-                "stfEmail": "",
-                "stfMobile": "",
-                "stfNote": "",
-                "stfActive": true,
-                "stfRole": "ROLE_DS",
-                "stfPiId": 0
-            },
-            "subject": {
-                "sbjId": 4,
-                "division": {
-                    "divId": 2,
-                    "divName": "Planning",
-                    "divActive": true
-                },
-                "sbjCode": "plan/dev/2004",
-                "sbjName": "Housing Fund",
-                "sbjActive": true,
-                "sbjDuration": 1,
-                "sbjCost": 1200.0
-            },
-            "reqEntDate": "2016-06-18",
-            "reqNote": "first seen",
-            "reqFees": 1200.00,
-            "reqDurartion": 1,
-            "reqIsRead": false,
-            "reqProcessed": false,
-            "reqIsVoid": true
-        },
-        "staff": {
-            "stfId": 67,
-            "stfName": "DS",
-            "stfCategoryId": 1,
-            "stfUserId": "ds",
-            "stfPassword": "$2a$10$dssGWeG8.VgWAVmMWrav3uv99jxvTR4dYbLlYRA2JGjVcIJfR4Y5m",
-            "stfEmail": "",
-            "stfMobile": "",
-            "stfNote": "",
-            "stfActive": true,
-            "stfRole": "ROLE_DS",
-            "stfPiId": 0
-        },
-        "stageStatus": {
-            "ssId": 1,
-            "ssName": "Pending",
-            "ssActive": true
-        },
-        "subjecStage": {
-            "stgId": 11,
-            "subject": {
-                "sbjId": 4,
-                "division": {
-                    "divId": 2,
-                    "divName": "Planning",
-                    "divActive": true
-                },
-                "sbjCode": "plan/dev/2004",
-                "sbjName": "Housing Fund",
-                "sbjActive": true,
-                "sbjDuration": 1,
-                "sbjCost": 1200.0
-            },
-            "stgName": "Complete the function",
-            "stgActive": false,
-            "stgCost": null
-        },
-        "rsSequenceNo": 2,
-        "rstTxnDate": 1466208859000,
-        "rstNote": ""
-    }]
+[
+    {
+        "title": "All Day Event",
+        "start": "2016-06-01"
+    },
+    {
+        "title": "Long Event",
+        "start": "2016-06-07",
+        "end": "2016-06-10"
+    },
+    {
+        "id": "999",
+        "title": "Repeating Event",
+        "start": "2016-06-09T16:00:00-05:00"
+    },
+    {
+        "id": "999",
+        "title": "Repeating Event",
+        "start": "2016-06-16T16:00:00-05:00"
+    },
+    {
+        "title": "Conference",
+        "start": "2016-06-11",
+        "end": "2016-06-13"
+    },
+    {
+        "title": "Meeting",
+        "start": "2016-06-12T10:30:00-05:00",
+        "end": "2016-06-12T12:30:00-05:00"
+    },
+    {
+        "title": "Lunch",
+        "start": "2016-06-12T12:00:00-05:00"
+    },
+    {
+        "title": "Meeting",
+        "start": "2016-06-12T14:30:00-05:00"
+    },
+    {
+        "title": "Happy Hour",
+        "start": "2016-06-12T17:30:00-05:00"
+    },
+    {
+        "title": "Dinner",
+        "start": "2016-06-12T20:00:00"
+    },
+    {
+        "title": "Birthday Party",
+        "start": "2016-06-13T07:00:00-05:00"
+    },
+    {
+        "title": "Click for Google",
+        "url": "http://google.com/",
+        "start": "2016-06-28"
+    }
+]

@@ -65,7 +65,7 @@
                 <div class="inner" style="min-height: 700px;">
                     <div class="row">
                         <div class="col-lg-12">
-                            <h3 class="text-info">Admin Dashboard</h3>
+                            <h3 class="text-info">System Administrator Dashboard</h3>
                         </div>
                     </div>
 

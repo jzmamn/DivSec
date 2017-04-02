@@ -131,10 +131,11 @@ public class HomeController {
         Staff staff = ucs.getSvcStaffByUserId(getPrincipal());
         model.addAttribute("stfId", staff.getStfId());
         model.addAttribute("stfName", staff.getStfName());
+        
         if (divIdToHod == 0) {
             model.addAttribute("stfDivId", staff.getDivision().getDivId());
         } else {
-            model.addAttribute("stfDivId", staff.getDivision().getDivId());
+           model.addAttribute("stfDivId", divIdToHod);
         }
 
         // model.addAttribute("stfDivId", staff.getDivision().getDivId());

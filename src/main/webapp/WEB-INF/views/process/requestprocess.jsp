@@ -126,7 +126,7 @@
                             <div class="row">
                                 <div class="col-lg-12">
                                     <div class="col-lg-2">
-                                        <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#idModalRequest">
+                                        <button id="btnIdNewRequest" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#idModalRequest">
                                             <i class="icon-plus icon-white"></i> New Request
                                         </button>
                                     </div>
@@ -208,8 +208,8 @@
                                                         <th>SbjId</th>
                                                         <th style="width: 30%">Subject</th>
                                                         <th style="width: 10%">Date</th>
-                                                        <th>Public Id</th>
-                                                        <th style="width: 30%">Public Name</th>
+                                                        <th>Client Id</th>
+                                                        <th style="width: 30%">Client Name</th>
                                                         <th>Div Id</th>
                                                         <th>Div Name</th>
                                                         <th>Note</th>
@@ -265,7 +265,7 @@
                                                                 <th style="width: 20%">PrcStage</th>
                                                                 <th>StgId</th>
                                                                 <th style="width: 60%">Stage</th>
-                                                                <th style="width: 20%">StatusId</th>
+                                                                <th style="width: 20%">Status</th>
                                                                 <th>Status</th>
                                                                 <th>ReqId</th>
                                                                 <th>Note</th>
@@ -306,13 +306,13 @@
 
 
                                                                     <div>
-                                                                        Public Id : <span id="spnPubId" class=" pull-right text-muted small"></span> <span class="pull-right small"> <input
+                                                                        Client Id : <span id="spnPubId" class=" pull-right text-muted small"></span> <span class="pull-right small"> <input
                                                                                 type="hidden" style="width: 50%; height: 20%;" id="txtIdPublic" />
                                                                         </span>
                                                                     </div>
 
                                                                     <div>
-                                                                        Public Name : <span id="spnPubName" class=" pull-right text-muted small"></span>
+                                                                        Client Name : <span id="spnPubName" class=" pull-right text-muted small"></span>
                                                                     </div>
 
                                                                     <div style="display: none;">
@@ -414,10 +414,10 @@
                                 <div class="modal-content">
                                     <div class="modal-header">
                                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                        <h4 class="modal-title" id="H4">Public Request Form</h4>
+                                        <h4 class="modal-title" id="H4">Client Request Form</h4>
                                     </div>
                                     <div class="modal-body">
-                                        <form:form data-toggle="validator" role="form" id="frmIdRequest" method="POST" modelAttribute="maRequest">
+                                        <form:form data-toggle="validator" role="form" id="frmIdRequest" method="POST" modelAttribute="maRequest" >
 
                                             <div class="form-group">
                                                 <label for="txtIdReqId" class="control-label">Request Id</label>
@@ -426,28 +426,28 @@
                                             </div>
 
                                             <div class="form-group">
-                                                <label for="txtIdPublicId" class="control-label">Public Name</label>
+                                                <label for="txtIdPublicName" class="control-label">Client Name</label>
                                                 <div class="input-group">
-                                                    <input type="text" class="form-control" id="txtIdPublicName" name="txtPublicName" disabled placeholder="Select Public" /> <span
+                                                    <input type="text" class="form-control" id="txtIdPublicName" name="txtPublicName" disabled placeholder="Select Client" required="true" /> <span
                                                         class="input-group-btn">
                                                         <button class="btn btn-warning" type="button" data-toggle="modal" data-target="#modalPublic">
                                                             <i class="icon-search"></i>
                                                         </button>
                                                     </span>
-                                                    <form:input path="publicIndividual.piId" type="hidden" class="form-control" id="txtIdPublicId" name="txtIdPublicId" />
+                                                    <form:input path="publicIndividual.piId" type="hidden" class="form-control" id="txtIdPublicId" name="txtIdPublicId" required="true"  />
                                                 </div>
                                             </div>
 
                                             <div class="form-group">
-                                                <label for="txtIdSubjectId" class="control-label">Subject</label>
+                                                <label for="txtIdSubject" class="control-label">Subject</label>
                                                 <div class="input-group">
-                                                    <input type="text" class="form-control" id="txtIdSubject" name="txtSubject" disabled placeholder="Select Subject" /> <span
+                                                    <input type="text" class="form-control" id="txtIdSubject" name="txtSubject" disabled placeholder="Select Subject" required="true"  /> <span
                                                         class="input-group-btn">
                                                         <button class="btn btn-warning" type="button" data-toggle="modal" data-target="#modalSubject">
                                                             <i class="icon-search"></i>
                                                         </button>
                                                     </span>
-                                                    <form:input path="subject.sbjId" type="hidden" class="form-control" id="txtIdSubjectId" name="txtSearch" />
+                                                    <form:input path="subject.sbjId" type="hidden" class="form-control" id="txtIdSubjectId" name="txtSearch" required="true"  />
                                                 </div>
                                             </div>
 
@@ -580,7 +580,7 @@
 
                                     <div class="modal-header">
                                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                                        <h4 class="modal-title" id="H4">Select Public</h4>
+                                        <h4 class="modal-title" id="H4">Select Client</h4>
                                     </div>
                                     <div class="modal-body">
                                         <div class="table-responsive">

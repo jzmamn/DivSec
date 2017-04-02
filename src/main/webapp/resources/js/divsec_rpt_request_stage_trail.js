@@ -6,7 +6,7 @@ jQuery(function () {
     $('#divIdSubject').hide();
     $('#divIdStatus').hide();
     $('#divIdUser').hide();
-    
+
     var dtRequest = $('#dtTable')
             .dataTable(
                     {
@@ -40,7 +40,9 @@ jQuery(function () {
                             }, {
                                 "data": "stf_name"
                             }],
-                        "columnDefs": [
+                        "columnDefs": [{
+                                "targets": [0], "visible": false
+                            },
                             {
                                 "targets": [7],
                                 "render": function (data, type, full, meta) {
@@ -104,9 +106,36 @@ jQuery(function () {
                                     dtRequest
                                             .fnReloadAjax('rptrequeststagetrail/loadTrail/0/0/0/0');
                                 }
-                            }]
+                            }],
+                        "drawCallback": function (settings) {
+                            var api = this.api();
+                            var rows = api.rows({page: 'current'}).nodes();
+                            var last = null;
+
+                            api.column(0, {page: 'current'}).data().each(function (group, i) {
+                                if (last !== group) {
+                                    $(rows).eq(i).before(
+                                            '<tr class="group" style="background-color: #deb"><td colspan="9">' + group + '</td></tr>'
+                                            );
+
+                                    last = group;
+                                }
+                            });
+                        }
+
 
                     });
+
+
+    // Order by the grouping
+    $('#example tbody').on('click', 'tr.group', function () {
+        var currentOrder = dtRequest.order()[0];
+        if (currentOrder[0] === 2 && currentOrder[1] === 'asc') {
+            dtRequest.order([0, 'desc']).draw();
+        } else {
+            dtRequest.order([0, 'asc']).draw();
+        }
+    });
 
     // ------------------ Apply Filter------------------
     $("#btnIdApplyFilter")

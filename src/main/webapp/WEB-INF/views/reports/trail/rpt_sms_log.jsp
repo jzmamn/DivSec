@@ -8,7 +8,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>DivSec | Public Report</title>
+        <title>DivSec | SMS Log</title>
 
 
         <!-- GLOBAL STYLES -->
@@ -92,17 +92,17 @@
                                                 <tr>
 
 
-                                                    <th style="width: 5%">SMSId</th>
-                                                    <th style="width: 18%">DateSent</th>
-                                                    <th style="width: 5%">RequestId</th>
-                                                    <th  style="width: 18%">SubjectCode</th>
-                                                    <th style="width: 5%">PublicId</th>
-                                                    <th style="width: 18%">PublicName</th>
-                                                    <th style="width: 5%">SMSResponse</th>
-                                                    <th style="width: 5%">SMSStatus</th>
-                                                    <th style="width: 5%">SMSCharges</th>
-                                                    <th style="width: 5%">SMSUserId</th>
-                                                    <th  style="width: 10%">UserName</th>
+                                                    <th style="width: 5%">SMS Id</th>
+                                                    <th style="width: 18%">Date Sent</th>
+                                                    <th style="width: 5%">Request Id</th>
+                                                    <th  style="width: 18%">Subject Code</th>
+                                                    <th style="width: 5%">Client Id</th>
+                                                    <th style="width: 18%">Client Name</th>
+                                                    <th style="width: 5%">SMS Response</th>
+                                                    <th style="width: 5%">SMS Status</th>
+                                                    <th style="width: 5%">SMS Charges</th>
+                                                    <th style="width: 5%">Staff Id</th>
+                                                    <th  style="width: 10%">Staff</th>
 
                                                 </tr>
                                             </thead>

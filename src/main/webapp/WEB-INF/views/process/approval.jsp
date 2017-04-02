@@ -168,13 +168,13 @@
 
 
                                                                 <div>
-                                                                    Public Id : <span id="spnPubId" class=" text-muted small"></span> <span class="small"> <input
+                                                                    Client Id : <span id="spnPubId" class=" text-muted small"></span> <span class="small"> <input
                                                                             type="hidden" style="width: 50%; height: 20%;" id="txtIdPublic" />
                                                                     </span>
                                                                 </div>
 
                                                                 <div>
-                                                                    Public Name : <span id="spnPubName" class=" text-muted small"></span>
+                                                                    Client Name : <span id="spnPubName" class=" text-muted small"></span>
                                                                 </div>
 
                                                                 <div style="display: none;">

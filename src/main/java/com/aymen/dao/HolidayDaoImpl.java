@@ -10,7 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.aymen.entity.Holiday;
+import com.aymen.entity.Request;
 import org.hibernate.Criteria;
+import org.hibernate.SQLQuery;
 import org.hibernate.criterion.Order;
 
 @Repository
@@ -55,6 +57,17 @@ public class HolidayDaoImpl implements HolidayDAO {
         Holiday holiday = (Holiday) session.load(Holiday.class, holId);
         logger.info("Person loaded successfully, Person details=" + holiday.getHolId());
         return holiday;
+    }
+
+    @Override
+    public List<Object> listHolidayForCalender() {
+        String strQry = "select * from vw_holiday_cal";
+        System.out.println(strQry);
+        Session session = this.sessionFactory.getCurrentSession();
+        SQLQuery query = session.createSQLQuery(strQry);
+        query.setResultTransformer(Criteria.ALIAS_TO_ENTITY_MAP);
+        List<Object> results = query.list();
+        return results;
     }
 
 }

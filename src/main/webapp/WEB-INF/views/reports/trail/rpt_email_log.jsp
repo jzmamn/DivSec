@@ -8,7 +8,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>DivSec | Public Report</title>
+        <title>DivSec | Email Log</title>
 
 
         <!-- GLOBAL STYLES -->
@@ -90,14 +90,14 @@
                                         <table class="table table-striped table-bordered table-hover table-condensed" id="dtTable">
                                             <thead>
                                                 <tr>
-                                                    <th style="width: 5%">EmailId</th>
-                                                    <th style="width: 18%">EmailDate</th>
-                                                    <th style="width: 5%">RequestId</th>
-                                                    <th style="width: 10%">SubjectCode</th>
-                                                    <th>pi_id</th>
-                                                    <th style="width: 20%">PublicName</th>
-                                                    <th style="width: 5%">UserId</th>
-                                                    <th  style="width: 10%">UserName</th>
+                                                    <th style="width: 5%">Email Id</th>
+                                                    <th style="width: 18%">Email Date</th>
+                                                    <th style="width: 5%">Request Id</th>
+                                                    <th style="width: 10%">Subject Code</th>
+                                                    <th>Client Id</th>
+                                                    <th style="width: 20%">Client Name</th>
+                                                    <th style="width: 5%">Staff Id</th>
+                                                    <th  style="width: 10%">Staff</th>
                                                 </tr>
                                             </thead>
 

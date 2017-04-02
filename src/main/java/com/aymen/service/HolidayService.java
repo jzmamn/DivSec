@@ -23,4 +23,6 @@ public interface HolidayService {
     public List<Holiday> listActiveHolidaySvc();
 
     public Holiday getHolidayByIdSvc(int holId);
+    
+     public String listHolidayForCalenderSvc();
 }

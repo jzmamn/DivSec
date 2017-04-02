@@ -22,9 +22,11 @@
 
         <!-- PAGE LEVEL STYLES -->
         <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/plugins/dataTables/css/dataTables.bootstrap.css" />
+        <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/plugins/dataTables/css/buttons.dataTables.min.css" />
         <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/plugins/Sweetalert-master/lib/sweet-alert.css" />
         <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/plugins/datepicker/css/bootstrap-datepicker.css" />
-
+        <link href="${pageContext.request.contextPath}/resources/plugins/fullcalendar-2.8.0/fullcalendar.css" rel="stylesheet" type="text/css"/>
+       
 
         <!-- END PAGE LEVEL  STYLES -->
 
@@ -42,12 +44,12 @@
         <div id="wrap">
 
             <!-- HEADER SECTION -->
-            <jsp:include page="../include/include_header.jsp" />
 
+            <jsp:include page="../../include/include_header.jsp" />
             <!-- END HEADER SECTION -->
 
             <!-- MENU SECTION -->
-            <jsp:include page="../include/include_menu.jsp" />
+            <jsp:include page="../../include/include_menu.jsp" />
             <!--END MENU SECTION -->
 
             <!--PAGE CONTENT -->
@@ -56,7 +58,7 @@
                 <div class="inner">
                     <div class="row">
                         <div class="col-lg-12">
-                            <h3 class="text-info">Holiday Setup </h3>
+                            <h3 class="text-info">Holiday</h3>
                         </div>
                     </div>
                     <hr />
@@ -80,41 +82,36 @@
                     </div>
                     <!--End Alert -->
 
+                    <!--                    <div class="row">
+                                            <div class="col-lg-12">
+                                                <div class="panel panel-default">
+                    
+                                                    <div class="panel-body">
+                                                        <div class="table-responsive">
+                                                            <table class="table table-striped table-bordered table-condensed table-hover" id="dtHoliday">
+                                                                <thead>
+                                                                    <tr>
+                                                                        <th style="width: 10%;">Holiday Id</th>
+                                                                        <th style="width: 10%;">Date</th>
+                                                                        <th>Holiday</th>
+                                                                        <th style="width: 10%;" >Active</th>
+                                                                    </tr>
+                                                                </thead>
+                    
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>-->
+
+
                     <div class="row">
-                        <div class="col-lg-12">
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <div class="col-lg-12">
+                        <div class="col-lg-8">
 
-                                        <button id="btnAddHoliday" data-toggle="modal" data-target="#modalHolidaySave" class="btn btn-primary btn-sm">
-                                            <i class="icon-plus icon-white"></i> Add
-                                        </button>
+                            <div id='calendar'></div>
 
 
-                                        <!--                                        <div class="input-group input-daterange" id="divIdDateRange">
-                                                                                    <span class="input-group-addon">From</span> <input id="dpFrom" type="text" class="form-control" placeholder="from date yyyy-mm-dd">
-                                                                                    <span class="input-group-addon">to</span> <input id="dpTo" type="text" class="form-control" placeholder="to date yyyy-mm-dd">
-                                                                                </div>-->
-
-
-                                    </div> 
-                                </div>
-                                <div class="panel-body">
-                                    <div class="table-responsive">
-                                        <table class="table table-striped table-bordered table-condensed table-hover" id="dtHoliday">
-                                            <thead>
-                                                <tr>
-                                                    <th style="width: 10%;">Holiday Id</th>
-                                                    <th style="width: 10%;">Date</th>
-                                                    <th>Holiday</th>
-                                                    <th style="width: 10%;" >Active</th>
-                                                </tr>
-                                            </thead>
-
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                     </div>
 
@@ -195,7 +192,7 @@
         <!--END MAIN WRAPPER -->
 
         <!-- FOOTER -->
-        <jsp:include page="../include/include_footer.jsp" />
+        <jsp:include page="../../include/include_footer.jsp" />
         <!--END FOOTER -->
 
 
@@ -210,16 +207,26 @@
         <!-- PAGE LEVEL SCRIPTS -->
         <script src="${pageContext.request.contextPath}/resources/plugins/dataTables/js/jquery.dataTables.js"></script>
         <script src="${pageContext.request.contextPath}/resources/plugins/dataTables/js/dataTables.bootstrap.js"></script>
+
+        <script src="${pageContext.request.contextPath}/resources/plugins/dataTables/js/buttons.colVis.min.js"></script>
+        <script src="${pageContext.request.contextPath}/resources/plugins/dataTables/js/buttons.print.min.js"></script>
+        <script src="${pageContext.request.contextPath}/resources/plugins/dataTables/js/buttons.html5.min.js"></script>
+        <script src="${pageContext.request.contextPath}/resources/plugins/dataTables/js/dataTables.buttons.min.js"></script>
+        <script src="${pageContext.request.contextPath}/resources/plugins/dataTables/js/jszip.min.js"></script>
+        <script src="${pageContext.request.contextPath}/resources/plugins/dataTables/js/pdfmake.min.js"></script>
+        <script src="${pageContext.request.contextPath}/resources/plugins/dataTables/js/vfs_fonts.js"></script>
         <script src="${pageContext.request.contextPath}/resources/plugins/dataTables/js/fnReloadAjax.js"></script>
-        <script src="${pageContext.request.contextPath}/resources/js/divsec_holiday.js"></script>
+        <script src="${pageContext.request.contextPath}/resources/js/divsec_rpt_holiday.js"></script>
         <script src="${pageContext.request.contextPath}/resources/plugins/validator/validator.min.js"></script>
         <script src="${pageContext.request.contextPath}/resources/plugins/Sweetalert-master/lib/sweet-alert.js"></script>
-        <script src="${pageContext.request.contextPath}/resources/plugins/datepicker/js/bootstrap-datepicker.js"></script>
+        <script src="${pageContext.request.contextPath}/resources/plugins/fullcalendar-2.8.0/lib/moment.min.js" type="text/javascript"></script>
+
+        <script src="${pageContext.request.contextPath}/resources/plugins/fullcalendar-2.8.0/fullcalendar.js" type="text/javascript"></script>
         <script>
 
-            $('#dp1').datepicker({
-                format: "yyyy-mm-dd"
-            });
+//            $('#dp1').datepicker({
+//                format: "yyyy-mm-dd"
+//            });
 
 //            $('#dpFrom').datepicker({
 //                format: "yyyy-mm-dd"

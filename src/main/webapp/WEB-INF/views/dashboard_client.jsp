@@ -92,7 +92,7 @@
                         <div class="col-lg-12">
                             <div class="panel panel-info">
                                 <div class="panel-heading">
-                                    Not Completed
+                                    New / Opened
                                 </div>
 
                                 <div class="panel-body">
@@ -141,8 +141,8 @@
                                     <div class="table-responsive">
                                         <table class="table table-striped  table-hover table-condensed" id="dtTableApprove">
                                             <thead>
-                                               <tr>
-                                                   <th style="width: 10%">Rq Id</th>
+                                                <tr>
+                                                    <th style="width: 10%">Rq Id</th>
                                                     <th style="width: 10%">Status</th>
                                                     <th>StatusName</th>
                                                     <th>SbjId</th>
@@ -181,7 +181,7 @@
                                     <div class="table-responsive">
                                         <table class="table table-striped  table-hover table-condensed" id="dtTableCompleted">
                                             <thead>
-                                               <tr>
+                                                <tr>
                                                     <th style="width: 10%">Rq Id</th>
                                                     <th style="width: 10%">Status</th>
                                                     <th>StatusName</th>
@@ -220,24 +220,24 @@
                                     <table class="table table-striped  table-hover table-condensed" id="dtTableClosed">
                                         <thead>
                                             <tr>
-                                                    <th style="width: 10%">Rq Id</th>
-                                                    <th style="width: 10%">Status</th>
-                                                    <th>StatusName</th>
-                                                    <th>SbjId</th>
-                                                    <th >Subject</th>
-                                                    <th style="width: 60%">Subject Name</th>
-                                                    <th style="width: 15%">Date Accepted</th>
-                                                    <th>Pb Id</th>
-                                                    <th>Pb Name</th>
-                                                    <th>Div Id</th>
-                                                    <th>Div Name</th>
-                                                    <th>Note</th>
-                                                    <th>Stf Id</th>
-                                                    <th>Stf Name</th>
-                                                    <th>Fee</th>
-                                                    <th>Duration</th>
-                                                    <th>Void</th>
-                                                </tr>
+                                                <th style="width: 10%">Rq Id</th>
+                                                <th style="width: 10%">Status</th>
+                                                <th>StatusName</th>
+                                                <th>SbjId</th>
+                                                <th >Subject</th>
+                                                <th style="width: 60%">Subject Name</th>
+                                                <th style="width: 15%">Date Accepted</th>
+                                                <th>Pb Id</th>
+                                                <th>Pb Name</th>
+                                                <th>Div Id</th>
+                                                <th>Div Name</th>
+                                                <th>Note</th>
+                                                <th>Stf Id</th>
+                                                <th>Stf Name</th>
+                                                <th>Fee</th>
+                                                <th>Duration</th>
+                                                <th>Void</th>
+                                            </tr>
                                         </thead>
                                     </table>
                                 </div></div></div>
@@ -255,25 +255,25 @@
                                 <div class="table-responsive">
                                     <table class="table table-striped  table-hover table-condensed" id="dtTableRejected">
                                         <thead>
-                                           <tr>
-                                                    <th style="width: 10%">Rq Id</th>
-                                                    <th style="width: 10%">Status</th>
-                                                    <th>StatusName</th>
-                                                    <th>SbjId</th>
-                                                    <th >Subject</th>
-                                                    <th style="width: 60%">Subject Name</th>
-                                                    <th style="width: 15%">Date Accepted</th>
-                                                    <th>Pb Id</th>
-                                                    <th>Pb Name</th>
-                                                    <th>Div Id</th>
-                                                    <th>Div Name</th>
-                                                    <th>Note</th>
-                                                    <th>Stf Id</th>
-                                                    <th>Stf Name</th>
-                                                    <th>Fee</th>
-                                                    <th>Duration</th>
-                                                    <th>Void</th>
-                                                </tr>
+                                            <tr>
+                                                <th style="width: 10%">Rq Id</th>
+                                                <th style="width: 10%">Status</th>
+                                                <th>StatusName</th>
+                                                <th>SbjId</th>
+                                                <th >Subject</th>
+                                                <th style="width: 60%">Subject Name</th>
+                                                <th style="width: 15%">Date Accepted</th>
+                                                <th>Pb Id</th>
+                                                <th>Pb Name</th>
+                                                <th>Div Id</th>
+                                                <th>Div Name</th>
+                                                <th>Note</th>
+                                                <th>Stf Id</th>
+                                                <th>Stf Name</th>
+                                                <th>Fee</th>
+                                                <th>Duration</th>
+                                                <th>Void</th>
+                                            </tr>
                                         </thead>
                                     </table>
                                 </div>

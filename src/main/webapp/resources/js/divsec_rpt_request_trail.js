@@ -40,7 +40,19 @@ jQuery(function () {
                                 "data": "req_user_id"
                             }],
                         "columnDefs": [{
+                                "targets": [0],
+                                "visible": false
+                            }, {
                                 "targets": [5],
+                                "visible": false
+                            }, {
+                                "targets": [7],
+                                "visible": false
+                            },{
+                                "targets": [8],
+                                "visible": false
+                            }, {
+                                "targets": [9],
                                 "visible": false
                             },
                             {
@@ -114,7 +126,21 @@ jQuery(function () {
                                     dtRequest
                                             .fnReloadAjax('rptrequesttrail/loadTrail/0/0/0/0/0/0/0/0');
                                 }
-                            }]
+                            }],
+                        "drawCallback": function (settings) {
+                            var api = this.api();
+                            var rows = api.rows({page: 'current'}).nodes();
+                            var last = null;
+
+                            api.column(0, {page: 'current'}).data().each(function (group, i) {
+                                if (last !== group) {
+                                    $(rows).eq(i).before(
+                                            '<tr class="group" style="background-color: #deb"><td colspan="9">' + group + ' - Record(s)</td></tr>'
+                                            );
+                                    last = group;
+                                }
+                            });
+                        }
 
                     });
 

@@ -89,7 +89,8 @@ public class SMSController {
                 String phonNo = ch + "+94" + mapSMS.get("pi_mobile_phone").toString() + ch;
                 String subjectName = mapSMS.get("sbj_name").toString();
                 String reqStatus = mapSMS.get("rs_name").toString();
-                String smsContent = "Dear Customer, the status of your request (Request id -  " + requesId + ") for " + subjectName + " is " + reqStatus + ".";
+                //String smsContent = "Dear Customer, the status of your request (Request id -  " + requesId + ") for " + subjectName + " is " + reqStatus + ".";
+                String smsContent = "Dear Customer, the status of your request \n Request id-" + requesId + " \nSubject-" + subjectName + " \nStatus-" + reqStatus + ".";
 
                 String line1 = "AT+CMGF=1\r\n";
                 String line2 = "AT+CMGS=" + phonNo + "\r\n";
@@ -178,7 +179,7 @@ public class SMSController {
                 String phonNo = ch + "+94" + mapSMS.get("pi_mobile_phone").toString() + ch;
                 String subjectName = mapSMS.get("sbj_name").toString();
                 String reqStatus = mapSMS.get("rs_name").toString();
-                String smsContent = "Dear Customer, the status of your request (Request id -  " + requesId + ") for " + subjectName + " is " + reqStatus + ".";
+                String smsContent = "Dear Customer, the status of your request \n Request id-" + requesId + " \nSubject-" + subjectName + " \nStatus-" + reqStatus + ".";
 
                 String line1 = "AT+CMGF=1\r\n";
                 String line2 = "AT+CMGS=" + phonNo + "\r\n";

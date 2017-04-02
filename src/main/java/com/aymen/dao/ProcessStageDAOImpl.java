@@ -129,31 +129,31 @@ public class ProcessStageDAOImpl implements ProcessStageDAO {
 		String strQuery2 = "";
 
 		if (reqId > 0) {
-			strQuery2 = " req_id= " + reqId + " AND";
+			strQuery2 = strQuery2 + " req_id= " + reqId + " AND";
 		}
 
 		if (sbjId > 0) {
-			strQuery2 = " req_subject_id= " + sbjId + " AND";
+			strQuery2 = strQuery2 + " req_subject_id= " + sbjId + " AND";
 		}
 
 		if (pubId > 0) {
-			strQuery2 = " req_public_id= " + pubId + " AND";
+			strQuery2 = strQuery2 + " req_public_id= " + pubId + " AND";
 		}
 
 		if (divId > 0) {
-			strQuery2 = " req_division_id= " + divId + " AND";
+			strQuery2 = strQuery2 + " req_division_id= " + divId + " AND";
 		}
 
 		if (statusId > 0) {
-			strQuery2 = " req_status_id= " + statusId + " AND";
+			strQuery2 = strQuery2 + " req_status_id= " + statusId + " AND";
 		}
 
 		if (staffId > 0) {
-			strQuery2 = " rst_user_id= " + staffId + " AND";
+			strQuery2 = strQuery2 + " rst_user_id= " + staffId + " AND";
 		}
 
 		if (!fromDate.equals("0") && !toDate.equals("0")) {
-			strQuery2 = " DATE_FORMAT(req_ent_date, '%Y-%m-%d') BETWEEN  '" + fromDate + "' AND '" + toDate + "' AND";
+			strQuery2 = strQuery2 + " DATE_FORMAT(req_ent_date, '%Y-%m-%d') BETWEEN  '" + fromDate + "' AND '" + toDate + "' AND";
 		}
 
 		if (strQuery2.length() > 0) {

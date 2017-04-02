@@ -1,6 +1,5 @@
 package com.aymen.controller;
 
-import com.aymen.entity.Staff;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -11,51 +10,69 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.aymen.service.RequestService;
+import com.aymen.entity.Division;
+import com.aymen.entity.Holiday;
+import com.aymen.entity.Staff;
+import com.aymen.service.HolidayService;
 import com.aymen.service.UserCreationService;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
 
 @Controller
-@RequestMapping(value = "/rptrequestremider")
-public class RptRequestRemiderController {
+@RequestMapping(value = "/rpt_holiday")
+public class RptHolidayController {
 
-    private static final Logger logger = LoggerFactory.getLogger(RptRequestRemiderController.class);
+    private static final Logger logger = LoggerFactory.getLogger(RptHolidayController.class);
 
     @Autowired
-    RequestService reqSvc;
+    HolidayService holidaySvc;
 
     @Autowired
     UserCreationService ucs;
 
+    @InitBinder
+    protected void initBinder(WebDataBinder binder) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, false));
+    }
+
     // This method is called just before the division.jsp file is loading on the
     // browser.
     @RequestMapping(method = RequestMethod.GET)
-    public String home(ModelMap model) {
-        logger.info("Welcome home! The client locale is {}.");
+    public String home(@ModelAttribute("maHoliday") Holiday holiday, ModelMap model) {
+        logger.info("Welcome home! The client locale is {}.", holiday);
         if (getPrincipal().equals("anonymousUser")) {
-            logger.info("anonymousUser");
+            logger.info("anonymousUser", holiday);
             return "errors_403";
         }
 
-         Staff staff = ucs.getSvcStaffByUserId(getPrincipal());
+       
+        Staff staff = ucs.getSvcStaffByUserId(getPrincipal());
         model.addAttribute("stfId", staff.getStfId());
+        model.addAttribute("stfName", staff.getStfName());
         model.addAttribute("stfDivId", staff.getDivision().getDivId());
         model.addAttribute("stfDivName", staff.getDivision().getDivName());
         model.addAttribute("userName", getPrincipal());
         model.addAttribute("role", getUserRole());
-        model.addAttribute("user", getPrincipal());
-        return "reports/process/rpt_request_reminder";
+        model.addAttribute("cmdDivision", new Division());
+        return "reports/list/rpt_holiday";
     }
 
-    @RequestMapping(value = "/loadreminder/{reqId}/{fromDate}/{toDate}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+ 
+    // This method sends JSON response to the client (REST)
+    @RequestMapping(value = "/loadholiday", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     public @ResponseBody
-    List<Object> loadRequestRemider(@PathVariable("reqId") int reqId,
-            @PathVariable("fromDate") String fromDate, @PathVariable("toDate") String toDate) {
-        return this.reqSvc.getReminderRequestsSvc(reqId, fromDate, toDate);
+    List<Holiday> getData() {
+        return this.holidaySvc.listHolidaySvc();
     }
 
     private String getPrincipal() {

@@ -44,6 +44,9 @@ jQuery(function () {
                             {
                                 "targets": [3],
                                 "visible": false
+                            }, {
+                                "targets": [4],
+                                "visible": false
                             },
                             {
                                 "targets": [5],
@@ -124,9 +127,23 @@ jQuery(function () {
                                 text: 'Refresh',
                                 action: function (e, dt, node, config) {
                                     dtRequest
-                                            .fnReloadAjax('rptrequestoverdue/loadTrail/0/0/0');
+                                            .fnReloadAjax('rptrequestoverdue/loadoverdue/0/0/0');
                                 }
-                            }]
+                            }],
+                        "drawCallback": function (settings) {
+                            var api = this.api();
+                            var rows = api.rows({page: 'current'}).nodes();
+                            var last = null;
+
+                            api.column(4, {page: 'current'}).data().each(function (group, i) {
+                                if (last !== group) {
+                                    $(rows).eq(i).before(
+                                            '<tr class="group" style="background-color: #deb"><td colspan="9">' + group + ' - Record(s)</td></tr>'
+                                            );
+                                    last = group;
+                                }
+                            });
+                        }
 
                     });
 
